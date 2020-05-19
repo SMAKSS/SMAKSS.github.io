@@ -1,5 +1,5 @@
 {
-  "name": "SMAKSS",
+  "name": "smakss",
   "version": "1.0.0",
   "description": "MAKSS personal website",
   "author": "SMAKSS",
@@ -9,7 +9,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
+    "deploy": "push-dir --dir=dist --branch=master --cleanup",
     "test": "jest"
   },
   "dependencies": {
