@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Google+Sans:400,500,600,700');
+
+html {
+  font-size: 10px;
+  line-height: 1.15;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+*,
+*:before,
+*:after {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+  margin: 0;
+}
+
+a,
+button,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  background-color: transparent;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,7 @@
+@mixin flex-display($alignItems: initial, $justifyContent: initial, $flexDirection: inherit, $flex: inherit) {
+  display: flex;
+  align-items: $alignItems;
+  justify-content: $justifyContent;
+  flex-direction: $flexDirection;
+  flex: $flex;
+}

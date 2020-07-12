@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "start nuxt",
     "generate": "nuxt generate",
     "deploy": "push-dir --dir=dist --branch=master --cleanup",
     "test": "jest"
@@ -16,10 +16,15 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
-    "nuxt": "^2.0.0",
-    "push-dir": "^0.4.1"
+    "cookie-universal-nuxt": "^2.1.4",
+    "node-sass": "^4.14.1",
+    "nuxt": "^2.13.3",
+    "push-dir": "^0.4.1",
+    "sass-loader": "^8.0.2",
+    "vue-i18n": "^8.18.2"
   },
   "devDependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-jest": "^24.1.0",
     "eslint-config-prettier": "^6.10.0",
