@@ -1,38 +1,35 @@
 <template>
   <footer class="site-footer">
-    <NuxtLink :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/` : '' }`" exact>
-      <span class="svg-container logo">logo</span>
-    </NuxtLink>
-
-    <ul>
+    <Logo />
+    <ul class="footer-menu">
       <li class="item">
         <a
-          href="https://ko-fi.com/smakss"
+          href="https://ko-fi.com/smakss/"
           rel="noopener noreferrer"
           target="_blank"
           class="link"
         >{{$t('links.donate')}}</a>
       </li>
       <li class="item">
-        <NuxtLink :to="$i18n.path('about')" class="link" exact>{{$t('links.about')}}</NuxtLink>
+        <NuxtLink :to="$i18n.path('about/')" class="link" exact>{{$t('links.about')}}</NuxtLink>
       </li>
     </ul>
-
-    <div class="localization-bar">
-      <NuxtLink :to="$route.fullPath.replace(/^\/[^\/]+/, '')" class="link" exact>English</NuxtLink>
-      <NuxtLink :to="`/fa` + $route.fullPath.replace(/^\/['fa']+/, '')" class="link" exact>فارسی</NuxtLink>
-    </div>
   </footer>
 </template>
 
 <script>
+import Logo from '@/components/icons/Logo'
+
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  components: {
+    Logo
+  }
 }
 </script>
 
 <style lang="scss">
-footer {
+.site-footer {
   @include flex-display(center, flex-start);
   height: auto;
   width: 100%;
@@ -40,7 +37,20 @@ footer {
   padding: 4rem;
 }
 
-footer .svg-container {
+@media (max-width: 1023px) {
+  .site-footer {
+    @include flex-display(flex-start, center, column);
+  }
+}
+
+@media (max-width: 767px) {
+  .site-footer {
+    height: auto;
+    padding: 4rem 2rem;
+  }
+}
+
+.site-footer .svg-container {
   height: 100%;
   width: 100%;
   display: inline-block;
@@ -48,35 +58,30 @@ footer .svg-container {
   vertical-align: middle;
 }
 
-footer .svg-container.logo {
+.site-footer .svg-container.logo {
   height: 2.8rem;
   width: 8.6rem;
   margin-right: 5rem;
 }
 
-footer .link {
+.site-footer .link {
   text-decoration: none;
   font: 1.4rem/1 $font;
   letter-spacing: 0.25px;
   color: $link;
 }
 
-footer .item {
+.site-footer .item {
   list-style: none;
   display: inline-block;
-  margin: 1rem 3rem 1rem 0;
   padding: 0;
 }
 
-footer .link:hover {
+.site-footer .footer-menu .item {
+  margin: 1rem 3rem 1rem 0;
+}
+
+.site-footer .link:hover {
   color: $link-hover;
-}
-
-footer .localization-bar {
-  margin-left: auto;
-}
-
-footer .localization-bar .link {
-  margin: 1rem 0 1rem 3rem;
 }
 </style>

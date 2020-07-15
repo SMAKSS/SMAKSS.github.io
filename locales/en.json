@@ -1,8 +1,27 @@
 {
+  "title": {
+    "index": "SMAKSS",
+    "home": "Go to home",
+    "switcher": "Switcher",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
   "links": {
     "english": "English",
     "persian": "Farsi",
     "donate": "Buy me a coffee",
     "about": "About Me"
+  },
+  "buttons": {
+    "start": "Let's get started"
+  },
+  "quote": {
+    "error": "I'm truly ashamed! We got no quote for you today.",
+    "reason": "It may because the quote server is down at the moment.",
+    "title": {
+      "content": "Quote of the day",
+      "author": "Search for author"
+    }
   }
 }

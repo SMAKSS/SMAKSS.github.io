@@ -2,27 +2,35 @@
   <div class="site-intro">
     <p v-if="$fetchState.pending">Fetching posts...</p>
     <template v-else-if="$fetchState.error || !quoteData">
-      <h2 class="quote-error">{{ $t('home.title') }}</h2>
-      <p class="quote-reason">{{ $t('home.introduction') }}</p>
+      <h2 class="quote-error">{{ $t('quote.error') }}</h2>
+      <p class="quote-reason">{{ $t('quote.reason') }}</p>
     </template>
     <template v-else>
       <h2
         class="quote-content"
         :class="{'max-width-none': quoteData.length > 120}"
+        :title="$t('quote.title.content')"
       >{{quoteData.content}}</h2>
       <a
         :href="quoteData.search"
         rel="noopener noreferrer"
         target="_blank"
         class="quote-author"
+        :title="$t('quote.title.author')"
       >{{quoteData.author}}</a>
     </template>
+    <button class="button" :title="$t('buttons.start')"><span class="label">{{$t('buttons.start')}}</span></button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Quote',
+  head() {
+    return {
+      title: this.$t('title.index')
+    }
+  },
   data: () => {
     return {
       quoteData: null,
@@ -79,7 +87,6 @@ export default {
   width: 100%;
   top: 0;
   left: 0;
-  background: $background-color;
   z-index: 8;
   overflow: hidden;
 }
@@ -89,7 +96,8 @@ export default {
   position: absolute;
 }
 
-.quote-content {
+.quote-content,
+.quote-error {
   font: 400 3.6rem/4.4rem $font;
   width: 80%;
   max-width: 20.5em;
@@ -97,20 +105,43 @@ export default {
   color: $heading-color;
 }
 
+@media (max-width: 767px) {
+  .quote-content,
+  .quote-error {
+    margin-top: 0;
+    width: calc(100% - 8rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .quote-content,
+  .quote-error {
+    width: 75%;
+  }
+}
+
 .quote-content.max-width-none {
   max-width: unset;
 }
 
-.quote-author {
+.quote-author,
+.quote-reason {
   font: 400 1.5rem/2.3rem $font;
   max-width: 620px;
   margin: 2rem auto 3rem;
   color: $text-color;
   text-decoration: none;
+}
+
+.quote-author {
   cursor: pointer;
 }
 
 .quote-author:hover {
   color: $link-hover;
+}
+
+.dark-mode .quote-author:hover {
+  color: $link;
 }
 </style>

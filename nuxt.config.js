@@ -19,7 +19,7 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: '~/components/loading.vue',
   /*
    ** Global CSS
    */
@@ -38,12 +38,12 @@ export default {
    * Custom routes
    */
   generate: {
-    routes: ['/', '/fa', '/about', '/fa/about']
+    routes: ['/', '/fa/', '/about/', '/fa/about/']
   },
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/style-resources'],
+  buildModules: ['@nuxtjs/style-resources', '@nuxtjs/color-mode', '@nuxtjs/svg'],
   styleResources: {
     scss: ['~assets/_variables.scss', '~assets/_mixins.scss']
   },

@@ -1,25 +1,22 @@
 <template>
-  <div class="container">
-    <Footer />
+  <div class="site-main-page">
     <Quote />
   </div>
 </template>
 
 <script>
-import Quote from '~/components/Quote'
-import Footer from '~/components/Footer'
+import Quote from '@/components/Quote'
 
 export default {
-  name: "Index",
+  name: 'Index',
   components: {
-    Quote,
-    Footer
+    Quote
   }
 }
 </script>
 
 <style lang="scss">
-.container {
+.site-main-page {
   height: 100%;
   width: 100%;
   position: relative;
