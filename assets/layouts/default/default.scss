@@ -16,6 +16,7 @@
   --border-color: #ddd;
   --mask-color: rgba(0, 0, 0, 0.1);
   --light-glow: #f0c420;
+  --settings-default: #5f6368;
 }
 
 .dark-mode {
@@ -31,9 +32,10 @@
   --button-icon: #f7f7f7;
   --button-icon-hover: #f2f2f2;
   --footer-color: #071521;
-  --border-color: #0d2538;
+  --border-color: #ddd;
   --mask-color: rgba(255, 255, 255, 0.1);
   --light-glow: #f0c420;
+  --settings-default: #5f6368;
 }
 
 html {

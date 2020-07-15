@@ -1,19 +1,31 @@
 <template>
-  <div class="theme-settings">
-    <!-- <ul class="localization-bar">
-      <li class="item">
-        <NuxtLink :to="$route.fullPath.replace(/^\/[^\/]+/, '')" class="link" exact>English</NuxtLink>
-      </li>
-      <li class="item">
-        <NuxtLink :to="`/fa` + $route.fullPath.replace(/^\/['fa']+/, '')" class="link" exact>فارسی</NuxtLink>
-      </li>
-    </ul>-->
-    <div class="color-switcher">
+  <div class="site-settings">
+    <div class="settings localization-switcher" ref="localizationSwitcher" data-list="locales">
+      <button class="dropdown" @click="switchHandler">
+        <span class="dropdown-container link">{{ selectedLocal.lang }}</span>
+      </button>
+      <ul class="locales" ref="locales">
+        <li
+          class="item"
+          v-for="local of remainingLocales"
+          :key="local.lang"
+          @click.self="switchHandler"
+        >
+          <NuxtLink
+            @click.native="localChangeLinkHandler"
+            :to="local.path"
+            class="link"
+            exact
+          >{{ local.lang }}</NuxtLink>
+        </li>
+      </ul>
+    </div>
+    <div class="settings color-switcher" data-list="colors">
       <button
         class="icon"
         :title="$t(`title.${$colorMode.preference}`)"
         :aria-label="$t(`title.${$colorMode.preference}`)"
-        @click="openSwitcher"
+        @click="switchHandler"
       >
         <span class="icon-container">
           <component
@@ -30,9 +42,9 @@
           :title="$t(`title.${color}`)"
           v-for="color of remainingColors"
           :key="color"
-          @click="openSwitcher"
+          @click="(event) => { switchHandler(event); $colorMode.preference = color; }"
         >
-          <component :is="`icon-${color}`" @click="$colorMode.preference = color" />
+          <component :is="`icon-${color}`" />
         </li>
       </ul>
     </div>
@@ -53,85 +65,179 @@ export default {
   },
   data() {
     return {
-      colors: ['system', 'light', 'dark']
+      colors: ['system', 'light', 'dark'],
+      locales: [
+        {
+          code: 'en',
+          lang: 'English',
+          path: this.$route.fullPath.replace(/^\/[^\/]+/, '')
+        },
+        {
+          code: 'fa',
+          lang: 'فارسـی',
+          path: `/fa${this.$route.fullPath.replace(/^\/['fa']+/, '')}`
+        }
+      ]
     }
   },
   methods: {
-    openSwitcher() {
-      let opacity = this.$refs.colors.style.opacity
-      this.$refs.colors.style.opacity = opacity
-        ? (this.$refs.colors.style = '')
-        : 1
+    visibilityHandler({ switcher, ref, opacity }) {
+      if (opacity) {
+        switcher.classList.remove('active')
+        this.$refs[ref].style = ''
+      } else {
+        switcher.classList.add('active')
+        this.$refs[ref].style.opacity = 1
+        this.$refs[ref].style.visibility = 'inherit'
+      }
+    },
+    switchHandler(event) {
+      const switcher = event.target.closest('.settings')
+      const ref = switcher.dataset.list
+      this.visibilityHandler({
+        switcher,
+        ref,
+        opacity: this.$refs[ref].style.opacity
+      })
+
+      if (event.target.classList.contains('item') && ref === 'locales')
+        event.target.querySelector('.link').click()
+    },
+    localChangeLinkHandler(event) {
+      /* Since the computed property change the structure of the locales list
+      the closest element is not reachable for local link so we implement this function instead */
+      this.$refs.locales.style.opacity &&
+        this.visibilityHandler({
+          switcher: this.$refs.localizationSwitcher,
+          ref: 'locales',
+          opacity: this.$refs.locales.style.opacity
+        })
     }
   },
   computed: {
     remainingColors() {
       return this.colors.filter(color => color !== this.$colorMode.preference)
+    },
+    selectedLocal() {
+      return this.locales.find(local => local.code === this.$i18n.locale)
+    },
+    remainingLocales() {
+      return this.locales.filter(local => local.code !== this.$i18n.locale)
     }
   }
 }
 </script>
 
 <style lang="scss">
-.theme-settings {
+.site-settings {
   @include flex-display(center, flex-end);
 }
 
-.theme-settings .item {
+.site-settings .item {
   display: inline-block;
   list-style: none;
   padding: 0;
+  cursor: pointer;
 }
 
-.theme-settings .link {
+.site-settings .link {
   text-decoration: none;
   font: 1.4rem/1 $font;
   letter-spacing: 0.25px;
-  color: $link;
+  color: $settings-default;
+  user-select: none;
 }
 
-.theme-settings .color-switcher {
+.site-settings .localization-switcher,
+.site-settings .color-switcher {
   @include flex-display(center, center);
   position: relative;
   z-index: 8;
-  width: 8rem;
-  height: 8rem;
+  width: 9rem;
+  height: auto;
 }
 
-.theme-settings .color-switcher .icon {
+.site-settings .localization-switcher .dropdown,
+.site-settings .color-switcher .icon {
   transition: background 200ms cubic-bezier(1, 0, 0, 1) 0ms;
   position: relative;
-  background: $button-icon;
+  background: var(--button-icon);
   outline: none;
   height: 4rem;
-  width: 4rem;
   display: inline-block;
-  border-radius: 50%;
   z-index: 7;
 }
 
-.theme-settings .color-switcher .icon:hover {
+.site-settings .localization-switcher .dropdown {
+  border-radius: 25px;
+}
+
+.site-settings .localization-switcher .dropdown,
+.site-settings .localization-switcher .locales {
+  width: 9rem;
+}
+
+.site-settings .localization-switcher.active .dropdown::before,
+.site-settings .color-switcher.active .icon::before {
+  content: '';
+  position: absolute;
+  top: 4rem;
+  right: 1.1rem;
+  width: calc(100% - 24px);
+  height: 1px;
+  background-color: $border-color;
+}
+
+.site-settings .localization-switcher .dropdown:hover,
+.site-settings .color-switcher .icon:hover {
   background: $button-icon-hover;
 }
 
-.theme-settings .color-switcher .colors {
-  background: $button-icon;
-  border-radius: 25px;
+.site-settings .localization-switcher .locales,
+.site-settings .color-switcher .colors {
   position: absolute;
-  padding-top: 3.1rem;
-  top: 2rem;
-  width: 4rem;
+  background: $button-icon;
   height: auto;
   opacity: 0;
-  transition: opacity 0.4s;
+  visibility: hidden;
+  overflow: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
 }
 
-.theme-settings .color-switcher .colors .item {
+.site-settings .localization-switcher .locales {
+  top: 2rem;
+  text-align: center;
+  border-radius: 0 0 25px 25px;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.site-settings .localization-switcher .locales .item {
+  padding: 1rem;
+}
+
+.site-settings .color-switcher .icon {
+  border-radius: 50%;
+}
+
+.site-settings .color-switcher .icon,
+.site-settings .color-switcher .colors {
+  width: 4rem;
+}
+
+.site-settings .color-switcher .colors {
+  border-radius: 25px;
+  padding-top: 4rem;
+  top: 0;
+}
+
+.site-settings .color-switcher .colors .item {
   @include flex-display(center, center, column);
-  margin: 1rem;
+  padding: 1rem;
+  color: $settings-default;
 }
 
-.theme-settings
+.site-settings
   .color-switcher
   .icon-container
   .selected:note(.feather-monitor) {
@@ -139,11 +245,11 @@ export default {
   stroke: $light-glow;
 }
 
-.theme-settings .color-switcher .icon-container .system-light {
+.site-settings .color-switcher .icon-container .system-light {
   fill: $light-glow;
 }
 
-.theme-settings .color-switcher .icon-container .system-dark {
+.site-settings .color-switcher .icon-container .system-dark {
   fill: $background-color;
 }
 </style>
