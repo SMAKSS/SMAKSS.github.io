@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 250">
+	<g class="characters">
+		<polygon class="p" points="240 250 340 250 340 200 440 200 440 0 240 0 240 250" />
+		<polygon class="m" points="480 0 480 200 580 200 580 50 630 50 630 200 680 200 680 50 730 50 730 200 780 200 780 0 480 0" />
+		<polygon class="n" points="0 200 100 200 100 50 150 50 150 200 200 200 200 0 0 0 0 200" />
+	</g>
+	<rect class="inner-p" x="340" y="50" width="50" height="100" />
+</svg>

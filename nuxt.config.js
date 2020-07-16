@@ -17,9 +17,9 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
-   ** Customize the progress-bar color
+   ** Customize the progress-bar
    */
-  loading: '~/components/loading.vue',
+  loading: '~/components/LoadingBar.vue',
   /*
    ** Global CSS
    */

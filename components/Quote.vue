@@ -1,5 +1,6 @@
 <template>
   <div class="site-intro">
+    <Social />
     <p v-if="$fetchState.pending">Fetching posts...</p>
     <template v-else-if="$fetchState.error || !quoteData">
       <h2 class="quote-error">{{ $t('quote.error') }}</h2>
@@ -26,8 +27,13 @@
 </template>
 
 <script>
+import Social from '@/components/icons/Social'
+
 export default {
   name: 'Quote',
+  components: {
+    Social
+  },
   head() {
     return {
       title: this.$t('title.index')
@@ -93,9 +99,38 @@ export default {
   overflow: hidden;
 }
 
-.site-intro {
+.site-intro,
+.logos {
   text-align: center;
   position: absolute;
+}
+
+.site-intro .logos {
+  display: block;
+  height: 6rem;
+  margin-bottom: 4rem;
+  bottom: 0;
+}
+
+.site-intro .logos .logo {
+  display: inline-block;
+  padding: 1rem;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.site-intro .logos .logo .svg-container {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+
+.quote-content,
+.quote-author,
+.logos {
+  direction: ltr;
 }
 
 .quote-content,
@@ -111,16 +146,19 @@ export default {
   font: 400 3.6rem/4.4rem $font-en;
 }
 
-.quote-content,
-.quote-author {
-  direction: ltr;
-}
-
 @media (max-width: 767px) {
   .quote-content,
   .quote-error {
+    font-size: 2.4rem;
+    line-height: 3rem;
     margin-top: 0;
     width: calc(100% - 8rem);
+  }
+
+  .quote-author,
+  .quote-reason {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
   }
 }
 

@@ -5,7 +5,11 @@
     "switcher": "Switcher",
     "dark": "Dark",
     "light": "Light",
-    "system": "Based on system preferences"
+    "system": "Based on system preferences",
+    "stackoverflow": "Stack Overflow",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "npm": "npmjs"
   },
   "links": {
     "english": "English",

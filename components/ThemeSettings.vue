@@ -6,7 +6,7 @@
       </button>
       <ul class="locales" ref="locales">
         <li
-          class="item"
+          class="item locale"
           v-for="locale of remainingLocales"
           :key="locale.lang"
           @click.self="switchHandler"
@@ -39,13 +39,15 @@
       </button>
       <ul class="colors" ref="colors">
         <li
-          class="item"
+          class="item color"
           :title="$t(`title.${color}`)"
           v-for="color of remainingColors"
           :key="color"
           @click="(event) => { switchHandler(event); $colorMode.preference = color; }"
         >
-          <component :is="`icon-${color}`" />
+          <span class="icon-container">
+            <component :is="`icon-${color}`" />
+          </span>
         </li>
       </ul>
     </div>
@@ -178,6 +180,13 @@ export default {
   height: auto;
 }
 
+@media (max-width: 480px) {
+  .site-settings .localization-switcher,
+  .site-settings .color-switcher {
+    width: 8rem;
+  }
+}
+
 .site-settings .localization-switcher .dropdown,
 .site-settings .color-switcher .icon {
   transition: background 200ms cubic-bezier(1, 0, 0, 1) 0ms;
@@ -196,6 +205,13 @@ export default {
 .site-settings .localization-switcher .dropdown,
 .site-settings .localization-switcher .locales {
   width: 9rem;
+}
+
+@media (max-width: 480px) {
+  .site-settings .localization-switcher .dropdown,
+  .site-settings .localization-switcher .locales {
+    width: 8rem;
+  }
 }
 
 .site-settings .localization-switcher.active .dropdown::before,
@@ -233,7 +249,7 @@ export default {
   padding-bottom: 1rem;
 }
 
-.site-settings .localization-switcher .locales .item {
+.site-settings .localization-switcher .locales .locale {
   padding: 1rem;
 }
 
@@ -252,10 +268,18 @@ export default {
   top: 0;
 }
 
-.site-settings .color-switcher .colors .item {
+.site-settings .color-switcher .colors .color {
   @include flex-display(center, center, column);
   padding: 1rem;
   color: $settings-default;
+}
+
+.site-settings .color-switcher .icon-container .feather {
+  width: 2.5rem;
+}
+
+.site-settings .color-switcher .colors .icon-container .feather {
+  width: 2rem;
 }
 
 .site-settings
