@@ -1,5 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Google+Sans:400,500,600,700');
 
+@font-face {
+  font-family: 'Vazir-Local';
+  src: url('~assets/fonts/Vazir/Vazir-FD.eot') format('eot'),
+    url('~assets/fonts/Vazir/Vazir-FD.woff') format('woff'),
+    url('~assets/fonts/Vazir/Vazir-FD.ttf') format('truetype'),
+    url('~assets/fonts/Vazir/Vazir-FD.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Vazir-Bold-Local';
+  src: url('~assets/fonts/Vazir/Vazir-Bold-FD.eot') format('eot'),
+    url('~assets/fonts/Vazir/Vazir-Bold-FD.woff') format('woff'),
+    url('~assets/fonts/Vazir/Vazir-Bold-FD.ttf') format('truetype'),
+    url('~assets/fonts/Vazir/Vazir-Bold-FD.woff2') format('woff2');
+  font-style: normal;
+}
+
 :root {
   --bg: #ffffff;
   --bg-secondary: #f3f5f4;
@@ -17,6 +36,13 @@
   --mask-color: rgba(0, 0, 0, 0.1);
   --light-glow: #f0c420;
   --settings-default: #5f6368;
+  --font: Google Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-seriff;
+  --font-en: Google Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-seriff;
+  --font-fa: 'Vazir-Local', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-seriff;
 }
 
 .dark-mode {
@@ -38,11 +64,20 @@
   --settings-default: #5f6368;
 }
 
+html[lang='fa'][dir='rtl'] {
+  --font: 'Vazir-Local', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-seriff;
+}
+
 html {
   font-size: 10px;
   line-height: 1.15;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+html[lang='fa'][dir='rtl'] body {
+  direction: rtl;
 }
 
 body {
@@ -158,5 +193,5 @@ ul {
   vertical-align: middle;
   display: inline-block;
   white-space: nowrap;
-  font: 500 1.4rem/1 Google Sans, sans-serif;
+  font: 500 1.4rem/1 $font;
 }

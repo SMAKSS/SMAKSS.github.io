@@ -5,7 +5,7 @@
     "switcher": "Switcher",
     "dark": "Dark",
     "light": "Light",
-    "system": "System"
+    "system": "Based on system preferences"
   },
   "links": {
     "english": "English",

@@ -19,7 +19,9 @@
         :title="$t('quote.title.author')"
       >{{quoteData.author}}</a>
     </template>
-    <button class="button" :title="$t('buttons.start')"><span class="label">{{$t('buttons.start')}}</span></button>
+    <button class="button" :title="$t('buttons.start')">
+      <span class="label">{{$t('buttons.start')}}</span>
+    </button>
   </div>
 </template>
 
@@ -105,6 +107,15 @@ export default {
   color: $heading-color;
 }
 
+.quote-content {
+  font: 400 3.6rem/4.4rem $font-en;
+}
+
+.quote-content,
+.quote-author {
+  direction: ltr;
+}
+
 @media (max-width: 767px) {
   .quote-content,
   .quote-error {
@@ -126,11 +137,14 @@ export default {
 
 .quote-author,
 .quote-reason {
-  font: 400 1.5rem/2.3rem $font;
   max-width: 620px;
   margin: 2rem auto 3rem;
   color: $text-color;
   text-decoration: none;
+}
+
+.quote-author {
+  font: 400 1.5rem/2.3rem $font-en;
 }
 
 .quote-author {

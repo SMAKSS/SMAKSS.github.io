@@ -14,6 +14,14 @@ export default {
   components: {
     Header,
     Footer
+  },
+  head() {
+    return {
+      htmlAttrs: {
+        lang: this.$i18n.locale,
+        dir: this.$i18n.locale === 'en' ? 'ltr' : 'rtl'
+      }
+    }
   }
 }
 </script>

@@ -7,16 +7,17 @@
       <ul class="locales" ref="locales">
         <li
           class="item"
-          v-for="local of remainingLocales"
-          :key="local.lang"
+          v-for="locale of remainingLocales"
+          :key="locale.lang"
           @click.self="switchHandler"
         >
           <NuxtLink
             @click.native="localChangeLinkHandler"
-            :to="local.path"
+            :to="locale.path"
             class="link"
+            :class="{'en': $i18n.locale === 'fa', 'fa': $i18n.locale === 'en'}"
             exact
-          >{{ local.lang }}</NuxtLink>
+          >{{ locale.lang }}</NuxtLink>
         </li>
       </ul>
     </div>
@@ -70,12 +71,14 @@ export default {
         {
           code: 'en',
           lang: 'English',
-          path: this.$route.fullPath.replace(/^\/[^\/]+/, '')
+          path: this.$route.fullPath.replace(/^\/[^\/]+\/*/, '/'),
+          regex: /^\/[^\/]+\/*/
         },
         {
           code: 'fa',
           lang: 'فارسـی',
-          path: `/fa${this.$route.fullPath.replace(/^\/['fa']+/, '')}`
+          path: `/fa${this.$route.fullPath.replace(/^\/(fa)+\/*/, '/')}`,
+          regex: /^\/(fa)+\/*/
         }
       ]
     }
@@ -105,7 +108,7 @@ export default {
     },
     localChangeLinkHandler(event) {
       /* Since the computed property change the structure of the locales list
-      the closest element is not reachable for local link so we implement this function instead */
+      the closest element is not reachable for locale link so we implement this function instead */
       this.$refs.locales.style.opacity &&
         this.visibilityHandler({
           switcher: this.$refs.localizationSwitcher,
@@ -119,10 +122,20 @@ export default {
       return this.colors.filter(color => color !== this.$colorMode.preference)
     },
     selectedLocal() {
-      return this.locales.find(local => local.code === this.$i18n.locale)
+      return this.locales.find(locale => locale.code === this.$i18n.locale)
     },
     remainingLocales() {
-      return this.locales.filter(local => local.code !== this.$i18n.locale)
+      return this.locales.filter(locale => locale.code !== this.$i18n.locale)
+    }
+  },
+  watch: {
+    $route(to, from) {
+      this.locales.forEach((locale, index) => {
+        locale.path = to.fullPath.replace(locale.regex, '/')
+
+        if (locale.code !== 'en' && locale.path === to.fullPath)
+          locale.path = `/${locale.code}${to.fullPath}`
+      })
     }
   }
 }
@@ -146,6 +159,14 @@ export default {
   letter-spacing: 0.25px;
   color: $settings-default;
   user-select: none;
+}
+
+.site-settings .link.en {
+  font-family: $font-en;
+}
+
+.site-settings .link.fa {
+  font-family: $font-fa;
 }
 
 .site-settings .localization-switcher,
