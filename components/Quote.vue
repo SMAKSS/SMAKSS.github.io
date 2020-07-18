@@ -28,8 +28,9 @@
 </template>
 
 <script>
-import Social from '@/components/icons/Social'
 import { gsap } from 'gsap'
+
+import Social from '@/components/icons/Social'
 
 export default {
   name: 'Quote',
@@ -110,17 +111,17 @@ export default {
       tl.fromTo(
         animatedClassesSetOne,
         { opacity: 0, visibility: 'hidden', y: 70 },
-        { opacity: 1, visibility: 'visible', delay: 1 },
+        { opacity: 1, visibility: 'inherit', delay: 1 },
         'content'
       )
-      tl.to(animatedClassesSetOne, { y: 0, duration: 0.5 }, 'content+=2')
-      tl.fromTo(
-        animatedClassesSetTwo,
-        { opacity: 0, visibility: 'hidden', y: 30 },
-        { opacity: 1, visibility: 'visible', duration: 1 },
-        'content+=2'
-      )
-      tl.to(animatedClassesSetTwo, { y: 0, duration: 0.5 }, 'content+=2')
+        .to(animatedClassesSetOne, { y: 0, duration: 0.5 }, 'content+=2')
+        .fromTo(
+          animatedClassesSetTwo,
+          { opacity: 0, visibility: 'hidden', y: 30 },
+          { opacity: 1, visibility: 'inherit', duration: 1 },
+          'content+=2'
+        )
+        .to(animatedClassesSetTwo, { y: 0, duration: 0.5 }, 'content+=2')
     }
   }
 }
