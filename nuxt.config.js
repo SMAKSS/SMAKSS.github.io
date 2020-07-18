@@ -19,7 +19,10 @@ export default {
   /*
    ** Customize the progress-bar
    */
-  loading: '~/components/LoadingBar.vue',
+  loading: {
+    color: '#f7f7f7',
+    height: '1px'
+  },
   /*
    ** Global CSS
    */
@@ -73,6 +76,8 @@ export default {
     splitChunks: {
       layouts: true
     },
-    extend(config, ctx) { }
+    transpile: [
+      "gsap"
+    ]
   }
 }

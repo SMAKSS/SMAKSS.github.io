@@ -9,6 +9,12 @@ import Quote from '@/components/Quote'
 
 export default {
   name: 'Index',
+  head() {
+    return {
+      title: this.$t('title.index'),
+      description: this.$t('description.index')
+    }
+  },
   components: {
     Quote
   }

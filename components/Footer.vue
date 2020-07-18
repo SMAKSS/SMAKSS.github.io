@@ -50,18 +50,24 @@ export default {
   }
 }
 
-.site-footer .svg-container {
-  height: 100%;
-  width: 100%;
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
+html[lang='en'][dir='ltr'] .site-footer .svg-container.logo > svg {
+  margin-right: 5rem;
 }
 
-.site-footer .svg-container.logo {
-  height: 2.8rem;
+html[lang='fa'][dir='rtl'] .site-footer .svg-container.logo > svg {
+  margin-left: 5rem;
+}
+
+.site-footer .svg-container.logo > svg {
+  height: 1.8rem;
   width: 8.6rem;
-  margin-right: 5rem;
+  fill: $link;
+}
+
+@media (max-width: 1023px) {
+  .site-footer .svg-container.logo > svg {
+    margin-bottom: 3rem;
+  }
 }
 
 .site-footer .link {
@@ -77,8 +83,12 @@ export default {
   padding: 0;
 }
 
-.site-footer .footer-menu .item {
+html[lang='en'][dir='ltr'] .site-footer .footer-menu .item {
   margin: 1rem 3rem 1rem 0;
+}
+
+html[lang='fa'][dir='rtl'] .site-footer .footer-menu .item {
+  margin: 1rem 0 1rem 3rem;
 }
 
 .site-footer .link:hover {

@@ -1,7 +1,7 @@
 {
   "name": "smakss",
   "version": "1.0.0",
-  "description": "MAKSS personal website",
+  "description": "Hi there, I'm MAKSS a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here.",
   "author": "SMAKSS",
   "private": true,
   "scripts": {
@@ -16,7 +16,9 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
+    "@smakss/random-array-element": "^1.0.6",
     "cookie-universal-nuxt": "^2.1.4",
+    "gsap": "^3.4.0",
     "node-sass": "^4.14.1",
     "nuxt": "^2.13.3",
     "push-dir": "^0.4.1",

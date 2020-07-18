@@ -3,12 +3,13 @@
     <Social />
     <p v-if="$fetchState.pending">Fetching posts...</p>
     <template v-else-if="$fetchState.error || !quoteData">
-      <h2 class="quote-error">{{ $t('quote.error') }}</h2>
+      <h2 class="quote-error" ref="quoteError">{{ $t('quote.error') }}</h2>
       <p class="quote-reason">{{ $t('quote.reason') }}</p>
     </template>
     <template v-else>
       <h2
         class="quote-content"
+        ref="quoteContent"
         :class="{'max-width-none': quoteData.length > 120}"
         :title="$t('quote.title.content')"
       >{{quoteData.content}}</h2>
@@ -28,16 +29,12 @@
 
 <script>
 import Social from '@/components/icons/Social'
+import { gsap } from 'gsap'
 
 export default {
   name: 'Quote',
   components: {
     Social
-  },
-  head() {
-    return {
-      title: this.$t('title.index')
-    }
   },
   data: () => {
     return {
@@ -70,7 +67,16 @@ export default {
       }
     }
   },
+  beforeMount() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+    })
+  },
   mounted() {
+    this.$nextTick(() => {
+      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+    })
+
     if (this.$cookies.get('quote') === undefined && this.requestStatus) {
       const quote = {
         author: this.quoteData?.author,
@@ -83,6 +89,38 @@ export default {
         path: '/',
         maxAge: 60 * 60 * 24 * 1
       })
+    }
+
+    if (this.$refs.quoteContent || this.$refs.quoteError) this.animatedQuote()
+  },
+  methods: {
+    animatedQuote() {
+      let animatedClassesSetOne = null
+      let animatedClassesSetTwo = null
+
+      if (this.$fetchState.error) {
+        animatedClassesSetOne = '.quote-error'
+        animatedClassesSetTwo = ['.button', '.logos', '.quote-reason']
+      } else {
+        animatedClassesSetOne = '.quote-content'
+        animatedClassesSetTwo = ['.quote-author', '.button', '.logos']
+      }
+
+      const tl = gsap.timeline()
+      tl.fromTo(
+        animatedClassesSetOne,
+        { opacity: 0, visibility: 'hidden', y: 70 },
+        { opacity: 1, visibility: 'visible', delay: 1 },
+        'content'
+      )
+      tl.to(animatedClassesSetOne, { y: 0, duration: 0.5 }, 'content+=2')
+      tl.fromTo(
+        animatedClassesSetTwo,
+        { opacity: 0, visibility: 'hidden', y: 30 },
+        { opacity: 1, visibility: 'visible', duration: 1 },
+        'content+=2'
+      )
+      tl.to(animatedClassesSetTwo, { y: 0, duration: 0.5 }, 'content+=2')
     }
   }
 }
