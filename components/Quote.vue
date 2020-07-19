@@ -2,7 +2,6 @@
   <div class="site-intro">
     <Social />
     <div v-if="$fetchState.pending" ref="pending" class="pending">
-      <!-- <div ref="pending" class="pending"> -->
       <Logo />
     </div>
     <template v-else-if="$fetchState.error || !quoteData">
@@ -92,7 +91,8 @@ export default {
     this.$nextTick(() => {
       setTimeout(() => this.$nuxt.$loading.finish(), 500)
     })
-
+  },
+  updated() {
     if (this.$refs.quoteContent || this.$refs.quoteError) this.animatedQuote()
   },
   methods: {
