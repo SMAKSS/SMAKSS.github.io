@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
+
 import Logo from '@/components/icons/Logo'
 import ThemeSettings from '@/components/ThemeSettings'
 
@@ -14,6 +16,9 @@ export default {
   components: {
     Logo,
     ThemeSettings
+  },
+  mounted() {
+    gsap.fromTo('.site-header', 0.7, { y: -60 }, { y: 0 })
   }
 }
 </script>

@@ -58,6 +58,8 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
+
 import Logo from '@/components/icons/Logo'
 import IconSystem from '@/assets/icons/system.svg?inline'
 import IconLight from '@/assets/icons/light.svg?inline'
@@ -93,12 +95,17 @@ export default {
   methods: {
     visibilityHandler({ switcher, ref, opacity }) {
       if (opacity) {
+        gsap.to(this.$refs[ref], { y: -5, opacity: '', visibility: '' })
         switcher.classList.remove('active')
-        this.$refs[ref].style = ''
       } else {
-        switcher.classList.add('active')
-        this.$refs[ref].style.opacity = 1
-        this.$refs[ref].style.visibility = 'inherit'
+        const tl = gsap.timeline({
+          onComplete: () => switcher.classList.add('active')
+        })
+        tl.fromTo(
+          this.$refs[ref],
+          { y: -5 },
+          { y: 0, opacity: 1, visibility: 'inherit' }
+        )
       }
     },
     switchHandler(event) {

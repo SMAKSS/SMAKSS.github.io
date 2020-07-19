@@ -29,6 +29,8 @@ export default {
   data: () => {
     return {
       linkedin: { hover: true },
+      github: { hover: true },
+      stackoverflow: { hover: true },
       npm: { hover: true },
       logos: [
         { name: 'linkedin', url: 'https://www.linkedin.com/in/smakss/' },
@@ -43,15 +45,38 @@ export default {
   },
   mounted() {
     this.linkedin.periodEl = this.$refs.logos.querySelector(
-      '.svg-container.linkedin svg .in .period'
+      '.svg-container.linkedin svg .in #period'
     )
-    this.npm.el = this.$refs.logos.querySelector('.svg-container.npm svg')
-    this.npm.nEl = this.$refs.logos.querySelector('.svg-container.npm svg .n')
-    this.npm.pEl = this.$refs.logos.querySelector('.svg-container.npm svg .p')
-    this.npm.mEl = this.$refs.logos.querySelector('.svg-container.npm svg .m')
-    this.npm.innerPEl = this.$refs.logos.querySelector(
-      '.svg-container.npm svg .inner-p'
+    this.github.headEl = this.$refs.logos.querySelector(
+      '.svg-container.github svg .head'
     )
+    this.github.armEl = this.$refs.logos.querySelector(
+      '.svg-container.github svg .arm'
+    )
+    this.stackoverflow.tasksEl = this.$refs.logos.querySelector(
+      '.svg-container.stackoverflow svg .tasks'
+    )
+    this.stackoverflow.stackEl = this.$refs.logos.querySelector(
+      '.svg-container.stackoverflow svg .stack'
+    )
+    this.stackoverflow.taskOneEl = this.$refs.logos.querySelector(
+      '.svg-container.stackoverflow svg .tasks #task-1'
+    )
+    this.stackoverflow.taskTwoEl = this.$refs.logos.querySelector(
+      '.svg-container.stackoverflow svg .tasks #task-2'
+    )
+    this.stackoverflow.taskThreeEl = this.$refs.logos.querySelector(
+      '.svg-container.stackoverflow svg .tasks #task-3'
+    )
+    this.stackoverflow.taskFourEl = this.$refs.logos.querySelector(
+      '.svg-container.stackoverflow svg .tasks #task-4'
+    )
+    this.stackoverflow.taskFiveEl = this.$refs.logos.querySelector(
+      '.svg-container.stackoverflow svg .tasks #task-5'
+    )
+    this.npm.nEl = this.$refs.logos.querySelector('.svg-container.npm svg #n')
+    this.npm.pEl = this.$refs.logos.querySelector('.svg-container.npm svg #p')
+    this.npm.mEl = this.$refs.logos.querySelector('.svg-container.npm svg #m')
     this.npm.chooser = randomArrayElement([
       this.npm.nEl,
       this.npm.mEl,
@@ -86,7 +111,108 @@ export default {
             )
         }
         this.animaitonHandler({ el: this.linkedin, func: animation })
-      } else if (container.classList.contains('npm')) {
+      } else if (container.classList.contains('github')) {
+        const animation = completed => {
+          const tl = gsap.timeline({ onComplete: completed })
+          tl.to(
+            this.github.headEl,
+            2,
+            {
+              rotate: '10%',
+              transformOrigin: 'bottom 0'
+            },
+            'head'
+          )
+            .to(
+              this.github.armEl,
+              0.4,
+              { rotate: '6%', repeat: 2, transformOrigin: 'bottom' },
+              'head-=0.4'
+            )
+            .to(
+              this.github.armEl,
+              0.4,
+              {
+                rotate: '-5%',
+                repeat: 2,
+                transformOrigin: 'bottom'
+              },
+              'head+=0.4'
+            )
+            .to([this.github.headEl, this.github.armEl], 1, { rotate: 0 })
+        }
+        this.animaitonHandler({ el: this.github, func: animation })
+      } else if (container.classList.contains('stackoverflow')) {
+        const animation = completed => {
+          const tl = gsap.timeline({ onComplete: completed })
+          tl.to(
+            this.stackoverflow.taskOneEl,
+            {
+              y: 2,
+              transformOrigin: 'bottom right'
+            },
+            1,
+            'task1'
+          )
+            .to(
+              this.stackoverflow.taskTwoEl,
+              {
+                rotate: '-12%',
+                transformOrigin: 'bottom right',
+                y: 2.3
+              },
+              0.6,
+              'task1+=0.4'
+            )
+            .to(
+              this.stackoverflow.taskThreeEl,
+              {
+                rotate: '-25%',
+                transformOrigin: 'bottom right',
+                y: 2.5,
+                x: -0.66
+              },
+              0.6,
+              'task1+=0.6'
+            )
+            .to(
+              this.stackoverflow.taskFourEl,
+              {
+                rotate: '-40%',
+                transformOrigin: 'bottom right',
+                y: 2.2,
+                x: -2.1
+              },
+              0.6,
+              'task1+=0.8'
+            )
+            .to(
+              this.stackoverflow.taskFiveEl,
+              {
+                rotate: '-53%',
+                transformOrigin: 'bottom right',
+                y: 1.6,
+                x: -4.2
+              },
+              0.6,
+              'task1+=1'
+            )
+            .to(this.stackoverflow.tasksEl, 1.5, { y: 2.3 }, 'task1+=0.5')
+            .to(
+              [
+                this.stackoverflow.taskOneEl,
+                this.stackoverflow.taskTwoEl,
+                this.stackoverflow.taskThreeEl,
+                this.stackoverflow.taskFourEl,
+                this.stackoverflow.taskFiveEl,
+                this.stackoverflow.tasksEl
+              ],
+              1.5,
+              { rotate: 0, x: 0, y: 0 }
+            )
+        }
+        this.animaitonHandler({ el: this.stackoverflow, func: animation })
+      } else {
         const animation = completed => {
           const firstChoose = this.npm.chooser()
           const secondChoose = this.npm.chooser()
@@ -96,7 +222,7 @@ export default {
             firstChoose,
             1.25,
             { opacity: 1 },
-            { opacity: 0.3 },
+            { opacity: 0.1 },
             'first'
           )
           tl.to(firstChoose, 0.75, { opacity: 1 }, 'first+=0.5')
@@ -104,7 +230,7 @@ export default {
             secondChoose,
             1.25,
             { opacity: 1 },
-            { opacity: 0.3 },
+            { opacity: 0.1 },
             'first+=0.5'
           )
           tl.to(secondChoose, 0.75, { opacity: 1 }, 'first+=1.5')
@@ -112,7 +238,7 @@ export default {
             thirdChoose,
             1.25,
             { opacity: 1 },
-            { opacity: 0.3 },
+            { opacity: 0.1 },
             'first+=1.75'
           )
           tl.to(thirdChoose, 0.75, { opacity: 1 }, 'first+=3')
@@ -142,13 +268,14 @@ export default {
 .logos .logo .svg-container.linkedin svg .background,
 .logos .logo .svg-container.stackoverflow svg .tasks,
 .logos .logo .svg-container.stackoverflow svg .stack,
+.logos .logo .svg-container.stackoverflow svg .curved-stack,
 .logos .logo .svg-container.github svg .octocat,
 .logos .logo .svg-container.npm svg .characters {
   fill: $logo-color;
 }
 
 .logos .logo .svg-container.linkedin svg .in,
-.logos .logo .svg-container.npm svg .inner-p {
+.logos .logo .svg-container.npm svg #inner-p {
   fill: $background-color;
 }
 </style>
