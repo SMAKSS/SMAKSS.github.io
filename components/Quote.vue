@@ -1,7 +1,10 @@
 <template>
   <div class="site-intro">
     <Social />
-    <p v-if="$fetchState.pending">Fetching posts...</p>
+    <div v-if="$fetchState.pending" ref="pending" class="pending">
+      <!-- <div ref="pending" class="pending"> -->
+      <Logo />
+    </div>
     <template v-else-if="$fetchState.error || !quoteData">
       <h2 class="quote-error" ref="quoteError">{{ $t('quote.error') }}</h2>
       <p class="quote-reason">{{ $t('quote.reason') }}</p>
@@ -30,27 +33,30 @@
 <script>
 import { gsap } from 'gsap'
 
+import Logo from '~/assets/icons/SMAKSS.svg?inline'
 import Social from '@/components/icons/Social'
 
 export default {
   name: 'Quote',
+  fetchOnServer: false,
   components: {
+    Logo,
     Social
   },
   data: () => {
     return {
+      smakssEl: {},
       quoteData: null,
-      requestStatus: false,
       quoteErrorContent: ''
     }
   },
   created() {
-    if (!this.quoteData && this.$cookies.get('quote') !== undefined) {
+    if (!this.quoteData && this.$cookies.get('quote')) {
       this.quoteData = this.$cookies.get('quote')
     }
   },
   async fetch() {
-    if (this.$cookies.get('quote') === undefined) {
+    if (!this.$cookies.get('quote') && !this.requestStatus) {
       const response = await fetch(
         'https://api.quotable.io/random'
       ).then(response => response.json())
@@ -60,10 +66,19 @@ export default {
         this.quoteData.search = `https://www.google.com/search?q=${this.quoteData?.author
           .split(' ')
           .join('+')}+quotes`
-        this.requestStatus = true
+        const quote = {
+          author: this.quoteData?.author,
+          content: this.quoteData?.content,
+          length: this.quoteData?.length,
+          search: this.quoteData?.search
+        }
+
+        this.$cookies.set('quote', JSON.stringify(quote), {
+          path: '/',
+          maxAge: 60 * 60 * 24 * 1
+        })
       } else if (process.server) {
         this.$nuxt.context.res.statusCode = response.statusCode
-        this.requestStatus = false
         throw new Error(`\n Qoute request failed!`)
       }
     }
@@ -78,20 +93,6 @@ export default {
       setTimeout(() => this.$nuxt.$loading.finish(), 500)
     })
 
-    if (this.$cookies.get('quote') === undefined && this.requestStatus) {
-      const quote = {
-        author: this.quoteData?.author,
-        content: this.quoteData?.content,
-        length: this.quoteData?.length,
-        search: this.quoteData?.search
-      }
-
-      this.$cookies.set('quote', JSON.stringify(quote), {
-        path: '/',
-        maxAge: 60 * 60 * 24 * 1
-      })
-    }
-
     if (this.$refs.quoteContent || this.$refs.quoteError) this.animatedQuote()
   },
   methods: {
@@ -99,7 +100,7 @@ export default {
       let animatedClassesSetOne = null
       let animatedClassesSetTwo = null
 
-      if (this.$fetchState.error || !quoteData) {
+      if (this.$fetchState.error || !this.quoteData) {
         animatedClassesSetOne = '.quote-error'
         animatedClassesSetTwo = ['.button', '.logos', '.quote-reason']
       } else {
@@ -166,14 +167,29 @@ export default {
   vertical-align: middle;
 }
 
-.quote-content,
-.quote-author,
-.logos {
+.site-intro .quote-content,
+.site-intro .quote-author,
+.site-intro .logos {
   direction: ltr;
 }
 
-.quote-content,
-.quote-error {
+.site-intro .pending {
+  @include flex-display(center, center);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $background-color;
+}
+
+.site-intro .pending svg {
+  width: 15rem;
+  fill: $heading-color;
+}
+
+.site-intro .quote-content,
+.site-intro .quote-error {
   font: 400 3.6rem/4.4rem $font;
   width: 80%;
   max-width: 20.5em;
@@ -181,62 +197,62 @@ export default {
   color: $heading-color;
 }
 
-.quote-content {
+.site-intro .quote-content {
   font: 400 3.6rem/4.4rem $font-en;
 }
 
 @media (max-width: 767px) {
-  .quote-content,
-  .quote-error {
+  .site-intro .quote-content,
+  .site-intro .quote-error {
     font-size: 2.4rem;
     line-height: 3rem;
     margin-top: 0;
     width: calc(100% - 8rem);
   }
 
-  .quote-author,
-  .quote-reason {
+  .site-intro .quote-author,
+  .site-intro .quote-reason {
     font-size: 1.2rem;
     line-height: 1.8rem;
   }
 }
 
 @media (max-width: 480px) {
-  .quote-content,
-  .quote-error {
+  .site-intro .quote-content,
+  .site-intro .quote-error {
     width: 75%;
   }
 }
 
-.quote-content.max-width-none {
+.site-intro .quote-content.max-width-none {
   max-width: unset;
 }
 
-.quote-author,
-.quote-reason {
+.site-intro .quote-author,
+.site-intro .quote-reason {
   max-width: 620px;
   margin: 2rem auto 3rem;
   color: $text-color;
   text-decoration: none;
 }
 
-.quote-reason {
+.site-intro .quote-reason {
   font: 400 1.5rem/2.3rem $font;
 }
 
-.quote-author {
+.site-intro .quote-author {
   font: 400 1.5rem/2.3rem $font-en;
 }
 
-.quote-author {
+.site-intro .quote-author {
   cursor: pointer;
 }
 
-.quote-author:hover {
+.site-intro .quote-author:hover {
   color: $link-hover;
 }
 
-.dark-mode .quote-author:hover {
+.dark-mode .site-intro .quote-author:hover {
   color: $link;
 }
 </style>

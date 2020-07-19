@@ -1,59 +1,61 @@
 <template>
   <div class="site-header">
     <Logo />
-    <div class="site-settings">
-      <div class="settings localization-switcher" ref="localizationSwitcher" data-list="locales">
-        <button class="dropdown" @click="switchHandler">
-          <span class="dropdown-container link">{{ selectedLocal.lang }}</span>
-        </button>
-        <ul class="locales" ref="locales">
-          <li
-            class="item locale"
-            v-for="locale of remainingLocales"
-            :key="locale.lang"
-            @click.self="switchHandler"
-          >
-            <NuxtLink
-              @click.native="localChangeLinkHandler"
-              :to="locale.path"
-              class="link"
-              :class="{'en': $i18n.locale === 'fa', 'fa': $i18n.locale === 'en'}"
-              exact
-            >{{ locale.lang }}</NuxtLink>
-          </li>
-        </ul>
-      </div>
-      <div class="settings color-switcher" data-list="colors">
-        <button
-          class="icon"
-          :title="$t(`title.${$colorMode.preference}`)"
-          :aria-label="$t(`title.${$colorMode.preference}`)"
-          @click="switchHandler"
-        >
-          <span class="icon-container">
-            <component
-              :is="`icon-${$colorMode.preference}`"
-              class="selected"
-              :class="{ 'system-light': ($colorMode.preference === 'system' && $colorMode.value === 'light'), 
-            'system-dark': ($colorMode.preference === 'system' && $colorMode.value === 'dark')}"
-            />
-          </span>
-        </button>
-        <ul class="colors" ref="colors">
-          <li
-            class="item color"
-            :title="$t(`title.${color}`)"
-            v-for="color of remainingColors"
-            :key="color"
-            @click="(event) => { switchHandler(event); $colorMode.preference = color; }"
+    <ClientOnly>
+      <div class="site-settings">
+        <div class="settings localization-switcher" ref="localizationSwitcher" data-list="locales">
+          <button class="dropdown" @click="switchHandler">
+            <span class="dropdown-container link">{{ selectedLocal.lang }}</span>
+          </button>
+          <ul class="locales" ref="locales">
+            <li
+              class="item locale"
+              v-for="locale of remainingLocales"
+              :key="locale.lang"
+              @click.self="switchHandler"
+            >
+              <NuxtLink
+                @click.native="localChangeLinkHandler"
+                :to="locale.path"
+                class="link"
+                :class="{'en': $i18n.locale === 'fa', 'fa': $i18n.locale === 'en'}"
+                exact
+              >{{ locale.lang }}</NuxtLink>
+            </li>
+          </ul>
+        </div>
+        <div class="settings color-switcher" data-list="colors">
+          <button
+            class="icon"
+            :title="$t(`title.${$colorMode.preference}`)"
+            :aria-label="$t(`title.${$colorMode.preference}`)"
+            @click="switchHandler"
           >
             <span class="icon-container">
-              <component :is="`icon-${color}`" />
+              <component
+                :is="`icon-${$colorMode.preference}`"
+                class="selected"
+                :class="{ 'system-light': ($colorMode.preference === 'system' && $colorMode.value === 'light'), 
+            'system-dark': ($colorMode.preference === 'system' && $colorMode.value === 'dark')}"
+              />
             </span>
-          </li>
-        </ul>
+          </button>
+          <ul class="colors" ref="colors">
+            <li
+              class="item color"
+              :title="$t(`title.${color}`)"
+              v-for="color of remainingColors"
+              :key="color"
+              @click="(event) => { switchHandler(event); $colorMode.preference = color; }"
+            >
+              <span class="icon-container">
+                <component :is="`icon-${color}`" />
+              </span>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </ClientOnly>
   </div>
 </template>
 
@@ -95,7 +97,7 @@ export default {
   methods: {
     visibilityHandler({ switcher, ref, opacity }) {
       if (opacity) {
-        gsap.to(this.$refs[ref], { y: -5, opacity: '', visibility: '' })
+        gsap.to(this.$refs[ref], 0.1, { y: -1, opacity: '', visibility: '' })
         switcher.classList.remove('active')
       } else {
         const tl = gsap.timeline({
@@ -103,6 +105,7 @@ export default {
         })
         tl.fromTo(
           this.$refs[ref],
+          0.1,
           { y: -5 },
           { y: 0, opacity: 1, visibility: 'inherit' }
         )
