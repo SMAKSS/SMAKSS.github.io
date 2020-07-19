@@ -220,6 +220,10 @@ export default {
   text-decoration: none;
 }
 
+.quote-reason {
+  font: 400 1.5rem/2.3rem $font;
+}
+
 .quote-author {
   font: 400 1.5rem/2.3rem $font-en;
 }
