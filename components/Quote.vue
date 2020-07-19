@@ -99,7 +99,7 @@ export default {
       let animatedClassesSetOne = null
       let animatedClassesSetTwo = null
 
-      if (this.$fetchState.error) {
+      if (this.$fetchState.error || !quoteData) {
         animatedClassesSetOne = '.quote-error'
         animatedClassesSetTwo = ['.button', '.logos', '.quote-reason']
       } else {
