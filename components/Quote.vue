@@ -26,25 +26,54 @@
     <button class="button" :title="$t('buttons.start')">
       <span class="label">{{$t('buttons.start')}}</span>
     </button>
+    <Info @moreInfo="modalHandler" />
+    <Modal :trigger="$store.state.modalTrigger">
+      <h1 class="info-title">{{$t('contents.info.title')}}</h1>
+      <perfect-scrollbar class="scroll-wrapper">
+        <div class="scroll-content">
+          <p class="info-description">{{$t('contents.info.description')}}</p>
+          <p class="info-ps">
+            {{$t('contents.info.ps')}}
+            <a
+              href="https://github.com/lukePeavey/quotable"
+              rel="noopener noreferrer"
+              target="_blank"
+            >{{$t('contents.info.quotable')}}</a>
+          </p>
+        </div>
+      </perfect-scrollbar>
+      <button @click="modalHandler" class="button close" :title="$t('buttons.close')">
+        <span class="label">{{$t('buttons.close')}}</span>
+      </button>
+    </Modal>
   </div>
 </template>
 
 <script>
 import { gsap } from 'gsap'
+import { PerfectScrollbar } from 'vue2-perfect-scrollbar'
 
 import Logo from '~/assets/icons/SMAKSS.svg?inline'
 import Social from '@/components/icons/Social'
+import Info from '@/components/icons/Info'
+import Modal from '@/components/Modal'
+import handlers from '@/mixins/handlers'
 
 export default {
   name: 'Quote',
   fetchOnServer: false,
   components: {
+    PerfectScrollbar,
     Logo,
-    Social
+    Social,
+    Info,
+    Modal
   },
+  mixins: [handlers],
   data: () => {
     return {
       smakssEl: {},
+      animationState: false,
       quoteData: null,
       quoteErrorContent: ''
     }
@@ -93,7 +122,11 @@ export default {
     })
   },
   updated() {
-    if (this.$refs.quoteContent || this.$refs.quoteError) this.animatedQuote()
+    if (
+      (this.$refs.quoteContent || this.$refs.quoteError) &&
+      !this.animationState
+    )
+      this.animatedQuote()
   },
   methods: {
     animatedQuote() {
@@ -123,12 +156,15 @@ export default {
           'content+=2'
         )
         .to(animatedClassesSetTwo, { y: 0, duration: 0.5 }, 'content+=2')
+      this.animationState = true
     }
   }
 }
 </script>
 
 <style lang="scss">
+@import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css';
+
 .site-intro {
   @include flex-display(center, center, column);
   height: 100%;
@@ -254,5 +290,208 @@ export default {
 
 .dark-mode .site-intro .quote-author:hover {
   color: $link;
+}
+
+.site-intro button.info.icon {
+  top: auto;
+  bottom: 2rem;
+  position: absolute;
+  z-index: 3;
+}
+
+html[dir='ltr'] .site-intro button.info.icon {
+  right: 2rem;
+  left: auto;
+}
+
+html[dir='rtl'] .site-intro button.info.icon {
+  left: 2rem;
+  right: auto;
+}
+
+.site-intro .modal .content .information .info-title {
+  font: 400 3.6rem/4.4rem $font;
+  color: $heading-color;
+  margin-bottom: 2rem;
+  padding: 0 20%;
+}
+
+html[dir='ltr'] .site-intro .modal .content .information .info-title {
+  text-align: left;
+}
+
+html[dir='rtl'] .site-intro .modal .content .information .info-title {
+  text-align: right;
+}
+
+@media (max-width: 767px) {
+  .site-intro .modal .content .information .info-title {
+    font-size: 2.4rem;
+    line-height: 3rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-intro .modal .content .information .info-title {
+    padding: 0 5%;
+  }
+}
+
+.site-intro .modal .content .information .scroll-wrapper {
+  height: calc(100% - 16rem);
+  width: 60%;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .site-intro .modal .content .information .scroll-wrapper {
+    height: calc(100% - 20rem);
+    width: 100%;
+  }
+}
+
+.site-intro .modal .content .information .scroll-wrapper .scroll-content {
+  width: 100%;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+html[dir='ltr']
+  .site-intro
+  .modal
+  .content
+  .information
+  .scroll-wrapper
+  .scroll-content {
+  padding-right: 20px;
+}
+
+html[dir='rtl']
+  .site-intro
+  .modal
+  .content
+  .information
+  .scroll-wrapper
+  .scroll-content {
+  padding-left: 20px;
+}
+
+.site-intro
+  .modal
+  .content
+  .information
+  .scroll-wrapper
+  .scroll-content
+  .info-description,
+.site-intro
+  .modal
+  .content
+  .information
+  .scroll-wrapper
+  .scroll-content
+  .info-ps {
+  margin-bottom: 2rem;
+  color: $text-color;
+}
+
+.site-intro
+  .modal
+  .content
+  .information
+  .scroll-wrapper
+  .scroll-content
+  .info-description {
+  font: 400 1.5rem/2.3rem $font;
+}
+
+.site-intro
+  .modal
+  .content
+  .information
+  .scroll-wrapper
+  .scroll-content
+  .info-ps {
+  font: 400 1.2rem/1.8rem $font;
+}
+
+html[dir='ltr']
+  .site-intro
+  .modal
+  .content
+  .information
+  .scroll-wrapper
+  .scroll-content
+  .info-description,
+html[dir='ltr']
+  .site-intro
+  .modal
+  .content
+  .information
+  .scroll-wrapper
+  .scroll-content
+  .info-ps {
+  padding-right: 2em;
+  text-align: left;
+}
+
+html[dir='rtl']
+  .site-intro
+  .modal
+  .content
+  .information
+  .scroll-wrapper
+  .scroll-content
+  .info-description,
+html[dir='rtl']
+  .site-intro
+  .modal
+  .content
+  .information
+  .scroll-wrapper
+  .scroll-content
+  .info-ps {
+  padding-left: 2em;
+  text-align: right;
+}
+
+.site-intro
+  .modal
+  .content
+  .information
+  .scroll-wrapper
+  .scroll-content
+  .info-ps
+  a {
+  color: $button;
+}
+
+@media (max-width: 767px) {
+  .site-intro
+    .modal
+    .content
+    .information
+    .scroll-wrapper
+    .scroll-content
+    .info-description {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+  }
+
+  .site-intro
+    .modal
+    .content
+    .information
+    .scroll-wrapper
+    .scroll-content
+    .info-ps {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+.site-intro .modal .content .information .close {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 </style>

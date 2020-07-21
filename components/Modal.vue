@@ -1,11 +1,11 @@
 <template>
-  <div class="modal">
-    <div class="mask" />
-    <div class="background">
+  <div class="modal" ref="modal">
+    <div class="mask" @click="closeModal" />
+    <div class="background" ref="background">
       <div class="circle-background"></div>
     </div>
     <div class="content">
-      <div data-gutter class="information">
+      <div data-gutter class="information" ref="information">
         <slot />
       </div>
     </div>
@@ -13,14 +13,60 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
+
 export default {
   name: 'Modal',
-  props: ['content']
+  props: ['content', 'trigger'],
+  methods: {
+    openModal() {
+      const tl = gsap.timeline()
+      tl.set('.site-header', { css: { zIndex: 2 } })
+        .to(
+          this.$refs.modal,
+          0.2,
+          { visibility: 'inherit', opacity: '1' },
+          'shown'
+        )
+        .fromTo(
+          this.$refs.background,
+          0.2,
+          { scale: 0.3 },
+          { scale: 0.2 },
+          'shown'
+        )
+        .to(this.$refs.background, 0.4, { scale: 1 })
+        .fromTo(
+          this.$refs.information,
+          { opacity: 0, visibility: 'hidden' },
+          { opacity: 1, visibility: 'inherit' }
+        )
+    },
+    closeModal() {
+      const tl = gsap.timeline()
+      tl.to(this.$refs.background, 0.1, { scale: 1.2 })
+        .set(this.$refs.information, { opacity: 0, visibility: 'hidden' })
+        .to(this.$refs.background, { scale: 0 })
+        .to(this.$refs.modal, {
+          visibility: 'hidden',
+          opacity: '0'
+        })
+        .set('.site-header', { css: { zIndex: '' } })
+      this.$store.commit('SET_MODALTRIGGER', false)
+    }
+  },
+  watch: {
+    trigger(value) {
+      value ? this.openModal() : this.closeModal()
+    }
+  }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .modal {
+  opacity: 0;
+  visibility: hidden;
   overflow: hidden;
   text-align: center;
   z-index: 9;
@@ -62,8 +108,8 @@ export default {
 }
 
 .circle-background {
-  width: 124vh;
-  height: 124vh;
+  width: 80rem;
+  height: 80rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -80,6 +126,11 @@ export default {
 }
 
 @media (max-width: 767px) {
+  .circle-background {
+    width: 75rem;
+    height: 75rem;
+  }
+
   .content {
     overflow-y: auto;
     padding: 0;

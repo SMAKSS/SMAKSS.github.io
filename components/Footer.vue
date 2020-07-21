@@ -10,9 +10,6 @@
           class="link"
         >{{$t('links.donate')}}</a>
       </li>
-      <li class="item">
-        <NuxtLink :to="$i18n.path('about/')" class="link" exact>{{$t('links.about')}}</NuxtLink>
-      </li>
     </ul>
   </footer>
 </template>
@@ -50,11 +47,11 @@ export default {
   }
 }
 
-html[lang='en'][dir='ltr'] .site-footer .svg-container.logo > svg {
+html[dir='ltr'] .site-footer .svg-container.logo > svg {
   margin-right: 5rem;
 }
 
-html[lang='fa'][dir='rtl'] .site-footer .svg-container.logo > svg {
+html[dir='rtl'] .site-footer .svg-container.logo > svg {
   margin-left: 5rem;
 }
 
@@ -83,11 +80,11 @@ html[lang='fa'][dir='rtl'] .site-footer .svg-container.logo > svg {
   padding: 0;
 }
 
-html[lang='en'][dir='ltr'] .site-footer .footer-menu .item {
+html[dir='ltr'] .site-footer .footer-menu .item {
   margin: 1rem 3rem 1rem 0;
 }
 
-html[lang='fa'][dir='rtl'] .site-footer .footer-menu .item {
+html[dir='rtl'] .site-footer .footer-menu .item {
   margin: 1rem 0 1rem 3rem;
 }
 

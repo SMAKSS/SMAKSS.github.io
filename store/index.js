@@ -1,6 +1,7 @@
 export const state = () => ({
   locales: ['en', 'fa'],
   locale: 'en',
+  modalTrigger: false,
   colors: {
     light: {
       "bg": "#ffffff",
@@ -56,5 +57,8 @@ export const mutations = {
     if (state.locales.includes(locale)) {
       state.locale = locale
     }
+  },
+  SET_MODALTRIGGER(state, modalTrigger) {
+    state.modalTrigger = modalTrigger
   }
 }

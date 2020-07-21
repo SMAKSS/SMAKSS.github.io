@@ -41,6 +41,9 @@
   --logo-npm: #231f20;
   --logo-stackoverflow-task: #ff9800;
   --logo-stackoverflow-stack: #757575;
+  --banner-bg: #5a5a5a;
+  --banner-button: #303030;
+  --scrollbar-color: #000000;
   --font: Google Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-seriff;
   --font-en: Google Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -62,9 +65,10 @@
   --footer-color: #071521;
   --mask-color: rgba(255, 255, 255, 0.1);
   --logo-color: rgba(255, 255, 255, 1);
+  --scrollbar-color: #ffffff;
 }
 
-html[lang='fa'][dir='rtl'] {
+html[dir='rtl'] {
   --font: 'Vazir-Local', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-seriff;
 }
@@ -76,7 +80,7 @@ html {
   box-sizing: border-box;
 }
 
-html[lang='fa'][dir='rtl'] body {
+html[dir='rtl'] body {
   direction: rtl;
 }
 
@@ -194,4 +198,13 @@ ul {
   display: inline-block;
   white-space: nowrap;
   font: 500 1.4rem/1 $font;
+}
+
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+  background-color: transparent;
 }

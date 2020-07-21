@@ -163,11 +163,11 @@ export default {
   @include flex-display(center, space-between);
 }
 
-html[lang='en'][dir='ltr'] .site-header {
+html[dir='ltr'] .site-header {
   padding: 0 0 0 2rem;
 }
 
-html[lang='fa'][dir='rtl'] .site-header {
+html[dir='rtl'] .site-header {
   padding: 0 2rem 0 0;
 }
 
