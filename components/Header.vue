@@ -1,5 +1,5 @@
 <template>
-  <header class="site-header">
+  <header class="site-header" ref="siteHeader">
     <Logo />
     <ThemeSettings />
   </header>
@@ -18,7 +18,8 @@ export default {
     ThemeSettings
   },
   mounted() {
-    gsap.fromTo('.site-header', 0.7, { y: -60 }, { y: 0 })
+    gsap.set(this.$refs.siteHeader, { y: -150 })
+    gsap.to(this.$refs.siteHeader, 0.7, { y: 0 })
   }
 }
 </script>

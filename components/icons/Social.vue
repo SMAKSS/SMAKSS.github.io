@@ -1,6 +1,6 @@
 <template>
   <ul class="logos" ref="logos">
-    <li class="logo" :title="$t(`title.${logo.name}`)" v-for="logo of logos" :key="logo.name">
+    <li class="logo" :title="$t(`titles.${logo.name}`)" v-for="logo of logos" :key="logo.name">
       <span class="svg-container" @mouseover="handleMouseover" :class="logo.name">
         <a :href="logo.url" rel="noopener noreferrer" target="_blank">
           <component :is="logo.name" />
@@ -82,6 +82,12 @@ export default {
       this.npm.mEl,
       this.npm.pEl
     ])
+    setTimeout(() => {
+      this.linkedinAnimation()
+      this.githubAnimation()
+      this.stackoverflowAnimation()
+      this.npmAnimation()
+    }, 5000)
   },
   methods: {
     animaitonHandler({ el, func }) {
@@ -89,168 +95,174 @@ export default {
       el.hover && func(completed)
       el.hover = false
     },
+    linkedinAnimation() {
+      const animation = completed => {
+        const tl = gsap.timeline({ onComplete: completed })
+        tl.to(this.linkedin.periodEl, 0.4, { y: 30, delay: 0.5 })
+          .to(this.linkedin.periodEl, 0.75, { y: -5 })
+          .to(this.linkedin.periodEl, 0.3, { y: 30, ease: Bounce.easeOut })
+          .to(this.linkedin.periodEl, 0.75, { y: 10 })
+          .to(this.linkedin.periodEl, 0.5, { y: 270, ease: Bounce.easeOut })
+          .to(this.linkedin.periodEl, 3, { x: '+=340' }, '-=2.25')
+          .to(this.linkedin.periodEl, 0, { opacity: 0, visibility: 'hidden' })
+          .to(this.linkedin.periodEl, 0, { x: 0, y: 0 })
+          .to(
+            this.linkedin.periodEl,
+            1,
+            { opacity: 1, visibility: 'inherit' },
+            '+=1'
+          )
+      }
+      this.animaitonHandler({ el: this.linkedin, func: animation })
+    },
+    githubAnimation() {
+      const animation = completed => {
+        const tl = gsap.timeline({ onComplete: completed })
+        tl.to(
+          this.github.headEl,
+          2,
+          {
+            rotate: '10%',
+            transformOrigin: 'bottom 0'
+          },
+          'head'
+        )
+          .to(
+            this.github.armEl,
+            0.4,
+            { rotate: '6%', repeat: 2, transformOrigin: 'bottom' },
+            'head-=0.4'
+          )
+          .to(
+            this.github.armEl,
+            0.4,
+            {
+              rotate: '-5%',
+              repeat: 2,
+              transformOrigin: 'bottom'
+            },
+            'head+=0.4'
+          )
+          .to([this.github.headEl, this.github.armEl], 1, { rotate: 0 })
+      }
+      this.animaitonHandler({ el: this.github, func: animation })
+    },
+    stackoverflowAnimation() {
+      const animation = completed => {
+        const tl = gsap.timeline({ onComplete: completed })
+        tl.to(
+          this.stackoverflow.taskOneEl,
+          {
+            y: 2,
+            transformOrigin: 'bottom right'
+          },
+          1,
+          'task1'
+        )
+          .to(
+            this.stackoverflow.taskTwoEl,
+            {
+              rotate: '-12%',
+              transformOrigin: 'bottom right',
+              y: 2.3
+            },
+            0.6,
+            'task1+=0.4'
+          )
+          .to(
+            this.stackoverflow.taskThreeEl,
+            {
+              rotate: '-25%',
+              transformOrigin: 'bottom right',
+              y: 2.5,
+              x: -0.66
+            },
+            0.6,
+            'task1+=0.6'
+          )
+          .to(
+            this.stackoverflow.taskFourEl,
+            {
+              rotate: '-40%',
+              transformOrigin: 'bottom right',
+              y: 2.2,
+              x: -2.1
+            },
+            0.6,
+            'task1+=0.8'
+          )
+          .to(
+            this.stackoverflow.taskFiveEl,
+            {
+              rotate: '-53%',
+              transformOrigin: 'bottom right',
+              y: 1.6,
+              x: -4.2
+            },
+            0.6,
+            'task1+=1'
+          )
+          .to(this.stackoverflow.tasksEl, 1.5, { y: 2.3 }, 'task1+=0.5')
+          .to(
+            [
+              this.stackoverflow.taskOneEl,
+              this.stackoverflow.taskTwoEl,
+              this.stackoverflow.taskThreeEl,
+              this.stackoverflow.taskFourEl,
+              this.stackoverflow.taskFiveEl,
+              this.stackoverflow.tasksEl
+            ],
+            1.5,
+            { rotate: 0, x: 0, y: 0 }
+          )
+      }
+      this.animaitonHandler({ el: this.stackoverflow, func: animation })
+    },
+    npmAnimation() {
+      const animation = completed => {
+        const firstChoose = this.npm.chooser()
+        const secondChoose = this.npm.chooser()
+        const thirdChoose = this.npm.chooser()
+        const tl = gsap.timeline({ onComplete: completed })
+        tl.fromTo(firstChoose, 1.25, { opacity: 1 }, { opacity: 0.1 }, 'first')
+        tl.to(firstChoose, 0.75, { opacity: 1 }, 'first+=0.5')
+        tl.fromTo(
+          secondChoose,
+          1.25,
+          { opacity: 1 },
+          { opacity: 0.1 },
+          'first+=0.5'
+        )
+        tl.to(secondChoose, 0.75, { opacity: 1 }, 'first+=1.5')
+        tl.fromTo(
+          thirdChoose,
+          1.25,
+          { opacity: 1 },
+          { opacity: 0.1 },
+          'first+=1.75'
+        )
+        tl.to(thirdChoose, 0.75, { opacity: 1 }, 'first+=3')
+      }
+      this.animaitonHandler({ el: this.npm, func: animation })
+    },
     handleMouseover(event) {
       const container = event.target.closest('.svg-container')
 
       if (container.classList.contains('linkedin')) {
-        const animation = completed => {
-          const tl = gsap.timeline({ onComplete: completed })
-          tl.to(this.linkedin.periodEl, 0.4, { y: 30, delay: 0.5 })
-            .to(this.linkedin.periodEl, 0.75, { y: -5 })
-            .to(this.linkedin.periodEl, 0.3, { y: 30, ease: Bounce.easeOut })
-            .to(this.linkedin.periodEl, 0.75, { y: 10 })
-            .to(this.linkedin.periodEl, 0.5, { y: 270, ease: Bounce.easeOut })
-            .to(this.linkedin.periodEl, 3, { x: '+=340' }, '-=2.25')
-            .to(this.linkedin.periodEl, 0, { opacity: 0, visibility: 'hidden' })
-            .to(this.linkedin.periodEl, 0, { x: 0, y: 0 })
-            .to(
-              this.linkedin.periodEl,
-              1,
-              { opacity: 1, visibility: 'inherit' },
-              '+=1'
-            )
-        }
-        this.animaitonHandler({ el: this.linkedin, func: animation })
+        this.linkedinAnimation()
       } else if (container.classList.contains('github')) {
-        const animation = completed => {
-          const tl = gsap.timeline({ onComplete: completed })
-          tl.to(
-            this.github.headEl,
-            2,
-            {
-              rotate: '10%',
-              transformOrigin: 'bottom 0'
-            },
-            'head'
-          )
-            .to(
-              this.github.armEl,
-              0.4,
-              { rotate: '6%', repeat: 2, transformOrigin: 'bottom' },
-              'head-=0.4'
-            )
-            .to(
-              this.github.armEl,
-              0.4,
-              {
-                rotate: '-5%',
-                repeat: 2,
-                transformOrigin: 'bottom'
-              },
-              'head+=0.4'
-            )
-            .to([this.github.headEl, this.github.armEl], 1, { rotate: 0 })
-        }
-        this.animaitonHandler({ el: this.github, func: animation })
+        this.githubAnimation()
       } else if (container.classList.contains('stackoverflow')) {
-        const animation = completed => {
-          const tl = gsap.timeline({ onComplete: completed })
-          tl.to(
-            this.stackoverflow.taskOneEl,
-            {
-              y: 2,
-              transformOrigin: 'bottom right'
-            },
-            1,
-            'task1'
-          )
-            .to(
-              this.stackoverflow.taskTwoEl,
-              {
-                rotate: '-12%',
-                transformOrigin: 'bottom right',
-                y: 2.3
-              },
-              0.6,
-              'task1+=0.4'
-            )
-            .to(
-              this.stackoverflow.taskThreeEl,
-              {
-                rotate: '-25%',
-                transformOrigin: 'bottom right',
-                y: 2.5,
-                x: -0.66
-              },
-              0.6,
-              'task1+=0.6'
-            )
-            .to(
-              this.stackoverflow.taskFourEl,
-              {
-                rotate: '-40%',
-                transformOrigin: 'bottom right',
-                y: 2.2,
-                x: -2.1
-              },
-              0.6,
-              'task1+=0.8'
-            )
-            .to(
-              this.stackoverflow.taskFiveEl,
-              {
-                rotate: '-53%',
-                transformOrigin: 'bottom right',
-                y: 1.6,
-                x: -4.2
-              },
-              0.6,
-              'task1+=1'
-            )
-            .to(this.stackoverflow.tasksEl, 1.5, { y: 2.3 }, 'task1+=0.5')
-            .to(
-              [
-                this.stackoverflow.taskOneEl,
-                this.stackoverflow.taskTwoEl,
-                this.stackoverflow.taskThreeEl,
-                this.stackoverflow.taskFourEl,
-                this.stackoverflow.taskFiveEl,
-                this.stackoverflow.tasksEl
-              ],
-              1.5,
-              { rotate: 0, x: 0, y: 0 }
-            )
-        }
-        this.animaitonHandler({ el: this.stackoverflow, func: animation })
+        this.stackoverflowAnimation()
       } else {
-        const animation = completed => {
-          const firstChoose = this.npm.chooser()
-          const secondChoose = this.npm.chooser()
-          const thirdChoose = this.npm.chooser()
-          const tl = gsap.timeline({ onComplete: completed })
-          tl.fromTo(
-            firstChoose,
-            1.25,
-            { opacity: 1 },
-            { opacity: 0.1 },
-            'first'
-          )
-          tl.to(firstChoose, 0.75, { opacity: 1 }, 'first+=0.5')
-          tl.fromTo(
-            secondChoose,
-            1.25,
-            { opacity: 1 },
-            { opacity: 0.1 },
-            'first+=0.5'
-          )
-          tl.to(secondChoose, 0.75, { opacity: 1 }, 'first+=1.5')
-          tl.fromTo(
-            thirdChoose,
-            1.25,
-            { opacity: 1 },
-            { opacity: 0.1 },
-            'first+=1.75'
-          )
-          tl.to(thirdChoose, 0.75, { opacity: 1 }, 'first+=3')
-        }
-        this.animaitonHandler({ el: this.npm, func: animation })
+        this.npmAnimation()
       }
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .logos .logo .svg-container.linkedin svg,
 .logos .logo .svg-container.stackoverflow svg {
   width: 3rem;

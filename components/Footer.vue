@@ -25,7 +25,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .site-footer {
   @include flex-display(center, flex-start);
   height: auto;
@@ -47,22 +47,22 @@ export default {
   }
 }
 
-html[dir='ltr'] .site-footer .svg-container.logo > svg {
+html[dir='ltr'] .site-footer /deep/ .svg-container.logo > svg {
   margin-right: 5rem;
 }
 
-html[dir='rtl'] .site-footer .svg-container.logo > svg {
+html[dir='rtl'] .site-footer /deep/ .svg-container.logo > svg {
   margin-left: 5rem;
 }
 
-.site-footer .svg-container.logo > svg {
+.site-footer /deep/ .svg-container.logo > svg {
   height: 1.8rem;
   width: 8.6rem;
   fill: $link;
 }
 
 @media (max-width: 1023px) {
-  .site-footer .svg-container.logo > svg {
+  .site-footer /deep/ .svg-container.logo > svg {
     margin-bottom: 3rem;
   }
 }

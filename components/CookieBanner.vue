@@ -1,15 +1,24 @@
 <template>
   <div class="cookie-banner" v-if="!cookieConsent">
     <p class="cookie-notif">{{$t('contents.cookie')}}</p>
-    <button class="cookie-consent" @click="acceptCookie">{{$t('buttons.ok')}}</button>
+    <Button
+      @onClick="acceptCookie"
+      :mainClass="'cookie-consent'"
+      :title="$t('titles.cookieConsent')"
+    >{{$t('buttons.ok')}}</Button>
   </div>
 </template>
 
 <script>
 import { gsap } from 'gsap'
 
+import Button from '@/components/buttons/Button'
+
 export default {
   name: 'CookieBanner',
+  components: {
+    Button
+  },
   data: () => {
     return {
       cookieConsent: false

@@ -1,22 +1,23 @@
 <template>
-  <button
-    class="info icon"
-    @click="handler"
-    :title="$t('title.info')"
-    :aria-label="$t('title.info')"
+  <Button
+    @onClick="handler"
+    :mainClass="'info icon'"
+    :title="$t('titles.info')"
+    :ariaLabel="$t('titles.info')"
+    :spanClass="'svg-container'"
   >
-    <span class="svg-container">
-      <info />
-    </span>
-  </button>
+    <info />
+  </Button>
 </template>
 
 <script>
+import Button from '@/components/buttons/Button'
 import info from '~/assets/icons/info.svg?inline'
 
 export default {
   name: 'Info',
   components: {
+    Button,
     info
   },
   props: ['moreInfo'],
@@ -40,7 +41,7 @@ export default {
   transition: background 0.2s cubic-bezier(1, 0, 0, 1);
 }
 
-.info.icon .svg-container {
+.info.icon /deep/ .svg-container {
   display: inline-block;
   vertical-align: middle;
   top: 50%;
@@ -51,7 +52,7 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-.info.icon .svg-container svg {
+.info.icon /deep/ .svg-container svg {
   fill: $settings-default;
 }
 </style>

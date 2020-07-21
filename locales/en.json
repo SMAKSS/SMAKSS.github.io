@@ -1,5 +1,5 @@
 {
-  "title": {
+  "titles": {
     "index": "SMAKSS",
     "home": "Go to home",
     "switcher": "Switcher",
@@ -10,10 +10,15 @@
     "linkedin": "LinkedIn",
     "github": "GitHub",
     "npm": "npmjs",
-    "info": "More information"
+    "info": "More information",
+    "cookieConsent": "Cookie consent"
   },
-  "description": {
+  "descriptions": {
     "index": "Hi there, I'm MAKSS a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here."
+  },
+  "errors": {
+    "404": "It's a shame, I can't find the page that you're looking for.",
+    "error": "Oops, it seems an error occurred. I do not truly deserve your kindness."
   },
   "links": {
     "english": "English",
@@ -24,6 +29,7 @@
   "buttons": {
     "close": "Close",
     "ok": "OK, got it",
+    "goHome": "Go back to home",
     "start": "Let's get started"
   },
   "quote": {

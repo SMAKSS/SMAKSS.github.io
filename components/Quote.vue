@@ -23,9 +23,7 @@
         :title="$t('quote.title.author')"
       >{{quoteData.author}}</a>
     </template>
-    <button class="button" :title="$t('buttons.start')">
-      <span class="label">{{$t('buttons.start')}}</span>
-    </button>
+    <Button :title="$t('buttons.start')">{{$t('buttons.start')}}</Button>
     <Info @moreInfo="modalHandler" />
     <Modal :trigger="$store.state.modalTrigger">
       <h1 class="info-title">{{$t('contents.info.title')}}</h1>
@@ -42,9 +40,11 @@
           </p>
         </div>
       </perfect-scrollbar>
-      <button @click="modalHandler" class="button close" :title="$t('buttons.close')">
-        <span class="label">{{$t('buttons.close')}}</span>
-      </button>
+      <Button
+        @onClick="modalHandler"
+        :mainClass="'button close'"
+        :title="$t('buttons.close')"
+      >{{$t('buttons.close')}}</Button>
     </Modal>
   </div>
 </template>
@@ -54,8 +54,9 @@ import { gsap } from 'gsap'
 import { PerfectScrollbar } from 'vue2-perfect-scrollbar'
 
 import Logo from '~/assets/icons/SMAKSS.svg?inline'
+import Button from '@/components/buttons/Button'
 import Social from '@/components/icons/Social'
-import Info from '@/components/icons/Info'
+import Info from '@/components/buttons/Info'
 import Modal from '@/components/Modal'
 import handlers from '@/mixins/handlers'
 
@@ -65,6 +66,7 @@ export default {
   components: {
     PerfectScrollbar,
     Logo,
+    Button,
     Social,
     Info,
     Modal
@@ -162,7 +164,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css';
 
 .site-intro {
@@ -181,21 +183,21 @@ export default {
   position: absolute;
 }
 
-.site-intro .logos {
+.site-intro /deep/ .logos {
   display: block;
   height: 6rem;
   margin-bottom: 4rem;
   bottom: 0;
 }
 
-.site-intro .logos .logo {
+.site-intro /deep/ .logos .logo {
   display: inline-block;
   padding: 1rem;
   margin: 1rem 0;
   position: relative;
 }
 
-.site-intro .logos .logo .svg-container {
+.site-intro /deep/ .logos .logo .svg-container {
   height: 100%;
   width: 100%;
   display: inline-block;
@@ -226,7 +228,6 @@ export default {
 
 .site-intro .quote-content,
 .site-intro .quote-error {
-  font: 400 3.6rem/4.4rem $font;
   width: 80%;
   max-width: 20.5em;
   margin: 0.75em auto 0;
@@ -235,6 +236,10 @@ export default {
 
 .site-intro .quote-content {
   font: 400 3.6rem/4.4rem $font-en;
+}
+
+.site-intro .quote-error {
+  font: 400 3.6rem/4.4rem $font;
 }
 
 @media (max-width: 767px) {
@@ -309,23 +314,23 @@ html[dir='rtl'] .site-intro button.info.icon {
   right: auto;
 }
 
-.site-intro .modal .content .information .info-title {
+.site-intro /deep/ .modal .content .information .info-title {
   font: 400 3.6rem/4.4rem $font;
   color: $heading-color;
   margin-bottom: 2rem;
   padding: 0 20%;
 }
 
-html[dir='ltr'] .site-intro .modal .content .information .info-title {
+html[dir='ltr'] .site-intro /deep/ .modal .content .information .info-title {
   text-align: left;
 }
 
-html[dir='rtl'] .site-intro .modal .content .information .info-title {
+html[dir='rtl'] .site-intro /deep/ .modal .content .information .info-title {
   text-align: right;
 }
 
 @media (max-width: 767px) {
-  .site-intro .modal .content .information .info-title {
+  .site-intro /deep/ .modal .content .information .info-title {
     font-size: 2.4rem;
     line-height: 3rem;
     margin-bottom: 2rem;
@@ -333,25 +338,31 @@ html[dir='rtl'] .site-intro .modal .content .information .info-title {
 }
 
 @media (max-width: 480px) {
-  .site-intro .modal .content .information .info-title {
+  .site-intro /deep/ .modal .content .information .info-title {
     padding: 0 5%;
   }
 }
 
-.site-intro .modal .content .information .scroll-wrapper {
+.site-intro /deep/ .modal .content .information .scroll-wrapper {
   height: calc(100% - 16rem);
   width: 60%;
   margin: 0 auto;
 }
 
 @media (max-width: 767px) {
-  .site-intro .modal .content .information .scroll-wrapper {
+  .site-intro /deep/ .modal .content .information .scroll-wrapper {
     height: calc(100% - 20rem);
     width: 100%;
   }
 }
 
-.site-intro .modal .content .information .scroll-wrapper .scroll-content {
+.site-intro
+  /deep/
+  .modal
+  .content
+  .information
+  .scroll-wrapper
+  .scroll-content {
   width: 100%;
   height: 100%;
   -webkit-overflow-scrolling: touch;
@@ -359,6 +370,7 @@ html[dir='rtl'] .site-intro .modal .content .information .info-title {
 
 html[dir='ltr']
   .site-intro
+  /deep/
   .modal
   .content
   .information
@@ -369,6 +381,7 @@ html[dir='ltr']
 
 html[dir='rtl']
   .site-intro
+  /deep/
   .modal
   .content
   .information
@@ -378,6 +391,7 @@ html[dir='rtl']
 }
 
 .site-intro
+  /deep/
   .modal
   .content
   .information
@@ -385,6 +399,7 @@ html[dir='rtl']
   .scroll-content
   .info-description,
 .site-intro
+  /deep/
   .modal
   .content
   .information
@@ -396,6 +411,7 @@ html[dir='rtl']
 }
 
 .site-intro
+  /deep/
   .modal
   .content
   .information
@@ -406,6 +422,7 @@ html[dir='rtl']
 }
 
 .site-intro
+  /deep/
   .modal
   .content
   .information
@@ -417,6 +434,7 @@ html[dir='rtl']
 
 html[dir='ltr']
   .site-intro
+  /deep/
   .modal
   .content
   .information
@@ -425,6 +443,7 @@ html[dir='ltr']
   .info-description,
 html[dir='ltr']
   .site-intro
+  /deep/
   .modal
   .content
   .information
@@ -437,6 +456,7 @@ html[dir='ltr']
 
 html[dir='rtl']
   .site-intro
+  /deep/
   .modal
   .content
   .information
@@ -445,6 +465,7 @@ html[dir='rtl']
   .info-description,
 html[dir='rtl']
   .site-intro
+  /deep/
   .modal
   .content
   .information
@@ -456,6 +477,7 @@ html[dir='rtl']
 }
 
 .site-intro
+  /deep/
   .modal
   .content
   .information
@@ -468,6 +490,7 @@ html[dir='rtl']
 
 @media (max-width: 767px) {
   .site-intro
+    /deep/
     .modal
     .content
     .information
@@ -479,6 +502,7 @@ html[dir='rtl']
   }
 
   .site-intro
+    /deep/
     .modal
     .content
     .information
@@ -490,7 +514,7 @@ html[dir='rtl']
   }
 }
 
-.site-intro .modal .content .information .close {
+.site-intro /deep/ .modal .content .information .close {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }

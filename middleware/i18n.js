@@ -2,6 +2,14 @@ export default function ({ isHMR, app, store, route, params, error, redirect }) 
   const defaultLocale = app.i18n.fallbackLocale
   // If middleware is called from hot module replacement, ignore it
   if (isHMR) { return }
+  // Create a custom fallback for error layout
+  if (!params?.lang) {
+    params.lang = store.state.locales.find(locale => {
+      if (route.fullPath.indexOf(locale) > -1) {
+        return locale
+      }
+    })
+  }
   // Get locale from params
   const locale = params.lang || defaultLocale
   if (!store.state.locales.includes(locale)) {

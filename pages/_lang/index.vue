@@ -11,8 +11,8 @@ export default {
   name: 'Index',
   head() {
     return {
-      title: this.$t('title.index'),
-      description: this.$t('description.index')
+      title: this.$t('titles.index'),
+      description: this.$t('descriptions.index')
     }
   },
   components: {

@@ -1,8 +1,8 @@
 <template>
   <NuxtLink
     :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/` : '' }`"
-    :title="$t('title.home')"
-    :aria-label="$t('title.home')"
+    :title="$t('titles.home')"
+    :aria-label="$t('titles.home')"
     exact
   >
     <span class="svg-container logo">
@@ -22,8 +22,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.svg-container {
+<style lang="scss" scoped>
+.svg-container.logo {
   height: 100%;
   width: 100%;
   display: inline-block;
