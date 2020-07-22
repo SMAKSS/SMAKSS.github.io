@@ -142,7 +142,7 @@ export default {
       tl.to(this.$refs.siteIntro, 1, { opacity: 0 }).to(this.$refs.siteIntro, {
         visibility: 'hidden'
       })
-      this.$router.push('stuff/')
+      setTimeout(() => this.$router.push('stuff/'), 1000)
     },
     animatedQuote() {
       let animatedClassesSetOne = null
