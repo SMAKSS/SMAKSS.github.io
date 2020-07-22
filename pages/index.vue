@@ -1,4 +1,4 @@
 <script>
-import Index from '~/pages/_lang/index'
-export default Index
+import index from '~/pages/_lang/index'
+export default index
 </script>

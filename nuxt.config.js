@@ -42,7 +42,7 @@ export default {
    * Custom routes
    */
   generate: {
-    routes: ['/', '/fa/']
+    routes: ['/', '/fa/', '/stuff/', '/stuff/fa/']
   },
   /*
    ** Nuxt.js dev-modules

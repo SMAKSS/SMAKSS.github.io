@@ -1,6 +1,7 @@
 {
   "titles": {
     "index": "SMAKSS",
+    "stuff": "stuff",
     "home": "Go to home",
     "switcher": "Switcher",
     "dark": "Dark",
@@ -14,7 +15,8 @@
     "cookieConsent": "Cookie consent"
   },
   "descriptions": {
-    "index": "Hi there, I'm MAKSS a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here."
+    "index": "Hi there, I'm MAKSS a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here.",
+    "stuff": "Well, this is about, getting to know my stuff."
   },
   "errors": {
     "404": "It's a shame, I can't find the page that you're looking for.",
@@ -24,6 +26,7 @@
     "english": "English",
     "persian": "Farsi",
     "donate": "Buy me a coffee",
+    "stuff": "Stuff",
     "about": "About Me"
   },
   "buttons": {
@@ -39,6 +42,13 @@
       "content": "Quote of the day",
       "author": "Search for author"
     }
+  },
+  "main": {
+    "header": {
+      "partOne": "Get to Know,",
+      "partTwo": "My Stuff"
+    },
+    "content": "Well, you can check each pillar to know more about me and my stuff."
   },
   "contents": {
     "info": {

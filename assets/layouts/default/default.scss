@@ -103,6 +103,10 @@ body {
   box-sizing: inherit;
 }
 
+[aria-hidden='true'] {
+  pointer-events: none;
+}
+
 h1,
 h2,
 h3,

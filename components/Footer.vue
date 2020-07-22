@@ -10,6 +10,12 @@
           class="link"
         >{{$t('links.donate')}}</a>
       </li>
+      <li class="item">
+        <NuxtLink
+          :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/` : 'stuff/' }`"
+          class="link"
+        >{{$t('links.stuff')}}</NuxtLink>
+      </li>
     </ul>
   </footer>
 </template>
@@ -30,13 +36,15 @@ export default {
   @include flex-display(center, flex-start);
   height: auto;
   width: 100%;
-  background: $footer-color;
   padding: 4rem;
+  background: $footer-color;
 }
 
 @media (max-width: 1023px) {
   .site-footer {
-    @include flex-display(flex-start, center, column);
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
   }
 }
 

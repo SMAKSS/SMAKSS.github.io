@@ -1,5 +1,5 @@
 <template>
-  <div class="modal" ref="modal">
+  <div class="modal" ref="modal" :aria-hidden="ariaHidden">
     <div class="mask" @click="closeModal" />
     <div class="background" ref="background">
       <div class="circle-background"></div>
@@ -17,15 +17,21 @@ import { gsap } from 'gsap'
 
 export default {
   name: 'Modal',
-  props: ['content', 'trigger'],
+  props: ['ariaHidden', 'content', 'trigger'],
   methods: {
     openModal() {
       const tl = gsap.timeline()
-      tl.set('.site-header', { css: { zIndex: 2 } })
+      tl.set('.site-header', {
+        css: { zIndex: 2 }
+      })
         .to(
           this.$refs.modal,
           0.2,
-          { visibility: 'inherit', opacity: '1' },
+          {
+            visibility: 'inherit',
+            opacity: '1',
+            attr: { 'aria-hidden': false }
+          },
           'shown'
         )
         .fromTo(
@@ -49,7 +55,8 @@ export default {
         .to(this.$refs.background, { scale: 0 })
         .to(this.$refs.modal, {
           visibility: 'hidden',
-          opacity: '0'
+          opacity: '0',
+          attr: { 'aria-hidden': true }
         })
         .set('.site-header', { css: { zIndex: '' } })
       this.$store.commit('SET_MODALTRIGGER', false)
@@ -155,5 +162,4 @@ export default {
     padding-right: 2rem;
   }
 }
-
 </style>

@@ -263,6 +263,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.logos {
+  text-align: center;
+  position: absolute;
+  direction: ltr;
+}
+
+.logos {
+  display: block;
+  width: 100%;
+  height: 6rem;
+  margin-bottom: 4rem;
+  bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .logos {
+    margin-bottom: 2rem;
+  }
+}
+
+.logos .logo {
+  display: inline-block;
+  padding: 1rem;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.logos .logo .svg-container {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+
 .logos .logo .svg-container.linkedin svg,
 .logos .logo .svg-container.stackoverflow svg {
   width: 3rem;
@@ -280,15 +315,15 @@ export default {
 @media (max-width: 767px) {
   .logos .logo .svg-container.linkedin svg,
   .logos .logo .svg-container.stackoverflow svg {
-    width: 2.8rem;
+    width: 2.5rem;
   }
 
   .logos .logo .svg-container.github svg {
-    width: 2.88rem;
+    width: 2.58rem;
   }
 
   .logos .logo .svg-container.npm svg {
-    width: 4.8rem;
+    width: 4.5rem;
   }
 }
 
