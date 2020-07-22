@@ -41,6 +41,13 @@ export default {
   transition: background 0.2s cubic-bezier(1, 0, 0, 1);
 }
 
+@media (max-width: 767px) {
+  .info.icon {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+}
+
 .info.icon /deep/ .svg-container {
   display: inline-block;
   vertical-align: middle;

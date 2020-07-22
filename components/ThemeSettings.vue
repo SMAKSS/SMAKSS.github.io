@@ -168,11 +168,21 @@ export default {
 }
 
 html[dir='ltr'] .site-header {
-  padding: 0 0 0 2rem;
+  padding: 0 0 0 4rem;
 }
 
 html[dir='rtl'] .site-header {
-  padding: 0 2rem 0 0;
+  padding: 0 4rem 0 0;
+}
+
+@media (max-width: 767px) {
+  html[dir='ltr'] .site-header {
+    padding: 0 0 0 2rem;
+  }
+
+  html[dir='rtl'] .site-header {
+    padding: 0 2rem 0 0;
+  }
 }
 
 .site-header /deep/ .svg-container.logo > svg {

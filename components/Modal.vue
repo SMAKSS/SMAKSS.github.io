@@ -145,17 +145,15 @@ export default {
   padding: 6rem 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 480px) {
   .content > div {
-    padding-top: 2rem;
     padding-bottom: 2rem;
   }
-}
 
-@media (max-width: 767px) {
   .content > div[data-gutter] {
     padding-left: 2rem;
     padding-right: 2rem;
   }
 }
+
 </style>

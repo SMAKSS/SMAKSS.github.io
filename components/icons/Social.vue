@@ -39,7 +39,7 @@ export default {
           name: 'stackoverflow',
           url: 'https://stackoverflow.com/users/11908502/smakss'
         },
-        { name: 'npm', url: 'https://www.npmjs.com/settings/smakss/packages' }
+        { name: 'npm', url: 'https://www.npmjs.com/~smakss' }
       ]
     }
   },

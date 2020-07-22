@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .site-header {
   @include flex-display(center, space-between);
   position: absolute;
