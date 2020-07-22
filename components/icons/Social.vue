@@ -277,6 +277,21 @@ export default {
   transform: translateY(4px);
 }
 
+@media (max-width: 767px) {
+  .logos .logo .svg-container.linkedin svg,
+  .logos .logo .svg-container.stackoverflow svg {
+    width: 2.8rem;
+  }
+
+  .logos .logo .svg-container.github svg {
+    width: 2.88rem;
+  }
+
+  .logos .logo .svg-container.npm svg {
+    width: 4.8rem;
+  }
+}
+
 .logos .logo .svg-container.linkedin svg .background,
 .logos .logo .svg-container.stackoverflow svg .tasks,
 .logos .logo .svg-container.stackoverflow svg .stack,

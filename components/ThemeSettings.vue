@@ -191,6 +191,13 @@ html[dir='rtl'] .site-header {
   fill: $link;
 }
 
+@media (max-width: 767px) {
+  .site-header /deep/ .svg-container.logo > svg {
+    height: 1.5rem;
+    width: 8rem;
+  }
+}
+
 .site-header .site-settings {
   @include flex-display(center, flex-end);
 }

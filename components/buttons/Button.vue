@@ -48,5 +48,12 @@ export default {
   display: inline-block;
   white-space: nowrap;
   font: 500 1.4rem/1 $font;
+  user-select: none;
+}
+
+@media (max-width: 767px) {
+  .button .label {
+    font-size: 1.2rem;
+  }
 }
 </style>

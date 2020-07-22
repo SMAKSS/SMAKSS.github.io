@@ -67,6 +67,19 @@ html[dir='rtl'] .site-footer /deep/ .svg-container.logo > svg {
   }
 }
 
+@media (max-width: 767px) {
+  .site-footer /deep/ .svg-container.logo > svg {
+    height: 1.5rem;
+    width: 8rem;
+  }
+}
+
+.site-footer .item {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+}
+
 .site-footer .link {
   text-decoration: none;
   font: 1.4rem/1 $font;
@@ -74,10 +87,10 @@ html[dir='rtl'] .site-footer /deep/ .svg-container.logo > svg {
   color: $link;
 }
 
-.site-footer .item {
-  list-style: none;
-  display: inline-block;
-  padding: 0;
+@media (max-width: 767px) {
+  .site-footer .link {
+    font-size: 1.3rem;
+  }
 }
 
 html[dir='ltr'] .site-footer .footer-menu .item {
