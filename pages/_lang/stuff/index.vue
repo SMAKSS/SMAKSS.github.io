@@ -51,13 +51,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.site-main {
-  height: 100%;
-  width: 100%;
-  z-index: 8;
-  min-height: 68rem;
-  position: relative;
-}
-</style>

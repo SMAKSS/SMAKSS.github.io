@@ -182,12 +182,7 @@ export default {
 
 .site-intro {
   @include flex-display(center, center, column);
-  height: 100%;
-  width: 100%;
-  z-index: 8;
-  min-height: 68rem;
   overflow: hidden;
-  position: relative;
   text-align: center;
 }
 

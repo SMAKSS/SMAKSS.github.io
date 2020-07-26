@@ -214,3 +214,10 @@ ul {
   width: 15rem;
   fill: $heading-color;
 }
+
+.container > div[class*='site-']:not(.site-header, .site-footer) {
+  height: 100%;
+  width: 100%;
+  min-height: 68rem;
+  position: relative;
+}

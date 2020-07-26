@@ -11,7 +11,7 @@
       <div class="draggable">
         <div class="about-pillar">
           <NuxtLink
-            :to="`${($i18n.locale !== 'en') ? `${$i18n.locale}/about/` : 'about/' }`"
+            :to="'about/'"
             class="button pillar-link"
             data-pillar="about"
             :title="$t('titles.about')"
@@ -93,6 +93,9 @@ export default {
     })
       .to('.pillar-icon .pulse', { scale: 1 })
       .to('.pillar-icon .pulse', { opacity: 0, scale: 2 })
+  },
+  destroyed() {
+    this.siteSettings.classList.remove('pillar-active')
   },
   methods: {
     animatedStuff() {
@@ -192,8 +195,8 @@ export default {
     handleAboutMouseLeave() {
       this.aboutAnimationTl.reverse()
       setTimeout(() => {
-        this.$refs.aboutIconContainer.classList.remove('pillar-active')
         this.siteSettings.classList.remove('pillar-active')
+        this.$refs.aboutIconContainer.classList.remove('pillar-active')
       }, 300)
     }
   },
