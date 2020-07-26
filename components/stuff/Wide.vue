@@ -11,7 +11,7 @@
       <div class="draggable">
         <div class="about-pillar">
           <NuxtLink
-            :to="'about/'"
+            :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/about/` : 'stuff/about/' }`"
             class="button pillar-link"
             data-pillar="about"
             :title="$t('titles.about')"
