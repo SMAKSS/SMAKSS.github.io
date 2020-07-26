@@ -49,8 +49,6 @@ export default {
 }
 
 .info.icon /deep/ .svg-container {
-  display: inline-block;
-  vertical-align: middle;
   top: 50%;
   left: 50%;
   height: 40%;

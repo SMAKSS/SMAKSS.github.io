@@ -12,7 +12,8 @@
     "github": "GitHub",
     "npm": "npmjs",
     "info": "More information",
-    "cookieConsent": "Cookie consent"
+    "cookieConsent": "Cookie consent",
+    "about": "About me"
   },
   "descriptions": {
     "index": "Hi there, I'm MAKSS a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here.",
@@ -25,7 +26,7 @@
   "links": {
     "english": "English",
     "persian": "Farsi",
-    "donate": "Buy me a coffee",
+    "donate": "Buy Me a Coffee",
     "stuff": "Stuff",
     "about": "About Me"
   },
@@ -47,6 +48,14 @@
     "header": {
       "partOne": "Get to Know,",
       "partTwo": "My Stuff"
+    },
+    "pillars": {
+      "headings": {
+        "about": "About Me"
+      },
+      "descriptions": {
+        "about": "Learn more about me and my works."
+      }
     },
     "content": "Well, you can check each pillar to know more about me and my stuff."
   },

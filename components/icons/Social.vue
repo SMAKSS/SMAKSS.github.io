@@ -267,6 +267,7 @@ export default {
   text-align: center;
   position: absolute;
   direction: ltr;
+  z-index: 1;
 }
 
 .logos {
@@ -288,14 +289,6 @@ export default {
   padding: 1rem;
   margin: 1rem 0;
   position: relative;
-}
-
-.logos .logo .svg-container {
-  height: 100%;
-  width: 100%;
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
 }
 
 .logos .logo .svg-container.linkedin svg,

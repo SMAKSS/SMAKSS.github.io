@@ -217,6 +217,10 @@ html[dir='rtl'] .site-header {
   user-select: none;
 }
 
+.site-header .site-settings.pillar-active /deep/ .link {
+  color: $settings-pillar-activated;
+}
+
 .site-header .site-settings /deep/ .link.en {
   font-family: $font-en;
 }
@@ -245,11 +249,16 @@ html[dir='rtl'] .site-header {
 .site-header .site-settings .color-switcher .icon {
   @include flex-display(center, center);
   position: relative;
-  background: var(--button-icon);
+  background: $button-icon;
   outline: none;
   height: 4rem;
   z-index: 7;
   transition: background 200ms cubic-bezier(1, 0, 0, 1) 0ms;
+}
+
+.site-header .site-settings.pillar-active .localization-switcher /deep/ .dropdown,
+.site-header .site-settings.pillar-active .color-switcher .icon {
+  background: $background-color;
 }
 
 .site-header .site-settings .localization-switcher /deep/ .dropdown {
@@ -299,6 +308,11 @@ html[dir='rtl'] .site-header {
   transition: opacity 0.5s, visibility 0.5s;
 }
 
+.site-header .site-settings.pillar-active .localization-switcher .locales,
+.site-header .site-settings.pillar-active .color-switcher .colors {
+  background: $background-color;
+}
+
 .site-header .site-settings .localization-switcher .locales {
   top: 2rem;
   text-align: center;
@@ -330,6 +344,10 @@ html[dir='rtl'] .site-header {
   @include flex-display(center, center, column);
   padding: 1rem;
   color: $settings-default;
+}
+
+.site-header .site-settings.pillar-active .color-switcher /deep/ .icon-container {
+  color: $settings-pillar-activated;
 }
 
 .site-header .site-settings .color-switcher /deep/ .icon-container .feather {

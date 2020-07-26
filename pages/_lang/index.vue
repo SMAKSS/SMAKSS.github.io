@@ -1,7 +1,7 @@
 <template>
   <div class="site-intro" ref="siteIntro">
     <Social />
-    <div v-if="$fetchState.pending" ref="pending" class="pending">
+    <div v-if="$fetchState.pending" class="pending">
       <Logo />
     </div>
     <template v-else-if="$fetchState.error || !quoteData">
@@ -194,21 +194,6 @@ export default {
 .site-intro .quote-content,
 .site-intro .quote-author {
   direction: ltr;
-}
-
-.site-intro .pending {
-  @include flex-display(center, center);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: $background-color;
-}
-
-.site-intro .pending svg {
-  width: 15rem;
-  fill: $heading-color;
 }
 
 .site-intro .quote-content,
