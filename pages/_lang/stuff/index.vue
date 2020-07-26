@@ -1,10 +1,7 @@
 <template>
   <div class="site-main">
     <Social />
-    <div v-if="$fetchState.pending" class="pending">
-      <Logo />
-    </div>
-    <template v-else-if="!responsive">
+    <template v-if="!responsive">
       <Wide />
     </template>
     <template v-else>
@@ -14,7 +11,6 @@
 </template>
 
 <script>
-import Logo from '~/assets/icons/SMAKSS.svg?inline'
 import Social from '@/components/icons/Social'
 import Wide from '@/components/stuff/Wide'
 import Responsive from '@/components/stuff/Responsive'
@@ -23,7 +19,6 @@ export default {
   name: 'Stuff',
   components: {
     Social,
-    Logo,
     Wide,
     Responsive
   },
@@ -32,7 +27,6 @@ export default {
       responsive: false
     }
   },
-  fetch() {},
   mounted: function() {
     this.$nextTick(function() {
       this.onResize()
