@@ -13,7 +13,9 @@
     "npm": "npmjs",
     "info": "More information",
     "cookieConsent": "Cookie consent",
-    "about": "About me"
+    "about": "About me",
+    "interactive": "Interactive Resume",
+    "contribution": "Public Contribution"
   },
   "descriptions": {
     "index": "Hi there, I'm MAKSS a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here.",
@@ -51,10 +53,16 @@
     },
     "pillars": {
       "headings": {
-        "about": "About Me"
+        "about": "About Me",
+        "npm": "NPM Packages",
+        "interactive": "Interactive Resume",
+        "contribution": "Public Contribution"
       },
       "descriptions": {
-        "about": "Learn more about me and my works."
+        "about": "Learn more about me and my works.",
+        "npm": "Find more precise information about my NPM packages.",
+        "interactive": "A place to make interaction with my resume.",
+        "contribution": "Know more about my public contributions."
       }
     },
     "content": "Well, you can check each pillar to know more about me and my stuff."

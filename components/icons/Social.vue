@@ -267,7 +267,7 @@ export default {
   text-align: center;
   position: absolute;
   direction: ltr;
-  z-index: 1;
+  z-index: 2;
 }
 
 .logos {
@@ -332,5 +332,14 @@ export default {
 .logos .logo .svg-container.linkedin svg .in,
 .logos .logo .svg-container.npm svg #inner-p {
   fill: $background-color;
+}
+
+html[dir='rtl'] .logos .logo .svg-container.linkedin svg .in.pillar-active,
+html[dir='ltr'] .logos .logo .svg-container.npm svg #inner-p.pillar-active {
+  fill: $interactive-pillar-color;
+}
+
+html[dir='ltr'] .logos .logo .svg-container.linkedin svg .in.pillar-active {
+  fill: $contribution-pillar-color;
 }
 </style>

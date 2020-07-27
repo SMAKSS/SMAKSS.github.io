@@ -44,6 +44,114 @@
             </div>
           </NuxtLink>
         </div>
+        <div class="npm-pillar">
+          <NuxtLink
+            :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/npm/` : 'stuff/npm/' }`"
+            class="button pillar-link"
+            data-pillar="npm"
+            :title="$t('titles.npm')"
+            event="false"
+            exact
+            data-background
+          >
+            <div class="pillar-animation"></div>
+            <div class="pillar-description">
+              <div
+                class="pillar-icon"
+                @mouseover="npmTrigger = true"
+                @mouseleave="npmTrigger = false"
+              >
+                <span class="fill pulse" />
+                <span class="fill intro" ref="npmIntro">
+                  <span class="fill mask" ref="npmMask" />
+                </span>
+                <span class="icon-container" ref="npmIconContainer">
+                  <span class="svg-container icon" ref="npmIcon">
+                    <packageDelivery />
+                  </span>
+                </span>
+              </div>
+              <div class="pillar-label">
+                <p class="heading">{{$t('main.pillars.headings.npm')}}</p>
+                <div class="sub-heading" ref="npmSubHeading">
+                  <p class="description">{{$t('main.pillars.descriptions.npm')}}</p>
+                </div>
+              </div>
+            </div>
+          </NuxtLink>
+        </div>
+        <div class="interactive-pillar">
+          <NuxtLink
+            :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/interactive/` : 'stuff/interactive/' }`"
+            class="button pillar-link"
+            data-pillar="interactive"
+            :title="$t('titles.interactive')"
+            event="false"
+            exact
+            data-background
+          >
+            <div class="pillar-animation"></div>
+            <div class="pillar-description">
+              <div
+                class="pillar-icon"
+                @mouseover="interactiveTrigger = true"
+                @mouseleave="interactiveTrigger = false"
+              >
+                <span class="fill pulse" />
+                <span class="fill intro" ref="interactiveIntro">
+                  <span class="fill mask" ref="interactiveMask" />
+                </span>
+                <span class="icon-container" ref="interactiveIconContainer">
+                  <span class="svg-container icon" ref="interactiveIcon">
+                    <tap />
+                  </span>
+                </span>
+              </div>
+              <div class="pillar-label">
+                <p class="heading">{{$t('main.pillars.headings.interactive')}}</p>
+                <div class="sub-heading" ref="interactiveSubHeading">
+                  <p class="description">{{$t('main.pillars.descriptions.interactive')}}</p>
+                </div>
+              </div>
+            </div>
+          </NuxtLink>
+        </div>
+        <div class="contribution-pillar">
+          <NuxtLink
+            :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/contribution/` : 'stuff/contribution/' }`"
+            class="button pillar-link"
+            data-pillar="contribution"
+            :title="$t('titles.contribution')"
+            event="false"
+            exact
+            data-background
+          >
+            <div class="pillar-animation"></div>
+            <div class="pillar-description">
+              <div
+                class="pillar-icon"
+                @mouseover="contributionTrigger = true"
+                @mouseleave="contributionTrigger = false"
+              >
+                <span class="fill pulse" />
+                <span class="fill intro" ref="contributionIntro">
+                  <span class="fill mask" ref="contributionMask" />
+                </span>
+                <span class="icon-container" ref="contributionIconContainer">
+                  <span class="svg-container icon" ref="contributionIcon">
+                    <contribution />
+                  </span>
+                </span>
+              </div>
+              <div class="pillar-label">
+                <p class="heading">{{$t('main.pillars.headings.contribution')}}</p>
+                <div class="sub-heading" ref="contributionSubHeading">
+                  <p class="description">{{$t('main.pillars.descriptions.contribution')}}</p>
+                </div>
+              </div>
+            </div>
+          </NuxtLink>
+        </div>
       </div>
     </div>
   </div>
@@ -53,11 +161,17 @@
 import { gsap } from 'gsap'
 
 import user from '~/assets/icons/user.svg?inline'
+import packageDelivery from '~/assets/icons/package.svg?inline'
+import tap from '~/assets/icons/tap.svg?inline'
+import contribution from '~/assets/icons/contribution.svg?inline'
 
 export default {
   name: 'Wide',
   components: {
-    user
+    user,
+    packageDelivery,
+    tap,
+    contribution
   },
   head() {
     return {
@@ -67,16 +181,24 @@ export default {
   },
   data: () => {
     return {
-      logos: null,
       aboutAnimation: false,
       aboutAnimationTl: null,
+      npmAnimationTl: null,
+      interactiveAnimationTl: null,
+      contributionAnimationTl: null,
       siteSettings: null,
-      aboutTrigger: false
+      logos: {},
+      aboutTrigger: false,
+      npmTrigger: false,
+      interactiveTrigger: false,
+      contributionTrigger: false
     }
   },
   mounted() {
     setTimeout(() => {
       this.siteSettings = document.querySelector('.site-settings')
+      this.logos.in = document.querySelector('.logos .in')
+      this.logos.innerP = document.querySelector('.logos #inner-p')
     }, 100)
     if (this.$refs.header && this.$refs.description) this.animatedStuff()
 
@@ -156,37 +278,46 @@ export default {
         .to('.pillar-label', { opacity: 1, visibility: 'inherit' })
       setTimeout(() => {
         document.querySelector('[data-pillar="about"]').classList.add('active')
+        document.querySelector('[data-pillar="npm"]').classList.add('active')
+        document
+          .querySelector('[data-pillar="interactive"]')
+          .classList.add('active')
+        document
+          .querySelector('[data-pillar="contribution"]')
+          .classList.add('active')
       }, 3000)
     },
-    handleAboutMouseOver() {
+    animatedPillars(xCord, yCord, pillar) {
       const tl = gsap.timeline()
-      this.aboutAnimationTl = tl
+      this[`${pillar}AnimationTl`] = tl
       tl.to(
-        this.$refs.aboutMask,
+        this.$refs[`${pillar}Mask`],
         0.1,
         { opacity: 0, visibility: 'hidden' },
         'start'
       ).to(
-        this.$refs.aboutIntro,
+        this.$refs[`${pillar}Intro`],
         0.3,
         {
           width: '1025px',
           height: '1025px',
-          y: -885
+          y: yCord
         },
         'repos'
       )
 
       this.$i18n.locale === 'en'
-        ? tl.to(this.$refs.aboutIntro, 0.3, { x: -440 }, 'repos')
-        : tl.to(this.$refs.aboutIntro, 0.3, { x: 440 }, 'repos')
+        ? tl.to(this.$refs[`${pillar}Intro`], 0.3, { x: -xCord }, 'repos')
+        : tl.to(this.$refs[`${pillar}Intro`], 0.3, { x: xCord }, 'repos')
 
       tl.to(
-        this.$refs.aboutSubHeading,
+        this.$refs[`${pillar}SubHeading`],
         { opacity: 1, visibility: 'inherit' },
         'start+=0.1'
       )
-
+    },
+    handleAboutMouseOver(xCord, yCord) {
+      this.animatedPillars(xCord, yCord, 'about')
       setTimeout(() => {
         this.$refs.aboutIconContainer.classList.add('pillar-active')
         this.siteSettings.classList.add('pillar-active')
@@ -198,11 +329,78 @@ export default {
         this.siteSettings.classList.remove('pillar-active')
         this.$refs.aboutIconContainer.classList.remove('pillar-active')
       }, 300)
+    },
+    handleNPMMouseOver(xCord, yCord) {
+      this.animatedPillars(xCord, yCord, 'npm')
+      setTimeout(() => {
+        this.$refs.npmIconContainer.classList.add('pillar-active')
+      }, 100)
+    },
+    handleNPMMouseLeave() {
+      this.npmAnimationTl.reverse()
+      setTimeout(() => {
+        this.$refs.npmIconContainer.classList.remove('pillar-active')
+      }, 300)
+    },
+    handleInteractiveMouseOver(xCord, yCord) {
+      this.animatedPillars(xCord, yCord, 'interactive')
+      setTimeout(() => {
+        if (this.$i18n.locale === 'en') {
+          this.logos.innerP.classList.add('pillar-active')
+        } else {
+          this.logos.in.classList.add('pillar-active')
+        }
+        this.$refs.interactiveIconContainer.classList.add('pillar-active')
+      }, 100)
+    },
+    handleInteractiveMouseLeave() {
+      this.interactiveAnimationTl.reverse()
+      setTimeout(() => {
+        if (this.$i18n.locale === 'en') {
+          this.logos.innerP.classList.remove('pillar-active')
+        } else {
+          this.logos.in.classList.remove('pillar-active')
+        }
+        this.$refs.interactiveIconContainer.classList.remove('pillar-active')
+      }, 300)
+    },
+    handleContributionMouseOver(xCord, yCord) {
+      this.animatedPillars(xCord, yCord, 'contribution')
+      setTimeout(() => {
+        if (this.$i18n.locale === 'en') {
+          this.logos.in.classList.add('pillar-active')
+        }
+        this.$refs.contributionIconContainer.classList.add('pillar-active')
+      }, 100)
+    },
+    handleContributionMouseLeave() {
+      this.contributionAnimationTl.reverse()
+      setTimeout(() => {
+        if (this.$i18n.locale === 'en') {
+          this.logos.in.classList.remove('pillar-active')
+        }
+        this.$refs.contributionIconContainer.classList.remove('pillar-active')
+      }, 300)
     }
   },
   watch: {
     aboutTrigger(value) {
-      value ? this.handleAboutMouseOver() : this.handleAboutMouseLeave()
+      value
+        ? this.handleAboutMouseOver(460, -845)
+        : this.handleAboutMouseLeave()
+    },
+    npmTrigger(value) {
+      value ? this.handleNPMMouseOver(560, -815) : this.handleNPMMouseLeave()
+    },
+    interactiveTrigger(value) {
+      value
+        ? this.handleInteractiveMouseOver(325, -110)
+        : this.handleInteractiveMouseLeave()
+    },
+    contributionTrigger(value) {
+      value
+        ? this.handleContributionMouseOver(680, -215)
+        : this.handleContributionMouseLeave()
     }
   }
 }
@@ -293,8 +491,22 @@ html[dir='rtl'] .home-page .draggable .pillar-link[data-pillar='about'] {
   right: 75%;
 }
 
-.home-page .draggable .pillar-link[data-background] {
+.home-page .draggable .pillar-link[data-pillar='about'][data-background] {
   color: $about-pillar-color;
+}
+
+.home-page .draggable .pillar-link[data-pillar='npm'][data-background] {
+  color: $npm-pillar-color;
+}
+
+.home-page .draggable .pillar-link[data-pillar='interactive'][data-background] {
+  color: $interactive-pillar-color;
+}
+
+.home-page
+  .draggable
+  .pillar-link[data-pillar='contribution'][data-background] {
+  color: $contribution-pillar-color;
 }
 
 .home-page .draggable .pillar-link .pillar-description {
@@ -302,7 +514,11 @@ html[dir='rtl'] .home-page .draggable .pillar-link[data-pillar='about'] {
   position: absolute;
 }
 
-.home-page .draggable .pillar-link[data-pillar='about'] .pillar-description {
+.home-page .draggable .pillar-link[data-pillar='about'] .pillar-description,
+.home-page
+  .draggable
+  .pillar-link[data-pillar='contribution']
+  .pillar-description {
   top: calc(50% - 4rem);
 }
 
@@ -310,6 +526,11 @@ html[dir='ltr']
   .home-page
   .draggable
   .pillar-link[data-pillar='about']
+  .pillar-description,
+html[dir='ltr']
+  .home-page
+  .draggable
+  .pillar-link[data-pillar='contribution']
   .pillar-description {
   left: calc(30% + 10rem);
 }
@@ -318,8 +539,86 @@ html[dir='rtl']
   .home-page
   .draggable
   .pillar-link[data-pillar='about']
+  .pillar-description,
+html[dir='rtl']
+  .home-page
+  .draggable
+  .pillar-link[data-pillar='contribution']
   .pillar-description {
   right: calc(-65% + 10rem);
+}
+
+.home-page .draggable .pillar-link[data-pillar='interactive'] {
+  width: 50rem;
+  top: 75%;
+}
+
+html[dir='ltr'] .home-page .draggable .pillar-link[data-pillar='interactive'] {
+  left: 75%;
+}
+
+html[dir='rtl'] .home-page .draggable .pillar-link[data-pillar='interactive'] {
+  right: 75%;
+}
+
+.home-page
+  .draggable
+  .pillar-link[data-pillar='interactive']
+  .pillar-description,
+.home-page .draggable .pillar-link[data-pillar='npm'] .pillar-description {
+  top: calc(50% - 4rem);
+}
+
+html[dir='ltr']
+  .home-page
+  .draggable
+  .pillar-link[data-pillar='interactive']
+  .pillar-description,
+html[dir='ltr']
+  .home-page
+  .draggable
+  .pillar-link[data-pillar='npm']
+  .pillar-description {
+  left: calc(10% + 10rem);
+}
+
+html[dir='rtl']
+  .home-page
+  .draggable
+  .pillar-link[data-pillar='interactive']
+  .pillar-description,
+html[dir='rtl']
+  .home-page
+  .draggable
+  .pillar-link[data-pillar='npm']
+  .pillar-description {
+  right: calc(-85% + 10rem);
+}
+
+.home-page .draggable .pillar-link[data-pillar='npm'] {
+  width: 50rem;
+  top: 20%;
+}
+
+html[dir='ltr'] .home-page .draggable .pillar-link[data-pillar='npm'] {
+  right: 30%;
+}
+
+html[dir='rtl'] .home-page .draggable .pillar-link[data-pillar='npm'] {
+  left: 30%;
+}
+
+.home-page .draggable .pillar-link[data-pillar='contribution'] {
+  width: 50rem;
+  top: 80%;
+}
+
+html[dir='ltr'] .home-page .draggable .pillar-link[data-pillar='contribution'] {
+  right: 35%;
+}
+
+html[dir='rtl'] .home-page .draggable .pillar-link[data-pillar='contribution'] {
+  left: 45%;
 }
 
 .home-page .draggable .pillar-link .pillar-description .pillar-icon {
@@ -460,6 +759,57 @@ html[dir='rtl']
   .pillar-description
   .pillar-label {
   right: 10px;
+}
+
+html[dir='ltr']
+  .home-page
+  .draggable
+  .pillar-link[data-pillar='interactive']
+  .pillar-description
+  .pillar-label {
+  left: -33px;
+}
+
+html[dir='rtl']
+  .home-page
+  .draggable
+  .pillar-link[data-pillar='interactive']
+  .pillar-description
+  .pillar-label {
+  right: 2px;
+}
+
+html[dir='ltr']
+  .home-page
+  .draggable
+  .pillar-link[data-pillar='npm']
+  .pillar-description
+  .pillar-label {
+  left: -13px;
+}
+
+html[dir='rtl']
+  .home-page
+  .draggable
+  .pillar-link[data-pillar='npm']
+  .pillar-description
+  .pillar-label,
+html[dir='rtl']
+  .home-page
+  .draggable
+  .pillar-link[data-pillar='contribution']
+  .pillar-description
+  .pillar-label {
+  right: -10px;
+}
+
+html[dir='ltr']
+  .home-page
+  .draggable
+  .pillar-link[data-pillar='contribution']
+  .pillar-description
+  .pillar-label {
+  left: -30px;
 }
 
 .home-page .draggable .pillar-link .pillar-description .pillar-label .heading {

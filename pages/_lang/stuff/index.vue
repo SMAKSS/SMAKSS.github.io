@@ -35,7 +35,7 @@ export default {
     })
     window.addEventListener('resize', this.onResize)
     const logos = document.querySelector('.logos')
-    gsap.set(logos, { y: 50, opacity: 0, visibility: 'hidden' })
+    gsap.set(logos, { y: 30, opacity: 0, visibility: 'hidden' })
     gsap.to(logos, 1, { y: 0, opacity: 1, visibility: 'inherit', delay: 1 })
   },
   destroyed() {
@@ -43,10 +43,16 @@ export default {
   },
   methods: {
     onResize() {
-      window.innerWidth < 767
+      window.innerWidth < 920
         ? (this.responsive = true)
         : (this.responsive = false)
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.site-main /deep/ .logos {
+  margin-bottom: 2rem;
+}
+</style>
