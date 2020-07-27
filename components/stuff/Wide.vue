@@ -46,7 +46,7 @@
         </div>
         <div class="npm-pillar">
           <NuxtLink
-            :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/npm/` : 'stuff/npm/' }`"
+            :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/` : 'stuff/' }`"
             class="button pillar-link"
             data-pillar="npm"
             :title="$t('titles.npm')"
@@ -82,7 +82,7 @@
         </div>
         <div class="interactive-pillar">
           <NuxtLink
-            :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/interactive/` : 'stuff/interactive/' }`"
+            :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/` : 'stuff/' }`"
             class="button pillar-link"
             data-pillar="interactive"
             :title="$t('titles.interactive')"
@@ -118,7 +118,7 @@
         </div>
         <div class="contribution-pillar">
           <NuxtLink
-            :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/contribution/` : 'stuff/contribution/' }`"
+            :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/` : 'stuff/' }`"
             class="button pillar-link"
             data-pillar="contribution"
             :title="$t('titles.contribution')"
