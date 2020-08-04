@@ -1,12 +1,8 @@
 <template>
   <div class="site-main">
     <Social />
-    <template v-if="!responsive">
-      <Wide />
-    </template>
-    <template v-else>
-      <Responsive />
-    </template>
+    <Responsive v-show="responsive" />
+    <Wide v-show="!responsive" />
   </div>
 </template>
 
@@ -29,10 +25,12 @@ export default {
       responsive: false
     }
   },
-  mounted() {
+  beforeMount() {
     this.$nextTick(function() {
       this.onResize()
     })
+  },
+  mounted() {
     window.addEventListener('resize', this.onResize)
     const logos = document.querySelector('.logos')
     gsap.set(logos, { y: 30, opacity: 0, visibility: 'hidden' })
@@ -43,9 +41,9 @@ export default {
   },
   methods: {
     onResize() {
-      window.innerWidth < 920
-        ? (this.responsive = true)
-        : (this.responsive = false)
+      window.innerWidth > 920
+        ? (this.responsive = false)
+        : (this.responsive = true)
     }
   }
 }

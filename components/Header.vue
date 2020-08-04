@@ -34,4 +34,10 @@ export default {
   top: 0;
   left: 0;
 }
+
+@media (max-width: 920px) {
+  .site-header {
+    height: 60px;
+  }
+}
 </style>
