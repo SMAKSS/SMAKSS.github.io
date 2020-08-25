@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <div class="content">
+    <div class="content" ref="content">
       <h1 class="header" ref="header">
         {{$t('main.header.partOne')}}
         <span class="header-part-two">{{$t('main.header.partTwo')}}</span>
@@ -9,12 +9,14 @@
     </div>
     <div class="viewport">
       <div class="draggable">
-        <div class="about-pillar">
+        <div class="about-pillar" ref="aboutPillar">
           <NuxtLink
             :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/about/` : 'stuff/about/' }`"
             class="button pillar-link"
             data-pillar="about"
             :title="$t('titles.about')"
+            @click.native="aboutHandler"
+            event="false"
             exact
             data-background
           >
@@ -35,8 +37,8 @@
                   </span>
                 </span>
               </div>
-              <div class="pillar-label">
-                <p class="heading">{{$t('main.pillars.headings.about')}}</p>
+              <div class="pillar-label" ref="aboutLabel">
+                <p class="heading" ref="aboutHeading">{{$t('main.pillars.headings.about')}}</p>
                 <div class="sub-heading" ref="aboutSubHeading">
                   <p class="description">{{$t('main.pillars.descriptions.about')}}</p>
                 </div>
@@ -44,7 +46,7 @@
             </div>
           </NuxtLink>
         </div>
-        <div class="npm-pillar">
+        <div class="npm-pillar" ref="npmPillar">
           <NuxtLink
             :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/` : 'stuff/' }`"
             class="button pillar-link"
@@ -80,7 +82,7 @@
             </div>
           </NuxtLink>
         </div>
-        <div class="interactive-pillar">
+        <div class="interactive-pillar" ref="interactivePillar">
           <NuxtLink
             :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/` : 'stuff/' }`"
             class="button pillar-link"
@@ -116,7 +118,7 @@
             </div>
           </NuxtLink>
         </div>
-        <div class="contribution-pillar">
+        <div class="contribution-pillar" ref="contributionPillar">
           <NuxtLink
             :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/` : 'stuff/' }`"
             class="button pillar-link"
@@ -381,6 +383,66 @@ export default {
         }
         this.$refs.contributionIconContainer.classList.remove('pillar-active')
       }, 300)
+    },
+    aboutHandler() {
+      this.handleAboutMouseLeave()
+      const pillar = document.querySelector(
+        '.about-pillar .pillar-link[data-pillar="about"]'
+      )
+      const tl = gsap.timeline({ delay: 0.1 })
+      tl.to(
+        [
+          this.$refs.content,
+          this.$refs.npmPillar,
+          this.$refs.interactivePillar,
+          this.$refs.contributionPillar
+        ],
+        1,
+        { opacity: 0, visibility: 'hidden', pointerEvents: 'none' }
+      )
+      tl.to(
+        pillar,
+        1,
+        {
+          top: '50%',
+          pointerEvents: 'none'
+        },
+        'relocatePillar'
+      )
+      this.$i18n.locale === 'en'
+        ? tl.to(
+            pillar,
+            1,
+            {
+              left: '47.5%'
+            },
+            'relocatePillar'
+          )
+        : tl.to(
+            pillar,
+            1,
+            {
+              right: '46%'
+            },
+            'relocatePillar'
+          )
+      tl.to(
+        '.about-pillar .pillar-description *:not(.pillar-label):not(.heading)',
+        { opacity: 0, visibility: 'hidden', delay: 1 }
+      )
+      tl.to(
+        this.$refs.aboutHeading,
+        1,
+        { fontSize: '3.3rem' },
+        'headingRelocate'
+      )
+      tl.to(
+        this.$refs.aboutLabel,
+        { left: 'unset', right: 'unset' },
+        'headingRelocate'
+      )
+      tl.to(pillar, 1, { top: '5%' }, 'headingRelocate')
+      setTimeout(() => this.$router.push('about/'), 5700)
     }
   },
   watch: {

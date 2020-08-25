@@ -60,9 +60,9 @@
       },
       "descriptions": {
         "about": "Learn more about me and my works.",
-        "npm": "Find more precise information about my NPM packages.",
-        "interactive": "A place to make interaction with my resume.",
-        "contribution": "Know more about my public contributions."
+        "npm": "Find more precise information about my NPM packages. (Coming Soon!)",
+        "interactive": "A place to make interaction with my resume. (Coming Soon!)",
+        "contribution": "Know more about my public contributions. (Coming Soon!)"
       }
     },
     "content": "Well, you can check each pillar to know more about me and my stuff."
@@ -70,7 +70,7 @@
   "contents": {
     "info": {
       "title": "You may ask what are all these about?",
-      "description": "First of all, thanks for paying me a visit. Well, unlike people common opinion, designing and implementing a website is hard, but doing all this on your own and producing a cool result is damn hard. I'm not saying this is very cool (Who cares maybe it is!) but I tried my best on it. I built this all mostly for sharing my insights, also a showcase, and sharing new ideas. The whole source code of it, is available on my GitHub page, so if you enjoyed it, you can fork it and create your own exclusive one, then you can buy me a coffee in return (Link is available in the very bottom of each page).",
+      "description": "First of all, thanks for paying me a visit. Well, unlike people common opinion, designing and implementing a website is hard, but doing all this on your own and producing a cool result is damn hard. I'm not saying this is very cool (Who cares maybe it is!) but I tried my best on it. I built this all mostly for sharing my insights, also a showcase, and sharing new ideas. The whole source code of it (Its got many bugs right now 😁), is available on my GitHub page, so if you enjoyed it, you can fork it and create your own exclusive one, then you can buy me a coffee in return (Link is available in the very bottom of each page).",
       "ps": "P.S.: You also may ask what the heck is going on with the quote thing? I have to say it is fun, cool, and maybe insightful. In addition, it is provided by",
       "quotable": "Quotable service."
     },
