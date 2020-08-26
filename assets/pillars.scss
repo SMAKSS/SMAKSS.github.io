@@ -25,7 +25,7 @@
   max-width: 23rem;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1100px) {
   .home-page {
     @include flex-display(center, center, column);
     padding: 6rem 0;
@@ -68,7 +68,7 @@ html[dir='rtl'] .home-page .content .header .header-part-two {
   font: 400 1.5rem/2.3rem $font;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1100px) {
   .home-page .content .description {
     font-size: 1.2rem;
     line-height: 1.8rem;
@@ -86,7 +86,7 @@ html[dir='rtl'] .home-page .content .header .header-part-two {
   width: 100%;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1100px) {
   .home-page .viewport {
     height: auto;
     width: 100%;

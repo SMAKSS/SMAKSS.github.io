@@ -206,6 +206,10 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/pillars.scss';
 
+html[dir='rtl'] .about-pillar {
+  margin-left: 2rem;
+}
+
 .pillar-card {
   height: 100%;
   width: 100%;
@@ -229,7 +233,6 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 
@@ -343,6 +346,7 @@ export default {
   white-space: normal;
   width: 15rem;
   margin: 0 auto;
+  text-align: center;
 }
 
 .des-01 {

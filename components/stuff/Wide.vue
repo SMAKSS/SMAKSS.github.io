@@ -426,23 +426,12 @@ export default {
             },
             'relocatePillar'
           )
-      tl.to(
-        '.about-pillar .pillar-description *:not(.pillar-label):not(.heading)',
-        { opacity: 0, visibility: 'hidden', delay: 1 }
-      )
-      tl.to(
-        this.$refs.aboutHeading,
-        1,
-        { fontSize: '3.3rem' },
-        'headingRelocate'
-      )
-      tl.to(
-        this.$refs.aboutLabel,
-        { left: 'unset', right: 'unset' },
-        'headingRelocate'
-      )
-      tl.to(pillar, 1, { top: '5%' }, 'headingRelocate')
-      setTimeout(() => this.$router.push('about/'), 5700)
+      tl.to(this.$refs.aboutPillar, {
+        opacity: 0,
+        visibility: 'hidden',
+        delay: 1
+      })
+      setTimeout(() => this.$router.push('about/'), 5000)
     }
   },
   watch: {

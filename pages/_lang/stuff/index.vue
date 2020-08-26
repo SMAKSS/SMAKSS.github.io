@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     onResize() {
-      window.innerWidth > 920
+      window.innerWidth > 1100
         ? (this.responsive = false)
         : (this.responsive = true)
     }
