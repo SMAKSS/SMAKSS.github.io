@@ -19,19 +19,19 @@ export default {
   components: {
     Header,
     Footer,
-    CookieBanner
+    CookieBanner,
   },
   data: () => {
     return {
-      cookieConsent: false
+      cookieConsent: false,
     }
   },
   head() {
     return {
       htmlAttrs: {
         lang: this.$i18n.locale,
-        dir: this.$i18n.locale === 'en' ? 'ltr' : 'rtl'
-      }
+        dir: this.$i18n.locale === 'en' ? 'ltr' : 'rtl',
+      },
     }
   },
   beforeMount() {
@@ -40,7 +40,7 @@ export default {
       localStorage.getItem('cookie-consent')
     )
       this.cookieConsent = true
-  }
+  },
 }
 </script>
 
