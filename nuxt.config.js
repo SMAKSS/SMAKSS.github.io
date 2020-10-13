@@ -11,17 +11,17 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.description || ''
-      }
+        content: process.env.description || '',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
    ** Customize the progress-bar
    */
   loading: {
     color: '#f7f7f7',
-    height: '1px'
+    height: '1px',
   },
   /*
    ** Global CSS
@@ -35,20 +35,31 @@ export default {
    * Localization router
    */
   router: {
-    middleware: 'i18n'
+    middleware: 'i18n',
   },
   /**
    * Custom routes
    */
   generate: {
-    routes: ['/', '/fa/', '/stuff/', '/fa/stuff/', '/stuff/about/', '/fa/stuff/about/']
+    routes: [
+      '/',
+      '/fa/',
+      '/stuff/',
+      '/fa/stuff/',
+      '/stuff/about/',
+      '/fa/stuff/about/',
+    ],
   },
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/style-resources', '@nuxtjs/color-mode', '@nuxtjs/svg'],
+  buildModules: [
+    '@nuxtjs/style-resources',
+    '@nuxtjs/color-mode',
+    '@nuxtjs/svg',
+  ],
   styleResources: {
-    scss: ['~assets/_variables.scss', '~assets/_mixins.scss']
+    scss: ['~assets/_variables.scss', '~assets/_mixins.scss'],
   },
   /*
    ** Nuxt.js modules
@@ -59,7 +70,7 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    'cookie-universal-nuxt'
+    'cookie-universal-nuxt',
   ],
   /*
    ** Axios module configuration
@@ -74,10 +85,8 @@ export default {
      ** You can extend webpack config here
      */
     splitChunks: {
-      layouts: true
+      layouts: true,
     },
-    transpile: [
-      "gsap"
-    ]
-  }
+    transpile: ['gsap'],
+  },
 }
