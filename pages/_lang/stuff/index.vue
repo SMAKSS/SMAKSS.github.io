@@ -1,8 +1,10 @@
 <template>
   <div class="site-main">
     <Social />
-    <Responsive v-show="responsive" />
-    <Wide v-show="!responsive" />
+    <ClientOnly>
+      <Responsive v-if="responsive" />
+      <Wide v-else />
+    </ClientOnly>
   </div>
 </template>
 
@@ -18,15 +20,15 @@ export default {
   components: {
     Social,
     Wide,
-    Responsive
+    Responsive,
   },
   data: () => {
     return {
-      responsive: false
+      responsive: false,
     }
   },
   beforeMount() {
-    this.$nextTick(function() {
+    this.$nextTick(function () {
       this.onResize()
     })
   },
@@ -44,8 +46,8 @@ export default {
       window.innerWidth > 1100
         ? (this.responsive = false)
         : (this.responsive = true)
-    }
-  }
+    },
+  },
 }
 </script>
 
