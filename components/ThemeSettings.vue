@@ -3,12 +3,17 @@
     <Logo />
     <ClientOnly>
       <div class="site-settings">
-        <div class="settings localization-switcher" ref="localizationSwitcher" data-list="locales">
+        <div
+          class="settings localization-switcher"
+          ref="localizationSwitcher"
+          data-list="locales"
+        >
           <Button
             @onClick="switchHandler"
             :mainClass="'dropdown'"
             :spanClass="'dropdown-container link'"
-          >{{ selectedLocal.lang }}</Button>
+            >{{ selectedLocal.lang }}</Button
+          >
           <ul class="locales" ref="locales">
             <li
               class="item locale"
@@ -20,9 +25,13 @@
                 @click.native="localChangeLinkHandler"
                 :to="locale.path"
                 class="link"
-                :class="{'en': $i18n.locale === 'fa', 'fa': $i18n.locale === 'en'}"
+                :class="{
+                  en: $i18n.locale === 'fa',
+                  fa: $i18n.locale === 'en',
+                }"
                 exact
-              >{{ locale.lang }}</NuxtLink>
+                >{{ locale.lang }}</NuxtLink
+              >
             </li>
           </ul>
         </div>
@@ -37,8 +46,14 @@
             <component
               :is="`icon-${$colorMode.preference}`"
               class="selected"
-              :class="{ 'system-light': ($colorMode.preference === 'system' && $colorMode.value === 'light'), 
-            'system-dark': ($colorMode.preference === 'system' && $colorMode.value === 'dark')}"
+              :class="{
+                'system-light':
+                  $colorMode.preference === 'system' &&
+                  $colorMode.value === 'light',
+                'system-dark':
+                  $colorMode.preference === 'system' &&
+                  $colorMode.value === 'dark',
+              }"
             />
           </Button>
           <ul class="colors" ref="colors">
@@ -47,7 +62,12 @@
               :title="$t(`titles.${color}`)"
               v-for="color of remainingColors"
               :key="color"
-              @click="(event) => { switchHandler(event); $colorMode.preference = color; }"
+              @click="
+                (event) => {
+                  switchHandler(event)
+                  $colorMode.preference = color
+                }
+              "
             >
               <span class="icon-container">
                 <component :is="`icon-${color}`" />
@@ -77,7 +97,7 @@ export default {
     Button,
     IconSystem,
     IconLight,
-    IconDark
+    IconDark,
   },
   data() {
     return {
@@ -87,15 +107,15 @@ export default {
           code: 'en',
           lang: 'English',
           path: this.$route.fullPath.replace(/^\/[^\/]+\/*/, '/'),
-          regex: /^\/[^\/]+\/*/
+          regex: /^\/[^\/]+\/*/,
         },
         {
           code: 'fa',
           lang: 'فارسـی',
           path: `/fa${this.$route.fullPath.replace(/^\/(fa)+\/*/, '/')}`,
-          regex: /^\/(fa)+\/*/
-        }
-      ]
+          regex: /^\/(fa)+\/*/,
+        },
+      ],
     }
   },
   methods: {
@@ -105,7 +125,7 @@ export default {
         switcher.classList.remove('active')
       } else {
         const tl = gsap.timeline({
-          onComplete: () => switcher.classList.add('active')
+          onComplete: () => switcher.classList.add('active'),
         })
         tl.fromTo(
           this.$refs[ref],
@@ -121,7 +141,7 @@ export default {
       this.visibilityHandler({
         switcher,
         ref,
-        opacity: this.$refs[ref].style.opacity
+        opacity: this.$refs[ref].style.opacity,
       })
 
       if (event.target.classList.contains('item') && ref === 'locales')
@@ -134,20 +154,20 @@ export default {
         this.visibilityHandler({
           switcher: this.$refs.localizationSwitcher,
           ref: 'locales',
-          opacity: this.$refs.locales.style.opacity
+          opacity: this.$refs.locales.style.opacity,
         })
-    }
+    },
   },
   computed: {
     remainingColors() {
-      return this.colors.filter(color => color !== this.$colorMode.preference)
+      return this.colors.filter((color) => color !== this.$colorMode.preference)
     },
     selectedLocal() {
-      return this.locales.find(locale => locale.code === this.$i18n.locale)
+      return this.locales.find((locale) => locale.code === this.$i18n.locale)
     },
     remainingLocales() {
-      return this.locales.filter(locale => locale.code !== this.$i18n.locale)
-    }
+      return this.locales.filter((locale) => locale.code !== this.$i18n.locale)
+    },
   },
   watch: {
     $route(to, from) {
@@ -157,8 +177,8 @@ export default {
         if (locale.code !== 'en' && locale.path === to.fullPath)
           locale.path = `/${locale.code}${to.fullPath}`
       })
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -256,7 +276,11 @@ html[dir='rtl'] .site-header {
   transition: background 200ms cubic-bezier(1, 0, 0, 1) 0ms;
 }
 
-.site-header .site-settings.pillar-active .localization-switcher /deep/ .dropdown,
+.site-header
+  .site-settings.pillar-active
+  .localization-switcher
+  /deep/
+  .dropdown,
 .site-header .site-settings.pillar-active .color-switcher .icon {
   background: $background-color;
 }
@@ -346,7 +370,11 @@ html[dir='rtl'] .site-header {
   color: $settings-default;
 }
 
-.site-header .site-settings.pillar-active .color-switcher /deep/ .icon-container {
+.site-header
+  .site-settings.pillar-active
+  .color-switcher
+  /deep/
+  .icon-container {
   color: $settings-pillar-activated;
 }
 

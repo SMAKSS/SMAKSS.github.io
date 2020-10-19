@@ -22,7 +22,7 @@ export default {
     openModal() {
       const tl = gsap.timeline()
       tl.set('.site-header', {
-        css: { zIndex: 2 }
+        css: { zIndex: 2 },
       })
         .to(
           this.$refs.modal,
@@ -30,7 +30,7 @@ export default {
           {
             visibility: 'inherit',
             opacity: '1',
-            attr: { 'aria-hidden': false }
+            attr: { 'aria-hidden': false },
           },
           'shown'
         )
@@ -56,17 +56,17 @@ export default {
         .to(this.$refs.modal, {
           visibility: 'hidden',
           opacity: '0',
-          attr: { 'aria-hidden': true }
+          attr: { 'aria-hidden': true },
         })
         .set('.site-header', { css: { zIndex: '' } })
       this.$store.commit('SET_MODALTRIGGER', false)
-    }
+    },
   },
   watch: {
     trigger(value) {
       value ? this.openModal() : this.closeModal()
-    }
-  }
+    },
+  },
 }
 </script>
 

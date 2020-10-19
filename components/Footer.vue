@@ -8,13 +8,17 @@
           rel="noopener noreferrer"
           target="_blank"
           class="link"
-        >{{$t('links.donate')}}</a>
+          >{{ $t('links.donate') }}</a
+        >
       </li>
       <li class="item">
         <NuxtLink
-          :to="`/${($i18n.locale !== 'en') ? `${$i18n.locale}/stuff/` : 'stuff/' }`"
+          :to="`/${
+            $i18n.locale !== 'en' ? `${$i18n.locale}/stuff/` : 'stuff/'
+          }`"
           class="link"
-        >{{$t('links.stuff')}}</NuxtLink>
+          >{{ $t('links.stuff') }}</NuxtLink
+        >
       </li>
     </ul>
   </footer>
@@ -26,8 +30,8 @@ import Logo from '@/components/icons/Logo'
 export default {
   name: 'Footer',
   components: {
-    Logo
-  }
+    Logo,
+  },
 }
 </script>
 

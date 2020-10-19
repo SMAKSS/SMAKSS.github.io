@@ -15,12 +15,12 @@ export default {
   name: 'Header',
   components: {
     Logo,
-    ThemeSettings
+    ThemeSettings,
   },
   mounted() {
     gsap.set(this.$refs.siteHeader, { y: -150 })
     gsap.to(this.$refs.siteHeader, 0.7, { y: 0 })
-  }
+  },
 }
 </script>
 

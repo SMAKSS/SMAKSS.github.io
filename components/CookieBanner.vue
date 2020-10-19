@@ -1,11 +1,12 @@
 <template>
   <div class="cookie-banner" v-if="!cookieConsent">
-    <p class="cookie-notif">{{$t('contents.cookie')}}</p>
+    <p class="cookie-notif">{{ $t('contents.cookie') }}</p>
     <Button
       @onClick="acceptCookie"
       :mainClass="'cookie-consent'"
       :title="$t('titles.cookieConsent')"
-    >{{$t('buttons.ok')}}</Button>
+      >{{ $t('buttons.ok') }}</Button
+    >
   </div>
 </template>
 
@@ -17,17 +18,17 @@ import Button from '@/components/buttons/Button'
 export default {
   name: 'CookieBanner',
   components: {
-    Button
+    Button,
   },
   data: () => {
     return {
-      cookieConsent: false
+      cookieConsent: false,
     }
   },
   methods: {
     acceptCookie() {
       this.$cookies.set('cookie-consent', JSON.stringify({ consent: true }), {
-        expires: new Date('2037-12-31T23:59:57.472Z')
+        expires: new Date('2037-12-31T23:59:57.472Z'),
       })
       localStorage.setItem('cookie-consent', JSON.stringify({ consent: true }))
 
@@ -36,8 +37,8 @@ export default {
         localStorage.getItem('cookie-consent')
       )
         this.cookieConsent = true
-    }
-  }
+    },
+  },
 }
 </script>
 
