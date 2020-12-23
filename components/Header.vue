@@ -191,6 +191,7 @@ export default {
   @include flex-display(center, space-between);
 
   position: absolute;
+  top: 0;
 
   z-index: 9;
 
@@ -226,10 +227,8 @@ html[dir='rtl'] .site-header {
   height: 1.8rem;
   width: 8.6rem;
   fill: $link;
-}
 
-@media (max-width: $default-mobile-viewport) {
-  .site-header /deep/ .svg-container.logo > svg {
+  @media (max-width: $default-mobile-viewport) {
     height: 1.5rem;
     width: 8rem;
   }
@@ -273,11 +272,8 @@ html[dir='rtl'] .site-header {
   z-index: 8;
   width: 9rem;
   height: auto;
-}
 
-@media (max-width: 480px) {
-  .site-header .site-settings .localization-switcher,
-  .site-header .site-settings .color-switcher {
+  @media (max-width: $small-mobile-viewport) {
     width: 8rem;
   }
 }
@@ -309,11 +305,8 @@ html[dir='rtl'] .site-header {
 .site-header .site-settings .localization-switcher /deep/ .dropdown,
 .site-header .site-settings .localization-switcher .locales {
   width: 9rem;
-}
 
-@media (max-width: 480px) {
-  .site-header .site-settings .localization-switcher /deep/ .dropdown,
-  .site-header .site-settings .localization-switcher .locales {
+  @media (max-width: $small-mobile-viewport) {
     width: 8rem;
   }
 }
@@ -435,16 +428,5 @@ html[dir='rtl'] .site-header {
   .icon-container
   .system-dark {
   fill: $background-color;
-}
-
-.site-header {
-  @include flex-display(center, space-between);
-
-  position: absolute;
-
-  z-index: 9;
-
-  height: 64px;
-  width: 100%;
 }
 </style>
