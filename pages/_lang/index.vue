@@ -58,7 +58,6 @@
 
 <script>
 import {gsap} from 'gsap'
-import {PerfectScrollbar} from 'vue2-perfect-scrollbar'
 
 import Logo from '~/assets/icons/SMAKSS.svg?inline'
 import Button from '@/components/buttons/Button'
@@ -71,7 +70,6 @@ export default {
   name: 'index',
   fetchOnServer: false,
   components: {
-    PerfectScrollbar,
     Logo,
     Button,
     Social,
@@ -185,8 +183,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css';
-
 .site-intro {
   @include flex-display(center, center, column);
   overflow: hidden;

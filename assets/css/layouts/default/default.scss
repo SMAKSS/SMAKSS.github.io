@@ -120,6 +120,7 @@ body {
 ::-webkit {
   &-scrollbar {
     background: $scrollbar-background-color;
+    width: 14px;
   }
   &-scrollbar-thumb {
     background: $scrollbar-color;
