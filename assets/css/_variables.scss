@@ -1,6 +1,9 @@
+// Fonts
 $font: var(--font);
 $font-en: var(--font-en);
 $font-fa: var(--font-fa);
+
+//Colors
 $background-color: var(--background-color);
 $background-color-secondary: var(--background-color-secondary);
 $text-color: var(--text-color);
@@ -25,8 +28,14 @@ $logo-stackoverflow-stack: var(--logo-stackoverflow-stack);
 $banner-bg: var(--banner-bg);
 $banner-button: var(--banner-button);
 $scrollbar-color: var(--scrollbar-color);
+$scrollbar-background-color: var(--scrollbar-background-color);
 $about-pillar-color: var(--about-pillar-color);
 $npm-pillar-color: var(--npm-pillar-color);
 $interactive-pillar-color: var(--interactive-pillar-color);
 $contribution-pillar-color: var(--contribution-pillar-color);
 $box-shadow: var(--box-shadow);
+
+//Media sizes
+$default-mobile-viewport: 767px;
+$default-tablet-viewport: 920px;
+$large-tablet-viewport: 1023px;

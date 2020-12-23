@@ -18,14 +18,14 @@ export default {
   name: 'Info',
   components: {
     Button,
-    info
+    info,
   },
   props: ['moreInfo'],
   methods: {
     handler() {
       this.$emit('moreInfo')
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -41,7 +41,7 @@ export default {
   transition: background 0.2s cubic-bezier(1, 0, 0, 1);
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .info.icon {
     height: 3.5rem;
     width: 3.5rem;

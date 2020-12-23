@@ -18,8 +18,8 @@ export default {
   methods: {
     onClick(event) {
       this.$emit('onClick', event)
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -51,7 +51,7 @@ export default {
   user-select: none;
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .button .label {
     font-size: 1.2rem;
   }

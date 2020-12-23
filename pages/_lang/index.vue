@@ -14,44 +14,51 @@
         ref="quoteContent"
         :class="{'max-width-none': quoteData.length > 120}"
         :title="$t('quote.title.content')"
-      >{{quoteData.content}}</h2>
+      >
+        {{ quoteData.content }}
+      </h2>
       <a
         :href="quoteData.search"
         rel="noopener noreferrer"
         target="_blank"
         class="quote-author"
         :title="$t('quote.title.author')"
-      >{{quoteData.author}}</a>
+        >{{ quoteData.author }}</a
+      >
     </template>
-    <Button @onClick="introHandler" :title="$t('buttons.start')">{{$t('buttons.start')}}</Button>
+    <Button @onClick="introHandler" :title="$t('buttons.start')">{{
+      $t('buttons.start')
+    }}</Button>
     <Info @moreInfo="modalHandler" />
     <Modal :ariaHidden="true" :trigger="$store.state.modalTrigger">
-      <h1 class="info-title">{{$t('contents.info.title')}}</h1>
-      <perfect-scrollbar class="scroll-wrapper">
+      <h1 class="info-title">{{ $t('contents.info.title') }}</h1>
+      <div class="scroll-wrapper">
         <div class="scroll-content">
-          <p class="info-description">{{$t('contents.info.description')}}</p>
+          <p class="info-description">{{ $t('contents.info.description') }}</p>
           <p class="info-ps">
-            {{$t('contents.info.ps')}}
+            {{ $t('contents.info.ps') }}
             <a
               href="https://github.com/lukePeavey/quotable"
               rel="noopener noreferrer"
               target="_blank"
-            >{{$t('contents.info.quotable')}}</a>
+              >{{ $t('contents.info.quotable') }}</a
+            >
           </p>
         </div>
-      </perfect-scrollbar>
+      </div>
       <Button
         @onClick="modalHandler"
         :mainClass="'button close'"
         :title="$t('buttons.close')"
-      >{{$t('buttons.close')}}</Button>
+        >{{ $t('buttons.close') }}</Button
+      >
     </Modal>
   </div>
 </template>
 
 <script>
-import { gsap } from 'gsap'
-import { PerfectScrollbar } from 'vue2-perfect-scrollbar'
+import {gsap} from 'gsap'
+import {PerfectScrollbar} from 'vue2-perfect-scrollbar'
 
 import Logo from '~/assets/icons/SMAKSS.svg?inline'
 import Button from '@/components/buttons/Button'
@@ -69,13 +76,13 @@ export default {
     Button,
     Social,
     Info,
-    Modal
+    Modal,
   },
   mixins: [handlers],
   head() {
     return {
       title: this.$t('titles.index'),
-      description: this.$t('descriptions.index')
+      description: this.$t('descriptions.index'),
     }
   },
   data: () => {
@@ -83,7 +90,7 @@ export default {
       smakssEl: {},
       animationState: false,
       quoteData: null,
-      quoteErrorContent: ''
+      quoteErrorContent: '',
     }
   },
   created() {
@@ -94,7 +101,7 @@ export default {
   async fetch() {
     if (!this.$cookies.get('quote') && !this.requestStatus) {
       const response = await fetch(
-        'https://api.quotable.io/random'
+        'https://api.quotable.io/random',
       ).then(response => response.json())
 
       if (response.content) {
@@ -106,12 +113,12 @@ export default {
           author: this.quoteData?.author,
           content: this.quoteData?.content,
           length: this.quoteData?.length,
-          search: this.quoteData?.search
+          search: this.quoteData?.search,
         }
 
         this.$cookies.set('quote', JSON.stringify(quote), {
           path: '/',
-          maxAge: 60 * 60 * 24 * 1
+          maxAge: 60 * 60 * 24 * 1,
         })
       } else if (process.server) {
         this.$nuxt.context.res.statusCode = response.statusCode
@@ -139,10 +146,10 @@ export default {
   methods: {
     introHandler() {
       const tl = gsap.timeline()
-      tl.to(this.$refs.siteIntro, 1, { opacity: 0 }).to(this.$refs.siteIntro, {
-        visibility: 'hidden'
+      tl.to(this.$refs.siteIntro, 1, {opacity: 0}).to(this.$refs.siteIntro, {
+        visibility: 'hidden',
       })
-      setTimeout(() => this.$router.push('stuff/about/'), 1000)
+      setTimeout(() => this.$router.push('stuff/'), 1000)
     },
     animatedQuote() {
       let animatedClassesSetOne = null
@@ -159,21 +166,21 @@ export default {
       const tl = gsap.timeline()
       tl.fromTo(
         animatedClassesSetOne,
-        { opacity: 0, visibility: 'hidden', y: 70 },
-        { opacity: 1, visibility: 'inherit', delay: 1 },
-        'content'
+        {opacity: 0, visibility: 'hidden', y: 70},
+        {opacity: 1, visibility: 'inherit', delay: 1},
+        'content',
       )
-        .to(animatedClassesSetOne, { y: 0, duration: 0.5 }, 'content+=2')
+        .to(animatedClassesSetOne, {y: 0, duration: 0.5}, 'content+=2')
         .fromTo(
           animatedClassesSetTwo,
-          { opacity: 0, visibility: 'hidden', y: 30 },
-          { opacity: 1, visibility: 'inherit', duration: 1 },
-          'content+=2'
+          {opacity: 0, visibility: 'hidden', y: 30},
+          {opacity: 1, visibility: 'inherit', duration: 1},
+          'content+=2',
         )
-        .to(animatedClassesSetTwo, { y: 0, duration: 0.5 }, 'content+=2')
+        .to(animatedClassesSetTwo, {y: 0, duration: 0.5}, 'content+=2')
       this.animationState = true
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -207,7 +214,7 @@ export default {
   font: 400 3.6rem/4.4rem $font;
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .site-intro .quote-content,
   .site-intro .quote-error {
     font-size: 2.4rem;
@@ -294,7 +301,7 @@ html[dir='rtl'] .site-intro /deep/ .modal .content .information .info-title {
   text-align: right;
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .site-intro /deep/ .modal .content .information .info-title {
     font-size: 2.4rem;
     line-height: 3rem;
@@ -309,9 +316,26 @@ html[dir='rtl'] .site-intro /deep/ .modal .content .information .info-title {
 }
 
 .site-intro /deep/ .modal .content .information .scroll-wrapper {
+  overflow: auto;
+
+  margin: 0 auto;
+
   height: calc(100% - 16rem);
   width: 60%;
-  margin: 0 auto;
+
+  scrollbar-color: $scrollbar-color transparent;
+  scrollbar-width: thin;
+
+  &::-webkit {
+    &-scrollbar {
+      background: transparent;
+
+      width: 7.5px;
+    }
+    &-scrollbar-thumb {
+      background: $scrollbar-color;
+    }
+  }
 }
 
 @media (max-width: 768px) {
@@ -504,7 +528,7 @@ html[dir='rtl']
   color: $button;
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .site-intro
     /deep/
     .modal

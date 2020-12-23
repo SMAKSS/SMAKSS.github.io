@@ -1,8 +1,12 @@
 <template>
   <div class="site-error">
-    <h1 class="error not-found" v-if="error.statusCode === 404">{{$t('errors.404')}}</h1>
-    <h1 class="error error-occurred" v-else>{{$t('errors.error')}}</h1>
-    <Button @onClick="onClick" :title="$t('titles.home')">{{$t('buttons.goHome')}}</Button>
+    <h1 class="error not-found" v-if="error.statusCode === 404">
+      {{ $t('errors.404') }}
+    </h1>
+    <h1 class="error error-occurred" v-else>{{ $t('errors.error') }}</h1>
+    <Button @onClick="onClick" :title="$t('titles.home')">{{
+      $t('buttons.goHome')
+    }}</Button>
   </div>
 </template>
 
@@ -13,20 +17,20 @@ export default {
   name: 'error',
   props: ['error'],
   components: {
-    Button
+    Button,
   },
   head() {
     return {
       htmlAttrs: {
         lang: this.$i18n.locale,
-        dir: this.$i18n.locale === 'en' ? 'ltr' : 'rtl'
-      }
+        dir: this.$i18n.locale === 'en' ? 'ltr' : 'rtl',
+      },
     }
   },
   mounted() {
     setTimeout(() => {
       const localizaitonDropDown = document.querySelector(
-        '.site-settings .settings.localization-switcher .dropdown'
+        '.site-settings .settings.localization-switcher .dropdown',
       )
 
       localizaitonDropDown.style.pointerEvents = 'none'
@@ -34,16 +38,16 @@ export default {
   },
   beforeDestroy() {
     const localizaitonDropDown = document.querySelector(
-      '.site-settings .settings.localization-switcher .dropdown'
+      '.site-settings .settings.localization-switcher .dropdown',
     )
 
     localizaitonDropDown.style.pointerEvents = 'all'
   },
   methods: {
     onClick() {
-      this.$router.push({ path: '/' })
-    }
-  }
+      this.$router.push({path: '/'})
+    },
+  },
 }
 </script>
 
@@ -62,7 +66,7 @@ export default {
   color: $heading-color;
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .site-error .error {
     font-size: 2.4rem;
     line-height: 3rem;

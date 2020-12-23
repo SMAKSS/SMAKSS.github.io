@@ -59,7 +59,7 @@ export default {
     '@nuxtjs/svg',
   ],
   styleResources: {
-    scss: ['~assets/_variables.scss', '~assets/_mixins.scss'],
+    scss: ['~assets/css/_variables.scss', '~assets/css/_mixins.scss'],
   },
   /*
    ** Nuxt.js modules

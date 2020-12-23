@@ -45,5 +45,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~assets/layouts/default/default';
+@import '~assets/css/layouts/default/default';
 </style>

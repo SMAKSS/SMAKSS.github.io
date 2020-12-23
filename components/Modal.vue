@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { gsap } from 'gsap'
+import {gsap} from 'gsap'
 
 export default {
   name: 'Modal',
@@ -22,7 +22,7 @@ export default {
     openModal() {
       const tl = gsap.timeline()
       tl.set('.site-header', {
-        css: { zIndex: 2 },
+        css: {zIndex: 2},
       })
         .to(
           this.$refs.modal,
@@ -30,35 +30,29 @@ export default {
           {
             visibility: 'inherit',
             opacity: '1',
-            attr: { 'aria-hidden': false },
+            attr: {'aria-hidden': false},
           },
-          'shown'
+          'shown',
         )
-        .fromTo(
-          this.$refs.background,
-          0.2,
-          { scale: 0.3 },
-          { scale: 0.2 },
-          'shown'
-        )
-        .to(this.$refs.background, 0.4, { scale: 1 })
+        .fromTo(this.$refs.background, 0.2, {scale: 0.3}, {scale: 0.2}, 'shown')
+        .to(this.$refs.background, 0.4, {scale: 1})
         .fromTo(
           this.$refs.information,
-          { opacity: 0, visibility: 'hidden' },
-          { opacity: 1, visibility: 'inherit' }
+          {opacity: 0, visibility: 'hidden'},
+          {opacity: 1, visibility: 'inherit'},
         )
     },
     closeModal() {
       const tl = gsap.timeline()
-      tl.to(this.$refs.background, 0.1, { scale: 1.2 })
-        .set(this.$refs.information, { opacity: 0, visibility: 'hidden' })
-        .to(this.$refs.background, { scale: 0 })
+      tl.to(this.$refs.background, 0.1, {scale: 1.2})
+        .set(this.$refs.information, {opacity: 0, visibility: 'hidden'})
+        .to(this.$refs.background, {scale: 0})
         .to(this.$refs.modal, {
           visibility: 'hidden',
           opacity: '0',
-          attr: { 'aria-hidden': true },
+          attr: {'aria-hidden': true},
         })
-        .set('.site-header', { css: { zIndex: '' } })
+        .set('.site-header', {css: {zIndex: ''}})
       this.$store.commit('SET_MODALTRIGGER', false)
     },
   },
@@ -79,7 +73,7 @@ export default {
   z-index: 9;
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .modal {
     position: fixed;
   }
@@ -132,7 +126,7 @@ export default {
   padding: 2rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .circle-background {
     width: 75rem;
     height: 75rem;

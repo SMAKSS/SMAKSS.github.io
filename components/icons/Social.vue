@@ -1,7 +1,16 @@
 <template>
   <ul class="logos" ref="logos">
-    <li class="logo" :title="$t(`titles.${logo.name}`)" v-for="logo of logos" :key="logo.name">
-      <span class="svg-container" @mouseover="handleMouseover" :class="logo.name">
+    <li
+      class="logo"
+      :title="$t(`titles.${logo.name}`)"
+      v-for="logo of logos"
+      :key="logo.name"
+    >
+      <span
+        class="svg-container"
+        @mouseover="handleMouseover"
+        :class="logo.name"
+      >
         <a :href="logo.url" rel="noopener noreferrer" target="_blank">
           <component :is="logo.name" />
         </a>
@@ -10,7 +19,7 @@
   </ul>
 </template>
 <script>
-import { gsap, Bounce } from 'gsap'
+import {gsap, Bounce} from 'gsap'
 import randomArrayElement from '@smakss/random-array-element'
 
 import linkedin from '@/assets/icons/linkedin.svg?inline'
@@ -24,55 +33,55 @@ export default {
     linkedin,
     github,
     stackoverflow,
-    npm
+    npm,
   },
   data: () => {
     return {
-      linkedin: { hover: true },
-      github: { hover: true },
-      stackoverflow: { hover: true },
-      npm: { hover: true },
+      linkedin: {hover: true},
+      github: {hover: true},
+      stackoverflow: {hover: true},
+      npm: {hover: true},
       logos: [
-        { name: 'linkedin', url: 'https://www.linkedin.com/in/smakss/' },
-        { name: 'github', url: 'https://github.com/SMAKSS' },
+        {name: 'linkedin', url: 'https://www.linkedin.com/in/smakss/'},
+        {name: 'github', url: 'https://github.com/SMAKSS'},
         {
           name: 'stackoverflow',
-          url: 'https://stackoverflow.com/users/11908502/smakss'
+          url: 'https://stackoverflow.com/users/11908502/smakss',
         },
-        { name: 'npm', url: 'https://www.npmjs.com/~smakss' }
-      ]
+        {name: 'npm', url: 'https://www.npmjs.com/~smakss'},
+      ],
     }
   },
   mounted() {
     this.linkedin.periodEl = this.$refs.logos.querySelector(
-      '.svg-container.linkedin svg .in #period'
+      '.svg-container.linkedin svg .in #period',
     )
     this.github.headEl = this.$refs.logos.querySelector(
-      '.svg-container.github svg .head'
+      '.svg-container.github svg .head',
     )
     this.github.armEl = this.$refs.logos.querySelector(
-      '.svg-container.github svg .arm'
+      '.svg-container.github svg .arm',
     )
     this.stackoverflow.tasksEl = this.$refs.logos.querySelector(
-      '.svg-container.stackoverflow svg .tasks'
+      '.svg-container.stackoverflow svg .tasks',
     )
     this.stackoverflow.stackEl = this.$refs.logos.querySelector(
-      '.svg-container.stackoverflow svg .stack'
+      '.svg-container.stackoverflow svg .stack',
     )
     this.stackoverflow.taskOneEl = this.$refs.logos.querySelector(
-      '.svg-container.stackoverflow svg .tasks #task-1'
+      '.svg-container.stackoverflow svg .tasks #task-1',
     )
     this.stackoverflow.taskTwoEl = this.$refs.logos.querySelector(
-      '.svg-container.stackoverflow svg .tasks #task-2'
+      '.svg-container.stackoverflow svg .tasks #task-2',
     )
     this.stackoverflow.taskThreeEl = this.$refs.logos.querySelector(
-      '.svg-container.stackoverflow svg .tasks #task-3'
+      '.svg-container.stackoverflow svg .tasks #task-3',
     )
     this.stackoverflow.taskFourEl = this.$refs.logos.querySelector(
-      '.svg-container.stackoverflow svg .tasks #task-4'
+      '.svg-container.stackoverflow svg .tasks #task-4',
     )
     this.stackoverflow.taskFiveEl = this.$refs.logos.querySelector(
-      '.svg-container.stackoverflow svg .tasks #task-5'
+      '.svg-container.stackoverflow svg .tasks #task-5',
     )
     this.npm.nEl = this.$refs.logos.querySelector('.svg-container.npm svg #n')
     this.npm.pEl = this.$refs.logos.querySelector('.svg-container.npm svg #p')
@@ -80,7 +89,7 @@ export default {
     this.npm.chooser = randomArrayElement([
       this.npm.nEl,
       this.npm.mEl,
-      this.npm.pEl
+      this.npm.pEl,
     ])
     setTimeout(() => {
       this.linkedinAnimation()
@@ -90,48 +99,48 @@ export default {
     }, 5000)
   },
   methods: {
-    animaitonHandler({ el, func }) {
+    animaitonHandler({el, func}) {
       const completed = () => (el.hover = true)
       el.hover && func(completed)
       el.hover = false
     },
     linkedinAnimation() {
       const animation = completed => {
-        const tl = gsap.timeline({ onComplete: completed })
-        tl.to(this.linkedin.periodEl, 0.4, { y: 30, delay: 0.5 })
-          .to(this.linkedin.periodEl, 0.75, { y: -5 })
-          .to(this.linkedin.periodEl, 0.3, { y: 30, ease: Bounce.easeOut })
-          .to(this.linkedin.periodEl, 0.75, { y: 10 })
-          .to(this.linkedin.periodEl, 0.5, { y: 270, ease: Bounce.easeOut })
-          .to(this.linkedin.periodEl, 3, { x: '+=340' }, '-=2.25')
-          .to(this.linkedin.periodEl, 0, { opacity: 0, visibility: 'hidden' })
-          .to(this.linkedin.periodEl, 0, { x: 0, y: 0 })
+        const tl = gsap.timeline({onComplete: completed})
+        tl.to(this.linkedin.periodEl, 0.4, {y: 30, delay: 0.5})
+          .to(this.linkedin.periodEl, 0.75, {y: -5})
+          .to(this.linkedin.periodEl, 0.3, {y: 30, ease: Bounce.easeOut})
+          .to(this.linkedin.periodEl, 0.75, {y: 10})
+          .to(this.linkedin.periodEl, 0.5, {y: 270, ease: Bounce.easeOut})
+          .to(this.linkedin.periodEl, 3, {x: '+=340'}, '-=2.25')
+          .to(this.linkedin.periodEl, 0, {opacity: 0, visibility: 'hidden'})
+          .to(this.linkedin.periodEl, 0, {x: 0, y: 0})
           .to(
             this.linkedin.periodEl,
             1,
-            { opacity: 1, visibility: 'inherit' },
-            '+=1'
+            {opacity: 1, visibility: 'inherit'},
+            '+=1',
           )
       }
-      this.animaitonHandler({ el: this.linkedin, func: animation })
+      this.animaitonHandler({el: this.linkedin, func: animation})
     },
     githubAnimation() {
       const animation = completed => {
-        const tl = gsap.timeline({ onComplete: completed })
+        const tl = gsap.timeline({onComplete: completed})
         tl.to(
           this.github.headEl,
           2,
           {
             rotate: '10%',
-            transformOrigin: 'bottom 0'
+            transformOrigin: 'bottom 0',
           },
-          'head'
+          'head',
         )
           .to(
             this.github.armEl,
             0.4,
-            { rotate: '6%', repeat: 2, transformOrigin: 'bottom' },
-            'head-=0.4'
+            {rotate: '6%', repeat: 2, transformOrigin: 'bottom'},
+            'head-=0.4',
           )
           .to(
             this.github.armEl,
@@ -139,35 +148,35 @@ export default {
             {
               rotate: '-5%',
               repeat: 2,
-              transformOrigin: 'bottom'
+              transformOrigin: 'bottom',
             },
-            'head+=0.4'
+            'head+=0.4',
           )
-          .to([this.github.headEl, this.github.armEl], 1, { rotate: 0 })
+          .to([this.github.headEl, this.github.armEl], 1, {rotate: 0})
       }
-      this.animaitonHandler({ el: this.github, func: animation })
+      this.animaitonHandler({el: this.github, func: animation})
     },
     stackoverflowAnimation() {
       const animation = completed => {
-        const tl = gsap.timeline({ onComplete: completed })
+        const tl = gsap.timeline({onComplete: completed})
         tl.to(
           this.stackoverflow.taskOneEl,
           {
             y: 2,
-            transformOrigin: 'bottom right'
+            transformOrigin: 'bottom right',
           },
           1,
-          'task1'
+          'task1',
         )
           .to(
             this.stackoverflow.taskTwoEl,
             {
               rotate: '-12%',
               transformOrigin: 'bottom right',
-              y: 2.3
+              y: 2.3,
             },
             0.6,
-            'task1+=0.4'
+            'task1+=0.4',
           )
           .to(
             this.stackoverflow.taskThreeEl,
@@ -175,10 +184,10 @@ export default {
               rotate: '-25%',
               transformOrigin: 'bottom right',
               y: 2.5,
-              x: -0.66
+              x: -0.66,
             },
             0.6,
-            'task1+=0.6'
+            'task1+=0.6',
           )
           .to(
             this.stackoverflow.taskFourEl,
@@ -186,10 +195,10 @@ export default {
               rotate: '-40%',
               transformOrigin: 'bottom right',
               y: 2.2,
-              x: -2.1
+              x: -2.1,
             },
             0.6,
-            'task1+=0.8'
+            'task1+=0.8',
           )
           .to(
             this.stackoverflow.taskFiveEl,
@@ -197,12 +206,12 @@ export default {
               rotate: '-53%',
               transformOrigin: 'bottom right',
               y: 1.6,
-              x: -4.2
+              x: -4.2,
             },
             0.6,
-            'task1+=1'
+            'task1+=1',
           )
-          .to(this.stackoverflow.tasksEl, 1.5, { y: 2.3 }, 'task1+=0.5')
+          .to(this.stackoverflow.tasksEl, 1.5, {y: 2.3}, 'task1+=0.5')
           .to(
             [
               this.stackoverflow.taskOneEl,
@@ -210,40 +219,40 @@ export default {
               this.stackoverflow.taskThreeEl,
               this.stackoverflow.taskFourEl,
               this.stackoverflow.taskFiveEl,
-              this.stackoverflow.tasksEl
+              this.stackoverflow.tasksEl,
             ],
             1.5,
-            { rotate: 0, x: 0, y: 0 }
+            {rotate: 0, x: 0, y: 0},
           )
       }
-      this.animaitonHandler({ el: this.stackoverflow, func: animation })
+      this.animaitonHandler({el: this.stackoverflow, func: animation})
     },
     npmAnimation() {
       const animation = completed => {
         const firstChoose = this.npm.chooser()
         const secondChoose = this.npm.chooser()
         const thirdChoose = this.npm.chooser()
-        const tl = gsap.timeline({ onComplete: completed })
-        tl.fromTo(firstChoose, 1.25, { opacity: 1 }, { opacity: 0.1 }, 'first')
-        tl.to(firstChoose, 0.75, { opacity: 1 }, 'first+=0.5')
+        const tl = gsap.timeline({onComplete: completed})
+        tl.fromTo(firstChoose, 1.25, {opacity: 1}, {opacity: 0.1}, 'first')
+        tl.to(firstChoose, 0.75, {opacity: 1}, 'first+=0.5')
         tl.fromTo(
           secondChoose,
           1.25,
-          { opacity: 1 },
-          { opacity: 0.1 },
-          'first+=0.5'
+          {opacity: 1},
+          {opacity: 0.1},
+          'first+=0.5',
         )
-        tl.to(secondChoose, 0.75, { opacity: 1 }, 'first+=1.5')
+        tl.to(secondChoose, 0.75, {opacity: 1}, 'first+=1.5')
         tl.fromTo(
           thirdChoose,
           1.25,
-          { opacity: 1 },
-          { opacity: 0.1 },
-          'first+=1.75'
+          {opacity: 1},
+          {opacity: 0.1},
+          'first+=1.75',
         )
-        tl.to(thirdChoose, 0.75, { opacity: 1 }, 'first+=3')
+        tl.to(thirdChoose, 0.75, {opacity: 1}, 'first+=3')
       }
-      this.animaitonHandler({ el: this.npm, func: animation })
+      this.animaitonHandler({el: this.npm, func: animation})
     },
     handleMouseover(event) {
       const container = event.target.closest('.svg-container')
@@ -257,8 +266,8 @@ export default {
       } else {
         this.npmAnimation()
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -278,7 +287,7 @@ export default {
   bottom: 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .logos {
     margin-bottom: 2rem;
   }
@@ -305,7 +314,7 @@ export default {
   transform: translateY(4px);
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .logos .logo .svg-container.linkedin svg,
   .logos .logo .svg-container.stackoverflow svg {
     width: 2.5rem;

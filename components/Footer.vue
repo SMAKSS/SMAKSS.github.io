@@ -44,7 +44,7 @@ export default {
   background: $footer-color;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: $large-tablet-viewport) {
   .site-footer {
     align-items: flex-start;
     justify-content: center;
@@ -52,7 +52,7 @@ export default {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .site-footer {
     height: auto;
     padding: 4rem 2rem;
@@ -73,13 +73,13 @@ html[dir='rtl'] .site-footer /deep/ .svg-container.logo > svg {
   fill: $link;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: $large-tablet-viewport) {
   .site-footer /deep/ .svg-container.logo > svg {
     margin-bottom: 3rem;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .site-footer /deep/ .svg-container.logo > svg {
     height: 1.5rem;
     width: 8rem;
@@ -99,7 +99,7 @@ html[dir='rtl'] .site-footer /deep/ .svg-container.logo > svg {
   color: $link;
 }
 
-@media (max-width: 767px) {
+@media (max-width: $default-mobile-viewport) {
   .site-footer .link {
     font-size: 1.3rem;
   }
