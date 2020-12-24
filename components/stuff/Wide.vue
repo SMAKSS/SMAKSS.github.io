@@ -7,7 +7,17 @@
       </h1>
       <p class="description" ref="description">{{ $t('main.content') }}</p>
     </div>
-    <div class="viewport"></div>
+    <div class="viewport">
+      <div
+        v-for="pillar of pillars"
+        :key="pillar.id"
+        :class="`${pillar.title}-pillar`"
+      >
+        <button class="pillar-title" :disabled="pillar.id !== 'about'">
+          {{ $t(`main.pillars.headings.${pillar.title}`) }}
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,6 +36,12 @@ export default {
     return {
       siteSettings: null,
       logos: {},
+      pillars: [
+        {id: 'about', title: 'about'},
+        {id: 'npm', title: 'npm'},
+        {id: 'interactive', title: 'interactive'},
+        {id: 'contribution', title: 'contribution'},
+      ],
     }
   },
   mounted() {
