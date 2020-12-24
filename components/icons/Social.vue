@@ -99,7 +99,7 @@ export default {
     }, 5000)
   },
   methods: {
-    animaitonHandler({el, func}) {
+    animationHandler({el, func}) {
       const completed = () => (el.hover = true)
       el.hover && func(completed)
       el.hover = false
@@ -122,7 +122,7 @@ export default {
             '+=1',
           )
       }
-      this.animaitonHandler({el: this.linkedin, func: animation})
+      this.animationHandler({el: this.linkedin, func: animation})
     },
     githubAnimation() {
       const animation = completed => {
@@ -154,7 +154,7 @@ export default {
           )
           .to([this.github.headEl, this.github.armEl], 1, {rotate: 0})
       }
-      this.animaitonHandler({el: this.github, func: animation})
+      this.animationHandler({el: this.github, func: animation})
     },
     stackoverflowAnimation() {
       const animation = completed => {
@@ -225,7 +225,7 @@ export default {
             {rotate: 0, x: 0, y: 0},
           )
       }
-      this.animaitonHandler({el: this.stackoverflow, func: animation})
+      this.animationHandler({el: this.stackoverflow, func: animation})
     },
     npmAnimation() {
       const animation = completed => {
@@ -252,7 +252,7 @@ export default {
         )
         tl.to(thirdChoose, 0.75, {opacity: 1}, 'first+=3')
       }
-      this.animaitonHandler({el: this.npm, func: animation})
+      this.animationHandler({el: this.npm, func: animation})
     },
     handleMouseover(event) {
       const container = event.target.closest('.svg-container')
