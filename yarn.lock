@@ -1398,13 +1398,13 @@
     webpack-node-externals "^2.5.2"
     webpackbar "^4.0.0"
 
-"@nuxtjs/axios@^5.3.6":
-  version "5.12.4"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/axios/-/axios-5.12.4.tgz#596ed88441aaedc5e74349f34fff2a462b02d01c"
-  integrity sha512-NKDIkrhtteOwC163Qlglw7YyjWHfLecpC/wXax4Z2tVVDlYnvSBa1KGoH9AnDY30lfvi0gjBKWCcTnUY8PaWDA==
+"@nuxtjs/axios@^5.12.5":
+  version "5.12.5"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/axios/-/axios-5.12.5.tgz#d4a1003052d21e54d93d97a895ca84f58e4bc8d9"
+  integrity sha512-KCZMLRZFYOKcGt9mKxJMH6UJMB6H6g+BF/YxXEYz3Urrf2U2XiNkj6rmBqgw0XLRY5XD9Wm8knTGp6955512fQ==
   dependencies:
     "@nuxtjs/proxy" "^2.1.0"
-    axios "^0.21.0"
+    axios "^0.21.1"
     axios-retry "^3.1.9"
     consola "^2.15.0"
     defu "^3.2.2"
@@ -1489,10 +1489,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@smakss/random-array-element@^1.1.3":
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/@smakss/random-array-element/-/random-array-element-1.1.10.tgz#eb374cc757ef10e44553bf2acc7bb148fa0e8a5d"
-  integrity sha512-+wL3DP4Btp22FsDU5bQ3yNQ8A7icNq//O1U3I8PXenKtj/q1xQXYsizHpZjyBOj/RB7u3bFWGPPEmGO9BsYGjQ==
+"@smakss/random-array-element@^1.1.12":
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/@smakss/random-array-element/-/random-array-element-1.1.12.tgz#d5adc71eae7729b109c0b3cc387e9b8ff9175a49"
+  integrity sha512-LBUX7u9UzTDwpDQeMJkbFOJB15m02Er97CmEsKAQYh/M5K1SiKJZH/XGHmtz+HQq+QJACXUtY6JRl3KV7xG1Xg==
 
 "@types/anymatch@*":
   version "1.3.1"
@@ -2241,7 +2241,7 @@ axios-retry@^3.1.9:
   dependencies:
     is-retry-allowed "^1.1.0"
 
-axios@^0.21.0:
+axios@^0.21.1:
   version "0.21.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
   integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
@@ -4057,10 +4057,10 @@ eslint-config-prettier@^7.1.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-7.1.0.tgz#5402eb559aa94b894effd6bddfa0b1ca051c858f"
   integrity sha512-9sm5/PxaFG7qNJvJzTROMM1Bk1ozXVTKI0buKOyb0Bsr1hrwi0H/TzxF/COtf1uxikIK8SwhX7K6zg78jAzbeA==
 
-eslint-plugin-prettier@^3.1.2:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.3.0.tgz#61e295349a65688ffac0b7808ef0a8244bdd8d40"
-  integrity sha512-tMTwO8iUWlSRZIwS9k7/E4vrTsfvsrcM5p1eftyuqWH25nKsz/o6/54I7jwQ/3zobISyC7wMy9ZsFwgTxOcOpQ==
+eslint-plugin-prettier@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.3.1.tgz#7079cfa2497078905011e6f82e8dd8453d1371b7"
+  integrity sha512-Rq3jkcFY8RYeQLgk2cCwuc0P7SEFwDravPhsJZOQ5N4YI4DSg50NyqJ/9gdZHzQlHf8MvafSesbNJCcP/FF6pQ==
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
@@ -10102,10 +10102,10 @@ vue-hot-reload-api@^2.3.0:
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
 
-vue-i18n@^8.18.2:
-  version "8.22.2"
-  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.22.2.tgz#58299a5a050e67b4f799d96fee7dd8bd269e0907"
-  integrity sha512-rb569fVJInPUgS/bbCxEQ9DrAoFTntuJvYoK4Fpk2VfNbA09WzdTKk57ppjz3S+ps9hW+p9H+2ASgMvojedkow==
+vue-i18n@^8.22.3:
+  version "8.22.3"
+  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.22.3.tgz#4ac0fdc3e71d4fe188938c40a9ffca32cde60732"
+  integrity sha512-Vhyx7sZEmmW/aZLkzSlXei08Rv3hTondx4J9wbOjnThocTIK1QiXV6QRdT4BTnhT24JixDSf6kGkxqCXSaJ3Jw==
 
 vue-jest@^4.0.0-0:
   version "4.0.0-rc.1"
