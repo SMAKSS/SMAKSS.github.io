@@ -16,7 +16,7 @@
     "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.3.4",
-    "@smakss/random-array-element": "^1.1.12",
+    "@smakss/random-array-element": "^1.1.13",
     "cookie-universal-nuxt": "^2.1.4",
     "gsap": "^3.6.0",
     "node-sass": "^5.0.0",
