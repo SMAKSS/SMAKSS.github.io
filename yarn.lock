@@ -1874,10 +1874,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@smakss/random-array-element@^1.1.15":
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/@smakss/random-array-element/-/random-array-element-1.1.15.tgz#4f64a0fa6711e68500a00efacc7469e9b9b3d5ff"
-  integrity sha512-E9BHI9iiFHBs3ioIzn1d07DBv9dSmfx5j8HRIcOk37WTMJE3/lm839lpa8KhZYL+yQJ1J9kL+tJRaGPgjt6Kdw==
+"@smakss/random-array-element@^1.1.16":
+  version "1.1.16"
+  resolved "https://registry.yarnpkg.com/@smakss/random-array-element/-/random-array-element-1.1.16.tgz#be309ce4bd9b66db4cf1a0226d3823528118e904"
+  integrity sha512-RhogXIBq1BlSMhSKpmwKenTGm4nmOuO866t0I06RSIPK1yI5KKd6Arbm6yhq1ZsTdgOcT7qXOGyF0DtsYVeKLA==
 
 "@types/anymatch@*":
   version "1.3.1"
