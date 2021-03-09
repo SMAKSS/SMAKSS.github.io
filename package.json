@@ -23,7 +23,7 @@
     "nuxt": "^2.15.2",
     "push-dir": "^0.4.1",
     "sass-loader": "^11.0.1",
-    "vue-i18n": "^8.23.0"
+    "vue-i18n": "^8.24.0"
   },
   "devDependencies": {
     "@nuxtjs/color-mode": "^2.0.4",
