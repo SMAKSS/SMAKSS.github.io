@@ -18,7 +18,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@smakss/random-array-element": "^1.1.19",
     "cookie-universal-nuxt": "^2.1.4",
-    "gsap": "^3.6.0",
+    "gsap": "^3.6.1",
     "node-sass": "^5.0.0",
     "nuxt": "^2.15.3",
     "push-dir": "^0.4.1",
