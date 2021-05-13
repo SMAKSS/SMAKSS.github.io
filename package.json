@@ -20,7 +20,7 @@
     "cookie-universal-nuxt": "^2.1.4",
     "gsap": "^3.6.1",
     "node-sass": "^6.0.0",
-    "nuxt": "^2.15.4",
+    "nuxt": "^2.15.6",
     "push-dir": "^0.4.1",
     "sass-loader": "^11.1.0",
     "vue-i18n": "^8.24.4"
