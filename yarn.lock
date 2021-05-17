@@ -2013,10 +2013,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@smakss/random-array-element@^1.1.25":
-  version "1.1.25"
-  resolved "https://registry.yarnpkg.com/@smakss/random-array-element/-/random-array-element-1.1.25.tgz#b44edd8c19f750ed218494aca888808bd5516737"
-  integrity sha512-4Mj5WnMlZBeijEkodtLcgqrs+csPNeDpN/M4PBbbWP6s5EPjQkt6Goq0u9MSHqZNB/KYfTUpxaT+7Rf3vvmPkQ==
+"@smakss/random-array-element@^1.1.26":
+  version "1.1.26"
+  resolved "https://registry.yarnpkg.com/@smakss/random-array-element/-/random-array-element-1.1.26.tgz#193f952f37b7fe4ce0406c36a9f002aa3c91faa1"
+  integrity sha512-CiPyK7ZmQOIxR+F1aLS9Gy86o20Zvbr/XTtK6C8pFRJwdMexGB0eqJnClaM6Y1N3lkfX9er6DZnCcvCCaTztRw==
 
 "@types/anymatch@*":
   version "1.3.1"
