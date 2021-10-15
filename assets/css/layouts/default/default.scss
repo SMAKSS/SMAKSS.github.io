@@ -255,6 +255,10 @@ ul {
   fill: $heading-color;
 }
 
+.container {
+  height: 100vh;
+}
+
 .container > div[class*='site-']:not(.site-header, .site-footer) {
   height: 100%;
   width: 100%;

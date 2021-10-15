@@ -52,6 +52,7 @@
       "partTwo": "My Stuff"
     },
     "pillars": {
+      "comingSoon": "Will be available soon!",
       "headings": {
         "about": "About Me",
         "npm": "NPM Packages",

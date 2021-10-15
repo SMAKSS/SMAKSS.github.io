@@ -10,12 +10,15 @@
         <p class="description" ref="description">{{ $t('main.content') }}</p>
       </div>
       <div class="viewport">
+        <div class="under-construction">
+          {{ $t(`main.pillars.comingSoon`) }}
+        </div>
         <div
           v-for="pillar of pillars"
           :key="pillar.id"
           :class="`${pillar.title}-pillar`"
         >
-          <button class="pillar-title" :disabled="pillar.id !== 'about'">
+          <button class="pillar-title" :disabled="true">
             {{ $t(`main.pillars.headings.${pillar.title}`) }}
           </button>
         </div>

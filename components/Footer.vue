@@ -42,6 +42,8 @@ export default {
   width: 100%;
   padding: 4rem;
   background: $footer-color;
+
+  margin-top: auto;
 }
 
 @media (max-width: $large-tablet-viewport) {

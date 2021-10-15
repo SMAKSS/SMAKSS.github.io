@@ -83,6 +83,20 @@ html[dir='rtl'] .home-page .content .header .header-part-two {
 
 .viewport {
   @include flex-display(center, center, row);
+
+  position: relative;
+
+  & .under-construction {
+    @include flex-display(center, center, row);
+
+    font: 600 2rem/2.3rem $font;
+
+    position: absolute;
+
+    width: 100%;
+
+    backdrop-filter: blur(2px);
+  }
 }
 
 .viewport [class*='-pillar'] {
@@ -97,4 +111,6 @@ html[dir='rtl'] .home-page .content .header .header-part-two {
 
 .viewport .pillar-title:disabled {
   color: $disabled-button-text;
+
+  cursor: default;
 }
