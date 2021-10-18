@@ -22,7 +22,7 @@
     "node-sass": "^6.0.1",
     "nuxt": "^2.15.8",
     "push-dir": "^0.4.1",
-    "sass-loader": "^10",
+    "sass-loader": "^11",
     "vue-i18n": "^8.26.5"
   },
   "devDependencies": {
