@@ -2255,10 +2255,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@smakss/random-array-element@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@smakss/random-array-element/-/random-array-element-1.2.1.tgz#78c3a3ea33571bfd54be8398fe7297fdbf70e961"
-  integrity sha512-Mx3kGZLCVYbQb7xHEDAWvhskce6xfycqNtHTs/AtBoktc5DFWB1nYlHkTuTK30Sov/bB8/VfMaAj4pDs+G0WLA==
+"@smakss/random-array-element@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@smakss/random-array-element/-/random-array-element-1.2.2.tgz#61dbc7b1338d25d132c9596a98bef66b032a6733"
+  integrity sha512-wnJxw3imww6wz1LyXXqioxFC86nFGA3JJNnsWSOs6g8YCD3qSY/B5ZvtAlIxDV98ChyDCiKQNwpZeKJ8M2dHOw==
 
 "@tootallnate/once@1":
   version "1.1.2"
