@@ -285,6 +285,14 @@ export default {
   height: 6rem;
   margin-bottom: 4rem;
   bottom: 0;
+
+  & .svg-container {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+  }
 }
 
 @media (max-width: $default-mobile-viewport) {

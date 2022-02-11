@@ -232,14 +232,6 @@ ul {
   position: relative;
 }
 
-.svg-container {
-  height: 100%;
-  width: 100%;
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
-}
-
 .pending {
   @include flex-display(center, center);
   position: fixed;

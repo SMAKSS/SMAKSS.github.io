@@ -190,13 +190,12 @@ export default {
 .site-header {
   @include flex-display(center, space-between);
 
-  position: absolute;
-  top: 0;
-
-  z-index: 9;
+  position: relative;
 
   height: 64px;
   width: 100%;
+
+  z-index: 9;
 
   @media (max-width: $default-tablet-viewport) {
     .site-header {

@@ -29,19 +29,19 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      const localizaitonDropDown = document.querySelector(
+      const localizationDropDown = document.querySelector(
         '.site-settings .settings.localization-switcher .dropdown',
       )
 
-      localizaitonDropDown.style.pointerEvents = 'none'
+      localizationDropDown.style.pointerEvents = 'none'
     }, 100)
   },
   beforeDestroy() {
-    const localizaitonDropDown = document.querySelector(
+    const localizationDropDown = document.querySelector(
       '.site-settings .settings.localization-switcher .dropdown',
     )
 
-    localizaitonDropDown.style.pointerEvents = 'all'
+    localizationDropDown.style.pointerEvents = 'all'
   },
   methods: {
     onClick() {

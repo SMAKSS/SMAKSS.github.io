@@ -85,7 +85,7 @@ export default {
   width: 100%;
   top: 0;
   left: 0;
-  position: absolute;
+  position: fixed;
 }
 
 .mask {
@@ -120,8 +120,6 @@ export default {
 }
 
 .content {
-  height: 100%;
-  width: 100%;
   max-width: 80rem;
   padding: 2rem;
 }
@@ -133,15 +131,14 @@ export default {
   }
 
   .content {
+    width: 100%;
+
     overflow-y: auto;
     padding: 0;
   }
 }
 
 .information {
-  height: 100%;
-  width: 100%;
-  display: block;
   position: relative;
   padding: 6rem 0;
 }

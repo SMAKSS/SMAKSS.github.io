@@ -1,17 +1,5 @@
 {
-  "name": "smakss",
-  "version": "1.0.0",
-  "description": "Hi there, I'm MAKSS a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here.",
   "author": "SMAKSS",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "start nuxt",
-    "generate": "nuxt build && nuxt export",
-    "deploy": "push-dir --dir=dist --branch=master --cleanup",
-    "test": "jest"
-  },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/dotenv": "^1.4.0",
@@ -19,10 +7,8 @@
     "@smakss/random-array-element": "^1.2.2",
     "cookie-universal-nuxt": "^2.1.5",
     "gsap": "^3.9.1",
-    "node-sass": "^7.0.1",
     "nuxt": "^2.15.8",
     "push-dir": "^0.4.1",
-    "sass-loader": "^10",
     "vue-i18n": "^8.27.0"
   },
   "devDependencies": {
@@ -34,7 +20,20 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.5.1",
+    "node-sass": "^6.0.1",
     "prettier": "^2.5.1",
+    "sass-loader": "^10",
     "vue-jest": "^4.0.1"
-  }
+  },
+  "name": "smakss",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "deploy": "push-dir --dir=dist --branch=master --cleanup",
+    "dev": "nuxt",
+    "generate": "nuxt build && nuxt export",
+    "start": "nuxt start",
+    "test": "jest"
+  },
+  "version": "1.0.0"
 }
