@@ -1,12 +1,14 @@
 @mixin flex-display(
-  $alignItems: initial,
-  $justifyContent: initial,
-  $flexDirection: inherit,
-  $flex: null
+  $alignItems: null,
+  $justifyContent: null,
+  $flexDirection: null,
+  $flex: null,
+  $gap: null
 ) {
   display: flex;
   align-items: $alignItems;
   justify-content: $justifyContent;
   flex-direction: $flexDirection;
   flex: $flex;
+  gap: $gap;
 }

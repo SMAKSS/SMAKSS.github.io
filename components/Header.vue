@@ -1,82 +1,84 @@
 <template>
   <header class="site-header" ref="siteHeader">
-    <Logo />
-    <ClientOnly>
-      <div class="site-settings">
-        <div
-          class="settings localization-switcher"
-          ref="localizationSwitcher"
-          data-list="locales"
-        >
-          <Button
-            @onClick="switchHandler"
-            :mainClass="'dropdown'"
-            :spanClass="'dropdown-container link'"
-            >{{ selectedLocal.lang }}</Button
+    <div class="container">
+      <Logo />
+      <ClientOnly>
+        <div class="site-settings">
+          <div
+            class="settings localization-switcher"
+            ref="localizationSwitcher"
+            data-list="locales"
           >
-          <ul class="locales" ref="locales">
-            <li
-              class="item locale"
-              v-for="locale of remainingLocales"
-              :key="locale.lang"
-              @click.self="switchHandler"
+            <Button
+              @onClick="switchHandler"
+              :mainClass="'dropdown'"
+              :spanClass="'dropdown-container link'"
+              >{{ selectedLocal.lang }}</Button
             >
-              <NuxtLink
-                @click.native="localChangeLinkHandler"
-                :to="locale.path"
-                class="link"
-                :class="{
-                  en: $i18n.locale === 'fa',
-                  fa: $i18n.locale === 'en',
-                }"
-                exact
-                >{{ locale.lang }}</NuxtLink
+            <ul class="locales" ref="locales">
+              <li
+                class="item locale"
+                v-for="locale of remainingLocales"
+                :key="locale.lang"
+                @click.self="switchHandler"
               >
-            </li>
-          </ul>
-        </div>
-        <div class="settings color-switcher" data-list="colors">
-          <Button
-            @onClick="switchHandler"
-            :mainClass="'icon'"
-            :title="$t(`titles.${$colorMode.preference}`)"
-            :ariaLabel="$t(`titles.${$colorMode.preference}`)"
-            :spanClass="'icon-container'"
-          >
-            <component
-              :is="`icon-${$colorMode.preference}`"
-              class="selected"
-              :class="{
-                'system-light':
-                  $colorMode.preference === 'system' &&
-                  $colorMode.value === 'light',
-                'system-dark':
-                  $colorMode.preference === 'system' &&
-                  $colorMode.value === 'dark',
-              }"
-            />
-          </Button>
-          <ul class="colors" ref="colors">
-            <li
-              class="item color"
-              :title="$t(`titles.${color}`)"
-              v-for="color of remainingColors"
-              :key="color"
-              @click="
-                event => {
-                  switchHandler(event)
-                  $colorMode.preference = color
-                }
-              "
+                <NuxtLink
+                  @click.native="localChangeLinkHandler"
+                  :to="locale.path"
+                  class="link"
+                  :class="{
+                    en: $i18n.locale === 'fa',
+                    fa: $i18n.locale === 'en',
+                  }"
+                  exact
+                  >{{ locale.lang }}</NuxtLink
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="settings color-switcher" data-list="colors">
+            <Button
+              @onClick="switchHandler"
+              :mainClass="'icon'"
+              :title="$t(`titles.${$colorMode.preference}`)"
+              :ariaLabel="$t(`titles.${$colorMode.preference}`)"
+              :spanClass="'icon-container'"
             >
-              <span class="icon-container">
-                <component :is="`icon-${color}`" />
-              </span>
-            </li>
-          </ul>
+              <component
+                :is="`icon-${$colorMode.preference}`"
+                class="selected"
+                :class="{
+                  'system-light':
+                    $colorMode.preference === 'system' &&
+                    $colorMode.value === 'light',
+                  'system-dark':
+                    $colorMode.preference === 'system' &&
+                    $colorMode.value === 'dark',
+                }"
+              />
+            </Button>
+            <ul class="colors" ref="colors">
+              <li
+                class="item color"
+                :title="$t(`titles.${color}`)"
+                v-for="color of remainingColors"
+                :key="color"
+                @click="
+                  event => {
+                    switchHandler(event)
+                    $colorMode.preference = color
+                  }
+                "
+              >
+                <span class="icon-container">
+                  <component :is="`icon-${color}`" />
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </ClientOnly>
+      </ClientOnly>
+    </div>
   </header>
 </template>
 
@@ -174,8 +176,8 @@ export default {
     },
   },
   watch: {
-    $route(to, from) {
-      this.locales.forEach((locale, index) => {
+    $route(to) {
+      this.locales.forEach(locale => {
         locale.path = to.fullPath.replace(locale.regex, '/')
 
         if (locale.code !== 'en' && locale.path === to.fullPath)
@@ -188,41 +190,30 @@ export default {
 
 <style lang="scss" scoped>
 .site-header {
-  @include flex-display(center, space-between);
-
-  position: relative;
-
-  height: 64px;
   width: 100%;
 
   z-index: 9;
 
-  @media (max-width: $default-tablet-viewport) {
-    .site-header {
+  & .container {
+    @include flex-display(center, space-between);
+    position: relative;
+
+    max-width: $container-max-size;
+    height: 64px;
+
+    margin: 0 auto;
+
+    @media (max-width: $container-max-size) {
+      padding: 0 2rem;
+    }
+
+    @media (max-width: $default-tablet-viewport) {
       height: 60px;
     }
   }
 }
 
-html[dir='ltr'] .site-header {
-  padding: 0 0 0 4rem;
-}
-
-html[dir='rtl'] .site-header {
-  padding: 0 4rem 0 0;
-}
-
-@media (max-width: $default-mobile-viewport) {
-  html[dir='ltr'] .site-header {
-    padding: 0 0 0 2rem;
-  }
-
-  html[dir='rtl'] .site-header {
-    padding: 0 2rem 0 0;
-  }
-}
-
-.site-header /deep/ .svg-container.logo > svg {
+.site-header .container /deep/ .svg-container.logo > svg {
   height: 1.8rem;
   width: 8.6rem;
   fill: $link;
@@ -233,18 +224,22 @@ html[dir='rtl'] .site-header {
   }
 }
 
-.site-header .site-settings {
-  @include flex-display(center, flex-end);
+.site-header .container .site-settings {
+  @include flex-display(
+    $alignItems: center,
+    $justifyContent: flex-end,
+    $gap: 2rem
+  );
 }
 
-.site-header .site-settings .item {
+.site-header .container .site-settings .item {
   display: inline-block;
   list-style: none;
   padding: 0;
   cursor: pointer;
 }
 
-.site-header .site-settings /deep/ .link {
+.site-header .container .site-settings /deep/ .link {
   text-decoration: none;
   font: 1.4rem/1 $font;
   letter-spacing: 0.25px;
@@ -252,34 +247,30 @@ html[dir='rtl'] .site-header {
   user-select: none;
 }
 
-.site-header .site-settings.pillar-active /deep/ .link {
+.site-header .container .site-settings.pillar-active /deep/ .link {
   color: $settings-pillar-activated;
 }
 
-.site-header .site-settings /deep/ .link.en {
+.site-header .container .site-settings /deep/ .link.en {
   font-family: $font-en;
 }
 
-.site-header .site-settings /deep/ .link.fa {
+.site-header .container .site-settings /deep/ .link.fa {
   font-family: $font-fa;
 }
 
-.site-header .site-settings .localization-switcher,
-.site-header .site-settings .color-switcher {
-  @include flex-display(center, center);
+.site-header .container .site-settings .localization-switcher,
+.site-header .container .site-settings .color-switcher {
+  @include flex-display($alignItems: center, $justifyContent: center);
+
   position: relative;
   z-index: 8;
-  width: 9rem;
   height: auto;
-
-  @media (max-width: $small-mobile-viewport) {
-    width: 8rem;
-  }
 }
 
-.site-header .site-settings .localization-switcher /deep/ .dropdown,
-.site-header .site-settings .color-switcher .icon {
-  @include flex-display(center, center);
+.site-header .container .site-settings .localization-switcher /deep/ .dropdown,
+.site-header .container .site-settings .color-switcher .icon {
+  @include flex-display($alignItems: center, $justifyContent: center);
   position: relative;
   background: $button-icon;
   outline: none;
@@ -289,20 +280,21 @@ html[dir='rtl'] .site-header {
 }
 
 .site-header
+  .container
   .site-settings.pillar-active
   .localization-switcher
   /deep/
   .dropdown,
-.site-header .site-settings.pillar-active .color-switcher .icon {
+.site-header .container .site-settings.pillar-active .color-switcher .icon {
   background: $background-color;
 }
 
-.site-header .site-settings .localization-switcher /deep/ .dropdown {
+.site-header .container .site-settings .localization-switcher /deep/ .dropdown {
   border-radius: 25px;
 }
 
-.site-header .site-settings .localization-switcher /deep/ .dropdown,
-.site-header .site-settings .localization-switcher .locales {
+.site-header .container .site-settings .localization-switcher /deep/ .dropdown,
+.site-header .container .site-settings .localization-switcher .locales {
   width: 9rem;
 
   @media (max-width: $small-mobile-viewport) {
@@ -311,11 +303,17 @@ html[dir='rtl'] .site-header {
 }
 
 .site-header
+  .container
   .site-settings
   .localization-switcher.active
   /deep/
   .dropdown::before,
-.site-header .site-settings .color-switcher.active /deep/ .icon::before {
+.site-header
+  .container
+  .site-settings
+  .color-switcher.active
+  /deep/
+  .icon::before {
   content: '';
   position: absolute;
   top: 4rem;
@@ -325,13 +323,18 @@ html[dir='rtl'] .site-header {
   background-color: $border-color;
 }
 
-.site-header .site-settings .localization-switcher /deep/ .dropdown:hover,
-.site-header .site-settings .color-switcher /deep/ .icon:hover {
+.site-header
+  .container
+  .site-settings
+  .localization-switcher
+  /deep/
+  .dropdown:hover,
+.site-header .container .site-settings .color-switcher /deep/ .icon:hover {
   background: $button-icon-hover;
 }
 
-.site-header .site-settings .localization-switcher .locales,
-.site-header .site-settings .color-switcher .colors {
+.site-header .container .site-settings .localization-switcher .locales,
+.site-header .container .site-settings .color-switcher .colors {
   position: absolute;
   background: $button-icon;
   height: auto;
@@ -341,12 +344,16 @@ html[dir='rtl'] .site-header {
   transition: opacity 0.5s, visibility 0.5s;
 }
 
-.site-header .site-settings.pillar-active .localization-switcher .locales,
-.site-header .site-settings.pillar-active .color-switcher .colors {
+.site-header
+  .container
+  .site-settings.pillar-active
+  .localization-switcher
+  .locales,
+.site-header .container .site-settings.pillar-active .color-switcher .colors {
   background: $background-color;
 }
 
-.site-header .site-settings .localization-switcher .locales {
+.site-header .container .site-settings .localization-switcher .locales {
   top: 2rem;
   text-align: center;
   border-radius: 0 0 25px 25px;
@@ -354,32 +361,33 @@ html[dir='rtl'] .site-header {
   padding-bottom: 1rem;
 }
 
-.site-header .site-settings .localization-switcher .locales .locale {
+.site-header .container .site-settings .localization-switcher .locales .locale {
   padding: 1rem;
 }
 
-.site-header .site-settings .color-switcher /deep/ .icon {
+.site-header .container .site-settings .color-switcher /deep/ .icon {
   border-radius: 50%;
 }
 
-.site-header .site-settings .color-switcher /deep/ .icon,
-.site-header .site-settings .color-switcher .colors {
+.site-header .container .site-settings .color-switcher /deep/ .icon,
+.site-header .container .site-settings .color-switcher .colors {
   width: 4rem;
 }
 
-.site-header .site-settings .color-switcher .colors {
+.site-header .container .site-settings .color-switcher .colors {
   border-radius: 25px;
   padding-top: 4rem;
   top: 0;
 }
 
-.site-header .site-settings .color-switcher .colors .color {
+.site-header .container .site-settings .color-switcher .colors .color {
   @include flex-display(center, center, column);
   padding: 1rem;
   color: $settings-default;
 }
 
 .site-header
+  .container
   .site-settings.pillar-active
   .color-switcher
   /deep/
@@ -387,11 +395,18 @@ html[dir='rtl'] .site-header {
   color: $settings-pillar-activated;
 }
 
-.site-header .site-settings .color-switcher /deep/ .icon-container .feather {
+.site-header
+  .container
+  .site-settings
+  .color-switcher
+  /deep/
+  .icon-container
+  .feather {
   width: 2.5rem;
 }
 
 .site-header
+  .container
   .site-settings
   .color-switcher
   .colors
@@ -402,6 +417,7 @@ html[dir='rtl'] .site-header {
 }
 
 .site-header
+  .container
   .site-settings
   .color-switcher
   /deep/
@@ -412,6 +428,7 @@ html[dir='rtl'] .site-header {
 }
 
 .site-header
+  .container
   .site-settings
   .color-switcher
   /deep/
@@ -421,6 +438,7 @@ html[dir='rtl'] .site-header {
 }
 
 .site-header
+  .container
   .site-settings
   .color-switcher
   /deep/

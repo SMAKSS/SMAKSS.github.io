@@ -4,17 +4,28 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.title || '',
+    title: process.env.WEBSITE_NAME || '',
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {charset: 'utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {
         hid: 'description',
         name: 'description',
-        content: process.env.description || '',
+        content: process.env.WEBSITE_DESCRIPTION || '',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
+  },
+  pwa: {
+    manifest: {
+      name: 'smakss',
+      lang: 'en',
+      short_name: 'smakss',
+      start_url: '/',
+    },
+    icon: {
+      iconSrc: '/icon.png',
+    },
   },
   /*
    ** Customize the progress-bar
