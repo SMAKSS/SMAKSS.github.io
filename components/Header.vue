@@ -190,13 +190,16 @@ export default {
 
 <style lang="scss" scoped>
 .site-header {
+  position: relative;
+
   width: 100%;
+
+  border-bottom: 1px solid $secondary-border-color;
 
   z-index: 9;
 
   & .container {
     @include flex-display(center, space-between);
-    position: relative;
 
     max-width: $container-max-size;
     height: 64px;

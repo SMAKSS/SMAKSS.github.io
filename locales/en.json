@@ -23,7 +23,7 @@
   },
   "errors": {
     "404": "It's a shame, I can't find the page that you're looking for.",
-    "error": "Oops, it seems an error occurred. I do not truly deserve your kindness."
+    "error": "Oops, it seems an error occurred."
   },
   "links": {
     "about": "About Me",
@@ -44,11 +44,14 @@
         "summary": "My background is in computer science, and I've always tried to create stuff. I am radically passionate about new things, especially in technology. I believe good people within a good and smart team is in a higher place in the order of power than a successful product. I love getting my hands dirty to create a seamless app to bring joy to whoever using it. Usually, I'm overwhelmed at work, but I do like hiking, reading, video games, music, movies, and dogs.",
         "summaryFinalThing": "I enjoy the path that I've taken, and I'm looking forward to the next step, I hope that I can take one small step for mankind."
       },
-      "descriptions": {
-        "about": "Learn more about me and my works.",
-        "contribution": "Know more about my public contributions. (Coming Soon!)",
-        "interactive": "A place to make interaction with my resume. (Coming Soon!)",
-        "npm": "Find more precise information about my NPM packages. (Coming Soon!)"
+      "experience": {
+        "coin-plus": {
+          "company": "CoinPlus",
+          "role": "Frontend Engineer",
+          "duration": "Dec 2020 - Present",
+          "location": "Tehran, Iran",
+          "description": "CoinPlus is a financial technology company with the main focus on offering Blockchain-related solutions to institutional and individual investors. I've worked on two different products called Sarrafeh and TexToken and was responsible for analyzing and implementing new features also managing the front-end team and their work. I've Built two separate apps for each of the products from the ground up and made it work with over 20+k users. I also Scaled up the existing features on both the client and admin sides. Upgrade and maintain the old admin panel to be faster by 40+%."
+        }
       },
       "headings": {
         "about": "About Me",
@@ -57,7 +60,8 @@
         "npm": "NPM Packages"
       },
       "sub-headings": {
-        "summary": "Summary"
+        "summary": "Summary",
+        "work-experience": "Work Experience"
       }
     }
   },

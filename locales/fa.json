@@ -20,7 +20,7 @@
   },
   "errors": {
     "404": "باعـث شرمنـدگیه، من نتـونستم صفحـه‌ای کـه دنبالشـی رو پیـدا کنم.",
-    "error": "اووه، به نظـر مشـکلی پیـش اومـده. مـن واقـعا لیاقـت محـبت شمـارو نـدارم."
+    "error": "اووه، به نظـر مشـکلی پیـش اومـده."
   },
   "links": {
     "about": "دربـاره مـن",
@@ -41,11 +41,14 @@
         "summary": "مـن توی دانـشگاه علوم کامپیـوتر خوندم و همیشـه سعیم بر خلـق کردن بوده. من به صـورت دیوانه‌واری به چیـزهای جدید علاقه دارم مخصوصـا اگر مربوط به تکنولوژی باشند. باور دارم آدم‌هـای خوب در تیـمهای درست حسابـی همیشه اولویت بالاتـری نسبت به محصول‌هـای موفق دارن. همیـضشه سعی دارم تا اپـهای بینظیـری حلـف کنم تا کاربـرا ازشون لذت ببرن. معمـولا غرق در کار هستـم اما به سفر، گتابخـواندن، بازی‌های ویدیـویی، موزیک و فیلم علاقـه دارم.",
         "summaryFinalThing": "از مسیـری که تا اینجا اومدن راضـی هستم و امیدوارم بتـونم قدم موثـری برای پیشـرفت همگـان بردارم."
       },
-      "descriptions": {
-        "about": "بـیشتر در مـورد مـن و کـارهام بدونـید.",
-        "contribution": "در مـورد مشارکـت‌های عمـومی مـن بیشـتر بدونـید. (به زودی!)",
-        "interactive": "مـکانی بـرای تعـامل با رزومـه مـن. (به زودی!)",
-        "npm": "اطـلاعات دقـیق‌تری از پکیج‌های اِن‌پـی‌اِم مـن داشـته بـاشـید. (به زودی!)"
+      "experience": {
+        "coin-plus": {
+          "company": "کویـن پـلاس",
+          "role": "توسـعه دهنـده فرانت‌انـد",
+          "duration": "دی ۱۳۹۹ - تاکـنون",
+          "location": "تـهران، ایـران",
+          "description": "CoinPlus is a financial technology company with the main focus on offering Blockchain-related solutions to institutional and individual investors. I've worked on two different products called Sarrafeh and TexToken and was responsible for analyzing and implementing new features also managing the front-end team and their work. I've Built two separate apps for each of the products from the ground up and made it work with over 20+k users. I also Scaled up the existing features on both the client and admin sides. Upgrade and maintain the old admin panel to be faster by 40+%."
+        }
       },
       "headings": {
         "about": "دربـاره مـن",
@@ -54,7 +57,8 @@
         "npm": "پکـیج‌های اِن‌پـی‌اِم"
       },
       "sub-headings": {
-        "summary": "خـلاصـه کوتـاه"
+        "summary": "خـلاصـه کوتـاه",
+        "work-experience": "تجـربـه کـاری"
       }
     }
   },

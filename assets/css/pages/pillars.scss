@@ -82,12 +82,20 @@ html[dir='rtl'] .home-page .content .header .header-part-two {
 }
 
 .viewport {
-  @include flex-display(center, center, row);
+  @include flex-display(
+    $alignItems: center,
+    $justifyContent: center,
+    $flexDirection: row
+  );
 
   position: relative;
 
   & .under-construction {
-    @include flex-display(center, center, row);
+    @include flex-display(
+      $alignItems: center,
+      $justifyContent: center,
+      $flexDirection: row
+    );
 
     font: 600 2rem/2.3rem $font;
 
@@ -95,7 +103,7 @@ html[dir='rtl'] .home-page .content .header .header-part-two {
 
     width: 100%;
 
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
   }
 }
 

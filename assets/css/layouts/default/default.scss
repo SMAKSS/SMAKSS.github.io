@@ -22,36 +22,67 @@
 :root {
   --background-color: #ffffff;
   --background-color-secondary: #f3f5f4;
+
   --text-color: rgba(0, 0, 0, 0.67);
+
   --heading-color: rgba(0, 0, 0, 0.87);
+
   --link: #5f6368;
   --link-hover: #202124;
+
   --button: #1a73e8;
   --button-hover: #4185f4;
+
   --disabled-button-text: #d2e3fc;
   --button-text: #ffffff;
-  --button-icon: #f7f7f7;
+  --button-icon: #ececec;
   --button-icon-hover: #f2f2f2;
-  --footer-color: #f8f9fb;
+
+  --footer-color: #ececec;
+
   --border-color: #ddd;
+  --secondary-border-color: #ececec;
+
   --mask: rgba(0, 0, 0, 0.1);
+
   --light-glow: #f0c420;
+
   --settings-default: #5f6368;
   --settings-pillar-activated: #5f6368;
+
   --logo-color: rgba(70, 70, 70, 0.75);
   --logo-linkedin: #0077b7;
   --logo-npm: #231f20;
   --logo-stackoverflow-task: #ff9800;
   --logo-stackoverflow-stack: #757575;
+
   --banner-bg: #5a5a5a;
   --banner-button: #303030;
+
   --scrollbar-background-color: #f0f0f0;
   --scrollbar-color: #cdcdcd;
+
   --about-pillar-color: #d2e3fc;
   --npm-pillar-color: #f8d2ce;
   --interactive-pillar-color: #ceead6;
   --contribution-pillar-color: #ffefc3;
+
+  --wave-color-01: #091a28;
+  --wave-color-02: #002c4a;
+  --wave-color-03: #003e70;
+  --wave-color-04: #005097;
+  --wave-color-05: #0062bf;
+  --wave-color-06: #1a73e8;
+
+  --wave-fill-color-01: #1a73e8;
+  --wave-fill-color-02: #006bd4;
+  --wave-fill-color-03: #0059ab;
+  --wave-fill-color-04: #004783;
+  --wave-fill-color-05: #00355d;
+  --wave-fill-color-06: #052339;
+
   --box-shadow: rgba(0, 0, 0, 0.06);
+
   --font: Google Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-seriff;
   --font-en: Google Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -64,23 +95,50 @@
 .dark-mode {
   --background-color: #091a28;
   --background-color-secondary: #071521;
+
   --text-color: rgba(215, 215, 215, 1);
+
   --heading-color: rgba(255, 255, 255, 1);
+
   --link: #fdf9f3;
   --link-hover: #41b38a;
+
   --button: #158876;
   --button-hover: #41b38a;
   --disabled-button-text: #2f4c58;
+
   --footer-color: #071521;
+
+  --secondary-border-color: #2f4c58;
+
   --mask: rgba(255, 255, 255, 0.1);
+
   --logo-color: rgba(255, 255, 255, 1);
+
   --scrollbar-background-color: #0c1823;
   --scrollbar-color: #6c7379;
+
   --settings-pillar-activated: #f3f5f4;
+
   --about-pillar-color: #2f4c58;
   --npm-pillar-color: #721817;
   --interactive-pillar-color: #0b6e4f;
   --contribution-pillar-color: #f18805;
+
+  --wave-color-01: #158876;
+  --wave-color-02: #007170;
+  --wave-color-03: #005a64;
+  --wave-color-04: #004354;
+  --wave-color-05: #032e3f;
+  --wave-color-06: #091a28;
+
+  --wave-fill-color-01: #082434;
+  --wave-fill-color-02: #00384a;
+  --wave-fill-color-03: #004e5d;
+  --wave-fill-color-04: #00656b;
+  --wave-fill-color-05: #007c74;
+  --wave-fill-color-06: #158876;
+
   --box-shadow: rgba(255, 255, 255, 0.06);
 }
 
@@ -209,13 +267,18 @@ ul {
   color: $heading-color;
 }
 
+.heading-03 {
+  font: 400 2.3rem/2.2rem $font;
+  color: $heading-color;
+}
+
 .heading-04 {
   font: 400 1.8rem/2rem $font;
   color: $heading-color;
 }
 
 .des-01 {
-  font: 400 1.5rem/2.3rem $font;
+  font: 400 1.6rem/2.3rem $font;
   color: $text-color;
 }
 
@@ -256,7 +319,8 @@ ul {
   height: 100vh;
 }
 
-.container > div[class*='site-']:not(.site-header, .site-footer) {
+.container
+  > div[class*='site-']:not(.site-header, .site-footer, .site-settings) {
   height: 100%;
   width: 100%;
   min-height: 68rem;

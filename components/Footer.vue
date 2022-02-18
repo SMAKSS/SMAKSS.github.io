@@ -1,26 +1,28 @@
 <template>
   <footer class="site-footer">
-    <Logo />
-    <ul class="footer-menu">
-      <li class="item">
-        <a
-          href="https://ko-fi.com/smakss/"
-          rel="noopener noreferrer"
-          target="_blank"
-          class="link"
-          >{{ $t('links.donate') }}</a
-        >
-      </li>
-      <li class="item">
-        <NuxtLink
-          :to="`/${
-            $i18n.locale !== 'en' ? `${$i18n.locale}/stuff/` : 'stuff/'
-          }`"
-          class="link"
-          >{{ $t('links.stuff') }}</NuxtLink
-        >
-      </li>
-    </ul>
+    <div class="container">
+      <Logo />
+      <ul class="footer-menu">
+        <li class="item">
+          <a
+            href="https://ko-fi.com/smakss/"
+            rel="noopener noreferrer"
+            target="_blank"
+            class="link"
+            >{{ $t('links.donate') }}</a
+          >
+        </li>
+        <li class="item">
+          <NuxtLink
+            :to="`/${
+              $i18n.locale !== 'en' ? `${$i18n.locale}/stuff/` : 'stuff/'
+            }`"
+            class="link"
+            >{{ $t('links.stuff') }}</NuxtLink
+          >
+        </li>
+      </ul>
+    </div>
   </footer>
 </template>
 
@@ -37,17 +39,30 @@ export default {
 
 <style lang="scss" scoped>
 .site-footer {
-  @include flex-display(center, flex-start);
-  height: auto;
-  width: 100%;
-  padding: 4rem;
   background: $footer-color;
 
+  width: 100%;
+
   margin-top: auto;
+
+  & .container {
+    @include flex-display($alignItems: center, $justifyContent: flex-start);
+
+    max-width: $container-max-size;
+    height: auto;
+
+    padding: 4rem 0;
+    margin: 0 auto;
+
+    @media (max-width: $container-max-size) {
+      padding-right: 2rem;
+      padding-left: 2rem;
+    }
+  }
 }
 
 @media (max-width: $large-tablet-viewport) {
-  .site-footer {
+  .site-footer .container {
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
@@ -55,46 +70,46 @@ export default {
 }
 
 @media (max-width: $default-mobile-viewport) {
-  .site-footer {
+  .site-footer .container {
     height: auto;
     padding: 4rem 2rem;
   }
 }
 
-html[dir='ltr'] .site-footer /deep/ .svg-container.logo > svg {
+html[dir='ltr'] .site-footer .container /deep/ .svg-container.logo > svg {
   margin-right: 5rem;
 }
 
-html[dir='rtl'] .site-footer /deep/ .svg-container.logo > svg {
+html[dir='rtl'] .site-footer .container /deep/ .svg-container.logo > svg {
   margin-left: 5rem;
 }
 
-.site-footer /deep/ .svg-container.logo > svg {
+.site-footer .container /deep/ .svg-container.logo > svg {
   height: 1.8rem;
   width: 8.6rem;
   fill: $link;
 }
 
 @media (max-width: $large-tablet-viewport) {
-  .site-footer /deep/ .svg-container.logo > svg {
+  .site-footer .container /deep/ .svg-container.logo > svg {
     margin-bottom: 3rem;
   }
 }
 
 @media (max-width: $default-mobile-viewport) {
-  .site-footer /deep/ .svg-container.logo > svg {
+  .site-footer .container /deep/ .svg-container.logo > svg {
     height: 1.5rem;
     width: 8rem;
   }
 }
 
-.site-footer .item {
+.site-footer .container .item {
   list-style: none;
   display: inline-block;
   padding: 0;
 }
 
-.site-footer .link {
+.site-footer .container .link {
   text-decoration: none;
   font: 1.4rem/1 $font;
   letter-spacing: 0.25px;
@@ -102,20 +117,20 @@ html[dir='rtl'] .site-footer /deep/ .svg-container.logo > svg {
 }
 
 @media (max-width: $default-mobile-viewport) {
-  .site-footer .link {
+  .site-footer .container .link {
     font-size: 1.3rem;
   }
 }
 
-html[dir='ltr'] .site-footer .footer-menu .item {
+html[dir='ltr'] .site-footer .container .footer-menu .item {
   margin: 1rem 3rem 1rem 0;
 }
 
-html[dir='rtl'] .site-footer .footer-menu .item {
+html[dir='rtl'] .site-footer .container .footer-menu .item {
   margin: 1rem 0 1rem 3rem;
 }
 
-.site-footer .link:hover {
+.site-footer .container .link:hover {
   color: $link-hover;
 }
 </style>
