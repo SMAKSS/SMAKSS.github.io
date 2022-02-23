@@ -4,21 +4,20 @@
       <Logo />
       <ul class="footer-menu">
         <li class="item">
-          <a
-            href="https://ko-fi.com/smakss/"
-            rel="noopener noreferrer"
-            target="_blank"
-            class="link"
-            >{{ $t('links.donate') }}</a
-          >
+          <AnchorTag
+            link="https://ko-fi.com/smakss/"
+            :text="$t('links.donate')"
+          />
         </li>
-        <li class="item">
+        <li class="item" v-for="link in links" :key="link.id">
           <NuxtLink
             :to="`/${
-              $i18n.locale !== 'en' ? `${$i18n.locale}/stuff/` : 'stuff/'
+              $i18n.locale !== 'en'
+                ? `${$i18n.locale}/${link.link}/`
+                : `${link.link}/`
             }`"
             class="link"
-            >{{ $t('links.stuff') }}</NuxtLink
+            >{{ $t(`links.${link.id}`) }}</NuxtLink
           >
         </li>
       </ul>
@@ -28,11 +27,21 @@
 
 <script>
 import Logo from '@/components/icons/Logo'
+import AnchorTag from '@/components/links/anchorTag'
 
 export default {
   name: 'Footer',
   components: {
     Logo,
+    AnchorTag,
+  },
+  data() {
+    return {
+      links: [
+        {id: 'stuff', link: 'stuff'},
+        {id: 'about', link: 'stuff/about'},
+      ],
+    }
   },
 }
 </script>

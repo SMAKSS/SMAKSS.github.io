@@ -32,20 +32,48 @@
               :key="experience.id"
             >
               <h3 class="heading-03 title">
-                {{ experience.company }}
+                {{ $t(`main.pillars.experience.${experience.id}.company`) }}
                 <span class="des-01">
-                  {{ experience.location }}
+                  {{ $t(`main.pillars.experience.${experience.id}.location`) }}
                 </span>
               </h3>
               <h4 class="heading-04">
-                {{ experience.role }}
+                {{ $t(`main.pillars.experience.${experience.id}.role`) }}
               </h4>
               <span class="des-01">
-                {{ experience.duration }}
+                {{ $t(`main.pillars.experience.${experience.id}.duration`) }}
               </span>
               <p class="text des-01">
-                {{ experience.description }}
+                {{ $t(`main.pillars.experience.${experience.id}.description`) }}
               </p>
+              <span class="des-01">
+                {{ $t('main.pillars.labels.techStack') }}{{ ':' }}
+                {{ $t(`main.pillars.experience.${experience.id}.stack`) }}
+              </span>
+              <div
+                class="useful-links des-01"
+                v-if="experience.links.length > 0"
+              >
+                <span>
+                  {{ $t('main.pillars.labels.usefulLinks') }}{{ ':' }}</span
+                >
+                <ul class="links-list">
+                  <li
+                    class="link-item"
+                    v-for="link in experience.links"
+                    :key="link.id"
+                  >
+                    <AnchorTag
+                      :link="link.link"
+                      :text="
+                        $t(
+                          `main.pillars.experience.${experience.id}.links.${link.id}.name`,
+                        )
+                      "
+                    />
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -58,22 +86,29 @@
 import {gsap} from 'gsap'
 
 import BlobScene from '@/assets/icons/backgrounds/blobScene.svg?inline'
+import AnchorTag from '@/components/links/anchorTag'
 
 export default {
   name: 'about',
   components: {
     BlobScene,
+    AnchorTag,
   },
   data() {
     return {
       experiences: [
         {
           id: 'coin-plus',
-          company: this.$t('main.pillars.experience.coin-plus.company'),
-          role: this.$t('main.pillars.experience.coin-plus.role'),
-          duration: this.$t('main.pillars.experience.coin-plus.duration'),
-          location: this.$t('main.pillars.experience.coin-plus.location'),
-          description: this.$t('main.pillars.experience.coin-plus.description'),
+          links: [
+            {
+              link: 'https://sarrafeh.com',
+              id: 'sarrafeh',
+            },
+            {
+              link: 'https://textoken.io',
+              id: 'texToken',
+            },
+          ],
         },
       ],
     }
@@ -124,120 +159,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.site-about-me {
-  & .svg-container {
-    position: absolute;
-
-    width: 100%;
-    height: 100%;
-
-    z-index: -1;
-
-    & .wave {
-      width: 100%;
-      height: 100%;
-
-      & .stop-color-01 {
-        stop-color: $wave-color-01;
-      }
-
-      & .stop-color-02 {
-        stop-color: $wave-color-02;
-      }
-
-      & .stop-color-03 {
-        stop-color: $wave-color-03;
-      }
-
-      & .stop-color-04 {
-        stop-color: $wave-color-04;
-      }
-
-      & .stop-color-05 {
-        stop-color: $wave-color-05;
-      }
-
-      & .stop-color-06 {
-        stop-color: $wave-color-06;
-      }
-
-      & :where(#top-right-01, #bottom-left-01) {
-        fill: $wave-fill-color-01;
-      }
-
-      & :where(#top-right-02, #bottom-left-02) {
-        fill: $wave-fill-color-02;
-      }
-
-      & :where(#top-right-03, #bottom-left-03) {
-        fill: $wave-fill-color-03;
-      }
-
-      & :where(#top-right-04, #bottom-left-04) {
-        fill: $wave-fill-color-04;
-      }
-
-      & :where(#top-right-05, #bottom-left-05) {
-        fill: $wave-fill-color-05;
-      }
-
-      & :where(#top-right-06, #bottom-left-06) {
-        fill: $wave-fill-color-06;
-      }
-    }
-  }
-
-  & .wrapper {
-    @include flex-display(
-      $alignItems: flex-start,
-      $justifyContent: flex-start,
-      $flexDirection: column,
-      $gap: 5rem
-    );
-
-    max-width: $container-max-size;
-
-    padding-top: 2%;
-    margin: 0 auto;
-
-    @media (max-width: $container-max-size) {
-      padding-right: 2rem;
-      padding-left: 2rem;
-    }
-
-    & .content {
-      @include flex-display(
-        $alignItems: flex-start,
-        $justifyContent: flex-start,
-        $flexDirection: column,
-        $gap: 5rem
-      );
-
-      & :where(.summary, .experience) {
-        @include flex-display(
-          $alignItems: flex-start,
-          $justifyContent: flex-start,
-          $flexDirection: column,
-          $gap: 2rem
-        );
-
-        & .text {
-          @include flex-display($flexDirection: column, $gap: 1rem);
-
-          text-align: justify;
-
-          & .final-thing {
-            display: block;
-          }
-        }
-      }
-
-      & .experience {
-        & .item {
-          @include flex-display($flexDirection: column, $gap: 0.5rem);
-        }
-      }
-    }
-  }
-}
+@import '~/assets/css/pages/stuff/about.scss';
 </style>

@@ -44,13 +44,26 @@
         "summary": "My background is in computer science, and I've always tried to create stuff. I am radically passionate about new things, especially in technology. I believe good people within a good and smart team is in a higher place in the order of power than a successful product. I love getting my hands dirty to create a seamless app to bring joy to whoever using it. Usually, I'm overwhelmed at work, but I do like hiking, reading, video games, music, movies, and dogs.",
         "summaryFinalThing": "I enjoy the path that I've taken, and I'm looking forward to the next step, I hope that I can take one small step for mankind."
       },
+      "labels": {
+        "techStack": "Technical stack",
+        "usefulLinks": "Useful links"
+      },
       "experience": {
         "coin-plus": {
           "company": "CoinPlus",
           "role": "Frontend Engineer",
           "duration": "Dec 2020 - Present",
           "location": "Tehran, Iran",
-          "description": "CoinPlus is a financial technology company with the main focus on offering Blockchain-related solutions to institutional and individual investors. I've worked on two different products called Sarrafeh and TexToken and was responsible for analyzing and implementing new features also managing the front-end team and their work. I've Built two separate apps for each of the products from the ground up and made it work with over 20+k users. I also Scaled up the existing features on both the client and admin sides. Upgrade and maintain the old admin panel to be faster by 40+%."
+          "stack": "HTML / CSS / SCSS / JavaScript / ReactJS / Redux",
+          "description": "CoinPlus is a financial technology company with the main focus on offering Blockchain-related solutions to institutional and individual investors. I've worked on two different products called Sarrafeh and TexToken and was responsible for analyzing and implementing new features also managing the front-end team and their work. I've Built two separate apps for each of the products from the ground up and made it work with over 20+k users. I also Scaled up the existing features on both the client and admin sides. Upgrade and maintain the old admin panel to be faster by 40+%.",
+          "links": {
+            "sarrafeh": {
+              "name": "Sarrafeh"
+            },
+            "texToken": {
+              "name": "TexToken"
+            }
+          }
         }
       },
       "headings": {

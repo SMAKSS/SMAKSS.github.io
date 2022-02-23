@@ -38,16 +38,29 @@
     "pillars": {
       "comingSoon": "به زودی در دسترس قرار خواهد گرفت!",
       "content": {
-        "summary": "مـن توی دانـشگاه علوم کامپیـوتر خوندم و همیشـه سعیم بر خلـق کردن بوده. من به صـورت دیوانه‌واری به چیـزهای جدید علاقه دارم مخصوصـا اگر مربوط به تکنولوژی باشند. باور دارم آدم‌هـای خوب در تیـمهای درست حسابـی همیشه اولویت بالاتـری نسبت به محصول‌هـای موفق دارن. همیـضشه سعی دارم تا اپـهای بینظیـری حلـف کنم تا کاربـرا ازشون لذت ببرن. معمـولا غرق در کار هستـم اما به سفر، گتابخـواندن، بازی‌های ویدیـویی، موزیک و فیلم علاقـه دارم.",
-        "summaryFinalThing": "از مسیـری که تا اینجا اومدن راضـی هستم و امیدوارم بتـونم قدم موثـری برای پیشـرفت همگـان بردارم."
+        "summary": "مـن توی دانـشگاه علوم کامپیـوتر خوندم و همیشـه سعیم بر خلـق کردن بوده. من به صـورت دیوانه‌واری به چیـزهای جدید علاقه دارم مخصوصـا اگر مربوط به تکنولوژی باشند. باور دارم آدم‌هـای خوب در تیـمهای درست حسابـی همیشه اولویت بالاتـری نسبت به محصول‌هـای موفق دارن. همیـشه سعی دارم تا اَپـهای بینظیـری خلـق کنم تا کاربـرا ازشون لذت ببرن. معمـولا غرق در کار هستـم اما به سفر، کتاب خـواندن، بازی‌های ویدیـویی، موزیک و فیلم علاقـه دارم.",
+        "summaryFinalThing": "از مسیـری که تا اینجا اومدم راضـی هستم و امیدوارم بتـونم قدم موثـری برای پیشـرفت همگـان بردارم."
+      },
+      "labels": {
+        "techStack": "ابـزارهـا",
+        "usefulLinks": "لینکـهای مـفیـد"
       },
       "experience": {
         "coin-plus": {
           "company": "کویـن پـلاس",
-          "role": "توسـعه دهنـده فرانت‌انـد",
+          "role": "Frontend Engineer",
           "duration": "دی ۱۳۹۹ - تاکـنون",
           "location": "تـهران، ایـران",
-          "description": "CoinPlus is a financial technology company with the main focus on offering Blockchain-related solutions to institutional and individual investors. I've worked on two different products called Sarrafeh and TexToken and was responsible for analyzing and implementing new features also managing the front-end team and their work. I've Built two separate apps for each of the products from the ground up and made it work with over 20+k users. I also Scaled up the existing features on both the client and admin sides. Upgrade and maintain the old admin panel to be faster by 40+%."
+          "stack": "HTML / CSS / SCSS / JavaScript / ReactJS / Redux",
+          "description": "کـویـن پلـاس شرکتـی فعـال در حوزه تکنـولوژی‌های مالـی علی الخـصوص بلاکچِـین است و راهـکارهای خـود در این زمیـنه را در دسترس مراکز تخصصی و افراد میگذارد. مـن در در این شرکـت بر روی دو محصول مختـلف به نـام‌هـای صرافـه و تکـس توکـن کار کردم و مسئـول ارزیـابی، پیـاده‌سـازی و مدیریت تیم فرانت‌انـد بودم. من برای هر دوی این محصولات اپلیکیشنـی مستقل از پایه پیاده سـازی کردم که هم اکنون با بیـش از ۲۰هزار کاربر مشفول فعالیـت هستند. همچـنین در این مدت تونستـم تا اپلیکشین موجود در سمـت ادمین رو بهـبود بدم.",
+          "links": {
+            "sarrafeh": {
+              "name": "صـرافـه"
+            },
+            "texToken": {
+              "name": "تکـس توکـن"
+            }
+          }
         }
       },
       "headings": {
