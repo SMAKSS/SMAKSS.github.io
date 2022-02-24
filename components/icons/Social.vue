@@ -296,16 +296,17 @@ export default {
     display: inline-block;
 
     & .svg-container {
-      &
-        :where(.linkedin svg .background, .stackoverflow
-          svg
-          .tasks, .stackoverflow svg .stack, .stackoverflow
-          svg
-          .curved-stack, .github svg .octocat, .npm svg .characters) {
+      &.linkedin svg .background,
+      &.stackoverflow svg .tasks,
+      &.stackoverflow svg .stack,
+      &.stackoverflow svg .curved-stack,
+      &.github svg .octocat,
+      &.npm svg .characters {
         fill: $logo-color;
       }
 
-      & :where(.linkedin svg .in, .npm svg #inner-p) {
+      &.linkedin svg .in,
+      &.npm svg #inner-p {
         fill: $background-color;
       }
 

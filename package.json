@@ -30,9 +30,9 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt",
-    "generate": "nuxt build && nuxt export",
+    "generate": "nuxt build && nuxt generate",
     "start": "nuxt start",
     "test": "jest"
   },
-  "version": "2.1.0"
+  "version": "2.1.1"
 }
