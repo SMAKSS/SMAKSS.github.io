@@ -316,7 +316,8 @@ ul {
 }
 
 .container > main {
+  position: relative;
+
   width: 100%;
   min-height: calc(100vh - 6.5rem);
-  position: relative;
 }

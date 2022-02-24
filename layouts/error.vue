@@ -1,5 +1,5 @@
 <template>
-  <div class="site-error">
+  <main class="site-error">
     <h1 class="error not-found" v-if="error.statusCode === 404">
       {{ $t('errors.404') }}
     </h1>
@@ -7,7 +7,7 @@
     <Button @onClick="onClick" :title="$t('titles.home')">{{
       $t('buttons.goHome')
     }}</Button>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -54,31 +54,36 @@ export default {
 <style lang="scss" scoped>
 .site-error {
   @include flex-display(center, center, column);
+
   position: relative;
-  min-height: 68rem;
-}
 
-.site-error .error {
-  font: 400 3.6rem/4.4rem $font;
-  width: 80%;
-  max-width: 20.5em;
-  margin: 0.75em auto 0;
-  color: $heading-color;
-}
+  min-height: calc(100vh - 6.5rem);
 
-@media (max-width: $default-mobile-viewport) {
-  .site-error .error {
-    font-size: 2.4rem;
-    line-height: 3rem;
-    width: calc(100% - 8rem);
+  & .error {
+    font: 400 3.6rem/4.4rem $font;
+    width: 80%;
+    max-width: 20.5em;
+    margin: 0.75em auto 0;
+    color: $heading-color;
+
+    @media (max-width: $default-mobile-viewport) {
+      font-size: 2.4rem;
+      line-height: 3rem;
+
+      width: calc(100% - 8rem);
+    }
   }
-}
 
-.site-error .button {
-  text-align: center;
-  position: absolute;
-  display: block;
-  margin-bottom: 4rem;
-  bottom: 0;
+  & .button {
+    position: absolute;
+
+    display: block;
+
+    text-align: center;
+
+    margin-bottom: 4rem;
+
+    bottom: 0;
+  }
 }
 </style>

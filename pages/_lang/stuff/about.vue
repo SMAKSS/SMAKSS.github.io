@@ -94,6 +94,12 @@ export default {
     BlobScene,
     AnchorTag,
   },
+  head() {
+    return {
+      title: this.$t('titles.about'),
+      description: this.$t('descriptions.about'),
+    }
+  },
   data() {
     return {
       experiences: [

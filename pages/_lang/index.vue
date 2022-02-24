@@ -146,11 +146,10 @@ export default {
   },
   methods: {
     introHandler() {
-      const tl = gsap.timeline()
-      tl.to(this.$refs.siteIntro, 1, {opacity: 0}).to(this.$refs.siteIntro, {
-        visibility: 'hidden',
+      this.fadingOutAndPushToRouterHandler({
+        element: this.$refs.siteIntro,
+        route: 'stuff',
       })
-      setTimeout(() => this.$router.push('stuff/'), 1000)
     },
     animatedQuote() {
       let animatedClassesSetOne = null

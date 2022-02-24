@@ -1,5 +1,5 @@
 <template>
-  <main class="site-main">
+  <main class="site-main" ref="siteMain">
     <div class="home-page">
       <div class="content" ref="content">
         <h1 class="header" ref="header">
@@ -8,18 +8,29 @@
         </h1>
         <p class="description" ref="description">{{ $t('main.content') }}</p>
       </div>
-      <div class="viewport">
-        <div class="under-construction">
-          {{ $t(`main.pillars.comingSoon`) }}
+      <div class="viewport" ref="viewport">
+        <div class="about-pillar" @click="pillarOnClickHandler('about')">
+          <span class="pillar-title">
+            {{ $t(`main.pillars.headings.about`) }}
+          </span>
+          <span class="bottom-border" />
         </div>
-        <div
-          v-for="pillar of pillars"
-          :key="pillar.id"
-          :class="`${pillar.title}-pillar`"
-        >
-          <button class="pillar-title" :disabled="true">
-            {{ $t(`main.pillars.headings.${pillar.title}`) }}
-          </button>
+        <div class="yet-to-be-developed">
+          <div class="under-construction">
+            {{ $t(`main.pillars.comingSoon`) }}
+          </div>
+          <div
+            data-disabled="true"
+            v-for="pillar of pillars"
+            :key="pillar.id"
+            :class="`${pillar.title}-pillar`"
+            @onClick="pillarOnClickHandler(pillar.id)"
+          >
+            <span class="pillar-title">
+              {{ $t(`main.pillars.headings.${pillar.title}`) }}
+            </span>
+            <span class="bottom-border" />
+          </div>
         </div>
       </div>
     </div>
@@ -29,8 +40,11 @@
 <script>
 import {gsap} from 'gsap'
 
+import handlers from '@/mixins/handlers'
+
 export default {
   name: 'Stuff',
+  mixins: [handlers],
   head() {
     return {
       title: this.$t('titles.stuff'),
@@ -40,7 +54,6 @@ export default {
   data() {
     return {
       pillars: [
-        {id: 'about', title: 'about'},
         {id: 'npm', title: 'npm'},
         {id: 'interactive', title: 'interactive'},
         {id: 'contribution', title: 'contribution'},
@@ -48,15 +61,19 @@ export default {
     }
   },
   mounted() {
-    if (this.$refs.header && this.$refs.description) this.animatedStuff()
+    if (this.$refs.header && this.$refs.description && this.$refs.viewport)
+      this.animatedStuff()
   },
   methods: {
     animatedStuff() {
       gsap.set(this.$refs.description, {y: 150})
-      gsap.set([this.$refs.header, this.$refs.description], {
-        opacity: 0,
-        visibility: 'hidden',
-      })
+      gsap.set(
+        [this.$refs.header, this.$refs.description, this.$refs.viewport],
+        {
+          opacity: 0,
+          visibility: 'hidden',
+        },
+      )
       this.$i18n.locale === 'en'
         ? gsap.set(this.$refs.header, {
             x: 150,
@@ -64,21 +81,32 @@ export default {
         : gsap.set(this.$refs.header, {
             x: -150,
           })
-      const tl = gsap.timeline()
-      tl.to(
-        this.$refs.header,
-        1,
-        {
+      const timeline = gsap.timeline()
+      timeline
+        .to(
+          this.$refs.header,
+          1,
+          {
+            opacity: 1,
+            visibility: 'inherit',
+            x: 0,
+          },
+          'header',
+        )
+        .to(this.$refs.description, 1, {
           opacity: 1,
           visibility: 'inherit',
-          x: 0,
-        },
-        'header',
-      ).to(this.$refs.description, 0.7, {
-        stagger: 0.3,
-        opacity: 1,
-        visibility: 'inherit',
-        y: 0,
+          y: 0,
+        })
+        .to(this.$refs.viewport, 0.5, {
+          opacity: 1,
+          visibility: 'visible',
+        })
+    },
+    pillarOnClickHandler(pillar) {
+      this.fadingOutAndPushToRouterHandler({
+        element: this.$refs.siteMain,
+        route: pillar,
       })
     },
   },
