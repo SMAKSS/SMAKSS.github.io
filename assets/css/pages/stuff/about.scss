@@ -108,6 +108,8 @@
 
       & .experience {
         & .list {
+          @include flex-display($flexDirection: column, $gap: 4rem);
+
           & .item {
             @include flex-display($flexDirection: column, $gap: 0.5rem);
 

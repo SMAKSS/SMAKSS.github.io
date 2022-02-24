@@ -48,7 +48,7 @@
       "experience": {
         "coin-plus": {
           "company": "CoinPlus",
-          "description": "CoinPlus is a financial technology company with the main focus on offering Blockchain-related solutions to institutional and individual investors. I've worked on two different products called Sarrafeh and TexToken and was responsible for analyzing and implementing new features also managing the front-end team and their work. I've Built two separate apps for each of the products from the ground up and made it work with over 20+k users. I also Scaled up the existing features on both the client and admin sides. Upgrade and maintain the old admin panel to be faster by 40+%.",
+          "description": "CoinPlus is a financial technology company with the main focus on offering Blockchain-related solutions to institutional and individual investors. I've worked on two different products called Sarrafeh and TexToken and was responsible for analyzing and implementing new features also managing the front-end team and their work. I've Built two separate apps for each of the products from the ground up and made it work with over 20+k users. I also Scaled up the existing features on both the client and admin sides. Upgrade and maintain the old admin panel to be faster.",
           "duration": "Dec 2020 - Present",
           "links": {
             "sarrafeh": {
@@ -61,6 +61,30 @@
           "location": "Tehran, Iran",
           "role": "Frontend Engineer",
           "stack": "HTML / CSS / SCSS / JavaScript / ReactJS / Redux"
+        },
+        "sana-gostar-sabz": {
+          "company": "Sana Gostar Sabz",
+          "description": "Sana was the parent company of three different products like home services, transportation, and big data manipulation. I have worked on two different products called the Ubaar and the Achareh. I could maintain and scale up the codebase and make the old codebase work faster. I also create two different web apps for each product with over 2+m users, exclusive PWA for the Achareh experts, and some brand new landings and many more cool features for both the Ubaar and the Achareh.",
+          "duration": "Jan 2019 - Jan 2021",
+          "links": {
+            "achareh": {
+              "name": "Achareh"
+            },
+            "ubaar": {
+              "name": "Ubaar"
+            }
+          },
+          "location": "Tehran, Iran",
+          "role": "Frontend Engineer",
+          "stack": "HTML / CSS / SCSS / JavaScript / jQuery / VueJS / VueX / ReactJS / Redux / PM2 / Apache / NginX"
+        },
+        "pergas-it-solutions": {
+          "company": "Pergas IT Solutions",
+          "description": "Pergas IT Solutions is an IT department that works beneath the Pergas Teb (Lá farrerr) company. Its purposes focused on web applications for the corporation. As a frontend engineer, I focused on managing and leading frontend team members, and also delivering and designing a best-suited platform that works fine for the colleagues and other related users that fulfil their job through the platform.",
+          "duration": "Dec 2019 - Apr 2020",
+          "location": "Tehran, Iran",
+          "role": "Frontend Engineer / Frontend Chapter Lead / Product Owner",
+          "stack": "HTML / CSS / SCSS / MaterialUI / JavaScript / ReactJS"
         }
       },
       "headings": {

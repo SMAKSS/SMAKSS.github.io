@@ -1,7 +1,12 @@
 <template>
   <main class="site-about-me">
     <span class="svg-container">
-      <BlobScene class="wave" ref="wave" />
+      <template v-if="width > 980">
+        <BlobScene class="wave" ref="wave" />
+      </template>
+      <template v-else>
+        <BlobSceneResponsive class="wave" ref="wave" />
+      </template>
     </span>
     <div class="wrapper">
       <div class="header" ref="header">
@@ -52,7 +57,7 @@
               </span>
               <div
                 class="useful-links des-01"
-                v-if="experience.links.length > 0"
+                v-if="experience.links && experience.links.length > 0"
               >
                 <span>
                   {{ $t('main.pillars.labels.usefulLinks') }}{{ ':' }}</span
@@ -85,13 +90,17 @@
 <script>
 import {gsap} from 'gsap'
 
+import handlers from '@/mixins/handlers'
 import BlobScene from '@/assets/icons/backgrounds/blobScene.svg?inline'
+import BlobSceneResponsive from '@/assets/icons/backgrounds/blobSceneResponsive.svg?inline'
 import AnchorTag from '@/components/links/anchorTag'
 
 export default {
   name: 'about',
+  mixins: [handlers],
   components: {
     BlobScene,
+    BlobSceneResponsive,
     AnchorTag,
   },
   head() {
@@ -102,6 +111,7 @@ export default {
   },
   data() {
     return {
+      screenWidth: 0,
       experiences: [
         {
           id: 'coin-plus',
@@ -116,10 +126,28 @@ export default {
             },
           ],
         },
+        {
+          id: 'sana-gostar-sabz',
+          links: [
+            {
+              link: 'https://ac‌hareh.ir',
+              id: 'achareh',
+            },
+            {
+              link: 'https://ubaar.ir',
+              id: 'ubaar',
+            },
+          ],
+        },
+        {
+          id: 'pergas-it-solutions',
+        },
       ],
     }
   },
   mounted() {
+    this.width = this.windowDimensions().width
+
     const topRightWave = this.$refs.wave.querySelector('#top-right')
     const bottomLeft = this.$refs.wave.querySelector('#bottom-left')
     const timeline = gsap.timeline()
@@ -141,7 +169,7 @@ export default {
       topRightWave,
       1,
       {
-        x: 900,
+        x: this.width > 980 ? 900 : 350,
         opacity: 1,
         visibility: 'visible',
       },
