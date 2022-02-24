@@ -1,7 +1,7 @@
 {
   "name": "smakss",
   "short_name": "smakss",
-  "description": "Hi there, I'm MAKSS a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here.",
+  "description": "MAKSS personal website",
   "icons": [
     {
       "src": "/_nuxt/icons/icon_64x64.aafda9.png",
@@ -46,7 +46,7 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/?standalone=true",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "lang": "en"
