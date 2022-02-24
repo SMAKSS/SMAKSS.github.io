@@ -8,7 +8,6 @@
     "cookie-universal-nuxt": "^2.1.5",
     "gsap": "^3.9.1",
     "nuxt": "^2.15.8",
-    "push-dir": "^0.4.1",
     "vue-i18n": "^8.27.0"
   },
   "devDependencies": {
@@ -30,11 +29,10 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "deploy": "push-dir --dir=dist --branch=master --cleanup",
     "dev": "nuxt",
     "generate": "nuxt build && nuxt export",
     "start": "nuxt start",
     "test": "jest"
   },
-  "version": "2.0.0"
+  "version": "2.1.0"
 }
