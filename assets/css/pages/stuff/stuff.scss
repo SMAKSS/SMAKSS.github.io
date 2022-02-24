@@ -91,19 +91,8 @@
       }
 
       &:hover {
-        & .pillar-title {
-          color: $button-hover;
-
-          transition: color 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
-
-          & .bottom-border {
-            display: block;
-
-            width: 100%;
-
-            transition: background-color 0.35s
-              cubic-bezier(0.645, 0.045, 0.355, 1);
-          }
+        & .bottom-border {
+          width: 45%;
         }
       }
 
@@ -116,9 +105,15 @@
       }
 
       & .bottom-border {
+        display: block;
+
+        width: 0;
+
         background-color: $button-hover;
 
         height: 0.3rem;
+
+        transition: width 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
       }
     }
 
