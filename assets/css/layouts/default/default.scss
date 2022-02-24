@@ -315,8 +315,7 @@ ul {
   fill: $heading-color;
 }
 
-.container
-  > div[class*='site-']:not(.site-header, .site-footer, .site-settings) {
+.container > main {
   width: 100%;
   min-height: calc(100vh - 6.5rem);
   position: relative;

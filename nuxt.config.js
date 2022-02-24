@@ -9,9 +9,14 @@ export default {
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {
-        hid: 'description',
+        hid: 'default-description',
         name: 'description',
         content: process.env.WEBSITE_DESCRIPTION || '',
+      },
+      {
+        hid: 'default-keywords',
+        name: 'keywords',
+        content: process.env.WEBSITE_KEYWORDS || '',
       },
     ],
     link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
@@ -35,9 +40,6 @@ export default {
     height: '1px',
   },
   /*
-   ** Global CSS
-   */
-  css: [],
   /*
    ** Plugins to load before mounting the App
    */
@@ -83,11 +85,6 @@ export default {
     '@nuxtjs/dotenv',
     'cookie-universal-nuxt',
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {},
   /*
    ** Build configuration
    */

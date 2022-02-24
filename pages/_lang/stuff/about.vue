@@ -1,5 +1,5 @@
 <template>
-  <div class="site-about-me">
+  <main class="site-about-me">
     <span class="svg-container">
       <BlobScene class="wave" ref="wave" />
     </span>
@@ -79,7 +79,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

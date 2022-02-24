@@ -273,90 +273,70 @@ export default {
 
 <style lang="scss" scoped>
 .logos {
-  text-align: center;
-  position: absolute;
-  direction: ltr;
-  z-index: 2;
-}
-
-.logos {
-  display: block;
-  width: 100%;
-  height: 6rem;
-  margin-bottom: 4rem;
-  bottom: 0;
+  @include flex-display(
+    $alignItems: center,
+    $justifyContent: space-between,
+    $gap: 1rem
+  );
 
   & .svg-container {
     height: 100%;
     width: 100%;
+
     display: inline-block;
+
     position: relative;
+
     vertical-align: middle;
   }
-}
 
-@media (max-width: $default-mobile-viewport) {
-  .logos {
-    margin-bottom: 2rem;
+  & .logo {
+    position: relative;
+
+    display: inline-block;
+
+    & .svg-container {
+      &
+        :where(.linkedin svg .background, .stackoverflow
+          svg
+          .tasks, .stackoverflow svg .stack, .stackoverflow
+          svg
+          .curved-stack, .github svg .octocat, .npm svg .characters) {
+        fill: $logo-color;
+      }
+
+      & :where(.linkedin svg .in, .npm svg #inner-p) {
+        fill: $background-color;
+      }
+
+      &:where(.linkedin, .stackoverflow) {
+        svg {
+          width: 3rem;
+
+          @media (max-width: $default-mobile-viewport) {
+            width: 2.5rem;
+          }
+        }
+      }
+
+      &.github svg {
+        width: 3.08rem;
+
+        @media (max-width: $default-mobile-viewport) {
+          width: 2.58rem;
+        }
+      }
+
+      &.npm svg {
+        width: 5rem;
+
+        transform: translateY(4px);
+
+        @media (max-width: $default-mobile-viewport) {
+          width: 4.5rem;
+        }
+      }
+    }
   }
-}
-
-.logos .logo {
-  display: inline-block;
-  padding: 1rem;
-  margin: 1rem 0;
-  position: relative;
-}
-
-.logos .logo .svg-container.linkedin svg,
-.logos .logo .svg-container.stackoverflow svg {
-  width: 3rem;
-}
-
-.logos .logo .svg-container.github svg {
-  width: 3.08rem;
-}
-
-.logos .logo .svg-container.npm svg {
-  width: 5rem;
-  transform: translateY(4px);
-}
-
-@media (max-width: $default-mobile-viewport) {
-  .logos .logo .svg-container.linkedin svg,
-  .logos .logo .svg-container.stackoverflow svg {
-    width: 2.5rem;
-  }
-
-  .logos .logo .svg-container.github svg {
-    width: 2.58rem;
-  }
-
-  .logos .logo .svg-container.npm svg {
-    width: 4.5rem;
-  }
-}
-
-.logos .logo .svg-container.linkedin svg .background,
-.logos .logo .svg-container.stackoverflow svg .tasks,
-.logos .logo .svg-container.stackoverflow svg .stack,
-.logos .logo .svg-container.stackoverflow svg .curved-stack,
-.logos .logo .svg-container.github svg .octocat,
-.logos .logo .svg-container.npm svg .characters {
-  fill: $logo-color;
-}
-
-.logos .logo .svg-container.linkedin svg .in,
-.logos .logo .svg-container.npm svg #inner-p {
-  fill: $background-color;
-}
-
-html[dir='rtl'] .logos .logo .svg-container.linkedin svg .in.pillar-active,
-html[dir='ltr'] .logos .logo .svg-container.npm svg #inner-p.pillar-active {
-  fill: $interactive-pillar-color;
-}
-
-html[dir='ltr'] .logos .logo .svg-container.linkedin svg .in.pillar-active {
-  fill: $contribution-pillar-color;
 }
 </style>

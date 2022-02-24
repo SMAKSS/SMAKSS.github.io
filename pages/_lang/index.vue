@@ -1,6 +1,5 @@
 <template>
-  <div class="site-intro" ref="siteIntro">
-    <Social v-if="!$fetchState.pending" />
+  <main class="site-intro" ref="siteIntro">
     <div v-if="$fetchState.pending" class="pending">
       <Logo />
     </div>
@@ -53,7 +52,7 @@
         >{{ $t('buttons.close') }}</Button
       >
     </Modal>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -61,7 +60,6 @@ import {gsap} from 'gsap'
 
 import Logo from '~/assets/icons/SMAKSS.svg?inline'
 import Button from '@/components/buttons/Button'
-import Social from '@/components/icons/Social'
 import Info from '@/components/buttons/Info'
 import Modal from '@/components/Modal'
 import handlers from '@/mixins/handlers'
@@ -72,7 +70,6 @@ export default {
   components: {
     Logo,
     Button,
-    Social,
     Info,
     Modal,
   },
@@ -98,9 +95,15 @@ export default {
   },
   async fetch() {
     if (!this.$cookies.get('quote') && !this.requestStatus) {
-      const response = await fetch(
-        'https://api.quotable.io/random',
-      ).then(response => response.json())
+      const abortController = new AbortController()
+
+      const response = await fetch('https://api.quotable.io/random', {
+        signal: abortController.signal,
+      }).then(response => response.json())
+
+      setTimeout(() => {
+        abortController.abort()
+      }, 8000)
 
       if (response.content) {
         this.quoteData = response
@@ -155,10 +158,10 @@ export default {
 
       if (this.$fetchState.error || !this.quoteData) {
         animatedClassesSetOne = '.quote-error'
-        animatedClassesSetTwo = ['.button', '.logos', '.quote-reason']
+        animatedClassesSetTwo = ['.button', '.quote-reason']
       } else {
         animatedClassesSetOne = '.quote-content'
-        animatedClassesSetTwo = ['.quote-author', '.button', '.logos']
+        animatedClassesSetTwo = ['.quote-author', '.button']
       }
 
       const tl = gsap.timeline()
