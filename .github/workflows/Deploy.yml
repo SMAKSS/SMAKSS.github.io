@@ -1,8 +1,9 @@
-name: CI
+name: Deploy
 
-on: 
-  pull_request:
-    branches: '**'
+on:
+  push:
+    branches:
+      - develop
 
 jobs:
   deploy:
@@ -27,3 +28,10 @@ jobs:
 
       - name: Generate
         run: yarn generate
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: master
+          publish_dir: ./dist
