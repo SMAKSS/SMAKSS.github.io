@@ -48,7 +48,12 @@ export default {
         name: 'og:url',
         content: process.env.BASE_URL || '',
       },
-      {hid: 't-type', name: 'twitter:card', property: 'twitter:card' content: '/icon.png'},
+      {
+        hid: 't-type',
+        name: 'twitter:card',
+        property: 'twitter:card',
+        content: '/icon.png',
+      },
     ],
     link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
   },
