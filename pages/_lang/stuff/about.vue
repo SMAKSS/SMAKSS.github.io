@@ -68,13 +68,10 @@
                     v-for="link in experience.links"
                     :key="link.id"
                   >
+                    <!-- prettier-ignore -->
                     <AnchorTag
                       :link="link.link"
-                      :text="
-                        $t(
-                          `main.pillars.experience.${experience.id}.links.${link.id}.name`,
-                        )
-                      "
+                      :text="$t(`main.pillars.experience.${experience.id}.links.${link.id}.name`)"
                     />
                   </li>
                 </ul>
@@ -117,6 +114,10 @@ export default {
           id: 'coin-plus',
           links: [
             {
+              link: 'https://coin-plus.com',
+              id: 'coinPlus',
+            },
+            {
               link: 'https://sarrafeh.com',
               id: 'sarrafeh',
             },
@@ -130,6 +131,10 @@ export default {
           id: 'sana-gostar-sabz',
           links: [
             {
+              link: 'http://sanags.ir/',
+              id: 'sanaGostarSabz',
+            },
+            {
               link: 'https://ac‌hareh.ir',
               id: 'achareh',
             },
@@ -142,6 +147,33 @@ export default {
         {
           id: 'pergas-it-solutions',
         },
+        {
+          id: 'smart-lancer',
+        },
+        {
+          id: 'salamatpaad',
+          links: [
+            {
+              link: 'https://salamatpaad.com/',
+              id: 'salamatpaad',
+            },
+          ],
+        },
+        {
+          id: 'microsoft',
+          links: [
+            {
+              link: 'https://github.com/microsoft/Xbox-ATG-Samples',
+              id: 'XboxATG',
+            },
+          ],
+        },
+        {
+          id: 'persian-acc',
+        },
+        {
+          id: 'up-work',
+        },
       ],
     }
   },
@@ -150,9 +182,8 @@ export default {
 
     const topRightWave = this.$refs.wave.querySelector('#top-right')
     const bottomLeft = this.$refs.wave.querySelector('#bottom-left')
-    const timeline = gsap.timeline()
 
-    timeline.set(
+    gsap.set(
       [
         this.$refs.header,
         this.$refs.summary,
@@ -162,6 +193,9 @@ export default {
       ],
       {opacity: 0, visibility: 'none'},
     )
+
+    const timeline = gsap.timeline()
+
     timeline.set(topRightWave, {x: 1000})
     timeline.set(bottomLeft, {x: -300})
 

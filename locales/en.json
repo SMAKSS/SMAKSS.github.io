@@ -51,6 +51,9 @@
           "description": "CoinPlus is a financial technology company with the main focus on offering Blockchain-related solutions to institutional and individual investors. I've worked on two different products called Sarrafeh and TexToken and was responsible for analyzing and implementing new features also managing the front-end team and their work. I've Built two separate apps for each of the products from the ground up and made it work with over 20+k users. I also Scaled up the existing features on both the client and admin sides. Upgrade and maintain the old admin panel to be faster.",
           "duration": "Dec 2020 - Present",
           "links": {
+            "coinPlus": {
+              "name": "CoinPlus"
+            },
             "sarrafeh": {
               "name": "Sarrafeh"
             },
@@ -67,6 +70,9 @@
           "description": "Sana was the parent company of three different products like home services, transportation, and big data manipulation. I have worked on two different products called the Ubaar and the Achareh. I could maintain and scale up the codebase and make the old codebase work faster. I also create two different web apps for each product with over 2+m users, exclusive PWA for the Achareh experts, and some brand new landings and many more cool features for both the Ubaar and the Achareh.",
           "duration": "Jan 2019 - Jan 2021",
           "links": {
+            "sanaGostarSabz": {
+              "name": "Sana Gostar Sabz"
+            },
             "achareh": {
               "name": "Achareh"
             },
@@ -85,6 +91,56 @@
           "location": "Tehran, Iran",
           "role": "Frontend Engineer / Frontend Chapter Lead / Product Owner",
           "stack": "HTML / CSS / SCSS / MaterialUI / JavaScript / ReactJS"
+        },
+        "smart-lancer": {
+          "company": "SmartLancer",
+          "description": "SmartLancer consultancy group has been created to enhance student and entrepreneurs' daily life and it was consist of some different products such as Vianbo and SmartLancer. SmartLancer was a group of consultancy that tries to bring new ideas and make it more convenient for local usage and help the new entrepreneurs and businesses to grow faster. Here at Smartlancer, I tried to make it easier to use and help the local entrepreneurs and startups to get to know the entire business ecosystem more easily. Vianbo is a platform that tries to serve students around the globe by bringing their needs on the line with the help of a social electronic board (SEB). Since I was a student those days, I'm always tried to help others with my proficiency. We've started our first branch of our SEB at the Politecnico di Milano and I'm as a student and also a developer put my skills onto the table to make this platform easier to use and make it efficient.",
+          "duration": "Nov 2017 - Jan 2019",
+          "location": "Milan, Italy",
+          "role": "Software Engineer / Iran Affair Director / Managing Editor",
+          "stack": "HTML / CSS / JavaScript / C# / Xamarin / Linux / Apache / MySQL / PHP"
+        },
+        "salamatpaad": {
+          "company": "Salamatpaad",
+          "description": "Salamatpaad was a fitness and diet platform that wants to bring a healthy body and mind for people (especially women) around the country. As a full-stack engineer, I've been responsible for scale-up the old code performance and adding some new features to the existing platform. In this role, I could shorten the technical debt of the project from 362 days to almost 40 days and add some new features like new web layout, video streaming, podcast streaming, content producing and so many other cool ones to the existing product.",
+          "duration": "Jun 2018 - Jan 2019",
+          "links": {
+            "salamatpaad": {
+              "name": "Salamatpaad"
+            }
+          },
+          "location": "Tehran, Iran",
+          "role": "Full Stack Engineer",
+          "stack": "HTML / CSS / JavaScript / jQuery / VueJS / Apache / MySQL / PHP"
+        },
+        "microsoft": {
+          "company": "Microsoft",
+          "description": "After finding the right people in my life I could finally make the dream come true and start working in Microsoft in the early years of my work career. I worked in Microsoft as an intern software engineer who had to work with some big data and machine learning algorithms, so I start working with azure and instantly after that, I had to develop my knowledge in related languages like Python and C++. After finishing off my internship, I've started working with the Xbox Advanced Technology Group (ATG) as a remote junior software engineer. This team was the bridge that links Microsoft game platforms and services, such as Xbox One, Windows 10, Xbox Live, and Azure with key game developers worldwide. In this role, I have been responsible for developing and enhancing the work of DirectXTK and ATGTK kits and I was able to decrease their load time by 15%.",
+          "duration": "Jun 2017 - Jun 2018",
+          "links": {
+            "XboxATG": {
+              "name": "XboxATG"
+            }
+          },
+          "location": "London, United Kingdom",
+          "role": "Junior Software Engineer",
+          "stack": "Python / Azure / C++ / Pascal"
+        },
+        "persian-acc": {
+          "company": "PersianAcc",
+          "description": "PersianACC was one of my first serious full-time work, where I and some of my other comrades from the university gathered as a team to create a new life experience and bring the rude ideas to a working platform.I as the only experienced tech guy in the team took all the technical responsibility and kept up my work as a CTO and full-stack engineer at the same time. I have been responsible for creating backend services, frontend and native applications for both iOS and Android. In this position, I could train some of my colleagues and teach them the basics of coding. We also could achieve produce three different products and sell them to our clients.",
+          "duration": "Jun 2016 - Oct 2017",
+          "location": "Tehran, Iran",
+          "role": "Full Stack Engineer",
+          "stack": "HTML / CSS / JavaScript / C# / Xamarin / Linux / Apache / MySQL / PHP / Python"
+        },
+        "up-work": {
+          "company": "Upwork",
+          "description": "Since the second year of the university, I always tried to reach further and beyond, hence I rather not be in a single context or field, then I started to work it out with the small projects, and get further to the big ones. In these years of experience, I did several projects with internal and global startups and institutes.",
+          "duration": "Jun 2014 - Present",
+          "location": "Worldwide",
+          "role": "Software Engineer",
+          "stack": "C++ / C#.net / Prolog / Matlab / Python / Latex / Shell Scripts / Apache / Nginx / PM2 / Git / SQL / NoSQL / MySQL / MongoDB / Postgresql / Redis / Azure / Hadoop / PHP / JavaScript / CSS3 / SCSS / SASS / HTML5 / Laravel / Codeigniter / JQuery / Nuxt.js / Vue.js (Vue) / Vuex / Next.js / React.js (React) / Redux / Node.js / NPM / Yarn / GraphQL / Ajax / Axios / Grunt / Webpack / Babel / XML / JSON / Swagger / Xamarin / MVC / SEO / SPA (Single Page Application) / PWA (Progressive Web Application) / RESTful and WebSocket APIs / Functional Programming / OOP (Object Oriented Programming) / Asynchronous Programming"
         }
       },
       "headings": {

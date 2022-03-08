@@ -9,9 +9,14 @@
         <p class="description" ref="description">{{ $t('main.content') }}</p>
       </div>
       <div class="viewport" ref="viewport">
-        <div class="about-pillar" @click="pillarOnClickHandler('about')">
+        <div
+          v-for="pillar of activePillars"
+          :key="pillar.id"
+          :class="`${pillar.id}-pillar`"
+          @click="pillarOnClickHandler(pillar.id)"
+        >
           <span class="pillar-title">
-            {{ $t(`main.pillars.headings.about`) }}
+            {{ $t(`main.pillars.headings.${pillar.id}`) }}
           </span>
           <span class="bottom-border" />
         </div>
@@ -23,11 +28,11 @@
             data-disabled="true"
             v-for="pillar of pillars"
             :key="pillar.id"
-            :class="`${pillar.title}-pillar`"
-            @onClick="pillarOnClickHandler(pillar.id)"
+            :class="`${pillar.id}-pillar`"
+            @click="pillarOnClickHandler(pillar.id)"
           >
             <span class="pillar-title">
-              {{ $t(`main.pillars.headings.${pillar.title}`) }}
+              {{ $t(`main.pillars.headings.${pillar.id}`) }}
             </span>
             <span class="bottom-border" />
           </div>
@@ -53,11 +58,8 @@ export default {
   },
   data() {
     return {
-      pillars: [
-        {id: 'npm', title: 'npm'},
-        {id: 'interactive', title: 'interactive'},
-        {id: 'contribution', title: 'contribution'},
-      ],
+      activePillars: [{id: 'about'}],
+      pillars: [{id: 'npm'}, {id: 'interactive'}, {id: 'contribution'}],
     }
   },
   mounted() {
@@ -104,6 +106,7 @@ export default {
         })
     },
     pillarOnClickHandler(pillar) {
+      console.log('ok')
       this.fadingOutAndPushToRouterHandler({
         element: this.$refs.siteMain,
         route: pillar,
