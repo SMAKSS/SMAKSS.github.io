@@ -1,13 +1,46 @@
 export default {
   target: 'static',
-  /*
-   ** Headers of the page
-   */
+  srcDir: 'src/',
   head: {
     title: process.env.WEBSITE_NAME || '',
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png',
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png',
+      },
+      {rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#ff0000'},
+    ],
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {
+        hid: 'msapplication-TileColor',
+        name: 'msapplication-TileColor',
+        content: '#091a28',
+      },
+      {
+        hid: 'theme-color',
+        name: 'theme-color',
+        content: '#ffffff',
+      },
       {
         hid: 'default-description',
         name: 'description',
@@ -55,7 +88,6 @@ export default {
         content: '/icon.png',
       },
     ],
-    link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
   },
   pwa: {
     manifest: {
@@ -66,6 +98,14 @@ export default {
     },
     icon: {
       iconSrc: '/icon.png',
+    },
+  },
+  gtm: {
+    id: 'GTM-TZDDHD4', // Used as fallback if no runtime config is provided
+  },
+  publicRuntimeConfig: {
+    gtm: {
+      id: process.env.GOOGLE_TAG_MANAGER_ID,
     },
   },
   /*
@@ -79,7 +119,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/i18n.js'],
+  plugins: ['~/plugins/i18n.js', '~/plugins/constants.js'],
   /**
    * Localization router
    */
@@ -120,6 +160,7 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     'cookie-universal-nuxt',
+    '@nuxtjs/gtm',
   ],
   /*
    ** Build configuration
