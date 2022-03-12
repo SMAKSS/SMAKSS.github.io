@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Google+Sans:400,500,600,700');
+@import '@/assets/fonts/googleSans/googleSans.scss';
 
 @font-face {
   font-family: 'Vazir-Local';
@@ -8,6 +8,7 @@
     url('~assets/fonts/Vazir/Vazir-FD.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -17,6 +18,7 @@
     url('~assets/fonts/Vazir/Vazir-Bold-FD.ttf') format('truetype'),
     url('~assets/fonts/Vazir/Vazir-Bold-FD.woff2') format('woff2');
   font-style: normal;
+  font-display: swap;
 }
 
 :root {

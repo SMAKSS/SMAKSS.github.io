@@ -11,7 +11,12 @@
         @mouseover="handleMouseover"
         :class="logo.name"
       >
-        <a :href="logo.url" rel="noopener noreferrer" target="_blank">
+        <a
+          :href="logo.url"
+          rel="noopener noreferrer"
+          target="_blank"
+          :aria-label="$t(`titles.${logo.name}`)"
+        >
           <component :is="logo.name" />
         </a>
       </span>
