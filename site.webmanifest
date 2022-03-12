@@ -32,7 +32,8 @@
     {
       "sizes": "958x958",
       "src": "/icon.png",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "name": "smakss",
