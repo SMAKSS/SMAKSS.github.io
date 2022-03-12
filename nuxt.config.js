@@ -26,7 +26,8 @@ export default {
         sizes: '180x180',
         href: '/apple-touch-icon.png',
       },
-      {rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#ff0000'},
+      {rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#158876'},
+      {rel: 'manifest', href: '/site.webmanifest', hid: 'manifest'},
     ],
     meta: [
       {charset: 'utf-8'},
@@ -154,10 +155,7 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     'cookie-universal-nuxt',
     '@nuxtjs/gtm',

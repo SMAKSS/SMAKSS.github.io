@@ -1,7 +1,6 @@
 {
   "author": "SMAKSS",
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/pwa": "^3.3.5",
@@ -35,5 +34,5 @@
     "start": "nuxt start",
     "test": "jest"
   },
-  "version": "2.2.0"
+  "version": "2.2.1"
 }
