@@ -1,16 +1,16 @@
 version: 2
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
-    target-branch: 'develop'
+  - package-ecosystem: npm
+    directory: /
+    target-branch: develop
     schedule:
-      interval: 'daily'
+      interval: daily
     reviewers:
-      - 'SMAKSS'
+      - SMAKSS
     assignees:
-      - 'SMAKSS'
+      - SMAKSS
     labels:
-      - 'dependencies'
+      - dependencies
     open-pull-requests-limit: 10
     ignore:
       - dependency-name: sass-loader
