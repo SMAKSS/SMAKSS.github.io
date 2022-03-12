@@ -2,7 +2,7 @@ export default {
   target: 'static',
   srcDir: 'src/',
   head: {
-    title: process.env.WEBSITE_NAME || '',
+    title: 'smakss',
     link: [
       {
         rel: 'icon',
@@ -45,12 +45,14 @@ export default {
       {
         hid: 'default-description',
         name: 'description',
-        content: process.env.WEBSITE_DESCRIPTION || '',
+        content:
+          "Hi there, I'm MAKSS a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here.",
       },
       {
         hid: 'default-keywords',
         name: 'keywords',
-        content: process.env.WEBSITE_KEYWORDS || '',
+        content:
+          'smakss, seyed mohammad ali kazemi, mohammad ali kazemi, mohammad ali, makss, seyed mohammad ali kazemi sheykh shabani, sheykh shabani, محمدعلی, محمد علی, سیدمحمدعلی, سید محمد علی, سیدمحمدعلی کاظمی شیخ شبانی, شیخ شبانی, کاظمی شیخ شبانی, کاظمی, مکس, اسمکس',
       },
       {
         hid: 'og:image',
@@ -68,19 +70,20 @@ export default {
         hid: 'og-title',
         property: 'og:title',
         name: 'og:title',
-        content: process.env.WEBSITE_NAME || '',
+        content: 'smakss',
       },
       {
         hid: 'og-desc',
         property: 'og:description',
         name: 'og:description',
-        content: process.env.WEBSITE_DESCRIPTION || '',
+        content:
+          "Hi there, I'm MAKSS a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here.",
       },
       {
         hid: 'og-url',
         property: 'og:url',
         name: 'og:url',
-        content: process.env.BASE_URL || '',
+        content: 'https://smakss.github.io',
       },
       {
         hid: 't-type',
@@ -101,13 +104,18 @@ export default {
       iconSrc: '/icon.png',
     },
   },
-  gtm: {
-    id: 'GTM-TZDDHD4', // Used as fallback if no runtime config is provided
-  },
   publicRuntimeConfig: {
+    title: process.env.WEBSITE_NAME,
+    description: process.env.WEBSITE_DESCRIPTION,
+    keywords: process.env.WEBSITE_KEYWORDS,
+    name: process.env.WEBSITE_NAME,
+    baseURL: process.env.BASE_URL,
     gtm: {
       id: process.env.GOOGLE_TAG_MANAGER_ID,
     },
+  },
+  gtm: {
+    id: 'GTM-TZDDHD4', // Used as fallback if no runtime config is provided
   },
   /*
    ** Customize the progress-bar
