@@ -19,7 +19,7 @@
     "babel-jest": "^26.5.2",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^28.0.2",
+    "jest": "^28.0.3",
     "node-sass": "^6.0.1",
     "prettier": "^2.6.2",
     "sass-loader": "^10",
