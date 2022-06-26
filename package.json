@@ -15,7 +15,7 @@
     "@nuxtjs/eslint-config": "^10.0.0",
     "@nuxtjs/style-resources": "^1.2.1",
     "@nuxtjs/svg": "^0.4.0",
-    "@vue/test-utils": "^2.0.0",
+    "@vue/test-utils": "^2.0.1",
     "babel-jest": "^28.1.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
