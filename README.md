@@ -1,12 +1,12 @@
 # SMAKSS
 
-MAKSS personal website
+A place to share my experience on web development and get to know me better.
 
 ## Build Setup
 
 ```bash
 # install dependencies
-$ yarn install
+$ yarn/yarn install
 
 # serve with hot reload at localhost:3000
 $ yarn dev
