@@ -2356,10 +2356,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@smakss/random-array-element@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@smakss/random-array-element/-/random-array-element-1.2.2.tgz#61dbc7b1338d25d132c9596a98bef66b032a6733"
-  integrity sha512-wnJxw3imww6wz1LyXXqioxFC86nFGA3JJNnsWSOs6g8YCD3qSY/B5ZvtAlIxDV98ChyDCiKQNwpZeKJ8M2dHOw==
+"@smakss/random-array-element@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@smakss/random-array-element/-/random-array-element-1.2.3.tgz#62f9935eb22b1c71dfbe46a92ca3aef5e95385a6"
+  integrity sha512-0TAe+zroX9MxzoQ2xprwAaDBf1WdBDkq7iVt82icJrhX5WD4vekmqnkMskBd8KndqjyKgGBWK7KkVcgkUUAuKA==
 
 "@types/anymatch@*":
   version "1.3.1"
