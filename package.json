@@ -7,7 +7,7 @@
     "@smakss/random-array-element": "^1.2.4",
     "cookie-universal-nuxt": "^2.2.2",
     "gsap": "^3.11.3",
-    "nuxt": "^2.15.8",
+    "nuxt": "^3.0.0",
     "vue-i18n": "^9.2.2"
   },
   "devDependencies": {
