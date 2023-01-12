@@ -4,7 +4,7 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/pwa": "^3.3.5",
-    "@smakss/random-array-element": "^1.2.4",
+    "@smakss/random-array-element": "^1.2.5",
     "cookie-universal-nuxt": "^2.2.2",
     "gsap": "^3.11.4",
     "nuxt": "^2.15.8",
