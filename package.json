@@ -6,7 +6,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@smakss/random-array-element": "^1.2.5",
     "cookie-universal-nuxt": "^2.2.2",
-    "gsap": "^3.11.4",
+    "gsap": "^3.12.1",
     "nuxt": "^2.15.8",
     "vue-i18n": "^9.2.2"
   },
