@@ -1,7 +1,7 @@
 {
   "name": "smakss",
   "short_name": "smakss",
-  "description": "MAKSS personal website",
+  "description": "A place to share my experience on web development and get to know me better.",
   "icons": [
     {
       "src": "/_nuxt/icons/icon_64x64.7041b8.png",
