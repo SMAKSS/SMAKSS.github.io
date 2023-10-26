@@ -1,6 +1,6 @@
 # SMAKSS
 
-MAKSS personal website
+Max personal website
 
 ## Build Setup
 

@@ -46,13 +46,13 @@ export default {
         hid: 'default-description',
         name: 'description',
         content:
-          "Hi there, I'm MAKSS a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here.",
+          "Hi there, I'm Max a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here.",
       },
       {
         hid: 'default-keywords',
         name: 'keywords',
         content:
-          'smakss, seyed mohammad ali kazemi, mohammad ali kazemi, mohammad ali, makss, seyed mohammad ali kazemi sheykh shabani, sheykh shabani, محمدعلی, محمد علی, سیدمحمدعلی, سید محمد علی, سیدمحمدعلی کاظمی شیخ شبانی, شیخ شبانی, کاظمی شیخ شبانی, کاظمی, مکس, اسمکس',
+          'smakss, seyed mohammad ali kazemi, mohammad ali kazemi, mohammad ali, Max, seyed mohammad ali kazemi sheykh shabani, sheykh shabani, محمدعلی, محمد علی, سیدمحمدعلی, سید محمد علی, سیدمحمدعلی کاظمی شیخ شبانی, شیخ شبانی, کاظمی شیخ شبانی, کاظمی, مکس, اسمکس',
       },
       {
         hid: 'og:image',
@@ -77,7 +77,7 @@ export default {
         property: 'og:description',
         name: 'og:description',
         content:
-          "Hi there, I'm MAKSS a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here.",
+          "Hi there, I'm Max a Software Engineer: Frontend, who seeks to move mankind one step forward. I will try to share my personal insights here.",
       },
       {
         hid: 'og-url',
