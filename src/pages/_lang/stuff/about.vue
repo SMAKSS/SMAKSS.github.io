@@ -111,6 +111,9 @@ export default {
       screenWidth: 0,
       experiences: [
         {
+          id: 'shopify',
+        },
+        {
           id: 'coin-plus',
           links: [
             {
