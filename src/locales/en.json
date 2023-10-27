@@ -47,10 +47,18 @@
         "summaryFinalThing": "I enjoy the path that I've taken, and I'm looking forward to the next step, I hope that I can take one small step for mankind."
       },
       "experience": {
+        "shopify": {
+          "company": "Shopify",
+          "description": "As a seasoned front-end developer, I have a rich history of designing, developing, and optimising Shopify applications. I've been at the forefront of creating various applications, from customisable product pages to sophisticated analytics tools. I pride myself on my proficiency with multiple technologies, including jQuery, SCSS, React, Remix, Svelte, NPM Modules, D3.js, and Polaris. One of my proudest achievements was transitioning a legacy jQuery e-commerce platform to a cutting-edge React.js framework, resulting in marked performance and user experience improvements. I've also pioneered efficient architectural approaches for internal modules using Shopify CLI and have taken the initiative to publish standalone NPM modules to enhance compatibility with other Shopify add-ons. Always looking to innovate, I introduced a more efficient UX testing process for marketing platforms by integrating Cypress. Furthermore, I've built robust CI/CD pipelines for front-end applications to ensure smooth and dependable code deployment, leveraging tools like danger.js and PostCSS.",
+          "duration": "Mar 2022 - Current",
+          "location": "Vancouver, British Colombia, Canada",
+          "role": "Frontend Engineer",
+          "stack": "JavaScript · Cascading Style Sheets (CSS) · Computer Science · jQuery · React.js · HTML5 · SASS · Node.js · JavaScript Libraries"
+        },
         "coin-plus": {
           "company": "CoinPlus",
-          "description": "CoinPlus is a financial technology company with the main focus on offering Blockchain-related solutions to institutional and individual investors. I've worked on two different products called Sarrafeh and TexToken and was responsible for analyzing and implementing new features also managing the front-end team and their work. I've Built two separate apps for each of the products from the ground up and made it work with over 20+k users. I also Scaled up the existing features on both the client and admin sides. Upgrade and maintain the old admin panel to be faster.",
-          "duration": "Dec 2020 - Present",
+          "description": "CoinPlus is a financial technology company that offers Blockchain-related solutions to institutional and individual investors. I've worked on two different products, Sarrafeh and TexToken and was responsible for analyzing and implementing new features and managing the front-end team and their work. I've Built two separate apps for each product from the ground up. I also Scaled up the existing features on both the client and admin sides. Upgrade and maintain the old admin panel to be faster.",
+          "duration": "Dec 2020 - Jun 2022",
           "links": {
             "coinPlus": {
               "name": "CoinPlus"
@@ -64,7 +72,7 @@
           },
           "location": "Tehran, Iran",
           "role": "Frontend Engineer",
-          "stack": "HTML / CSS / SCSS / JavaScript / ReactJS / Redux"
+          "stack": "Software Infrastructure · JavaScript · Cascading Style Sheets (CSS) · React.js · HTML5 · SASS · Node.js · JavaScript Libraries"
         },
         "sana-gostar-sabz": {
           "company": "Sana Gostar Sabz",
@@ -83,27 +91,27 @@
           },
           "location": "Tehran, Iran",
           "role": "Frontend Engineer",
-          "stack": "HTML / CSS / SCSS / JavaScript / jQuery / VueJS / VueX / ReactJS / Redux / PM2 / Apache / NginX"
+          "stack": "Apache · Software Infrastructure · JavaScript · Cascading Style Sheets (CSS) · jQuery · PHP · Vue.js · React.js · HTML5 · SASS · Nuxt.js · Redux.js · Embedded JavaScript (EJS)"
         },
         "pergas-it-solutions": {
           "company": "Pergas IT Solutions",
           "description": "Pergas IT Solutions is an IT department that works beneath the Pergas Teb (Lá farrerr) company. Its purposes focused on web applications for the corporation. As a frontend engineer, I focused on managing and leading frontend team members, and also delivering and designing a best-suited platform that works fine for the colleagues and other related users that fulfil their job through the platform.",
           "duration": "Dec 2019 - Apr 2020",
           "location": "Tehran, Iran",
-          "role": "Frontend Engineer / Frontend Chapter Lead / Product Owner",
-          "stack": "HTML / CSS / SCSS / MaterialUI / JavaScript / ReactJS"
+          "role": "Frontend Engineer / Frontend Chapter Lead",
+          "stack": "Material-UI · JavaScript · Cascading Style Sheets (CSS) · Team Leadership · React.js · HTML5 · SASS"
         },
         "smart-lancer": {
           "company": "SmartLancer",
           "description": "SmartLancer consultancy group has been created to enhance student and entrepreneurs' daily life and it was consist of some different products such as Vianbo and SmartLancer. SmartLancer was a group of consultancy that tries to bring new ideas and make it more convenient for local usage and help the new entrepreneurs and businesses to grow faster. Here at Smartlancer, I tried to make it easier to use and help the local entrepreneurs and startups to get to know the entire business ecosystem more easily. Vianbo is a platform that tries to serve students around the globe by bringing their needs on the line with the help of a social electronic board (SEB). Since I was a student those days, I'm always tried to help others with my proficiency. We've started our first branch of our SEB at the Politecnico di Milano and I'm as a student and also a developer put my skills onto the table to make this platform easier to use and make it efficient.",
-          "duration": "Nov 2017 - Jan 2019",
+          "duration": "Feb 2018 - Jan 2019",
           "location": "Milan, Italy",
-          "role": "Software Engineer / Iran Affair Director / Managing Editor",
-          "stack": "HTML / CSS / JavaScript / C# / Xamarin / Linux / Apache / MySQL / PHP"
+          "role": "Software Engineer / Managing Editor",
+          "stack": "MySQL · Software Infrastructure · JavaScript · Cascading Style Sheets (CSS) · WordPress · PHP · Team Leadership · HTML5"
         },
         "salamatpaad": {
           "company": "Salamatpaad",
-          "description": "Salamatpaad was a fitness and diet platform that wants to bring a healthy body and mind for people (especially women) around the country. As a full-stack engineer, I've been responsible for scale-up the old code performance and adding some new features to the existing platform. In this role, I could shorten the technical debt of the project from 362 days to almost 40 days and add some new features like new web layout, video streaming, podcast streaming, content producing and so many other cool ones to the existing product.",
+          "description": "Salamatpaad was a fitness and diet platform that wanted to bring a healthy body and mind to people (especially women) nationwide. As a full-stack engineer, I've scaled up the old code performance and added new features to the existing platform.",
           "duration": "Jun 2018 - Jan 2019",
           "links": {
             "salamatpaad": {
@@ -112,7 +120,7 @@
           },
           "location": "Tehran, Iran",
           "role": "Full Stack Engineer",
-          "stack": "HTML / CSS / JavaScript / jQuery / VueJS / Apache / MySQL / PHP"
+          "stack": "PhpMyAdmin · Apache · MySQL · JavaScript · Cascading Style Sheets (CSS) · jQuery · PHP · Vue.js · HTML5"
         },
         "microsoft": {
           "company": "Microsoft",
@@ -125,23 +133,23 @@
           },
           "location": "London, United Kingdom",
           "role": "Junior Software Engineer",
-          "stack": "Python / Azure / C++ / Pascal"
+          "stack": "Pascal · WebGL · Unity · Microsoft Azure · Software Infrastructure · Python (Programming Language) · C++"
         },
         "persian-acc": {
           "company": "PersianAcc",
-          "description": "PersianACC was one of my first serious full-time work, where I and some of my other comrades from the university gathered as a team to create a new life experience and bring the rude ideas to a working platform.I as the only experienced tech guy in the team took all the technical responsibility and kept up my work as a CTO and full-stack engineer at the same time. I have been responsible for creating backend services, frontend and native applications for both iOS and Android. In this position, I could train some of my colleagues and teach them the basics of coding. We also could achieve produce three different products and sell them to our clients.",
-          "duration": "Jun 2016 - Oct 2017",
+          "description": "PersianACC was one of my first full-time severe work, where I and some of my other comrades from the university gathered as a team and simultaneously kept up my work as a full-stack engineer to create a new life experience and bring rough ideas to a working platform. As the only experienced tech guy in the team, I took all the technical responsibility and simultaneously kept up my work as a full-stack engineer. I have created backend services, frontend and native applications for both iOS and Android.",
+          "duration": "Jun 2016 - Jun 2017",
           "location": "Tehran, Iran",
           "role": "Full Stack Engineer",
-          "stack": "HTML / CSS / JavaScript / C# / Xamarin / Linux / Apache / MySQL / PHP / Python"
+          "stack": "Linux · Apache · MySQL · Xamarin Products · Web Technologies · Full-Stack Development · JavaScript · Cascading Style Sheets (CSS) · PHP · HTML"
         },
         "up-work": {
           "company": "Upwork",
-          "description": "Since the second year of the university, I always tried to reach further and beyond, hence I rather not be in a single context or field, then I started to work it out with the small projects, and get further to the big ones. In these years of experience, I did several projects with internal and global startups and institutes.",
-          "duration": "Jun 2014 - Present",
+          "description": "Since my second year of university, I have always tried to reach further and beyond; hence, I would rather not be in a single context or field; then, I started to work it out with the small projects and get further to the big ones. In these years of experience, I did several projects with internal and global startups and institutes.",
+          "duration": "May 2013 - Jun 2017",
           "location": "Worldwide",
-          "role": "Software Engineer",
-          "stack": "C++ / C#.net / Prolog / Matlab / Python / Latex / Shell Scripts / Apache / Nginx / PM2 / Git / SQL / NoSQL / MySQL / MongoDB / Postgresql / Redis / Azure / Hadoop / PHP / JavaScript / CSS3 / SCSS / SASS / HTML5 / Laravel / Codeigniter / JQuery / Nuxt.js / Vue.js (Vue) / Vuex / Next.js / React.js (React) / Redux / Node.js / NPM / Yarn / GraphQL / Ajax / Axios / Grunt / Webpack / Babel / XML / JSON / Swagger / Xamarin / MVC / SEO / SPA (Single Page Application) / PWA (Progressive Web Application) / RESTful and WebSocket APIs / Functional Programming / OOP (Object Oriented Programming) / Asynchronous Programming"
+          "role": "Full Stack Engineer",
+          "stack": "Frontend · Backend · Material-UI · Babel.js · Webpack · Xamarin Products · MATLAB · LaTeX · Web Development · Web Technologies · Software Infrastructure · Full-Stack Development · JavaScript · C++ · Vue.js · React.js · Bootstrap · Node.js"
         }
       },
       "headings": {

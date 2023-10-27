@@ -44,10 +44,18 @@
         "summaryFinalThing": "از مسیـری که تا اینجا اومدم راضـی ام و امیدوارم بتـونم قدم موثـری برای پیشـرفت همگـان بردارم."
       },
       "experience": {
+        "shopify": {
+          "company": "شاپیفای",
+          "description": "به عنوان یک توسعه‌دهنده جلوی صفحه با تجربه، من سابقه غنی در طراحی، توسعه و بهینه‌سازی برنامه‌های شاپیفای دارم. من در خط مقدم ایجاد برنامه‌های متنوعی، از صفحات محصول سفارشی گرفته تا ابزارهای تحلیلی پیچیده، بوده‌ام. من به تسلط خود بر فناوری‌های متعددی از جمله jQuery، SCSS، React، Remix، Svelte، ماژول‌های NPM، D3.js و Polaris افتخار می‌کنم. یکی از موفقیت‌هایی که به آن افتخار می‌کنم، انتقال یک پلتفرم تجارت الکترونیک قدیمی jQuery به یک چارچوب React.js پیشرفته بود، که نتیجه آن بهبود قابل توجه عملکرد و تجربه کاربری بود. من همچنین در رویکردهای معماری مؤثر برای ماژول‌های داخلی با استفاده از Shopify CLI پیشگام بوده‌ام و اقدام به انتشار ماژول‌های NPM مستقل کرده‌ام تا سازگاری با سایر افزودنی‌های Shopify را افزایش دهم. من همیشه در پی نوآوری هستم و با یکپارچه‌سازی Cypress، یک فرآیند آزمایش UX کارآمدتر برای پلتفرم‌های بازاریابی معرفی کردم. علاوه بر این، من برای اطمینان از استقرار کد روان و قابل اعتماد، پایپ‌لاین‌های قوی CI/CD برای برنامه‌های جلوی صفحه ایجاد کردم و از ابزارهایی مانند danger.js و PostCSS استفاده کردم.",
+          "duration": "فروردین ۱۴۰۱ -  تـاکنـون",
+          "location": "ونکوور، بریتیش کلمبیا، کانادا",
+          "role": "Frontend Engineer",
+          "stack": "JavaScript · Cascading Style Sheets (CSS) · Computer Science · jQuery · React.js · HTML5 · SASS · Node.js · JavaScript Libraries"
+        },
         "coin-plus": {
           "company": "کویـن پـلاس",
           "description": "کـویـن پلـاس ،شرکتـی فعـال در حوزه تکنـولوژی‌های مالـی علی الخـصوص بلاکچِـین است و راهـکارهای خـود در این زمیـنه را در دسترس مراکز تخصصی و افراد میگذارد. مـن ر در این شرکـت بر روی دو محصول مختـلف به نـام‌هـای صرافـه و تکـس توکـن کار کردم و مسئـول ارزیـابی، پیـاده‌سـازی و مدیریت تیم فرانت‌انـد بودم. من برای هر دوی این محصولات اپلیکیشن مستقلی رو از پایه، پیاده سـازی کردم که هم اکنون با بیـش از ۲۰هزار کاربر مشفول فعالیـت هستند. همچـنین در این مدت تونستـم تا اپلیکشین موجود در سمـت ادمین رو بهـبود بدم.",
-          "duration": "دی ۱۳۹۹ - تاکـنون",
+          "duration": "دی ۱۳۹۹ - خرداد ۱۴۰۱",
           "links": {
             "coinPlus": {
               "name": "کویـن پـلاس"
@@ -61,7 +69,7 @@
           },
           "location": "تـهران، ایـران",
           "role": "Frontend Engineer",
-          "stack": "HTML / CSS / SCSS / JavaScript / ReactJS / Redux"
+          "stack": "Software Infrastructure · JavaScript · Cascading Style Sheets (CSS) · React.js · HTML5 · SASS · Node.js · JavaScript Libraries"
         },
         "sana-gostar-sabz": {
           "company": "سـانا گسـتر سبـز",
@@ -80,23 +88,23 @@
           },
           "location": "تـهران، ایـران",
           "role": "Frontend Engineer",
-          "stack": "HTML / CSS / SCSS / JavaScript / jQuery / VueJS / VueX / ReactJS / Redux / PM2 / Apache / NginX"
+          "stack": "Apache · Software Infrastructure · JavaScript · Cascading Style Sheets (CSS) · jQuery · PHP · Vue.js · React.js · HTML5 · SASS · Nuxt.js · Redux.js · Embedded JavaScript (EJS)"
         },
         "pergas-it-solutions": {
           "company": "پِرگـاس",
           "description": "پـرگاس یک بخش فناوری اطـلاعات است که زیر نظر شرکت پرگـاس طـب کار می کند. هدف ایجاد این بخش، ساخت برنامه‌های کاربـردی درون سازمانی بود. مسئولیت من در این مجموعـه مدیریـت و رهبری اعضای تیم فرانت‌اند بود و همچنین ارائه و طراحی بهترین پلتفرم که برای همکـاران و سایر کاربران مرتبـط که کار خود را از طریق پلتفـرم انجام می‌دهنـد، تمرکـز کردم.",
           "duration": "دی ۱۳۹۸ - فروردیـن ۱۳۹۹",
           "location": "تـهران، ایـران",
-          "role": "Frontend Engineer / Frontend Chapter Lead / Product Owner",
-          "stack": "HTML / CSS / SCSS / MaterialUI / JavaScript / ReactJS"
+          "role": "Frontend Engineer / Frontend Chapter Lead",
+          "stack": "Material-UI · JavaScript · Cascading Style Sheets (CSS) · Team Leadership · React.js · HTML5 · SASS"
         },
         "smart-lancer": {
           "company": "اسمـارت لنسـر",
           "description": "گروه مشاوره اسمـارت لنسـر برای ارتقای زندگی روزمره دانشجویان و کارآفرینان ایجاد شده بود و از محصولات مختلفی مانند ویانبـو و اسمـارت لنسـر تشکیل شده است. اسمـارت لنسـر گروهی از مشاوره بود که سعی می‌کردند ایده‌های جدیـد را جمع آوری کنن و اون را برای استفـاده محلی راحت‌تر کند و به کارآفرینان و مشاغـل جدید کمک کند تا سریع‌تـر رشد کنند. در اسمـارت لنسـر، سعی کردم استفاده از آن را آسان‌تر کنم و به کارآفرینـان محلی و استارت‌آپ‌هـا کمک کنم تا کل اکـوسیستم کسب‌وکار را راحت‌تر بشناسند. همینطور ویانبـو پلتفرمی بود که سعی می کرد با کمک یک برد الکترونیکی اجتماعی (SEB) به دانشجویـان در سراسر جهان خدمـت کند. از آنجایی که آن روزها دانشجو بودم، همیشه سعی کردم با مهارت خود به دیگران کمک کنـم. ما اولین شعبه SEB خود را در Politecnico di Milano راه‌اندازی کرده‌ایم و من به عنوان یک دانشجـو و همچنیـن یک توسعه‌دهنده، مهارت‌هایم را روی میز قرار می‌دهیم تا استفـاده از این پلتفرم را آسان‌تر و کارآمدتر کنم.",
-          "duration": "آبـان ۱۳۹۶ - دی ۱۳۹۷",
+          "duration": "بهمن ۱۳۹۶ - دی ۱۳۹۷",
           "location": "میـلان، ایتالـیا",
-          "role": "Software Engineer / Iran Affair Director / Managing Editor",
-          "stack": "HTML / CSS / JavaScript / C# / Xamarin / Linux / Apache / MySQL / PHP"
+          "role": "Software Engineer / Managing Editor",
+          "stack": "MySQL · Software Infrastructure · JavaScript · Cascading Style Sheets (CSS) · WordPress · PHP · Team Leadership · HTML5"
         },
         "salamatpaad": {
           "company": "سلامتپـاد",
@@ -109,7 +117,7 @@
           },
           "location": "تـهران، ایـران",
           "role": "Full Stack Engineer",
-          "stack": "HTML / CSS / JavaScript / jQuery / VueJS / Apache / MySQL / PHP"
+          "stack": "PhpMyAdmin · Apache · MySQL · JavaScript · Cascading Style Sheets (CSS) · jQuery · PHP · Vue.js · HTML5"
         },
         "microsoft": {
           "company": "مایکـروسافـت",
@@ -122,23 +130,23 @@
           },
           "location": "لنـدن، انگلسـتان",
           "role": "Junior Software Engineer",
-          "stack": "Python / Azure / C++ / Pascal"
+          "stack": "Pascal · WebGL · Unity · Microsoft Azure · Software Infrastructure · Python (Programming Language) · C++"
         },
         "persian-acc": {
           "company": "پرشیـن‌اک",
           "description": "پرشیـن‌اک یکی از اولین کارهای تمام وقت جـدی من بود، جایی که من و برخی از رفقای دیگرم از دانشگاه به عنوان یک تیم گرد هم آمدیم تا یک تجربه زندگی جدید ایجاد کنیم و ایده های خام  را به یک پلتفرم کاری دربیاوریم. من به عنوان تنها مرد فناوری با تجربه در تیم تمام مسئولیـت های فنی را بر عهده داشتم و به عنوان یک CTO و مهندس فول استک به کار خود ادامه داد. من مسئول ایجاد سرویس های باطن، فرانت اند و برنامه‌های بومی برای iOS و اندروید بوده ام. در این موقعیت توانستم تعدادی از همکارانـم را آموزش دهم و اصول کدنویسـی را به آنها آموزش دهم. ما همچنین می توانیم سه محصول مختلف تولید کنیم و آنها را به مشتریان خود بفـروشیم.",
-          "duration": "خـرداد ۱۳۹۵ - مهـر ۱۳۹۶",
+          "duration": "خـرداد ۱۳۹۵ - خرداد ۱۳۹۶",
           "location": "تـهران، ایـران",
           "role": "Full Stack Engineer",
-          "stack": "HTML / CSS / JavaScript / C# / Xamarin / Linux / Apache / MySQL / PHP / Python"
+          "stack": "Linux · Apache · MySQL · Xamarin Products · Web Technologies · Full-Stack Development · JavaScript · Cascading Style Sheets (CSS) · PHP · HTML"
         },
         "up-work": {
           "company": "آپـورک",
           "description": "از سال دوم دانشگاه، همیشه سعی کردم به فراتر از آن برسـم، از این رو ترجیح می‌دهـم در یک زمینه یا زمینه واحد نباشم، سپس با پروژه‌های کوچـک شروع به کار کردم و به سمت پروژه‌های بزرگ پیش رفتم. در این سالها تجربه چنـدین پروژه با استارتاپ ها و موسسـات داخلی و جهانـی انجـام دادم.",
-          "duration": "خـرداد ۱۳۹۳ - تاکـنون",
+          "duration": "اردیبهشت ۱۳۹۲ - خرداد ۱۳۹۶",
           "location": "جهـانی",
-          "role": "Software Engineer",
-          "stack": "C++ / C#.net / Prolog / Matlab / Python / Latex / Shell Scripts / Apache / Nginx / PM2 / Git / SQL / NoSQL / MySQL / MongoDB / Postgresql / Redis / Azure / Hadoop / PHP / JavaScript / CSS3 / SCSS / SASS / HTML5 / Laravel / Codeigniter / JQuery / Nuxt.js / Vue.js (Vue) / Vuex / Next.js / React.js (React) / Redux / Node.js / NPM / Yarn / GraphQL / Ajax / Axios / Grunt / Webpack / Babel / XML / JSON / Swagger / Xamarin / MVC / SEO / SPA (Single Page Application) / PWA (Progressive Web Application) / RESTful and WebSocket APIs / Functional Programming / OOP (Object Oriented Programming) / Asynchronous Programming"
+          "role": "Full Stack Engineer",
+          "stack": "Frontend · Backend · Material-UI · Babel.js · Webpack · Xamarin Products · MATLAB · LaTeX · Web Development · Web Technologies · Software Infrastructure · Full-Stack Development · JavaScript · C++ · Vue.js · React.js · Bootstrap · Node.js"
         }
       },
       "headings": {
