@@ -157,7 +157,8 @@
         "contribution": "Public Contribution",
         "interactive": "Interactive Resume",
         "npm": "NPM Packages",
-        "blog": "Blog"
+        "blog": "Blog",
+        "hackernoon": "Hackernoon"
       },
       "labels": {
         "techStack": "Technical stack",

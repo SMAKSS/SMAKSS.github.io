@@ -70,8 +70,13 @@ export default {
   },
   data() {
     return {
-      activePillars: [{id: 'about'}],
-      pillars: [{id: 'npm'}, {id: 'interactive'}, {id: 'contribution'}],
+      activePillars: [
+        {id: 'about'},
+        {id: 'npm'},
+        {id: 'contribution'},
+        {id: 'hackernoon'},
+      ],
+      pillars: [{id: 'interactive'}],
     }
   },
   mounted() {
@@ -118,10 +123,26 @@ export default {
         })
     },
     pillarOnClickHandler(pillar) {
-      this.fadingOutAndPushToRouterHandler({
-        element: this.$refs.siteMain,
-        route: pillar,
-      })
+      if (pillar === 'about') {
+        this.fadingOutAndPushToRouterHandler({
+          element: this.$refs.siteMain,
+          route: pillar,
+        })
+      } else {
+        switch (pillar) {
+          case 'npm':
+            window.open('https://www.npmjs.com/~smakss', '_blank')
+            break
+          case 'contribution':
+            window.open('https://github.com/SMAKSS', '_blank')
+            break
+          case 'hackernoon':
+            window.open('https://hackernoon.com/u/smakss', '_blank')
+            break
+          default:
+            break
+        }
+      }
     },
   },
 }
