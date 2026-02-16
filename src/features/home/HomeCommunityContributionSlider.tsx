@@ -5,34 +5,38 @@ import { Button } from '../../components/Button';
 import { Picture } from '../../components/Picture';
 import { Text } from '../../components/Text';
 import { useAppTranslation } from '../../i18n/use-app-translation.hook';
-import { SLIDE_IMAGE_CONFIGS } from './home-destination-slider.constants';
+import { SLIDE_IMAGE_CONFIGS } from './home-community-contribution-slider.constants';
 import type {
-  HomeDestinationSliderPropsType,
+  HandleSliderPointerDownInputType,
+  HandleSliderPointerPositionInputType,
+  HomeCommunityContributionSliderPropsType,
   RenderFeedContentInputType,
   RenderSlideIllustrationInputType,
   RenderSlideTitleInputType,
-} from './home-destination-slider.type';
-import { HOME_DESTINATION_ITEMS } from './home-destination.constants';
+} from './home-community-contribution-slider.type';
+import { isInteractivePointerTarget } from './home-community-contribution-slider.utils';
+import { HOME_COMMUNITY_CONTRIBUTION_ITEMS } from './home-community-contribution.constants';
 
 /**
  * Home slider section inspired by product showcase carousels.
  */
-export const HomeDestinationSlider = ({
-  destinationFeedsPromise,
-}: HomeDestinationSliderPropsType) => {
+export const HomeCommunityContributionSlider = ({
+  communityContributionFeedsPromise,
+}: HomeCommunityContributionSliderPropsType) => {
   const { t, currentLanguage } = useAppTranslation();
   const isRtl = currentLanguage === 'fa';
-  const slideCount = HOME_DESTINATION_ITEMS.length;
+  const slideCount = HOME_COMMUNITY_CONTRIBUTION_ITEMS.length;
   const hasMultipleSlides = slideCount > 1;
   const pointerStartXRef = useRef<number | null>(null);
   const pointerIdRef = useRef<number | null>(null);
   const pointerThreshold = 36;
+  const pointerDragStartThreshold = 10;
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [activeTrackIndex, setActiveTrackIndex] = useState(
-    Math.floor(HOME_DESTINATION_ITEMS.length / 2),
+    Math.floor(HOME_COMMUNITY_CONTRIBUTION_ITEMS.length / 2),
   );
-  const activeSlide = HOME_DESTINATION_ITEMS[activeTrackIndex];
+  const activeSlide = HOME_COMMUNITY_CONTRIBUTION_ITEMS[activeTrackIndex];
 
   const moveToPreviousSlide = (): void => {
     if (!hasMultipleSlides) {
@@ -50,7 +54,7 @@ export const HomeDestinationSlider = ({
     setActiveTrackIndex((currentValue) => (currentValue === slideCount - 1 ? 0 : currentValue + 1));
   };
 
-  const slides = HOME_DESTINATION_ITEMS.map((slide, index) => {
+  const slides = HOME_COMMUNITY_CONTRIBUTION_ITEMS.map((slide, index) => {
     return {
       index,
       slide,
@@ -173,30 +177,30 @@ export const HomeDestinationSlider = ({
     );
   };
 
-  const handlePointerDown = ({
-    clientX,
-    pointerId,
-  }: {
-    clientX: number;
-    pointerId: number;
-  }): void => {
+  const handlePointerDown = ({ clientX, pointerId }: HandleSliderPointerDownInputType): void => {
     pointerStartXRef.current = clientX;
     pointerIdRef.current = pointerId;
-    setIsDragging(true);
+    setIsDragging(false);
     setDragOffset(0);
   };
 
-  const handlePointerMove = ({ clientX }: { clientX: number }): void => {
+  const handlePointerMove = ({ clientX }: HandleSliderPointerPositionInputType): void => {
     const startX = pointerStartXRef.current;
 
     if (startX === null) {
       return;
     }
 
-    setDragOffset(clientX - startX);
+    const nextDragOffset = clientX - startX;
+
+    if (Math.abs(nextDragOffset) >= pointerDragStartThreshold) {
+      setIsDragging(true);
+    }
+
+    setDragOffset(nextDragOffset);
   };
 
-  const handlePointerUp = ({ clientX }: { clientX: number }): void => {
+  const handlePointerUp = ({ clientX }: HandleSliderPointerPositionInputType): void => {
     setIsDragging(false);
 
     if (!hasMultipleSlides) {
@@ -260,7 +264,15 @@ export const HomeDestinationSlider = ({
             return;
           }
 
-          event.currentTarget.setPointerCapture(event.pointerId);
+          if (
+            isInteractivePointerTarget({
+              path: event.nativeEvent.composedPath(),
+              target: event.target,
+            })
+          ) {
+            return;
+          }
+
           handlePointerDown({ clientX: event.clientX, pointerId: event.pointerId });
         }}
         onPointerMove={(event) => {
@@ -275,7 +287,6 @@ export const HomeDestinationSlider = ({
             return;
           }
 
-          event.currentTarget.releasePointerCapture(event.pointerId);
           handlePointerUp({ clientX: event.clientX });
         }}
         onPointerCancel={() => {
@@ -330,7 +341,7 @@ export const HomeDestinationSlider = ({
                         </ul>
                       }
                     >
-                      <Await resolve={destinationFeedsPromise}>
+                      <Await resolve={communityContributionFeedsPromise}>
                         {(feeds) => {
                           const activeItems =
                             activeSlide === undefined ? [] : (feeds[activeSlide.id] ?? []);

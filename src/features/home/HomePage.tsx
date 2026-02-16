@@ -3,14 +3,17 @@ import { ROUTE_PATHS } from '../../app/router/router.constants';
 import { Box } from '../../components/Box';
 import { Text } from '../../components/Text';
 import { useAppTranslation } from '../../i18n/use-app-translation.hook';
-import { HomeDestinationSlider } from './HomeDestinationSlider';
+import { HomeCommunityContributionSlider } from './HomeCommunityContributionSlider';
 import type { HomePagePropsType } from './home-page.type';
 import { useDailyQuote } from './use-daily-quote.hook';
 
 /**
  * Renders the landing page hero and daily quote module.
  */
-export const HomePage = ({ destinationFeedsPromise, initialQuote }: HomePagePropsType) => {
+export const HomePage = ({
+  communityContributionFeedsPromise,
+  initialQuote,
+}: HomePagePropsType) => {
   const { t, currentLanguage } = useAppTranslation();
   const quote = useDailyQuote({ initialValue: initialQuote, language: currentLanguage });
   const quoteValue = quote.value;
@@ -76,7 +79,9 @@ export const HomePage = ({ destinationFeedsPromise, initialQuote }: HomePageProp
         </Box>
       </Box>
 
-      <HomeDestinationSlider destinationFeedsPromise={destinationFeedsPromise} />
+      <HomeCommunityContributionSlider
+        communityContributionFeedsPromise={communityContributionFeedsPromise}
+      />
     </Box>
   );
 };

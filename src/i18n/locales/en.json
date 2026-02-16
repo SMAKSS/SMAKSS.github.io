@@ -35,7 +35,7 @@
     "primaryCta": "Explore playground",
     "secondaryCta": "Read about me",
     "routeSelector": {
-      "title": "Choose a destination",
+      "title": "Choose a contribution",
       "aboutDescription": "Background, principles, and how I think about engineering.",
       "playgroundDescription": "Interactive solo games exploring mechanics and feedback loops.",
       "toolsDescription": "Public npm utilities with live sandbox previews."

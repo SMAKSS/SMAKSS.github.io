@@ -35,7 +35,7 @@
     "primaryCta": "مشاهده پلی‌گراند",
     "secondaryCta": "مطالعه درباره من",
     "routeSelector": {
-      "title": "انتخاب مقصد",
+      "title": "انتخاب مشارکت",
       "aboutDescription": "پیش‌زمینه، اصول فکری و نگاه من به مهندسی.",
       "playgroundDescription": "بازی‌های تعاملی تک‌نفره با تمرکز بر مکانیک و بازخورد.",
       "toolsDescription": "ابزارهای عمومی npm همراه با پیش‌نمایش زنده sandbox."

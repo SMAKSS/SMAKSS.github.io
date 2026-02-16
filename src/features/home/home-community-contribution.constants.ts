@@ -1,9 +1,9 @@
-import type { HomeDestinationItemType } from './home-destination.type';
+import type { HomeCommunityContributionItemType } from './home-community-contribution.type';
 
 /**
- * Destination slides used by the home innovation slider section.
+ * Community contribution slides used by the home slider section.
  */
-export const HOME_DESTINATION_ITEMS: HomeDestinationItemType[] = [
+export const HOME_COMMUNITY_CONTRIBUTION_ITEMS: HomeCommunityContributionItemType[] = [
   {
     external: true,
     feedProvider: 'stackoverflow',
