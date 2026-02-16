@@ -12,6 +12,7 @@ export default tseslint.config(
       '.react-router/**',
       '**/node_modules/**',
       '.husky/**',
+      'cloudflare/**',
       'coverage/**',
       'eslint.config.mjs',
     ],

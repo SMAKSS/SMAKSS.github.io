@@ -9,6 +9,7 @@ coverage
 
 # Framework/tooling
 .react-router
+.wrangler
 
 # Environment
 .env
