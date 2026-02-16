@@ -16,7 +16,6 @@
     "lint:fix": "eslint . --fix --cache",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "commitlint": "commitlint --edit",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "check": "pnpm lint && pnpm typecheck && pnpm build",
@@ -37,6 +36,8 @@
     "react-router": "^7.13.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.4.0",
+    "@commitlint/config-conventional": "^20.4.0",
     "@eslint/js": "^9.39.2",
     "@react-router/dev": "^7.13.0",
     "@semantic-release/changelog": "^6.0.3",
