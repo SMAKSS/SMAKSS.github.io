@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Redirecting...</title>
+    <meta content="0; url=__REDIRECT_TARGET__" http-equiv="refresh" />
+    <link href="__REDIRECT_TARGET__" rel="canonical" />
+    <script>
+      (function redirect() {
+        var targetBase = '__REDIRECT_TARGET__';
+        var target =
+          targetBase + window.location.pathname + window.location.search + window.location.hash;
+        window.location.replace(target);
+      })();
+    </script>
+  </head>
+  <body>
+    Redirecting to <a href="__REDIRECT_TARGET__">the new website</a>...
+  </body>
+</html>

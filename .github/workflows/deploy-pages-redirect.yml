@@ -1,0 +1,54 @@
+name: Deploy Pages Redirect
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy-redirect:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare redirect artifact
+        env:
+          REDIRECT_TARGET_URL: ${{ vars.REDIRECT_TARGET_URL }}
+        run: |
+          if [ -z "$REDIRECT_TARGET_URL" ]; then
+            echo "REDIRECT_TARGET_URL is required in GitHub Actions Variables."
+            exit 1
+          fi
+
+          mkdir -p pages-artifact
+          cp pages-redirect/index.html pages-artifact/index.html
+          cp pages-redirect/404.html pages-artifact/404.html
+
+          sed -i "s|__REDIRECT_TARGET__|$REDIRECT_TARGET_URL|g" pages-artifact/index.html
+          sed -i "s|__REDIRECT_TARGET__|$REDIRECT_TARGET_URL|g" pages-artifact/404.html
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages-artifact
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
