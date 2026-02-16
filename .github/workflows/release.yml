@@ -1,17 +1,18 @@
-name: CI
+name: Release
 
 on:
-  pull_request:
   push:
     branches: [main, develop]
 
 jobs:
-  check:
+  release:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -42,3 +43,8 @@ jobs:
           GH_USERNAME: ${{ vars.GH_USERNAME }}
           VITE_GTM_ID: ${{ vars.VITE_GTM_ID }}
         run: pnpm build
+
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm release
