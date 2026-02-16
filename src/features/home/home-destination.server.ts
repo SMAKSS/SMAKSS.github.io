@@ -6,6 +6,7 @@ import {
   HOME_DESTINATION_GITHUB_USERNAME,
   HOME_DESTINATION_HASHNODE_HOST,
   HOME_DESTINATION_NPM_MAINTAINER,
+  HOME_DESTINATION_REQUEST_HEADERS,
   HOME_DESTINATION_STACKOVERFLOW_USER_ID,
 } from './home-destination-feed.constants';
 import { HOME_DESTINATION_ITEMS } from './home-destination.constants';
@@ -29,7 +30,10 @@ const fetchStackOverflowFeed = async ({
 }: FetchBySignalInputType): Promise<DestinationFeedItemType[]> => {
   const response = await fetch(
     `https://api.stackexchange.com/2.3/users/${encodeURIComponent(HOME_DESTINATION_STACKOVERFLOW_USER_ID)}/answers?order=desc&sort=creation&site=stackoverflow&pagesize=${String(HOME_DESTINATION_FEED_PAGE_SIZE)}`,
-    { signal },
+    {
+      headers: HOME_DESTINATION_REQUEST_HEADERS,
+      signal,
+    },
   );
   ensureOkResponse({ response });
 
@@ -58,6 +62,7 @@ const fetchGithubFeed = async ({
   const response = await fetch(
     `https://api.github.com/users/${encodeURIComponent(HOME_DESTINATION_GITHUB_USERNAME)}/repos?sort=updated&per_page=${String(HOME_DESTINATION_FEED_PAGE_SIZE)}`,
     {
+      headers: HOME_DESTINATION_REQUEST_HEADERS,
       signal,
     },
   );
@@ -84,7 +89,10 @@ const fetchNpmFeed = async ({
 }: FetchBySignalInputType): Promise<DestinationFeedItemType[]> => {
   const response = await fetch(
     `https://registry.npmjs.org/-/v1/search?text=maintainer:${encodeURIComponent(HOME_DESTINATION_NPM_MAINTAINER)}&size=${String(HOME_DESTINATION_FEED_PAGE_SIZE)}&from=0`,
-    { signal },
+    {
+      headers: HOME_DESTINATION_REQUEST_HEADERS,
+      signal,
+    },
   );
   ensureOkResponse({ response });
 
@@ -121,6 +129,7 @@ const fetchHashnodeFeed = async ({
       },
     }),
     headers: {
+      ...HOME_DESTINATION_REQUEST_HEADERS,
       'content-type': 'application/json',
     },
     method: 'POST',

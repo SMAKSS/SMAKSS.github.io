@@ -24,6 +24,14 @@ export const HOME_DESTINATION_NPM_MAINTAINER = process.env.NPM_MAINTAINER ?? '';
 export const HOME_DESTINATION_HASHNODE_HOST = process.env.HASHNODE_HOST ?? '';
 
 /**
+ * Common outbound headers for third-party destination feed requests.
+ */
+export const HOME_DESTINATION_REQUEST_HEADERS = {
+  accept: 'application/json',
+  'user-agent': 'smakss-website/1.0 (+https://smakss.me)',
+} as const;
+
+/**
  * Hashnode publication query used for home destination feed requests.
  */
 export const HASHNODE_PUBLICATION_QUERY = `#graphql
