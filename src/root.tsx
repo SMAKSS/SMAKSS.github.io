@@ -1,7 +1,8 @@
-import type { ReactNode } from 'react';
 import {
+  type ActionFunctionArgs,
   isRouteErrorResponse,
   Links,
+  type LoaderFunctionArgs,
   Meta,
   Scripts,
   ScrollRestoration,
@@ -10,83 +11,20 @@ import {
 } from 'react-router';
 import { AppLayout } from './app/layout/AppLayout';
 import { GtmNoScript, GtmScript } from './components/Gtm';
-import {
-  DEFAULT_LANGUAGE,
-  LANGUAGE_STORAGE_KEY,
-  SUPPORTED_LANGUAGES,
-} from './constants/language.constants';
+import { DEFAULT_LANGUAGE, LANGUAGE_STORAGE_KEY } from './constants/language.constants';
 import { ErrorState } from './features/errors/ErrorState';
 import { i18n } from './i18n';
 import { useAppTranslation } from './i18n/use-app-translation.hook';
+import type { PreferencesType, RootLayoutPropsType, RootRoutePropsType } from './root.type';
+import {
+  parseCookies,
+  resolveLanguageFromCookie,
+  resolveThemeFromRequest,
+  serializeCookie,
+} from './root.utils';
 import stylesheet from './styles/globals.css?url';
 import { DEFAULT_THEME, THEME_STORAGE_KEY } from './theme/theme.constants';
-import type { ThemeModeType } from './theme/theme.type';
-import type { LanguageCodeType } from './types/language.type';
 import { resolveLanguageFromHeader } from './utils/language.utils';
-
-type PreferencesType = {
-  language: LanguageCodeType;
-  theme: ThemeModeType;
-};
-
-const parseCookies = ({
-  cookieHeader,
-}: {
-  cookieHeader: string | null;
-}): Record<string, string> => {
-  if (cookieHeader === null || cookieHeader.trim() === '') {
-    return {};
-  }
-
-  return cookieHeader.split(';').reduce<Record<string, string>>((accumulator, part) => {
-    const [rawKey, ...rawValueParts] = part.trim().split('=');
-
-    if (rawKey === undefined || rawKey === '') {
-      return accumulator;
-    }
-
-    const value = rawValueParts.join('=');
-    accumulator[decodeURIComponent(rawKey)] = decodeURIComponent(value);
-
-    return accumulator;
-  }, {});
-};
-
-const resolveThemeFromRequest = ({
-  cookieValue,
-  prefersColorSchemeHeader,
-}: {
-  cookieValue: string | undefined;
-  prefersColorSchemeHeader: string | null;
-}): ThemeModeType => {
-  if (cookieValue === 'dark' || cookieValue === 'light') {
-    return cookieValue;
-  }
-
-  if (prefersColorSchemeHeader === 'dark' || prefersColorSchemeHeader === 'light') {
-    return prefersColorSchemeHeader;
-  }
-
-  return DEFAULT_THEME;
-};
-
-const resolveLanguageFromCookie = ({
-  value,
-}: {
-  value: string | undefined;
-}): LanguageCodeType | null => {
-  if (value === undefined) {
-    return null;
-  }
-
-  return SUPPORTED_LANGUAGES.includes(value as LanguageCodeType)
-    ? (value as LanguageCodeType)
-    : null;
-};
-
-const serializeCookie = ({ key, value }: { key: string; value: string }): string => {
-  return `${encodeURIComponent(key)}=${encodeURIComponent(value)}; Path=/; Max-Age=31536000; SameSite=Lax`;
-};
 
 const initialThemeScript = `
 (() => {
@@ -101,10 +39,16 @@ const initialThemeScript = `
 })();
 `;
 
-export const loader = async ({ request }: { request: Request }) => {
+/**
+ * Resolves root-level language/theme preferences and syncs i18n state.
+ */
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const cookieValues = parseCookies({ cookieHeader: request.headers.get('cookie') });
+  const cookieLanguage = resolveLanguageFromCookie({
+    value: cookieValues[LANGUAGE_STORAGE_KEY],
+  });
   const resolvedLanguage =
-    resolveLanguageFromCookie({ value: cookieValues[LANGUAGE_STORAGE_KEY] }) ??
+    cookieLanguage ??
     resolveLanguageFromHeader({ acceptLanguage: request.headers.get('accept-language') });
   const resolvedTheme = resolveThemeFromRequest({
     cookieValue: cookieValues[THEME_STORAGE_KEY],
@@ -121,7 +65,10 @@ export const loader = async ({ request }: { request: Request }) => {
   };
 };
 
-export const action = async ({ request }: { request: Request }) => {
+/**
+ * Persists root-level preference changes sent from interactive controls.
+ */
+export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
   const intent = formData.get('intent');
   const headers = new Headers();
@@ -148,6 +95,9 @@ export const action = async ({ request }: { request: Request }) => {
   return new Response(null, { headers, status: 204 });
 };
 
+/**
+ * Registers global assets loaded by the root document.
+ */
 export const links = () => {
   return [
     { href: stylesheet, rel: 'stylesheet' },
@@ -159,6 +109,9 @@ export const links = () => {
   ];
 };
 
+/**
+ * Defines baseline SEO metadata for all routes.
+ */
 export const meta = () => {
   return [
     { title: 'SMAKSS' },
@@ -174,7 +127,10 @@ export const meta = () => {
   ];
 };
 
-export const Layout = ({ children }: { children: ReactNode }) => {
+/**
+ * Renders the shared HTML document shell.
+ */
+export const Layout = ({ children }: RootLayoutPropsType) => {
   const loaderData = useRouteLoaderData<typeof loader>('root');
   const language = loaderData?.preferences.language ?? DEFAULT_LANGUAGE;
   const theme = loaderData?.preferences.theme ?? DEFAULT_THEME;
@@ -207,7 +163,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const Root = ({ loaderData }: { loaderData: Awaited<ReturnType<typeof loader>> }) => {
+const Root = ({ loaderData }: RootRoutePropsType) => {
   return <AppLayout initialPreferences={loaderData.preferences} />;
 };
 

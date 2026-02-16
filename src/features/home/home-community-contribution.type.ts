@@ -1,12 +1,17 @@
 /**
- * Feed provider type used by a destination slide.
+ * Feed provider type used by a community contribution slide.
  */
-export type DestinationFeedProviderType = 'github' | 'hashnode' | 'none' | 'npm' | 'stackoverflow';
+export type CommunityContributionFeedProviderType =
+  | 'github'
+  | 'hashnode'
+  | 'none'
+  | 'npm'
+  | 'stackoverflow';
 
 /**
- * Dynamic feed item rendered within a destination slide.
+ * Dynamic feed item rendered within a community contribution slide.
  */
-export type DestinationFeedItemType = {
+export type CommunityContributionFeedItemType = {
   /**
    * Stable item identifier.
    */
@@ -22,19 +27,19 @@ export type DestinationFeedItemType = {
 };
 
 /**
- * A single destination slide rendered in the home slider section.
+ * A single community contribution slide rendered in the home slider section.
  */
-export type HomeDestinationItemType = {
+export type HomeCommunityContributionItemType = {
   /**
    * Stable id used for rendering and state transitions.
    */
   id: string;
   /**
-   * i18n key for the destination title.
+   * i18n key for the contribution title.
    */
   titleKey: string;
   /**
-   * i18n key for the destination subtitle.
+   * i18n key for the contribution subtitle.
    */
   subtitleKey: string;
   /**
@@ -44,17 +49,17 @@ export type HomeDestinationItemType = {
   /**
    * Provider used for fetching dynamic feed items.
    */
-  feedProvider: DestinationFeedProviderType;
+  feedProvider: CommunityContributionFeedProviderType;
   /**
    * Internal route for React Router navigation.
    */
   to?: string;
   /**
-   * External URL destination.
+   * External URL target.
    */
   href?: string;
   /**
-   * Whether the destination opens in a new tab.
+   * Whether the link opens in a new tab.
    */
   external?: boolean;
 };
@@ -70,13 +75,13 @@ export type FetchBySignalInputType = {
 };
 
 /**
- * Input payload for fetching destination feed items.
+ * Input payload for fetching community contribution feed items.
  */
-export type FetchDestinationFeedInputType = {
+export type FetchCommunityContributionFeedInputType = {
   /**
-   * Destination feed provider identifier.
+   * Feed provider identifier.
    */
-  provider: DestinationFeedProviderType;
+  provider: CommunityContributionFeedProviderType;
   /**
    * Abort signal for request cancellation.
    */
@@ -84,16 +89,16 @@ export type FetchDestinationFeedInputType = {
 };
 
 /**
- * Feed map keyed by destination id.
+ * Feed map keyed by contribution id.
  */
-export type DestinationFeedsByIdType = Partial<
-  Record<HomeDestinationItemType['id'], DestinationFeedItemType[]>
+export type CommunityContributionFeedsByIdType = Partial<
+  Record<HomeCommunityContributionItemType['id'], CommunityContributionFeedItemType[]>
 >;
 
 /**
- * Input payload for resolving all destination feeds.
+ * Input payload for resolving all community contribution feeds.
  */
-export type FetchDestinationFeedsInputType = {
+export type FetchCommunityContributionFeedsInputType = {
   /**
    * Abort signal for request cancellation.
    */

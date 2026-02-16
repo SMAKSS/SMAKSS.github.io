@@ -42,6 +42,7 @@ These rules apply to all coding agents working in this repository.
 - Add concise JSDoc on `*.type.ts` exports describing intent and usage.
 - Function input types should be dedicated exports from `*.type.ts` files and imported where used.
 - Avoid inline object types for non-trivial component/service props when a shared type exists.
+- Keep standalone helper logic out of component files; place it in `*.utils.ts` and import it.
 
 ## Documentation Rules
 

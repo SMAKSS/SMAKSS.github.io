@@ -11,10 +11,12 @@
   padding-bottom: 0.25rem;
   position: relative;
   touch-action: pan-y;
+  user-select: auto;
 }
 
 .home-slider-stage.is-dragging {
   cursor: grabbing;
+  user-select: none;
 }
 
 .home-slider-track {
@@ -38,7 +40,6 @@
 
 .home-slider-stage.is-dragging .home-slider-track {
   transition: none;
-  user-select: none;
 }
 
 .home-slider-card {

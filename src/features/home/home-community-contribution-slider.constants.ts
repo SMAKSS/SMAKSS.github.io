@@ -1,11 +1,11 @@
-import type { SlideImageConfigType } from './home-destination-slider.type';
-import type { HomeDestinationItemType } from './home-destination.type';
+import type { SlideImageConfigType } from './home-community-contribution-slider.type';
+import type { HomeCommunityContributionItemType } from './home-community-contribution.type';
 
 /**
- * Image source configuration for home destination slider illustrations.
+ * Image source configuration for home community contribution slider illustrations.
  */
 export const SLIDE_IMAGE_CONFIGS: Partial<
-  Record<HomeDestinationItemType['id'], SlideImageConfigType>
+  Record<HomeCommunityContributionItemType['id'], SlideImageConfigType>
 > = {
   github: {
     alt: 'GitHub illustration',

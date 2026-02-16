@@ -1,4 +1,4 @@
-import type { DestinationFeedsByIdType } from './home-destination.type';
+import type { CommunityContributionFeedsByIdType } from './home-community-contribution.type';
 import type { DailyQuoteType } from './quote.type';
 
 /**
@@ -10,7 +10,7 @@ export type HomePagePropsType = {
    */
   initialQuote?: DailyQuoteType | null;
   /**
-   * Deferred server-resolved feeds for slider destinations.
+   * Deferred server-resolved feeds for the community contribution slider.
    */
-  destinationFeedsPromise: Promise<DestinationFeedsByIdType>;
+  communityContributionFeedsPromise: Promise<CommunityContributionFeedsByIdType>;
 };

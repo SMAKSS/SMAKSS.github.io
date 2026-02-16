@@ -2,36 +2,36 @@ import { ensureOkResponse } from '../../server/fetch-response.utils';
 import { createDailyCacheKey, runServerRequest } from '../../server/request-handler.service';
 import {
   HASHNODE_PUBLICATION_QUERY,
-  HOME_DESTINATION_FEED_PAGE_SIZE,
-  HOME_DESTINATION_GITHUB_USERNAME,
-  HOME_DESTINATION_HASHNODE_HOST,
-  HOME_DESTINATION_NPM_MAINTAINER,
-  HOME_DESTINATION_REQUEST_HEADERS,
-  HOME_DESTINATION_STACKOVERFLOW_USER_ID,
-} from './home-destination-feed.constants';
-import { HOME_DESTINATION_ITEMS } from './home-destination.constants';
+  HOME_COMMUNITY_CONTRIBUTION_FEED_PAGE_SIZE,
+  HOME_COMMUNITY_CONTRIBUTION_GITHUB_USERNAME,
+  HOME_COMMUNITY_CONTRIBUTION_HASHNODE_HOST,
+  HOME_COMMUNITY_CONTRIBUTION_NPM_MAINTAINER,
+  HOME_COMMUNITY_CONTRIBUTION_REQUEST_HEADERS,
+  HOME_COMMUNITY_CONTRIBUTION_STACKOVERFLOW_USER_ID,
+} from './home-community-contribution-feed.constants';
+import { HOME_COMMUNITY_CONTRIBUTION_ITEMS } from './home-community-contribution.constants';
 import type {
-  DestinationFeedItemType,
-  DestinationFeedsByIdType,
+  CommunityContributionFeedItemType,
+  CommunityContributionFeedsByIdType,
   FetchBySignalInputType,
-  FetchDestinationFeedInputType,
-  FetchDestinationFeedsInputType,
+  FetchCommunityContributionFeedInputType,
+  FetchCommunityContributionFeedsInputType,
   GithubRepositoryApiType,
   HashnodePublicationResponseApiType,
   NpmSearchResponseApiType,
   StackOverflowFeedResponseType,
-} from './home-destination.type';
+} from './home-community-contribution.type';
 
 /**
  * Fetches latest Stack Overflow answers for the configured profile.
  */
 const fetchStackOverflowFeed = async ({
   signal,
-}: FetchBySignalInputType): Promise<DestinationFeedItemType[]> => {
+}: FetchBySignalInputType): Promise<CommunityContributionFeedItemType[]> => {
   const response = await fetch(
-    `https://api.stackexchange.com/2.3/users/${encodeURIComponent(HOME_DESTINATION_STACKOVERFLOW_USER_ID)}/answers?order=desc&sort=creation&site=stackoverflow&pagesize=${String(HOME_DESTINATION_FEED_PAGE_SIZE)}`,
+    `https://api.stackexchange.com/2.3/users/${encodeURIComponent(HOME_COMMUNITY_CONTRIBUTION_STACKOVERFLOW_USER_ID)}/answers?order=desc&sort=creation&site=stackoverflow&pagesize=${String(HOME_COMMUNITY_CONTRIBUTION_FEED_PAGE_SIZE)}`,
     {
-      headers: HOME_DESTINATION_REQUEST_HEADERS,
+      headers: HOME_COMMUNITY_CONTRIBUTION_REQUEST_HEADERS,
       signal,
     },
   );
@@ -58,11 +58,11 @@ const fetchStackOverflowFeed = async ({
  */
 const fetchGithubFeed = async ({
   signal,
-}: FetchBySignalInputType): Promise<DestinationFeedItemType[]> => {
+}: FetchBySignalInputType): Promise<CommunityContributionFeedItemType[]> => {
   const response = await fetch(
-    `https://api.github.com/users/${encodeURIComponent(HOME_DESTINATION_GITHUB_USERNAME)}/repos?sort=updated&per_page=${String(HOME_DESTINATION_FEED_PAGE_SIZE)}`,
+    `https://api.github.com/users/${encodeURIComponent(HOME_COMMUNITY_CONTRIBUTION_GITHUB_USERNAME)}/repos?sort=updated&per_page=${String(HOME_COMMUNITY_CONTRIBUTION_FEED_PAGE_SIZE)}`,
     {
-      headers: HOME_DESTINATION_REQUEST_HEADERS,
+      headers: HOME_COMMUNITY_CONTRIBUTION_REQUEST_HEADERS,
       signal,
     },
   );
@@ -86,11 +86,11 @@ const fetchGithubFeed = async ({
  */
 const fetchNpmFeed = async ({
   signal,
-}: FetchBySignalInputType): Promise<DestinationFeedItemType[]> => {
+}: FetchBySignalInputType): Promise<CommunityContributionFeedItemType[]> => {
   const response = await fetch(
-    `https://registry.npmjs.org/-/v1/search?text=maintainer:${encodeURIComponent(HOME_DESTINATION_NPM_MAINTAINER)}&size=${String(HOME_DESTINATION_FEED_PAGE_SIZE)}&from=0`,
+    `https://registry.npmjs.org/-/v1/search?text=maintainer:${encodeURIComponent(HOME_COMMUNITY_CONTRIBUTION_NPM_MAINTAINER)}&size=${String(HOME_COMMUNITY_CONTRIBUTION_FEED_PAGE_SIZE)}&from=0`,
     {
-      headers: HOME_DESTINATION_REQUEST_HEADERS,
+      headers: HOME_COMMUNITY_CONTRIBUTION_REQUEST_HEADERS,
       signal,
     },
   );
@@ -118,18 +118,18 @@ const fetchNpmFeed = async ({
  */
 const fetchHashnodeFeed = async ({
   signal,
-}: FetchBySignalInputType): Promise<DestinationFeedItemType[]> => {
+}: FetchBySignalInputType): Promise<CommunityContributionFeedItemType[]> => {
   const response = await fetch('https://gql.hashnode.com', {
     body: JSON.stringify({
       operationName: 'Publication',
       query: HASHNODE_PUBLICATION_QUERY,
       variables: {
-        first: HOME_DESTINATION_FEED_PAGE_SIZE,
-        host: HOME_DESTINATION_HASHNODE_HOST,
+        first: HOME_COMMUNITY_CONTRIBUTION_FEED_PAGE_SIZE,
+        host: HOME_COMMUNITY_CONTRIBUTION_HASHNODE_HOST,
       },
     }),
     headers: {
-      ...HOME_DESTINATION_REQUEST_HEADERS,
+      ...HOME_COMMUNITY_CONTRIBUTION_REQUEST_HEADERS,
       'content-type': 'application/json',
     },
     method: 'POST',
@@ -140,7 +140,7 @@ const fetchHashnodeFeed = async ({
   const payload = (await response.json()) as HashnodePublicationResponseApiType;
   const edges = payload.data?.publication?.posts?.edges ?? [];
 
-  return edges.reduce<DestinationFeedItemType[]>((accumulator, edge, index) => {
+  return edges.reduce<CommunityContributionFeedItemType[]>((accumulator, edge, index) => {
     const node = edge.node;
 
     if (node === undefined || typeof node.title !== 'string' || node.title.trim().length === 0) {
@@ -160,13 +160,13 @@ const fetchHashnodeFeed = async ({
 /**
  * Resolves dynamic feed items for a single provider.
  */
-export const fetchDestinationFeed = async ({
+export const fetchCommunityContributionFeed = async ({
   provider,
   signal,
-}: FetchDestinationFeedInputType): Promise<DestinationFeedItemType[]> => {
-  const cacheKey = createDailyCacheKey({ baseKey: `home-destination-feed:${provider}` });
+}: FetchCommunityContributionFeedInputType): Promise<CommunityContributionFeedItemType[]> => {
+  const cacheKey = createDailyCacheKey({ baseKey: `home-community-contribution-feed:${provider}` });
 
-  return runServerRequest<DestinationFeedItemType[]>({
+  return runServerRequest<CommunityContributionFeedItemType[]>({
     cacheKey,
     fallbackValue: [],
     fetcher: async ({ signal: requestSignal }) => {
@@ -188,22 +188,24 @@ export const fetchDestinationFeed = async ({
 
       return [];
     },
-    requestName: `fetchDestinationFeed(${provider})`,
+    requestName: `fetchCommunityContributionFeed(${provider})`,
     signal,
   });
 };
 
 /**
- * Fetches all configured destination feeds for the home slider.
+ * Fetches all configured community contribution feeds for the home slider.
  */
-export const fetchDestinationFeeds = async ({
+export const fetchCommunityContributionFeeds = async ({
   signal,
-}: FetchDestinationFeedsInputType): Promise<DestinationFeedsByIdType> => {
-  const slidesWithFeed = HOME_DESTINATION_ITEMS.filter((slide) => slide.feedProvider !== 'none');
+}: FetchCommunityContributionFeedsInputType): Promise<CommunityContributionFeedsByIdType> => {
+  const slidesWithFeed = HOME_COMMUNITY_CONTRIBUTION_ITEMS.filter(
+    (slide) => slide.feedProvider !== 'none',
+  );
 
   const settledEntries = await Promise.all(
     slidesWithFeed.map(async (slide) => {
-      const items = await fetchDestinationFeed({
+      const items = await fetchCommunityContributionFeed({
         provider: slide.feedProvider,
         signal,
       });
@@ -212,8 +214,11 @@ export const fetchDestinationFeeds = async ({
     }),
   );
 
-  return settledEntries.reduce<DestinationFeedsByIdType>((accumulator, [destinationId, items]) => {
-    accumulator[destinationId] = items;
-    return accumulator;
-  }, {});
+  return settledEntries.reduce<CommunityContributionFeedsByIdType>(
+    (accumulator, [communityContributionId, items]) => {
+      accumulator[communityContributionId] = items;
+      return accumulator;
+    },
+    {},
+  );
 };
