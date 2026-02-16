@@ -1,0 +1,372 @@
+{
+  "brand": "SMAKSS",
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "playground": "Playground",
+    "tools": "Tools"
+  },
+  "theme": {
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "language": {
+    "label": "Language"
+  },
+  "social": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "stackoverflow": "Stack Overflow",
+    "hashnode": "Hashnode",
+    "npm": "npm",
+    "hackernoon": "HackerNoon",
+    "email": "Email",
+    "kofi": "Ko-fi"
+  },
+  "cookieBanner": {
+    "message": "We use cookies to remember your language and theme preferences and improve your experience.",
+    "dismiss": "Got it"
+  },
+  "hero": {
+    "intro": "Hey, I'm",
+    "name": "Max",
+    "subtitle": "Software Engineer — Frontend Platforms & Web Infrastructure",
+    "highlights": ["Frontend platforms", "Web infrastructure", "Developer tooling"],
+    "primaryCta": "Explore playground",
+    "secondaryCta": "Read about me",
+    "routeSelector": {
+      "title": "Choose a destination",
+      "aboutDescription": "Background, principles, and how I think about engineering.",
+      "playgroundDescription": "Interactive solo games exploring mechanics and feedback loops.",
+      "toolsDescription": "Public npm utilities with live sandbox previews."
+    },
+    "slider": {
+      "title": "Community Contributions",
+      "description": "A curated collection of contributions across developer communities - open source, writing, and technical discussions.",
+      "previous": "Previous slide",
+      "next": "Next slide",
+      "feedTitle": "Latest feed",
+      "feedUnavailable": "No feed items available right now.",
+      "loading": "Loading latest updates...",
+      "slides": {
+        "playground": {
+          "subtitle": "Interactive mini games and playful mechanics.",
+          "illustration": "Illustration Placeholder",
+          "fallbackFeed": [
+            "Pattern memory challenges",
+            "Reaction and timing games",
+            "Fast solo interactions"
+          ]
+        },
+        "tools": {
+          "subtitle": "npm tools, sandboxes, and practical utilities.",
+          "illustration": "Illustration Placeholder",
+          "fallbackFeed": [
+            "Package previews and examples",
+            "Live sandbox integration",
+            "Utility-focused experiments"
+          ]
+        },
+        "stackoverflow": {
+          "subtitle": "Community-driven problem solving and technical discussions.",
+          "illustration": "Illustration Placeholder",
+          "fallbackFeed": [
+            "Recent technical answers",
+            "Latest developer discussions",
+            "Community Q&A highlights"
+          ]
+        },
+        "hashnode": {
+          "subtitle": "Long-form technical writing and engineering reflections.",
+          "illustration": "Illustration Placeholder",
+          "fallbackFeed": [
+            "System design notes",
+            "Frontend architecture thoughts",
+            "Engineering workflow writeups"
+          ]
+        },
+        "github": {
+          "subtitle": "Public repositories, experiments, and sustained open-source contributions.",
+          "illustration": "Illustration Placeholder",
+          "fallbackFeed": [
+            "Recently updated repositories",
+            "Utility package maintenance",
+            "Ongoing open-source work"
+          ]
+        },
+        "npm": {
+          "subtitle": "Reusable packages and purpose-built utilities.",
+          "illustration": "Illustration Placeholder",
+          "fallbackFeed": ["Latest package releases", "Version updates", "Maintainer activity"]
+        },
+        "hackernoon": {
+          "subtitle": "Engineering essays exploring systems and architecture.",
+          "illustration": "Illustration Placeholder",
+          "fallbackFeed": [
+            "Architecture-focused essays",
+            "Frontend platform writing",
+            "Technical deep dives"
+          ]
+        }
+      }
+    }
+  },
+  "quote": {
+    "eyebrow": "Daily Signal",
+    "title": "Quote of the day",
+    "loading": "Loading today's quote...",
+    "unavailable": "Quote is temporarily unavailable.",
+    "sourceApi": "live quote",
+    "sourceFallback": "fallback quote"
+  },
+  "miniGame": {
+    "title": "Tap The Dot",
+    "description": "A tiny solo reaction game. Start a round and hit the moving dot as many times as you can before the timer ends.",
+    "start": "Start game",
+    "restart": "Play again",
+    "score": "Score:",
+    "time": "Time:",
+    "ready": "Press start when ready.",
+    "running": "Catch the moving dot.",
+    "targetLabel": "Tap target",
+    "difficulty": "Difficulty",
+    "levels": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    }
+  },
+  "rapidGame": {
+    "title": "Rapid Click",
+    "description": "Click as fast as you can for 10 seconds and chase your highest score.",
+    "start": "Start round",
+    "running": "Running...",
+    "score": "Score:",
+    "time": "Time:",
+    "tapNow": "Tap fast",
+    "ready": "Start a round to play.",
+    "difficulty": "Difficulty",
+    "levels": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    }
+  },
+  "reactionGame": {
+    "title": "Reaction Test",
+    "description": "Start, wait for the signal, then click instantly to measure your reaction time.",
+    "start": "Start test",
+    "ready": "Start when ready.",
+    "wait": "Wait for green...",
+    "click": "Click now!",
+    "early": "Too early. Try again.",
+    "result": "Reaction:",
+    "difficulty": "Difficulty",
+    "levels": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    }
+  },
+  "memoryGame": {
+    "title": "Pattern Memory",
+    "description": "Watch the tile sequence and repeat it. Each level adds one more step.",
+    "start": "Start pattern",
+    "level": "Level:",
+    "ready": "Start to generate a sequence.",
+    "watch": "Watch the pattern...",
+    "repeat": "Repeat the pattern.",
+    "failed": "Wrong tile. Start again.",
+    "restart": "Restart",
+    "step": "Step:",
+    "difficulty": "Difficulty",
+    "levels": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    }
+  },
+  "mathGame": {
+    "title": "Math Sprint",
+    "description": "Solve quick addition prompts before the timer runs out.",
+    "start": "Start sprint",
+    "running": "Answer quickly.",
+    "ready": "Start when ready.",
+    "score": "Score:",
+    "time": "Time:",
+    "submit": "Submit",
+    "placeholder": "Your answer",
+    "difficulty": "Difficulty",
+    "levels": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    }
+  },
+  "timingGame": {
+    "title": "Timing Lock",
+    "description": "Stop the moving cursor inside the highlighted zone. Precision beats speed.",
+    "start": "Start lock",
+    "lock": "Lock now",
+    "running": "Track and lock.",
+    "ready": "Start when ready.",
+    "score": "Score:",
+    "time": "Time:",
+    "difficulty": "Difficulty",
+    "levels": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    }
+  },
+  "miniGames": {
+    "eyebrow": "Solo Games",
+    "title": "Tiny Playground",
+    "description": "A set of lightweight solo games with different mechanics.",
+    "intro": "A collection of lightweight solo games built around different mechanics.\n\nGames were one of my earliest introductions to systems thinking — rules interacting with constraints, feedback loops shaping outcomes. Later, I had the privilege of working with talented developers and seeing how those systems are built from the inside.\n\nThese projects are a return to that feeling.\n\nThey’re simple by intention — small, self-contained experiences built for the joy of interaction. A quiet counterbalance to the complexity of engineering."
+  },
+  "playground": {
+    "eyebrow": "Tools",
+    "title": "Tools",
+    "intro": "From time to time, I build and release new tools to the public. Some originate from exploring architectural ideas. Others emerge from practical constraints encountered in production systems. Many begin as focused solutions to specific engineering problems — abstractions refined until they are stable enough to stand on their own.\n\nI tend to favour small, purpose-driven libraries over unnecessary complexity. If a problem can be solved with a clear, single-responsibility package, that’s usually the direction I take. Each tool is an attempt to reduce friction — for myself, for teams, or for the wider developer community.\n\nNot every experiment becomes a long-lived project. But the ones that do are shaped by real usage, iteration, and feedback.",
+    "keywords": "Keywords",
+    "label": "npm package",
+    "license": "License",
+    "loading": "Loading npm tools...",
+    "unavailable": "Tools playground is temporarily unavailable.",
+    "published": "Published",
+    "sandboxUnavailable": "Sandbox preview is not available for this package yet.",
+    "openSandbox": "Open sandbox",
+    "closeSandbox": "Close sandbox",
+    "openNpm": "Open on npm",
+    "version": "Version"
+  },
+  "about": {
+    "pageLabel": "About",
+    "backHome": "Back home"
+  },
+  "aboutContent": {
+    "name": "Max Kazemi",
+    "headline": "Software Engineer — Frontend Platforms & Web Infrastructure",
+    "intro": [
+      "I did not start with frontend.",
+      "I started by building backend services — APIs, business logic, integration layers. The invisible machinery that keeps applications running. Early on, I was focused on correctness, reliability, and making systems behave predictably under load.",
+      "Over time, I became increasingly drawn to the other side of the boundary.",
+      "I transitioned into building interfaces — not just because they were visible, but because they revealed a different set of challenges. Interactions behave differently across devices. Clients have different constraints. Performance budgets shift depending on context. The same system feels entirely different depending on how it is presented.",
+      "The visible layer exposed complexity the backend never showed directly.",
+      "That shift expanded how I think about software.",
+      "It was not just about making things work — it was about how they behave in the hands of real users."
+    ],
+    "sections": [
+      {
+        "title": "From Interface to System",
+        "paragraphs": [
+          "As products grew more complex, frontend stopped feeling like a surface layer.",
+          "It became a coordination layer.",
+          "The browser was not just rendering UI — it was negotiating with services, managing state across boundaries, handling authentication flows, integrating third-party tools, and reconciling inconsistencies between environments.",
+          "That is when I began paying closer attention to structure.",
+          "How contracts are defined between services.",
+          "How abstractions fail under pressure.",
+          "How authentication decisions ripple through an entire application.",
+          "How a seemingly small architectural shortcut can compound over time.",
+          "I found myself drawn towards the parts of the system that reduce uncertainty — SDKs that standardise integration, platform abstractions that remove duplication, frontend architectures that scale across teams without fracturing.",
+          "The focus shifted.",
+          "Less about isolated features.",
+          "More about coherence.",
+          "Less about building screens.",
+          "More about designing systems that support change without breaking under it."
+        ]
+      },
+      {
+        "title": "Building Real Products Changes You",
+        "paragraphs": [
+          "Alongside platform work, I co-founded and scaled Shopify applications used by thousands of merchants.",
+          "Shipping a product forces clarity.",
+          "Performance affects revenue.",
+          "Edge cases affect trust.",
+          "UX affects conversion.",
+          "Technical debt becomes customer-facing.",
+          "But the most important lesson is operational.",
+          "When a system goes down, or a piece of logic behaves differently than intended, it is not just a bug. It creates friction. It creates frustration. It can cost someone money. It can damage confidence.",
+          "You quickly understand that engineering does not end when a feature reaches production.",
+          "That is when it begins.",
+          "Once real users interact with a system, they will find the assumptions you did not know you made. They will stretch logic beyond the scenarios you anticipated. They will use workflows in ways that break the \"unbreakable\".",
+          "Production is the real test environment.",
+          "Building and maintaining products in that environment teaches restraint. It teaches monitoring. It teaches careful rollout. It teaches that stability is not a bonus feature — it is the foundation of trust.",
+          "And it reinforces something simple:",
+          "Shipping is not the end of engineering.",
+          "Operating is part of it."
+        ]
+      },
+      {
+        "title": "Frontend, at Scale",
+        "paragraphs": [
+          "Today, my focus sits at the intersection of frontend systems and web infrastructure.",
+          "I design frontend architectures that scale across teams.",
+          "I shape integration layers that reduce friction for partners.",
+          "I build abstractions that improve developer velocity.",
+          "Frontend, at scale, stops being cosmetic.",
+          "It becomes infrastructure.",
+          "The browser is not just rendering components — it is orchestrating services, managing contracts, enforcing authentication boundaries, and absorbing the variability of real-world environments.",
+          "But architecture alone is not enough.",
+          "Above all, scale demands observability.",
+          "Shipping complex systems without visibility into how they behave in production is guesswork. Understanding user behaviour, failure patterns, performance bottlenecks, and integration friction is as important as designing the compound pieces themselves.",
+          "That has led me to care deeply about:",
+          "Instrumentation as part of design.",
+          "Logging and tracing that clarify rather than overwhelm.",
+          "Tooling that surfaces real-world behaviour early.",
+          "Feedback loops between engineering and usage.",
+          "A frontend platform is not complete when it compiles.",
+          "It is complete when you can understand how it behaves under real usage.",
+          "At scale, reliability and visibility are inseparable."
+        ]
+      },
+      {
+        "title": "Thinking in Systems",
+        "paragraphs": [
+          "I value engineering that is clear rather than clever, extensible rather than rigid, and durable rather than fashionable.",
+          "Strong foundations allow teams to move quickly without constantly rewriting themselves.",
+          "That belief has led me towards shaping monorepo strategies, provider-based SDK patterns, multi-tenant platform structures, and reusable engineering tooling — not because they are glamorous, but because they create leverage.",
+          "But I do not believe every problem deserves a platform.",
+          "Sometimes the most effective solution is a plain JavaScript library.",
+          "Sometimes it is a single-purpose repository with a narrow scope.",
+          "Sometimes it is resisting abstraction entirely.",
+          "The skill is not designing large systems — it is knowing when not to.",
+          "Over-engineering is just as costly as under-engineering. Context matters. Constraints matter. The maturity lies in choosing the right level of complexity for the problem in front of you.",
+          "Large-scale system design can be intellectually demanding. But today, with AI-assisted tooling and evolving development workflows, the ceiling of what small teams — or even individuals — can achieve has shifted dramatically.",
+          "We can prototype faster.",
+          "Validate assumptions earlier.",
+          "Explore architecture before committing to it.",
+          "AI does not replace engineering judgement — but it amplifies it. It allows us to focus less on mechanical output and more on clarity of thought.",
+          "For me, systems thinking is not about building the biggest possible solution.",
+          "It is about building the right one."
+        ]
+      },
+      {
+        "title": "Beyond Employment",
+        "paragraphs": [
+          "Outside of my professional work, I contribute to the broader developer ecosystem through writing and open-source projects.",
+          "Over time, that sustained contribution led to recognition under the UK Global Talent route — something I value not as a title, but as an acknowledgment of consistent impact.",
+          "I do not see engineering as confined to employment.",
+          "It is a craft that improves through shared knowledge, discussion, and iteration. The systems we rely on are built collectively. Contributing back feels like part of the responsibility.",
+          "If you are building something ambitious and believe strong foundations matter, I would be glad to connect.",
+          "You can reach out directly via {EMAIL_LINK}.",
+          "If you have found my open-source work or writing useful and would like to support it, you can also buy me a coffee or tea on {KOFI_LINK}. Small gestures like that are surprisingly meaningful — they signal that the work resonates and encourage me to keep building and sharing."
+        ]
+      }
+    ],
+    "closing": "The visible layers of software matter. I am more interested in what holds them up."
+  },
+  "errors": {
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you requested does not exist or may have been moved.",
+      "action": "Back to home"
+    },
+    "boundary": {
+      "title": "Something went wrong",
+      "description": "An unexpected error occurred while loading this page. Please try again.",
+      "action": "Go to home"
+    }
+  }
+}

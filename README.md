@@ -1,23 +1,15 @@
-# SMAKSS
+# SMAKSS Website
 
-Max personal website
+Fresh rebuild of the SMAKSS site with React, TypeScript, React Router, i18n, Tailwind, ESLint, Prettier, Husky, and semantic-release.
 
-## Build Setup
+## Browser + Runtime Baseline
 
-```bash
-# install dependencies
-$ yarn install
+- Node.js: `>=20.19.0`
+- Modern evergreen browsers (latest stable Chrome, Safari, Firefox, Edge)
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+## Commands
 
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
-```
-
-For detailed explanation on how things work, check out
-[Nuxt.js docs](https://nuxtjs.org).
+- `pnpm dev`
+- `pnpm lint`
+- `pnpm typecheck`
+- `pnpm build`

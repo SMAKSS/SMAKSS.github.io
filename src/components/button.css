@@ -1,0 +1,8 @@
+.button-primary {
+  background: var(--primary-button-bg);
+}
+
+.button-primary:hover {
+  background: var(--primary-button-hover);
+  transform: translateY(-1px);
+}

@@ -1,0 +1,14 @@
+#!/bin/bash
+if pnpm exec commitlint --version >/dev/null 2>&1; then
+  pnpm exec commitlint --edit "$1"
+  exit $?
+fi
+
+commit_message="$(head -n 1 "$1")"
+conventional_pattern='^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\([a-z0-9-]+\))?(!)?: .+'
+
+if ! printf '%s' "$commit_message" | grep -Eq "$conventional_pattern"; then
+  echo "Invalid commit message format."
+  echo "Use Conventional Commits, e.g. feat(home): add destination slider"
+  exit 1
+fi

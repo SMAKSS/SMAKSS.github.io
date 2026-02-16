@@ -1,0 +1,4 @@
+#!/bin/bash
+pnpm lint-staged || exit 1
+pnpm lint || exit 1
+pnpm typecheck
