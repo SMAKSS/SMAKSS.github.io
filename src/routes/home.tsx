@@ -1,5 +1,4 @@
 import type { LoaderFunctionArgs } from 'react-router';
-
 import { HomePage } from '../features/home/HomePage';
 import { fetchCommunityContributionFeeds } from '../features/home/home-community-contribution.server';
 import homeRouteStylesheet from '../features/home/home.route.css?url';
@@ -7,7 +6,7 @@ import { fetchDailyQuote } from '../features/home/quote.server';
 import { resolveLanguageFromHeader } from '../utils/language.utils';
 
 export const meta = () => {
-  const title = 'Home';
+  const title = 'SMAKSS — Software Engineer | Frontend Platforms & Web Infrastructure';
   const description =
     'Software engineer specialising in frontend platforms, web infrastructure, and durable system design. Founder, open-source contributor, and technical writer.';
   const url = 'https://smakss.com/';
