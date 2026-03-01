@@ -58,8 +58,8 @@ export const ToolsPlaygroundPage = ({ items }: ToolsPlaygroundPagePropsType) => 
               </Text>
             ) : (
               <iframe
-                allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-                className="h-[32rem] w-full rounded-xl border border-(--card-border) bg-white"
+                allow="accelerometer; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; xr-spatial-tracking"
+                className="h-160 w-full rounded-xl border border-(--card-border)"
                 loading="lazy"
                 src={item.sandboxUrl}
                 title={`Sandbox for ${item.name}`}
