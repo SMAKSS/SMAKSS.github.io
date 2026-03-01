@@ -1,6 +1,7 @@
 import { cn } from '../utils/cn.utils';
 import { Box } from './Box';
 import { Button } from './Button';
+import './playground-tabs.css';
 import type { PlaygroundTabsPropsType } from './playground-tabs.type';
 
 /**
@@ -8,7 +9,11 @@ import type { PlaygroundTabsPropsType } from './playground-tabs.type';
  */
 export const PlaygroundTabs = ({ items, activeIndex, onSelect }: PlaygroundTabsPropsType) => {
   return (
-    <Box as="div" className="-mx-2 mb-2 overflow-x-auto px-2 touch-pan-y" role="tablist">
+    <Box
+      as="div"
+      className="playground-tabs-scroll -mx-2 mb-2 overflow-x-auto px-2 touch-pan-x"
+      role="tablist"
+    >
       <Box
         as="div"
         className="flex w-max min-w-full flex-nowrap items-end border-b border-(--card-border)"

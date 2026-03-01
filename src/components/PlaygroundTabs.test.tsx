@@ -34,6 +34,8 @@ describe('PlaygroundTabs', () => {
     );
 
     expect(markup).toContain('overflow-x-auto');
+    expect(markup).toContain('playground-tabs-scroll');
+    expect(markup).toContain('touch-pan-x');
     expect(markup).toContain('bg-(--accent)');
   });
 });
