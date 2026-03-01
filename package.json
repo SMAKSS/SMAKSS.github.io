@@ -3,7 +3,7 @@
   "version": "0.0.0-development",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.30.3",
   "engines": {
     "node": ">=20.19.0"
   },
@@ -20,7 +20,7 @@
     "test:coverage": "vitest run --coverage",
     "check": "pnpm lint && pnpm typecheck && pnpm build",
     "cf:deploy": "wrangler deploy --name=${CLOUDFLARE_WORKER_NAME:-smakss-website}",
-    "cf:dev": "wrangler dev --name=${CLOUDFLARE_WORKER_NAME:-smakss-website}",
+    "cf:dev": "pnpm build && wrangler dev --name=${CLOUDFLARE_WORKER_NAME:-smakss-website}",
     "cf:typegen": "wrangler types --env-interface CloudflareBindings",
     "prepare": "husky",
     "release": "semantic-release"

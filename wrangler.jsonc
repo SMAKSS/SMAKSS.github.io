@@ -1,16 +1,16 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": "cloudflare/worker.js",
-  "compatibility_date": "2026-02-16",
+  "compatibility_date": "2026-02-12",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
-    "directory": "build/client"
+    "directory": "build/client",
   },
   "vars": {
     "GH_USERNAME": "smakss",
     "HASHNODE_HOST": "smakss.hashnode.dev",
     "NPM_MAINTAINER": "smakss",
     "STACKOVERFLOW_USER_ID": "11908502",
-    "VITE_GTM_ID": "GTM-TZDDHD4"
-  }
+    "VITE_GTM_ID": "GTM-TZDDHD4",
+  },
 }
