@@ -1,6 +1,5 @@
+import { cn } from '@utils/cn.utils';
 import { createElement, forwardRef, type Ref } from 'react';
-
-import { cn } from '../utils/cn.utils';
 import {
   BOX_BACKGROUND_CLASSNAMES,
   BOX_BORDER_CLASSNAMES,

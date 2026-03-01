@@ -1,10 +1,10 @@
+import { Box } from '@components/Box';
+import { Button } from '@components/Button';
+import { Input } from '@components/Input';
+import { Select } from '@components/Select';
+import { Text } from '@components/Text';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
 import { useEffect, useMemo, useState } from 'react';
-import { Box } from '../../components/Box';
-import { Button } from '../../components/Button';
-import { Input } from '../../components/Input';
-import { Select } from '../../components/Select';
-import { Text } from '../../components/Text';
-import { useAppTranslation } from '../../i18n/use-app-translation.hook';
 import { MATH_DIFFICULTY_CONFIG, MATH_SPRINT_DURATION_SECONDS } from './math-sprint-game.constants';
 import type { MathDifficultyType, MathQuestionType } from './math-sprint-game.type';
 import { createQuestion } from './math-sprint-game.utils';

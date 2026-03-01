@@ -1,6 +1,6 @@
-import type { SocialIconIdType } from '../../components/icon.type';
-import type { ThemeModeType } from '../../theme/theme.type';
-import type { LanguageCodeType } from '../../types/language.type';
+import type { LanguageCodeType } from '@/types/language.type';
+import type { SocialIconIdType } from '@components/icon.type';
+import type { ThemeModeType } from '@theme/theme.type';
 
 /**
  * Input payload for language updates in the header controls.

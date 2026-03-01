@@ -51,6 +51,80 @@ export type ResolveLanguageFromCookieInputType = {
 };
 
 /**
+ * Input payload for request-bound language resolution.
+ */
+export type ResolveRequestLanguageInputType = {
+  /**
+   * Incoming request whose cookies and headers should be inspected.
+   */
+  request: Request;
+};
+
+/**
+ * Input payload for root-level request preference resolution.
+ */
+export type ResolveRequestPreferencesInputType = {
+  /**
+   * Incoming request whose cookies and headers should be inspected.
+   */
+  request: Request;
+};
+
+/**
+ * Input payload for safe cookie-segment decoding.
+ */
+export type DecodeCookieSegmentInputType = {
+  /**
+   * Raw cookie key or value segment.
+   */
+  value: string;
+};
+
+/**
+ * Decoded cookie segment or `null` when decoding fails.
+ */
+export type DecodeCookieSegmentResultType = string | null;
+
+/**
+ * Parsed cookie header key/value map.
+ */
+export type ParseCookiesResultType = Record<string, string>;
+
+/**
+ * Resolved theme from cookies or client hints.
+ */
+export type ResolveThemeFromRequestResultType = ThemeModeType | null;
+
+/**
+ * Resolved persisted language cookie value, if supported.
+ */
+export type ResolveLanguageFromCookieResultType = LanguageCodeType | null;
+
+/**
+ * Resolved request language after cookie and header negotiation.
+ */
+export type ResolveRequestLanguageResultType = LanguageCodeType;
+
+/**
+ * Resolved request preferences returned from root preference helpers.
+ */
+export type ResolveRequestPreferencesResultType = {
+  /**
+   * Theme resolved for document hydration, if available.
+   */
+  documentTheme: ThemeModeType | null;
+  /**
+   * Persisted application preferences.
+   */
+  preferences: PreferencesType;
+};
+
+/**
+ * Serialized `Set-Cookie` header value.
+ */
+export type SerializeCookieResultType = string;
+
+/**
  * Input payload for cookie serialization.
  */
 export type SerializeCookieInputType = {

@@ -1,6 +1,6 @@
+import { Box } from '@components/Box';
+import { Text } from '@components/Text';
 import { Link } from 'react-router';
-import { Box } from '../../components/Box';
-import { Text } from '../../components/Text';
 import type { ErrorStatePropsType } from './error-state.type';
 
 /**

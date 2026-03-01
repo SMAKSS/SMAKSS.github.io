@@ -1,5 +1,5 @@
-import { ensureOkResponse } from '../../server/fetch-response.utils';
-import { createDailyCacheKey, runServerRequest } from '../../server/request-handler.service';
+import { ensureOkResponse } from '@server/fetch-response.utils';
+import { createDailyCacheKey, runServerRequest } from '@server/request-handler.service';
 import {
   HASHNODE_PUBLICATION_QUERY,
   HOME_COMMUNITY_CONTRIBUTION_FEED_PAGE_SIZE,

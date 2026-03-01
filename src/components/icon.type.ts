@@ -1,4 +1,4 @@
-import type { ThemeModeType } from '../theme/theme.type';
+import type { ThemeModeType } from '@theme/theme.type';
 
 /**
  * Supported social icon identifiers used across header and profile surfaces.

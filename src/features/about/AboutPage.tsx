@@ -1,8 +1,7 @@
+import { Box } from '@components/Box';
+import { Text } from '@components/Text';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
 import type { ReactNode } from 'react';
-
-import { Box } from '../../components/Box';
-import { Text } from '../../components/Text';
-import { useAppTranslation } from '../../i18n/use-app-translation.hook';
 import type { AboutContentType, RenderParagraphContentInputType } from './about-content.type';
 import {
   CONTACT_EMAIL,

@@ -1,15 +1,14 @@
+import { Box } from '@components/Box';
+import { Button } from '@components/Button';
+import { MobileMenuIcon, SocialIcon, ThemeToggleIcon } from '@components/Icon';
+import { Text } from '@components/Text';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
+import { THEME_STORAGE_KEY } from '@theme/theme.constants';
+import type { ThemeModeType } from '@theme/theme.type';
+import { resolveNextTheme } from '@theme/theme.utils';
+import { cn } from '@utils/cn.utils';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useFetcher, useLocation } from 'react-router';
-import { Box } from '../../components/Box';
-import { Button } from '../../components/Button';
-import { MobileMenuIcon, SocialIcon, ThemeToggleIcon } from '../../components/Icon';
-import { Text } from '../../components/Text';
-import '../../i18n';
-import { useAppTranslation } from '../../i18n/use-app-translation.hook';
-import { THEME_STORAGE_KEY } from '../../theme/theme.constants';
-import type { ThemeModeType } from '../../theme/theme.type';
-import { resolveNextTheme } from '../../theme/theme.utils';
-import { cn } from '../../utils/cn.utils';
 import { ROUTE_PATHS } from '../router/router.constants';
 import type {
   AppHeaderNavItemType,
@@ -50,19 +49,7 @@ export const AppHeader = ({
   const { t, i18n, currentLanguage } = useAppTranslation();
   const preferencesFetcher = useFetcher();
   const location = useLocation();
-  const [theme, setTheme] = useState<ThemeModeType>(() => {
-    if (typeof document === 'undefined') {
-      return initialPreferences.theme;
-    }
-
-    const themeFromDom = document.documentElement.getAttribute('data-theme');
-
-    if (themeFromDom === 'light' || themeFromDom === 'dark') {
-      return themeFromDom;
-    }
-
-    return initialPreferences.theme;
-  });
+  const [theme, setTheme] = useState<ThemeModeType>(initialPreferences.theme);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [pinnedLabelId, setPinnedLabelId] = useState<string | null>(null);

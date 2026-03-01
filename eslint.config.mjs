@@ -33,6 +33,18 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      'no-restricted-imports': [
+        'warn',
+        {
+          patterns: [
+            {
+              group: ['../../*', '../../../*', '../../../../*', '../../../../../*'],
+              message:
+                'Use repository path aliases for cross-directory imports instead of parent-relative paths.',
+            },
+          ],
+        },
+      ],
       'react-hooks/set-state-in-effect': 'off',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],

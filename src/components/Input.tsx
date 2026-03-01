@@ -1,6 +1,5 @@
+import { cn } from '@utils/cn.utils';
 import { forwardRef } from 'react';
-
-import { cn } from '../utils/cn.utils';
 import { INPUT_BASE_CLASSNAME } from './input.constants';
 import type { InputPropsType } from './input.type';
 

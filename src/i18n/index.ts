@@ -1,7 +1,7 @@
+import type { LanguageCodeType } from '@/types/language.type';
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@constants/language.constants';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '../constants/language.constants';
-import type { LanguageCodeType } from '../types/language.type';
 import en from './locales/en.json';
 import fa from './locales/fa.json';
 

@@ -1,8 +1,8 @@
+import { Box } from '@components/Box';
+import { Button } from '@components/Button';
+import { Select } from '@components/Select';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
 import { useEffect, useRef, useState } from 'react';
-import { Box } from '../../components/Box';
-import { Button } from '../../components/Button';
-import { Select } from '../../components/Select';
-import { useAppTranslation } from '../../i18n/use-app-translation.hook';
 import { REACTION_DIFFICULTY_CONFIG } from './reaction-time-game.constants';
 import type { ReactionDifficultyType, ReactionStageType } from './reaction-time-game.type';
 import { createReactionDelayMs } from './reaction-time-game.utils';

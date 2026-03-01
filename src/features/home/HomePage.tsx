@@ -1,8 +1,8 @@
+import { ROUTE_PATHS } from '@app/router/router.constants';
+import { Box } from '@components/Box';
+import { Text } from '@components/Text';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
 import { Link } from 'react-router';
-import { ROUTE_PATHS } from '../../app/router/router.constants';
-import { Box } from '../../components/Box';
-import { Text } from '../../components/Text';
-import { useAppTranslation } from '../../i18n/use-app-translation.hook';
 import { HomeCommunityContributionSlider } from './HomeCommunityContributionSlider';
 import type { HomePagePropsType } from './home-page.type';
 import { useDailyQuote } from './use-daily-quote.hook';
@@ -14,8 +14,8 @@ export const HomePage = ({
   communityContributionFeedsPromise,
   initialQuote,
 }: HomePagePropsType) => {
-  const { t, currentLanguage } = useAppTranslation();
-  const quote = useDailyQuote({ initialValue: initialQuote, language: currentLanguage });
+  const { t } = useAppTranslation();
+  const quote = useDailyQuote({ initialValue: initialQuote });
   const quoteValue = quote.value;
   const hasQuoteDetails = !quote.isLoading && !quote.hasError && quoteValue !== null;
 

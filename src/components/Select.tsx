@@ -1,4 +1,4 @@
-import { cn } from '../utils/cn.utils';
+import { cn } from '@utils/cn.utils';
 import { Box } from './Box';
 import type { SelectPropsType } from './select.type';
 

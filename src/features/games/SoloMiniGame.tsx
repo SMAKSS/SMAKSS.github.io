@@ -1,10 +1,9 @@
+import { Box } from '@components/Box';
+import { Button } from '@components/Button';
+import { Select } from '@components/Select';
+import { Text } from '@components/Text';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
 import { useEffect, useMemo, useState } from 'react';
-import { useAppTranslation } from '../../i18n/use-app-translation.hook';
-
-import { Box } from '../../components/Box';
-import { Button } from '../../components/Button';
-import { Select } from '../../components/Select';
-import { Text } from '../../components/Text';
 import {
   SOLO_DIFFICULTY_CONFIG,
   SOLO_GAME_DURATION_SECONDS,

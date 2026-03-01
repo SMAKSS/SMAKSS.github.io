@@ -1,3 +1,13 @@
+import type { PreferencesType, RootLayoutPropsType, RootRoutePropsType } from '@/root.type';
+import { resolveRequestPreferences, serializeCookie } from '@/root.utils';
+import stylesheet from '@/styles/globals.css?url';
+import { AppLayout } from '@app/layout/AppLayout';
+import { GtmNoScript, GtmScript } from '@components/Gtm';
+import { DEFAULT_LANGUAGE, LANGUAGE_STORAGE_KEY } from '@constants/language.constants';
+import { ErrorState } from '@features/errors/ErrorState';
+import { i18n } from '@i18n/index';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
+import { THEME_STORAGE_KEY } from '@theme/theme.constants';
 import {
   type ActionFunctionArgs,
   isRouteErrorResponse,
@@ -9,22 +19,6 @@ import {
   useRouteError,
   useRouteLoaderData,
 } from 'react-router';
-import { AppLayout } from './app/layout/AppLayout';
-import { GtmNoScript, GtmScript } from './components/Gtm';
-import { DEFAULT_LANGUAGE, LANGUAGE_STORAGE_KEY } from './constants/language.constants';
-import { ErrorState } from './features/errors/ErrorState';
-import { i18n } from './i18n';
-import { useAppTranslation } from './i18n/use-app-translation.hook';
-import type { PreferencesType, RootLayoutPropsType, RootRoutePropsType } from './root.type';
-import {
-  parseCookies,
-  resolveLanguageFromCookie,
-  resolveThemeFromRequest,
-  serializeCookie,
-} from './root.utils';
-import stylesheet from './styles/globals.css?url';
-import { DEFAULT_THEME, THEME_STORAGE_KEY } from './theme/theme.constants';
-import { resolveLanguageFromHeader } from './utils/language.utils';
 
 const initialThemeScript = `
 (() => {
@@ -74,26 +68,13 @@ body {
  * Resolves root-level language/theme preferences and syncs i18n state.
  */
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const cookieValues = parseCookies({ cookieHeader: request.headers.get('cookie') });
-  const cookieLanguage = resolveLanguageFromCookie({
-    value: cookieValues[LANGUAGE_STORAGE_KEY],
-  });
-  const resolvedLanguage =
-    cookieLanguage ??
-    resolveLanguageFromHeader({ acceptLanguage: request.headers.get('accept-language') });
-  const resolvedTheme = resolveThemeFromRequest({
-    cookieValue: cookieValues[THEME_STORAGE_KEY],
-    prefersColorSchemeHeader: request.headers.get('sec-ch-prefers-color-scheme'),
-  });
+  const { documentTheme, preferences } = resolveRequestPreferences({ request });
 
-  await i18n.changeLanguage(resolvedLanguage);
+  await i18n.changeLanguage(preferences.language);
 
   return {
-    preferences: {
-      language: resolvedLanguage,
-      theme: resolvedTheme ?? DEFAULT_THEME,
-    } satisfies PreferencesType,
-    documentTheme: resolvedTheme,
+    preferences: preferences satisfies PreferencesType,
+    documentTheme,
   };
 };
 
@@ -192,8 +173,8 @@ export const Layout = ({ children }: RootLayoutPropsType) => {
         <meta charSet="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="light dark" name="color-scheme" />
-        <style dangerouslySetInnerHTML={{ __html: initialThemeStyle }} />
-        <script dangerouslySetInnerHTML={{ __html: initialThemeScript }} />
+        <style dangerouslySetInnerHTML={{ __html: initialThemeStyle }} suppressHydrationWarning />
+        <script dangerouslySetInnerHTML={{ __html: initialThemeScript }} suppressHydrationWarning />
         {hasGtm ? <GtmScript containerId={gtmContainerId} /> : null}
         <Meta />
         <Links />

@@ -1,5 +1,5 @@
-import { ensureOkResponse } from '../../server/fetch-response.utils';
-import { createDailyCacheKey, runServerRequest } from '../../server/request-handler.service';
+import { ensureOkResponse } from '@server/fetch-response.utils';
+import { createDailyCacheKey, runServerRequest } from '@server/request-handler.service';
 import {
   NPM_MAINTAINER,
   TOOL_PLAYGROUND_PAGE_SIZE,

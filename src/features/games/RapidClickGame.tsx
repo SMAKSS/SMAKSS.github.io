@@ -1,8 +1,8 @@
+import { Box } from '@components/Box';
+import { Button } from '@components/Button';
+import { Select } from '@components/Select';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
 import { useEffect, useState } from 'react';
-import { Box } from '../../components/Box';
-import { Button } from '../../components/Button';
-import { Select } from '../../components/Select';
-import { useAppTranslation } from '../../i18n/use-app-translation.hook';
 import { RAPID_DIFFICULTY_CONFIG } from './rapid-click-game.constants';
 import type { RapidDifficultyType } from './rapid-click-game.type';
 

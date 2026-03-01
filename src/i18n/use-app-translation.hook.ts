@@ -1,6 +1,6 @@
+import { resolveSupportedLanguage } from '@utils/language.utils';
 import { useTranslation } from 'react-i18next';
-
-import { resolveSupportedLanguage } from '../utils/language.utils';
+import './index';
 import type {
   AppI18nType,
   AppTranslateFunctionType,

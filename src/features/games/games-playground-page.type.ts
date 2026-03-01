@@ -1,3 +1,4 @@
+import type { PlaygroundPageShellItemType } from '@components/playground-page-shell.type';
 import type { JSX } from 'react';
 
 /**
@@ -13,15 +14,7 @@ export type GamesPlaygroundPagePropsType = {
 /**
  * Single tab item in the games playground.
  */
-export type GamePlaygroundItemType = {
-  /**
-   * Stable identifier for rendering and selection state.
-   */
-  id: string;
-  /**
-   * Localized tab title.
-   */
-  title: string;
+export type GamePlaygroundItemType = PlaygroundPageShellItemType & {
   /**
    * Renderer for the corresponding game panel.
    */
