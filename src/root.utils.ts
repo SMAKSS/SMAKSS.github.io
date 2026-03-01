@@ -5,7 +5,6 @@ import type {
   ResolveThemeFromRequestInputType,
   SerializeCookieInputType,
 } from './root.type';
-import { DEFAULT_THEME } from './theme/theme.constants';
 import type { ThemeModeType } from './theme/theme.type';
 import type { LanguageCodeType } from './types/language.type';
 
@@ -32,12 +31,12 @@ export const parseCookies = ({ cookieHeader }: ParseCookiesInputType): Record<st
 };
 
 /**
- * Resolves theme from cookie first, then request client-hint, then defaults.
+ * Resolves theme from cookie first, then request client-hint.
  */
 export const resolveThemeFromRequest = ({
   cookieValue,
   prefersColorSchemeHeader,
-}: ResolveThemeFromRequestInputType): ThemeModeType => {
+}: ResolveThemeFromRequestInputType): ThemeModeType | null => {
   if (cookieValue === 'dark' || cookieValue === 'light') {
     return cookieValue;
   }
@@ -46,7 +45,7 @@ export const resolveThemeFromRequest = ({
     return prefersColorSchemeHeader;
   }
 
-  return DEFAULT_THEME;
+  return null;
 };
 
 /**

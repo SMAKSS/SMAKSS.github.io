@@ -82,6 +82,7 @@ export type RootRoutePropsType = {
    * Root loader data payload.
    */
   loaderData: {
+    documentTheme?: ThemeModeType | null;
     preferences: PreferencesType;
   };
 };

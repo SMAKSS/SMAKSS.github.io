@@ -39,6 +39,37 @@ const initialThemeScript = `
 })();
 `;
 
+const initialThemeStyle = `
+:root {
+  color-scheme: light dark;
+  --initial-background: #ffffff;
+  --initial-foreground: #18243b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --initial-background: #18243b;
+    --initial-foreground: #f2f5fb;
+  }
+}
+
+:root[data-theme='dark'] {
+  --initial-background: #18243b;
+  --initial-foreground: #f2f5fb;
+}
+
+:root[data-theme='light'] {
+  --initial-background: #ffffff;
+  --initial-foreground: #18243b;
+}
+
+html,
+body {
+  background: var(--initial-background);
+  color: var(--initial-foreground);
+}
+`;
+
 /**
  * Resolves root-level language/theme preferences and syncs i18n state.
  */
@@ -60,8 +91,9 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return {
     preferences: {
       language: resolvedLanguage,
-      theme: resolvedTheme,
+      theme: resolvedTheme ?? DEFAULT_THEME,
     } satisfies PreferencesType,
+    documentTheme: resolvedTheme,
   };
 };
 
@@ -93,6 +125,17 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   }
 
   return new Response(null, { headers, status: 204 });
+};
+
+/**
+ * Requests the browser color-scheme client hint for server-side theme resolution.
+ */
+export const headers = () => {
+  return {
+    'Accept-CH': 'Sec-CH-Prefers-Color-Scheme',
+    'Critical-CH': 'Sec-CH-Prefers-Color-Scheme',
+    Vary: 'Sec-CH-Prefers-Color-Scheme',
+  };
 };
 
 /**
@@ -133,7 +176,7 @@ export const meta = () => {
 export const Layout = ({ children }: RootLayoutPropsType) => {
   const loaderData = useRouteLoaderData<typeof loader>('root');
   const language = loaderData?.preferences.language ?? DEFAULT_LANGUAGE;
-  const theme = loaderData?.preferences.theme ?? DEFAULT_THEME;
+  const theme = loaderData?.documentTheme;
   const gtmContainerId =
     typeof import.meta.env.VITE_GTM_ID === 'string' ? import.meta.env.VITE_GTM_ID : '';
   const hasGtm = import.meta.env.PROD && gtmContainerId !== '';
@@ -148,6 +191,8 @@ export const Layout = ({ children }: RootLayoutPropsType) => {
       <head>
         <meta charSet="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="light dark" name="color-scheme" />
+        <style dangerouslySetInnerHTML={{ __html: initialThemeStyle }} />
         <script dangerouslySetInnerHTML={{ __html: initialThemeScript }} />
         {hasGtm ? <GtmScript containerId={gtmContainerId} /> : null}
         <Meta />

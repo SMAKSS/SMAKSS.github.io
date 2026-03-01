@@ -6,6 +6,7 @@ import { MobileMenuIcon, SocialIcon, ThemeToggleIcon } from '../../components/Ic
 import { Text } from '../../components/Text';
 import '../../i18n';
 import { useAppTranslation } from '../../i18n/use-app-translation.hook';
+import { THEME_STORAGE_KEY } from '../../theme/theme.constants';
 import type { ThemeModeType } from '../../theme/theme.type';
 import { resolveNextTheme } from '../../theme/theme.utils';
 import { cn } from '../../utils/cn.utils';
@@ -25,6 +26,21 @@ const NAV_ITEMS: AppHeaderNavItemType[] = [
 ];
 
 /**
+ * Applies the resolved theme to the root document.
+ */
+const applyDocumentTheme = ({ theme }: { theme: ThemeModeType }) => {
+  document.documentElement.setAttribute('data-theme', theme);
+};
+
+/**
+ * Applies language and direction metadata to the root document.
+ */
+const applyDocumentLanguage = ({ language }: ChangeLanguageInputType) => {
+  document.documentElement.setAttribute('lang', language);
+  document.documentElement.setAttribute('dir', language === 'fa' ? 'rtl' : 'ltr');
+};
+
+/**
  * Global header with navigation, social links, theme toggle, and language switcher.
  */
 export const AppHeader = ({
@@ -34,7 +50,19 @@ export const AppHeader = ({
   const { t, i18n, currentLanguage } = useAppTranslation();
   const preferencesFetcher = useFetcher();
   const location = useLocation();
-  const [theme, setTheme] = useState<ThemeModeType>(initialPreferences.theme);
+  const [theme, setTheme] = useState<ThemeModeType>(() => {
+    if (typeof document === 'undefined') {
+      return initialPreferences.theme;
+    }
+
+    const themeFromDom = document.documentElement.getAttribute('data-theme');
+
+    if (themeFromDom === 'light' || themeFromDom === 'dark') {
+      return themeFromDom;
+    }
+
+    return initialPreferences.theme;
+  });
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [pinnedLabelId, setPinnedLabelId] = useState<string | null>(null);
@@ -42,27 +70,29 @@ export const AppHeader = ({
   const controlsRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+    const hasThemeCookie = document.cookie
+      .split(';')
+      .some((item) => item.trim().startsWith(`${THEME_STORAGE_KEY}=`));
 
-  useEffect(() => {
-    const themeFromDom = document.documentElement.getAttribute('data-theme');
-
-    if (themeFromDom === 'light' || themeFromDom === 'dark') {
-      setTheme(themeFromDom);
+    if (hasThemeCookie || typeof window.matchMedia !== 'function') {
+      return;
     }
+
+    const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleThemeChange = (event: MediaQueryListEvent | MediaQueryList): void => {
+      const nextTheme = event.matches ? 'dark' : 'light';
+
+      applyDocumentTheme({ theme: nextTheme });
+      setTheme(nextTheme);
+    };
+
+    handleThemeChange(mediaQueryList);
+    mediaQueryList.addEventListener('change', handleThemeChange);
+
+    return () => {
+      mediaQueryList.removeEventListener('change', handleThemeChange);
+    };
   }, []);
-
-  useEffect(() => {
-    if (initialPreferences.language !== currentLanguage) {
-      void i18n.changeLanguage(initialPreferences.language);
-    }
-  }, [currentLanguage, i18n, initialPreferences.language]);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('lang', currentLanguage);
-    document.documentElement.setAttribute('dir', currentLanguage === 'fa' ? 'rtl' : 'ltr');
-  }, [currentLanguage]);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -87,6 +117,7 @@ export const AppHeader = ({
   }, []);
 
   const handleLanguageChange = ({ language }: ChangeLanguageInputType): void => {
+    applyDocumentLanguage({ language });
     void preferencesFetcher.submit(
       { intent: 'set-language', language },
       { action: ROUTE_PATHS.HOME, method: 'post' },
@@ -97,6 +128,7 @@ export const AppHeader = ({
   const handleThemeToggle = (): void => {
     const nextTheme = resolveNextTheme({ currentTheme: theme });
 
+    applyDocumentTheme({ theme: nextTheme });
     setTheme(nextTheme);
     void preferencesFetcher.submit(
       { intent: 'set-theme', theme: nextTheme },
