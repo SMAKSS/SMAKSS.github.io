@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router';
-
-import { Box } from '../../components/Box';
+import { Box } from '@components/Box';
+import { Outlet } from 'react-router';
 import type { InitialPreferencesType } from './app-header.type';
 import { AppHeader } from './AppHeader';
 import { ConsoleWelcome } from './ConsoleWelcome';
@@ -15,12 +13,6 @@ export const AppLayout = ({
 }: {
   initialPreferences: InitialPreferencesType;
 }) => {
-  const location = useLocation();
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [location.pathname]);
-
   return (
     <Box as="main" className="theme-shell relative min-h-screen text-(--foreground)">
       <Box aria-hidden className="shape-layer shape-layer-fixed">

@@ -1,5 +1,5 @@
-import type { ThemeModeType } from '../../theme/theme.type';
-import type { LanguageCodeType } from '../../types/language.type';
+import type { LanguageCodeType } from '@/types/language.type';
+import type { ThemeModeType } from '@theme/theme.type';
 
 /**
  * Props accepted by the console welcome helper component.

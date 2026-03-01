@@ -1,5 +1,5 @@
-import { createServerResponseError, ensureOkResponse } from '../../server/fetch-response.utils';
-import { createDailyCacheKey, runServerRequest } from '../../server/request-handler.service';
+import { createServerResponseError, ensureOkResponse } from '@server/fetch-response.utils';
+import { createDailyCacheKey, runServerRequest } from '@server/request-handler.service';
 import { QUOTE_API_URL } from './quote.constants';
 import type { DailyQuoteType, FetchQuoteInputType, QuoteApiPayloadType } from './quote.type';
 
@@ -7,11 +7,10 @@ import type { DailyQuoteType, FetchQuoteInputType, QuoteApiPayloadType } from '.
  * Fetches the quote of the day on the server with one-day in-memory caching.
  */
 export const fetchDailyQuote = async ({
-  language,
   signal,
 }: FetchQuoteInputType): Promise<DailyQuoteType | null> => {
   return runServerRequest<DailyQuoteType | null>({
-    cacheKey: createDailyCacheKey({ baseKey: `daily-quote:${language}` }),
+    cacheKey: createDailyCacheKey({ baseKey: 'daily-quote' }),
     fallbackValue: null,
     fetcher: async ({ signal: requestSignal }) => {
       const response = await fetch(QUOTE_API_URL, { signal: requestSignal });

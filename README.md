@@ -9,7 +9,8 @@ Fresh rebuild of the SMAKSS site with React, TypeScript, React Router, i18n, Tai
 
 ## Commands
 
-- `pnpm dev`
+- `pnpm dev` for local React Router development
+- `pnpm cf:dev` for local Cloudflare Worker verification against a fresh production build
 - `pnpm lint`
 - `pnpm typecheck`
 - `pnpm build`

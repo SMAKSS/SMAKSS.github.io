@@ -1,6 +1,9 @@
 {
   "brand": "SMAKSS",
   "nav": {
+    "label": "Primary navigation",
+    "openMenu": "Menu",
+    "closeMenu": "Close",
     "home": "Home",
     "about": "About",
     "playground": "Playground",

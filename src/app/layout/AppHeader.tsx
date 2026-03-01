@@ -1,108 +1,42 @@
+import { Box } from '@components/Box';
+import { Button } from '@components/Button';
+import { MobileMenuIcon, SocialIcon, ThemeToggleIcon } from '@components/Icon';
+import { Text } from '@components/Text';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
+import { THEME_STORAGE_KEY } from '@theme/theme.constants';
+import type { ThemeModeType } from '@theme/theme.type';
+import { resolveNextTheme } from '@theme/theme.utils';
+import { cn } from '@utils/cn.utils';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useFetcher, useLocation } from 'react-router';
-import { Box } from '../../components/Box';
-import { Button } from '../../components/Button';
-import { Text } from '../../components/Text';
-import '../../i18n';
-import { useAppTranslation } from '../../i18n/use-app-translation.hook';
-import type { ThemeModeType } from '../../theme/theme.type';
-import { resolveNextTheme } from '../../theme/theme.utils';
-import { cn } from '../../utils/cn.utils';
 import { ROUTE_PATHS } from '../router/router.constants';
 import type {
+  AppHeaderNavItemType,
   AppHeaderPropsType,
   ChangeLanguageInputType,
-  SocialLinkType,
-  ThemeToggleIconPropsType,
 } from './app-header.type';
 import { SOCIAL_LINKS } from './social.constants';
 
-/**
- * Renders the icon used by the theme toggle based on active mode.
- */
-const ThemeToggleIcon = ({ theme }: ThemeToggleIconPropsType) => {
-  if (theme === 'dark') {
-    return (
-      <svg aria-hidden className="size-4" fill="none" viewBox="0 0 24 24">
-        <path
-          d="M12 4V2M12 22v-2M4 12H2M22 12h-2M6.34 6.34 4.93 4.93M19.07 19.07l-1.41-1.41M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.75"
-        />
-      </svg>
-    );
-  }
+const NAV_ITEMS: AppHeaderNavItemType[] = [
+  { key: 'home', to: ROUTE_PATHS.HOME, end: true },
+  { key: 'about', to: ROUTE_PATHS.ABOUT },
+  { key: 'playground', to: ROUTE_PATHS.PLAYGROUND },
+  { key: 'tools', to: ROUTE_PATHS.TOOLS, prefetch: 'intent' },
+];
 
-  return (
-    <svg aria-hidden className="size-4" fill="none" viewBox="0 0 24 24">
-      <path
-        d="M21 12.79A9 9 0 1 1 11.21 3c-.1.65-.16 1.31-.16 2a9 9 0 0 0 9 9c.69 0 1.35-.06 2-.21Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.75"
-      />
-    </svg>
-  );
+/**
+ * Applies the resolved theme to the root document.
+ */
+const applyDocumentTheme = ({ theme }: { theme: ThemeModeType }) => {
+  document.documentElement.setAttribute('data-theme', theme);
 };
 
 /**
- * Resolves the social icon associated with a social link identifier.
+ * Applies language and direction metadata to the root document.
  */
-const SocialIcon = ({ id }: Pick<SocialLinkType, 'id'>) => {
-  if (id === 'github') {
-    return (
-      <svg aria-hidden className="size-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.49v-1.91c-2.78.61-3.37-1.34-3.37-1.34a2.65 2.65 0 0 0-1.11-1.46c-.91-.62.07-.61.07-.61a2.1 2.1 0 0 1 1.53 1.03 2.13 2.13 0 0 0 2.91.83 2.13 2.13 0 0 1 .64-1.34c-2.22-.25-4.55-1.11-4.55-4.95a3.88 3.88 0 0 1 1.03-2.69 3.61 3.61 0 0 1 .1-2.65s.84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02a3.61 3.61 0 0 1 .1 2.65 3.88 3.88 0 0 1 1.03 2.69c0 3.85-2.34 4.7-4.57 4.95a2.4 2.4 0 0 1 .68 1.86V21c0 .27.18.58.69.49A10 10 0 0 0 12 2Z" />
-      </svg>
-    );
-  }
-
-  if (id === 'linkedin') {
-    return (
-      <svg aria-hidden className="size-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M4.98 3.5A2.5 2.5 0 0 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9h4v12H3V9Zm7 0h3.83v1.64h.05c.53-1 1.84-2.06 3.8-2.06 4.06 0 4.82 2.67 4.82 6.14V21h-4v-5.48c0-1.31-.02-3-1.83-3-1.84 0-2.12 1.43-2.12 2.9V21h-4V9Z" />
-      </svg>
-    );
-  }
-
-  if (id === 'stackoverflow') {
-    return (
-      <svg aria-hidden className="size-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M17.57 20.2v-5.75h1.92V22H4.26v-7.55h1.92v5.75h11.4Zm-9.47-1.91h7.53v-1.91H8.1v1.9Zm.1-4.34 7.38 1.55.4-1.88-7.4-1.56-.38 1.9Zm.97-3.52 6.85 3.2.82-1.74L9.99 8.7l-.82 1.73Zm1.9-3.35 5.8 4.83 1.23-1.48-5.8-4.84-1.23 1.5Zm3.74-3.82-1.56 1.12 4.43 6.14 1.56-1.12-4.43-6.14Z" />
-      </svg>
-    );
-  }
-
-  if (id === 'npm') {
-    return (
-      <svg aria-hidden className="size-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M2 8v8h10v2h10V8H2Zm2 2h6v4H4v-4Zm8 0h4v6h-4v-6Zm6 0h2v6h-2v-6Z" />
-      </svg>
-    );
-  }
-
-  if (id === 'hackernoon') {
-    return (
-      <svg aria-hidden className="size-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M4 4h3.3l4.4 7.3V4H15v16h-3.2L7.2 12.4V20H4V4Zm12.6 0H20c0 5-3.1 8-7.8 8V8.8c2.5-.2 4.4-1.8 4.4-4.8Z" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg aria-hidden className="size-4" fill="none" viewBox="0 0 24 24">
-      <path
-        d="M4 7.5 12 13l8-5.5M5 18h14a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-      />
-    </svg>
-  );
+const applyDocumentLanguage = ({ language }: ChangeLanguageInputType) => {
+  document.documentElement.setAttribute('lang', language);
+  document.documentElement.setAttribute('dir', language === 'fa' ? 'rtl' : 'ltr');
 };
 
 /**
@@ -117,32 +51,39 @@ export const AppHeader = ({
   const location = useLocation();
   const [theme, setTheme] = useState<ThemeModeType>(initialPreferences.theme);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [pinnedLabelId, setPinnedLabelId] = useState<string | null>(null);
   const languageMenuRef = useRef<HTMLElement | null>(null);
   const controlsRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+    const hasThemeCookie = document.cookie
+      .split(';')
+      .some((item) => item.trim().startsWith(`${THEME_STORAGE_KEY}=`));
 
-  useEffect(() => {
-    const themeFromDom = document.documentElement.getAttribute('data-theme');
-
-    if (themeFromDom === 'light' || themeFromDom === 'dark') {
-      setTheme(themeFromDom);
+    if (hasThemeCookie || typeof window.matchMedia !== 'function') {
+      return;
     }
+
+    const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleThemeChange = (event: MediaQueryListEvent | MediaQueryList): void => {
+      const nextTheme = event.matches ? 'dark' : 'light';
+
+      applyDocumentTheme({ theme: nextTheme });
+      setTheme(nextTheme);
+    };
+
+    handleThemeChange(mediaQueryList);
+    mediaQueryList.addEventListener('change', handleThemeChange);
+
+    return () => {
+      mediaQueryList.removeEventListener('change', handleThemeChange);
+    };
   }, []);
 
   useEffect(() => {
-    if (initialPreferences.language !== currentLanguage) {
-      void i18n.changeLanguage(initialPreferences.language);
-    }
-  }, [currentLanguage, i18n, initialPreferences.language]);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('lang', currentLanguage);
-    document.documentElement.setAttribute('dir', currentLanguage === 'fa' ? 'rtl' : 'ltr');
-  }, [currentLanguage]);
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent): void => {
@@ -163,6 +104,7 @@ export const AppHeader = ({
   }, []);
 
   const handleLanguageChange = ({ language }: ChangeLanguageInputType): void => {
+    applyDocumentLanguage({ language });
     void preferencesFetcher.submit(
       { intent: 'set-language', language },
       { action: ROUTE_PATHS.HOME, method: 'post' },
@@ -173,6 +115,7 @@ export const AppHeader = ({
   const handleThemeToggle = (): void => {
     const nextTheme = resolveNextTheme({ currentTheme: theme });
 
+    applyDocumentTheme({ theme: nextTheme });
     setTheme(nextTheme);
     void preferencesFetcher.submit(
       { intent: 'set-theme', theme: nextTheme },
@@ -201,6 +144,7 @@ export const AppHeader = ({
     'pointer-events-none absolute left-1/2 -top-7 -translate-x-1/2 whitespace-nowrap rounded-full border border-(--card-border) bg-(--card-bg) px-2 py-0.5 text-[11px] font-medium tracking-wide text-(--foreground) shadow-sm transition duration-300';
   const navPillClassName =
     'h-2.5 w-24 rounded-full border border-(--card-border) transition md:w-28';
+  const mobileMenuLabel = isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu');
 
   return (
     <Box as="header" className="mx-auto w-full max-w-6xl px-6 pt-10 md:px-10">
@@ -215,150 +159,90 @@ export const AppHeader = ({
       >
         <Box
           as="nav"
-          className="flex min-h-10 items-end justify-center gap-1.5 overflow-visible pb-1 md:gap-2.5"
+          aria-label={t('nav.label')}
+          className="hidden min-h-10 items-end justify-center gap-1.5 overflow-visible pb-1 md:flex md:gap-2.5"
           role="navigation"
         >
-          <NavLink
-            aria-label={t('nav.home')}
-            className="group relative inline-flex shrink-0 items-center"
-            end
-            to={ROUTE_PATHS.HOME}
-          >
-            {({ isActive }) => (
-              <>
-                <Text
-                  as="span"
-                  className={cn(
-                    navLabelClassName,
-                    isActive
-                      ? 'opacity-100 -translate-y-0.5'
-                      : 'opacity-0 translate-y-1 group-hover:opacity-100 group-hover:-translate-y-0.5 group-focus-within:opacity-100 group-focus-within:-translate-y-0.5',
-                  )}
-                >
-                  {t('nav.home')}
-                </Text>
-                <Box
-                  as="span"
-                  className={cn(
-                    navPillClassName,
-                    isActive
-                      ? 'border-(--foreground) bg-(--foreground)'
-                      : 'bg-transparent group-hover:border-(--accent)',
-                  )}
-                />
-              </>
-            )}
-          </NavLink>
+          {NAV_ITEMS.map((item) => {
+            const label = t(`nav.${item.key}`);
 
-          <NavLink
-            aria-label={t('nav.about')}
-            className="group relative inline-flex shrink-0 items-center"
-            to={ROUTE_PATHS.ABOUT}
-          >
-            {({ isActive }) => (
-              <>
-                <Text
-                  as="span"
-                  className={cn(
-                    navLabelClassName,
-                    isActive
-                      ? 'opacity-100 -translate-y-0.5'
-                      : 'opacity-0 translate-y-1 group-hover:opacity-100 group-hover:-translate-y-0.5 group-focus-within:opacity-100 group-focus-within:-translate-y-0.5',
-                  )}
-                >
-                  {t('nav.about')}
-                </Text>
-                <Box
-                  as="span"
-                  className={cn(
-                    navPillClassName,
-                    isActive
-                      ? 'border-(--foreground) bg-(--foreground)'
-                      : 'bg-transparent group-hover:border-(--accent)',
-                  )}
-                />
-              </>
-            )}
-          </NavLink>
-
-          <NavLink
-            aria-label={t('nav.playground')}
-            className="group relative inline-flex shrink-0 items-center"
-            to={ROUTE_PATHS.PLAYGROUND}
-          >
-            {({ isActive }) => (
-              <>
-                <Text
-                  as="span"
-                  className={cn(
-                    navLabelClassName,
-                    isActive
-                      ? 'opacity-100 -translate-y-0.5'
-                      : 'opacity-0 translate-y-1 group-hover:opacity-100 group-hover:-translate-y-0.5 group-focus-within:opacity-100 group-focus-within:-translate-y-0.5',
-                  )}
-                >
-                  {t('nav.playground')}
-                </Text>
-                <Box
-                  as="span"
-                  className={cn(
-                    navPillClassName,
-                    isActive
-                      ? 'border-(--foreground) bg-(--foreground)'
-                      : 'bg-transparent group-hover:border-(--accent)',
-                  )}
-                />
-              </>
-            )}
-          </NavLink>
-
-          <NavLink
-            aria-label={t('nav.tools')}
-            className="group relative inline-flex shrink-0 items-center"
-            prefetch="intent"
-            to={ROUTE_PATHS.TOOLS}
-          >
-            {({ isActive }) => (
-              <>
-                <Text
-                  as="span"
-                  className={cn(
-                    navLabelClassName,
-                    isActive
-                      ? 'opacity-100 -translate-y-0.5'
-                      : 'opacity-0 translate-y-1 group-hover:opacity-100 group-hover:-translate-y-0.5 group-focus-within:opacity-100 group-focus-within:-translate-y-0.5',
-                  )}
-                >
-                  {t('nav.tools')}
-                </Text>
-                <Box
-                  as="span"
-                  className={cn(
-                    navPillClassName,
-                    isActive
-                      ? 'border-(--foreground) bg-(--foreground)'
-                      : 'bg-transparent group-hover:border-(--accent)',
-                  )}
-                />
-              </>
-            )}
-          </NavLink>
+            return (
+              <NavLink
+                aria-label={label}
+                className="group relative inline-flex shrink-0 items-center"
+                end={item.end}
+                key={item.key}
+                prefetch={item.prefetch}
+                to={item.to}
+              >
+                {({ isActive }) => (
+                  <>
+                    <Text
+                      as="span"
+                      className={cn(
+                        navLabelClassName,
+                        isActive
+                          ? 'opacity-100 -translate-y-0.5'
+                          : 'opacity-0 translate-y-1 group-hover:opacity-100 group-hover:-translate-y-0.5 group-focus-within:opacity-100 group-focus-within:-translate-y-0.5',
+                      )}
+                    >
+                      {label}
+                    </Text>
+                    <Box
+                      as="span"
+                      className={cn(
+                        navPillClassName,
+                        isActive
+                          ? 'border-(--foreground) bg-(--foreground)'
+                          : 'bg-transparent group-hover:border-(--accent)',
+                      )}
+                    />
+                  </>
+                )}
+              </NavLink>
+            );
+          })}
         </Box>
       </Box>
 
       <Box
-        className={cn('flex items-center justify-between', hidePageNavigation ? 'mt-1' : 'mt-4')}
+        className={cn(
+          'flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between',
+          hidePageNavigation ? 'mt-1' : 'mt-4',
+        )}
       >
-        <Link
-          className="font-medium tracking-tight"
-          onClick={handleBrandClick}
-          to={ROUTE_PATHS.HOME}
-        >
-          {t('brand')}
-        </Link>
+        <Box className="flex w-full items-center justify-between gap-3 sm:w-auto sm:justify-start">
+          <Link
+            className="font-medium tracking-tight"
+            onClick={handleBrandClick}
+            to={ROUTE_PATHS.HOME}
+          >
+            {t('brand')}
+          </Link>
 
-        <Box className="flex items-center gap-2 md:gap-3" ref={controlsRef}>
-          <Box className="flex items-center gap-1.5">
+          {!hidePageNavigation ? (
+            <Button
+              aria-controls="mobile-primary-navigation"
+              aria-expanded={isMobileMenuOpen}
+              aria-label={mobileMenuLabel}
+              className="inline-flex h-9 items-center gap-2 rounded-full border border-(--card-border) bg-(--card-bg) px-3 text-xs font-medium text-(--foreground) shadow-sm sm:hidden"
+              onClick={() => {
+                setIsMobileMenuOpen((currentValue) => !currentValue);
+              }}
+              size="none"
+              variant="unstyled"
+            >
+              <MobileMenuIcon isOpen={isMobileMenuOpen} />
+              <Text as="span">{mobileMenuLabel}</Text>
+            </Button>
+          ) : null}
+        </Box>
+
+        <Box
+          className="flex w-full flex-wrap items-center justify-end gap-2 md:w-auto md:flex-nowrap md:gap-3"
+          ref={controlsRef}
+        >
+          <Box className="flex flex-wrap items-center justify-end gap-1.5">
             {SOCIAL_LINKS.map((item) => {
               const tooltipId = `social-${item.id}`;
               const isPinned = pinnedLabelId === tooltipId;
@@ -466,6 +350,53 @@ export const AppHeader = ({
           </Box>
         </Box>
       </Box>
+
+      {!hidePageNavigation ? (
+        <Box
+          className={cn(
+            'overflow-hidden transition-all duration-300 sm:hidden',
+            isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0',
+          )}
+        >
+          <Box
+            as="nav"
+            aria-label={t('nav.label')}
+            className="mt-4 rounded-3xl border border-(--card-border) bg-(--card-bg) px-4 py-3 shadow-sm backdrop-blur-sm"
+            id="mobile-primary-navigation"
+            role="navigation"
+          >
+            <Box className="flex flex-col">
+              {NAV_ITEMS.map((item) => {
+                const label = t(`nav.${item.key}`);
+
+                return (
+                  <NavLink end={item.end} key={item.key} prefetch={item.prefetch} to={item.to}>
+                    {({ isActive }) => (
+                      <Box
+                        className={cn(
+                          'flex items-center justify-between border-b border-(--card-border)/70 py-3 text-sm transition last:border-b-0',
+                          isActive ? 'text-(--foreground)' : 'text-(--muted-foreground)',
+                        )}
+                      >
+                        <Text as="span" weight="medium">
+                          {label}
+                        </Text>
+                        <Box
+                          as="span"
+                          className={cn(
+                            'h-1.5 w-6 rounded-full transition',
+                            isActive ? 'bg-(--foreground)' : 'bg-(--card-border)',
+                          )}
+                        />
+                      </Box>
+                    )}
+                  </NavLink>
+                );
+              })}
+            </Box>
+          </Box>
+        </Box>
+      ) : null}
     </Box>
   );
 };

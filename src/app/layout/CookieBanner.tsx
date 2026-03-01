@@ -1,9 +1,8 @@
+import { Box } from '@components/Box';
+import { Button } from '@components/Button';
+import { Text } from '@components/Text';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
 import { useEffect, useState } from 'react';
-
-import { Box } from '../../components/Box';
-import { Button } from '../../components/Button';
-import { Text } from '../../components/Text';
-import { useAppTranslation } from '../../i18n/use-app-translation.hook';
 import { COOKIE_BANNER_STORAGE_KEY } from './cookie-banner.constants';
 
 /**

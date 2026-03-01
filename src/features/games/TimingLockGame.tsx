@@ -1,9 +1,9 @@
+import { Box } from '@components/Box';
+import { Button } from '@components/Button';
+import { Select } from '@components/Select';
+import { Text } from '@components/Text';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
 import { useEffect, useMemo, useState } from 'react';
-import { Box } from '../../components/Box';
-import { Button } from '../../components/Button';
-import { Select } from '../../components/Select';
-import { Text } from '../../components/Text';
-import { useAppTranslation } from '../../i18n/use-app-translation.hook';
 import { TIMING_DIFFICULTY_CONFIG, TIMING_DURATION_SECONDS } from './timing-lock-game.constants';
 import type { TimingDifficultyType, TimingTargetType } from './timing-lock-game.type';
 import { createTargetSegment } from './timing-lock-game.utils';

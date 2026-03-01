@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react';
-
 import type { DailyQuoteStateType, UseDailyQuoteInputType } from './quote.type';
 import { getTodayKey, readCachedQuote, writeCachedQuote } from './quote.utils';
 
 /**
  * Resolves the daily quote state from route data and local cache without client-side API requests.
  */
-export const useDailyQuote = ({
-  language,
-  initialValue,
-}: UseDailyQuoteInputType): DailyQuoteStateType => {
+export const useDailyQuote = ({ initialValue }: UseDailyQuoteInputType): DailyQuoteStateType => {
   const [state, setState] = useState<DailyQuoteStateType>(() => {
     if (initialValue !== undefined && initialValue !== null) {
       return {
@@ -30,13 +26,13 @@ export const useDailyQuote = ({
     const dateKey = getTodayKey();
 
     if (initialValue !== undefined && initialValue !== null) {
-      writeCachedQuote({ dateKey, language, value: initialValue });
+      writeCachedQuote({ dateKey, value: initialValue });
       setState({ hasError: false, isLoading: false, value: initialValue });
 
       return;
     }
 
-    const cachedQuote = readCachedQuote({ dateKey, language });
+    const cachedQuote = readCachedQuote({ dateKey });
 
     if (cachedQuote !== null) {
       setState({ hasError: false, isLoading: false, value: cachedQuote });
@@ -44,7 +40,7 @@ export const useDailyQuote = ({
     }
 
     setState({ hasError: true, isLoading: false, value: null });
-  }, [initialValue, language]);
+  }, [initialValue]);
 
   return state;
 };

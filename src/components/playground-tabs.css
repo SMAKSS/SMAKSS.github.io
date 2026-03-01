@@ -1,0 +1,8 @@
+.playground-tabs-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.playground-tabs-scroll::-webkit-scrollbar {
+  display: none;
+}

@@ -1,5 +1,5 @@
-import { ErrorState } from '../features/errors/ErrorState';
-import { useAppTranslation } from '../i18n/use-app-translation.hook';
+import { ErrorState } from '@features/errors/ErrorState';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
 
 /**
  * Builds SEO metadata for the not-found route.

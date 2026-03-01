@@ -1,3 +1,13 @@
+import type { PreferencesType, RootLayoutPropsType, RootRoutePropsType } from '@/root.type';
+import { resolveRequestPreferences, serializeCookie } from '@/root.utils';
+import stylesheet from '@/styles/globals.css?url';
+import { AppLayout } from '@app/layout/AppLayout';
+import { GtmNoScript, GtmScript } from '@components/Gtm';
+import { DEFAULT_LANGUAGE, LANGUAGE_STORAGE_KEY } from '@constants/language.constants';
+import { ErrorState } from '@features/errors/ErrorState';
+import { i18n } from '@i18n/index';
+import { useAppTranslation } from '@i18n/use-app-translation.hook';
+import { THEME_STORAGE_KEY } from '@theme/theme.constants';
 import {
   type ActionFunctionArgs,
   isRouteErrorResponse,
@@ -9,22 +19,6 @@ import {
   useRouteError,
   useRouteLoaderData,
 } from 'react-router';
-import { AppLayout } from './app/layout/AppLayout';
-import { GtmNoScript, GtmScript } from './components/Gtm';
-import { DEFAULT_LANGUAGE, LANGUAGE_STORAGE_KEY } from './constants/language.constants';
-import { ErrorState } from './features/errors/ErrorState';
-import { i18n } from './i18n';
-import { useAppTranslation } from './i18n/use-app-translation.hook';
-import type { PreferencesType, RootLayoutPropsType, RootRoutePropsType } from './root.type';
-import {
-  parseCookies,
-  resolveLanguageFromCookie,
-  resolveThemeFromRequest,
-  serializeCookie,
-} from './root.utils';
-import stylesheet from './styles/globals.css?url';
-import { DEFAULT_THEME, THEME_STORAGE_KEY } from './theme/theme.constants';
-import { resolveLanguageFromHeader } from './utils/language.utils';
 
 const initialThemeScript = `
 (() => {
@@ -39,29 +33,48 @@ const initialThemeScript = `
 })();
 `;
 
+const initialThemeStyle = `
+:root {
+  color-scheme: light dark;
+  --initial-background: #ffffff;
+  --initial-foreground: #18243b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --initial-background: #18243b;
+    --initial-foreground: #f2f5fb;
+  }
+}
+
+:root[data-theme='dark'] {
+  --initial-background: #18243b;
+  --initial-foreground: #f2f5fb;
+}
+
+:root[data-theme='light'] {
+  --initial-background: #ffffff;
+  --initial-foreground: #18243b;
+}
+
+html,
+body {
+  background: var(--initial-background);
+  color: var(--initial-foreground);
+}
+`;
+
 /**
  * Resolves root-level language/theme preferences and syncs i18n state.
  */
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const cookieValues = parseCookies({ cookieHeader: request.headers.get('cookie') });
-  const cookieLanguage = resolveLanguageFromCookie({
-    value: cookieValues[LANGUAGE_STORAGE_KEY],
-  });
-  const resolvedLanguage =
-    cookieLanguage ??
-    resolveLanguageFromHeader({ acceptLanguage: request.headers.get('accept-language') });
-  const resolvedTheme = resolveThemeFromRequest({
-    cookieValue: cookieValues[THEME_STORAGE_KEY],
-    prefersColorSchemeHeader: request.headers.get('sec-ch-prefers-color-scheme'),
-  });
+  const { documentTheme, preferences } = resolveRequestPreferences({ request });
 
-  await i18n.changeLanguage(resolvedLanguage);
+  await i18n.changeLanguage(preferences.language);
 
   return {
-    preferences: {
-      language: resolvedLanguage,
-      theme: resolvedTheme,
-    } satisfies PreferencesType,
+    preferences: preferences satisfies PreferencesType,
+    documentTheme,
   };
 };
 
@@ -93,6 +106,17 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   }
 
   return new Response(null, { headers, status: 204 });
+};
+
+/**
+ * Requests the browser color-scheme client hint for server-side theme resolution.
+ */
+export const headers = () => {
+  return {
+    'Accept-CH': 'Sec-CH-Prefers-Color-Scheme',
+    'Critical-CH': 'Sec-CH-Prefers-Color-Scheme',
+    Vary: 'Sec-CH-Prefers-Color-Scheme',
+  };
 };
 
 /**
@@ -133,7 +157,7 @@ export const meta = () => {
 export const Layout = ({ children }: RootLayoutPropsType) => {
   const loaderData = useRouteLoaderData<typeof loader>('root');
   const language = loaderData?.preferences.language ?? DEFAULT_LANGUAGE;
-  const theme = loaderData?.preferences.theme ?? DEFAULT_THEME;
+  const theme = loaderData?.documentTheme;
   const gtmContainerId =
     typeof import.meta.env.VITE_GTM_ID === 'string' ? import.meta.env.VITE_GTM_ID : '';
   const hasGtm = import.meta.env.PROD && gtmContainerId !== '';
@@ -148,7 +172,9 @@ export const Layout = ({ children }: RootLayoutPropsType) => {
       <head>
         <meta charSet="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <script dangerouslySetInnerHTML={{ __html: initialThemeScript }} />
+        <meta content="light dark" name="color-scheme" />
+        <style dangerouslySetInnerHTML={{ __html: initialThemeStyle }} suppressHydrationWarning />
+        <script dangerouslySetInnerHTML={{ __html: initialThemeScript }} suppressHydrationWarning />
         {hasGtm ? <GtmScript containerId={gtmContainerId} /> : null}
         <Meta />
         <Links />

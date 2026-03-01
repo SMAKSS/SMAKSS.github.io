@@ -1,5 +1,3 @@
-import type { LanguageCodeType } from '../../types/language.type';
-
 /**
  * Normalized quote payload used in UI and cache layers.
  */
@@ -41,10 +39,6 @@ export type DailyQuoteStateType = {
  */
 export type FetchQuoteInputType = {
   /**
-   * Current language used for cache partitioning.
-   */
-  language: LanguageCodeType;
-  /**
    * Optional abort signal for request cancellation.
    */
   signal?: AbortSignal;
@@ -59,23 +53,9 @@ export type QuoteStoragePayloadType = {
    */
   dateKey: string;
   /**
-   * Language attached to stored quote value.
-   */
-  language: LanguageCodeType;
-  /**
    * Stored quote value.
    */
   value: DailyQuoteType;
-};
-
-/**
- * Language input payload for quote helpers.
- */
-export type QuoteLanguageInputType = {
-  /**
-   * Current language code.
-   */
-  language: LanguageCodeType;
 };
 
 /**
@@ -86,24 +66,6 @@ export type ReadCachedQuoteInputType = {
    * Date key in YYYY-MM-DD format.
    */
   dateKey: string;
-  /**
-   * Language attached to the cached value.
-   */
-  language: LanguageCodeType;
-};
-
-/**
- * In-memory quote cache entry for a single language/day.
- */
-export type DailyQuoteCacheEntryType = {
-  /**
-   * Date key in YYYY-MM-DD format.
-   */
-  dateKey: string;
-  /**
-   * Cached quote value.
-   */
-  value: DailyQuoteType;
 };
 
 /**
@@ -114,10 +76,6 @@ export type UseDailyQuoteInputType = {
    * Route-provided quote value, if already available.
    */
   initialValue?: DailyQuoteType | null;
-  /**
-   * Current language used for local cache partitioning.
-   */
-  language: LanguageCodeType;
 };
 
 /**

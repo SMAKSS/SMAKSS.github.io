@@ -1,5 +1,5 @@
+import { cn } from '@utils/cn.utils';
 import { createElement } from 'react';
-import { cn } from '../utils/cn.utils';
 import {
   TEXT_BASE_CLASSNAME,
   TEXT_DECORATION_CLASSNAMES,

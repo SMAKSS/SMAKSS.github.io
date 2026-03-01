@@ -1,4 +1,4 @@
-import type { LanguageCodeType } from '../types/language.type';
+import type { LanguageCodeType } from '@/types/language.type';
 
 export const DEFAULT_LANGUAGE: LanguageCodeType = 'en';
 

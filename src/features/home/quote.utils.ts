@@ -13,12 +13,9 @@ export const getTodayKey = (): string => {
 };
 
 /**
- * Reads a cached quote value for a specific date/language pair.
+ * Reads a cached quote value for the current date.
  */
-export const readCachedQuote = ({
-  dateKey,
-  language,
-}: ReadCachedQuoteInputType): DailyQuoteType | null => {
+export const readCachedQuote = ({ dateKey }: ReadCachedQuoteInputType): DailyQuoteType | null => {
   const storedValue = window.localStorage.getItem(QUOTE_STORAGE_KEY);
 
   if (storedValue === null) {
@@ -28,7 +25,7 @@ export const readCachedQuote = ({
   try {
     const parsedValue = JSON.parse(storedValue) as QuoteStoragePayloadType;
 
-    if (parsedValue.dateKey !== dateKey || parsedValue.language !== language) {
+    if (parsedValue.dateKey !== dateKey) {
       return null;
     }
 
@@ -39,8 +36,8 @@ export const readCachedQuote = ({
 };
 
 /**
- * Writes a quote value into local storage for the current date/language.
+ * Writes a quote value into local storage for the current date.
  */
-export const writeCachedQuote = ({ dateKey, language, value }: QuoteStoragePayloadType): void => {
-  window.localStorage.setItem(QUOTE_STORAGE_KEY, JSON.stringify({ dateKey, language, value }));
+export const writeCachedQuote = ({ dateKey, value }: QuoteStoragePayloadType): void => {
+  window.localStorage.setItem(QUOTE_STORAGE_KEY, JSON.stringify({ dateKey, value }));
 };

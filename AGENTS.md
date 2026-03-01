@@ -1,5 +1,8 @@
 # AGENTS Instructions
 
+This is the canonical instruction source for repository-specific coding agents and AI assistants.
+Any duplicated instruction entry points, including GitHub Copilot instruction files, should defer to this file instead of restating the rules.
+
 These rules apply to all coding agents working in this repository.
 
 ## Stack Targets
@@ -22,6 +25,8 @@ These rules apply to all coding agents working in this repository.
 - Avoid `any`; use explicit types.
 - Add JSDoc for exported functions, constants, and types.
 - For functions with 2+ logical inputs, prefer one object input and destructure it inline.
+- Use path aliases for cross-directory imports instead of parent-relative imports.
+- Let `prettier-plugin-organize-imports` normalize import order and remove blank lines within import blocks; do not add manual sorting rules for that in ESLint.
 - Prefer reusable primitives (`Box`, `Text`, `Button`, `Input`, `Select`, shared card wrappers) over raw repeated HTML/style blocks.
 - Keep files single-purpose; extract constants/hooks/utils when logic becomes mixed.
 

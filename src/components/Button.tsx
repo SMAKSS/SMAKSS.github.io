@@ -1,4 +1,4 @@
-import { cn } from '../utils/cn.utils';
+import { cn } from '@utils/cn.utils';
 import {
   BUTTON_BASE_CLASSNAME,
   BUTTON_SIZE_CLASSNAMES,

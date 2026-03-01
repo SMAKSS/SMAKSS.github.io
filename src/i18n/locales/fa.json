@@ -1,6 +1,9 @@
 {
   "brand": "SMAKSS",
   "nav": {
+    "label": "ناوبری اصلی",
+    "openMenu": "منو",
+    "closeMenu": "بستن",
     "home": "خانه",
     "about": "درباره",
     "playground": "پلی‌گراند",
