@@ -32,17 +32,46 @@ jobs:
         env:
           REDIRECT_TARGET_URL: ${{ vars.REDIRECT_TARGET_URL }}
         run: |
-          if [ -z "$REDIRECT_TARGET_URL" ]; then
-            echo "REDIRECT_TARGET_URL is required in GitHub Actions Variables."
-            exit 1
-          fi
-
           mkdir -p pages-artifact
           cp pages-redirect/index.html pages-artifact/index.html
           cp pages-redirect/404.html pages-artifact/404.html
 
-          sed -i "s|__REDIRECT_TARGET__|$REDIRECT_TARGET_URL|g" pages-artifact/index.html
-          sed -i "s|__REDIRECT_TARGET__|$REDIRECT_TARGET_URL|g" pages-artifact/404.html
+          python3 - <<'PY'
+          import html
+          import json
+          import os
+          from pathlib import Path
+          from urllib.parse import urlsplit
+
+          target = os.environ.get("REDIRECT_TARGET_URL", "")
+          parsed_target = urlsplit(target)
+
+          if (
+              parsed_target.scheme != "https"
+              or not parsed_target.hostname
+              or parsed_target.username is not None
+              or parsed_target.password is not None
+              or any(ord(character) < 0x20 for character in target)
+          ):
+              raise SystemExit("REDIRECT_TARGET_URL must be a valid HTTPS URL without credentials or control characters.")
+
+          replacements = {
+              "__REDIRECT_TARGET_ATTR__": html.escape(target, quote=True),
+              "__REDIRECT_TARGET_JS__": json.dumps(target)
+              .replace("<", "\\u003c")
+              .replace(">", "\\u003e")
+              .replace("&", "\\u0026"),
+          }
+
+          for filename in ("index.html", "404.html"):
+              page_path = Path("pages-artifact") / filename
+              page = page_path.read_text(encoding="utf-8")
+              for placeholder, value in replacements.items():
+                  page = page.replace(placeholder, value)
+              if "__REDIRECT_TARGET_" in page:
+                  raise SystemExit(f"Unexpanded redirect target placeholder in {filename}.")
+              page_path.write_text(page, encoding="utf-8")
+          PY
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

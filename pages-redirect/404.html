@@ -6,7 +6,7 @@
     <title>Redirecting...</title>
     <script>
       (function redirect() {
-        var targetBase = '__REDIRECT_TARGET__';
+        var targetBase = __REDIRECT_TARGET_JS__;
         var target =
           targetBase + window.location.pathname + window.location.search + window.location.hash;
         window.location.replace(target);
@@ -14,6 +14,6 @@
     </script>
   </head>
   <body>
-    Redirecting to <a href="__REDIRECT_TARGET__">the new website</a>...
+    Redirecting to <a href="__REDIRECT_TARGET_ATTR__">the new website</a>...
   </body>
 </html>

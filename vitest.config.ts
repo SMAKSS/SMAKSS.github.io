@@ -11,6 +11,11 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'html'],
     },
+    environmentOptions: {
+      jsdom: {
+        url: 'http://localhost',
+      },
+    },
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
   },
 });
