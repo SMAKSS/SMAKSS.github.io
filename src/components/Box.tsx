@@ -1,5 +1,5 @@
 import { cn } from '@utils/cn.utils';
-import { createElement, forwardRef, type Ref } from 'react';
+import { createElement, forwardRef } from 'react';
 import {
   BOX_BACKGROUND_CLASSNAMES,
   BOX_BORDER_CLASSNAMES,
@@ -23,7 +23,7 @@ export const Box = forwardRef<HTMLElement, BoxPropsType>((props: BoxPropsType, r
       className,
     ),
     ...rest,
-    ref: ref as Ref<HTMLElement>,
+    ref,
   });
 });
 

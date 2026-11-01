@@ -38,7 +38,7 @@ void i18n.use(initReactI18next).init({
   lng: getInitialLanguage(),
   resources,
   load: 'languageOnly',
-  initImmediate: false,
+  initAsync: false,
   react: {
     useSuspense: false,
   },

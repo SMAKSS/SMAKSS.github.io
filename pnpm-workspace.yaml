@@ -2,3 +2,7 @@ onlyBuiltDependencies:
   - esbuild
   - sharp
   - workerd
+
+peerDependencyRules:
+  allowedVersions:
+    'wrangler>@cloudflare/workers-types': ^4.20260702.1
