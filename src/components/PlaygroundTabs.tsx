@@ -7,6 +7,7 @@ import type {
   PlaygroundTabsPropsType,
 } from '@components/playground-tabs.type';
 import { cn } from '@utils/cn.utils';
+import { useEffect, useRef } from 'react';
 import './playground-tabs.css';
 
 /**
@@ -29,6 +30,8 @@ export const PlaygroundTabs = ({
   items,
   onSelect,
 }: PlaygroundTabsPropsType): PlaygroundTabsOutputType => {
+  const tabListRef = useRef<HTMLElement>(null);
+
   /**
    * Applies roving-tabindex keyboard navigation across the tab strip.
    */
@@ -62,11 +65,64 @@ export const PlaygroundTabs = ({
     }
   };
 
+  useEffect(() => {
+    const tabList = tabListRef.current;
+
+    if (tabList === null) {
+      return;
+    }
+
+    const handleWheel = (event: WheelEvent): void => {
+      if (event.ctrlKey || event.deltaY === 0 || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+        return;
+      }
+
+      const tabListStyle = getComputedStyle(tabList);
+      const lineHeight = Number.parseFloat(tabListStyle.lineHeight);
+      const scrollMultiplier =
+        event.deltaMode === window.WheelEvent.DOM_DELTA_LINE
+          ? lineHeight || 16
+          : event.deltaMode === window.WheelEvent.DOM_DELTA_PAGE
+            ? tabList.clientWidth
+            : 1;
+      const verticalScrollDelta = event.deltaY * scrollMultiplier;
+      const scrollDistance = tabList.scrollWidth - tabList.clientWidth;
+
+      if (scrollDistance <= 0) {
+        return;
+      }
+
+      const isRightToLeft = tabListStyle.direction === 'rtl';
+      const scrollDelta = isRightToLeft ? -verticalScrollDelta : verticalScrollDelta;
+      const minScrollOffset = isRightToLeft ? -scrollDistance : 0;
+      const maxScrollOffset = isRightToLeft ? 0 : scrollDistance;
+      const nextScrollOffset = Math.max(
+        minScrollOffset,
+        Math.min(maxScrollOffset, tabList.scrollLeft + scrollDelta),
+      );
+
+      if (nextScrollOffset === tabList.scrollLeft) {
+        return;
+      }
+
+      // Let the page resume scrolling when the tab strip reaches either edge.
+      event.preventDefault();
+      tabList.scrollLeft = nextScrollOffset;
+    };
+
+    tabList.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      tabList.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
+
   return (
     <Box
       as="div"
       aria-orientation="horizontal"
-      className="playground-tabs-scroll -mx-2 mb-2 overflow-x-auto px-2 touch-pan-x"
+      className="playground-tabs-scroll -mx-2 mb-2 overflow-x-auto px-2"
+      ref={tabListRef}
       role="tablist"
     >
       <Box
