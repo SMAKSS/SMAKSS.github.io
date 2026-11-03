@@ -1,6 +1,7 @@
 .playground-tabs-scroll {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  touch-action: pan-x pan-y pinch-zoom;
 }
 
 .playground-tabs-scroll::-webkit-scrollbar {
