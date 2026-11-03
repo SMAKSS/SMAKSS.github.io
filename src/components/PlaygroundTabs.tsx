@@ -7,6 +7,7 @@ import type {
   PlaygroundTabsPropsType,
 } from '@components/playground-tabs.type';
 import { cn } from '@utils/cn.utils';
+import type { WheelEvent } from 'react';
 import './playground-tabs.css';
 
 /**
@@ -62,11 +63,41 @@ export const PlaygroundTabs = ({
     }
   };
 
+  const handleWheel = (event: WheelEvent<HTMLElement>): void => {
+    if (event.ctrlKey || event.deltaY === 0 || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+      return;
+    }
+
+    const tabList = event.currentTarget;
+    const scrollDistance = tabList.scrollWidth - tabList.clientWidth;
+
+    if (scrollDistance <= 0) {
+      return;
+    }
+
+    const isRightToLeft = getComputedStyle(tabList).direction === 'rtl';
+    const scrollDelta = isRightToLeft ? -event.deltaY : event.deltaY;
+    const minScrollOffset = isRightToLeft ? -scrollDistance : 0;
+    const maxScrollOffset = isRightToLeft ? 0 : scrollDistance;
+    const nextScrollOffset = Math.max(
+      minScrollOffset,
+      Math.min(maxScrollOffset, tabList.scrollLeft + scrollDelta),
+    );
+
+    if (nextScrollOffset === tabList.scrollLeft) {
+      return;
+    }
+
+    event.preventDefault();
+    tabList.scrollLeft = nextScrollOffset;
+  };
+
   return (
     <Box
       as="div"
       aria-orientation="horizontal"
-      className="playground-tabs-scroll -mx-2 mb-2 overflow-x-auto px-2 touch-pan-x"
+      className="playground-tabs-scroll -mx-2 mb-2 overflow-x-auto px-2"
+      onWheel={handleWheel}
       role="tablist"
     >
       <Box
