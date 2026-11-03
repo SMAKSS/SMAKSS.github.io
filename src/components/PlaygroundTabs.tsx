@@ -69,14 +69,23 @@ export const PlaygroundTabs = ({
     }
 
     const tabList = event.currentTarget;
+    const tabListStyle = getComputedStyle(tabList);
+    const lineHeight = Number.parseFloat(tabListStyle.lineHeight);
+    const scrollMultiplier =
+      event.deltaMode === window.WheelEvent.DOM_DELTA_LINE
+        ? lineHeight || 16
+        : event.deltaMode === window.WheelEvent.DOM_DELTA_PAGE
+          ? tabList.clientWidth
+          : 1;
+    const verticalScrollDelta = event.deltaY * scrollMultiplier;
     const scrollDistance = tabList.scrollWidth - tabList.clientWidth;
 
     if (scrollDistance <= 0) {
       return;
     }
 
-    const isRightToLeft = getComputedStyle(tabList).direction === 'rtl';
-    const scrollDelta = isRightToLeft ? -event.deltaY : event.deltaY;
+    const isRightToLeft = tabListStyle.direction === 'rtl';
+    const scrollDelta = isRightToLeft ? -verticalScrollDelta : verticalScrollDelta;
     const minScrollOffset = isRightToLeft ? -scrollDistance : 0;
     const maxScrollOffset = isRightToLeft ? 0 : scrollDistance;
     const nextScrollOffset = Math.max(
