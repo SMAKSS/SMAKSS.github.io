@@ -88,6 +88,7 @@ export const PlaygroundTabs = ({
       return;
     }
 
+    event.preventDefault();
     tabList.scrollLeft = nextScrollOffset;
   };
 
