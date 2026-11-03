@@ -105,11 +105,12 @@ export const PlaygroundTabs = ({
         return;
       }
 
-      // Keep native page scrolling active while the tab strip follows the wheel.
+      // Let the page resume scrolling when the tab strip reaches either edge.
+      event.preventDefault();
       tabList.scrollLeft = nextScrollOffset;
     };
 
-    tabList.addEventListener('wheel', handleWheel, { passive: true });
+    tabList.addEventListener('wheel', handleWheel, { passive: false });
 
     return () => {
       tabList.removeEventListener('wheel', handleWheel);
