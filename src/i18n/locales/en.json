@@ -33,7 +33,7 @@
   "hero": {
     "intro": "Hey, I'm",
     "name": "Max",
-    "subtitle": "Software Engineer — Frontend Platforms & Web Infrastructure",
+    "subtitle": "Software Engineer — Frontend Platforms, Web Infrastructure & Product Engineering",
     "highlights": ["Frontend platforms", "Web infrastructure", "Developer tooling"],
     "primaryCta": "Explore playground",
     "secondaryCta": "Read about me",
@@ -111,6 +111,26 @@
             "Technical deep dives"
           ]
         }
+      }
+    },
+    "eyebrow": "SOFTWARE ENGINEER · BUILDER · CURIOUS HUMAN",
+    "statement": "Good software goes deeper than the screen.",
+    "description": "I build frontend platforms and web infrastructure that help people and products work better together.",
+    "expertiseLabel": "Areas of focus",
+    "exploreTitle": "Explore",
+    "exploreDescription": "Practical utilities and interactive experiments.",
+    "system": {
+      "description": "An illustration of an interface connected to a platform, supported by services, data, and tooling.",
+      "interface": "Interface",
+      "platform": "Platform",
+      "services": "Services",
+      "data": "Data",
+      "tooling": "Tooling",
+      "caption": "A closer look at what sits beneath the screen.",
+      "details": {
+        "interface": "The visible layer: where people meet the product.",
+        "platform": "The foundations that connect teams, tools, and experiences.",
+        "services": "The data and services that make the experience work."
       }
     }
   },
@@ -246,7 +266,8 @@
   },
   "about": {
     "pageLabel": "About",
-    "backHome": "Back home"
+    "backHome": "Back home",
+    "contents": "On this page"
   },
   "aboutContent": {
     "name": "Max Kazemi",
@@ -370,6 +391,37 @@
       "title": "Something went wrong",
       "description": "An unexpected error occurred while loading this page. Please try again.",
       "action": "Go to home"
+    }
+  },
+  "aboutMeme": {
+    "label": "A familiar engineering story",
+    "production": {
+      "setup": "Production is on fire.",
+      "punchline": "The dashboard: all systems operational.",
+      "alt": "This Is Fine: a dog calmly sits in a room on fire."
+    },
+    "complexity": {
+      "setup": "The two buttons of system design",
+      "punchline": "Build a platform  /  Keep it simple",
+      "alt": "Two Buttons: a sweating person struggles to choose between two buttons.",
+      "platform": "Build a platform",
+      "simple": "Keep it simple"
+    },
+    "source": "View template",
+    "observability": {
+      "alt": "Surprised Pikachu looks shocked.",
+      "setup": "We ship without monitoring.",
+      "punchline": "Us when we can’t figure out what broke:"
+    },
+    "interface": {
+      "alt": "Drake rejects one choice and approves another.",
+      "setup": "Frontend is just the interface.",
+      "punchline": "Frontend is a system of its own."
+    },
+    "community": {
+      "alt": "Change My Mind: a person sits behind a sign at a table.",
+      "setup": "Sharing what you learn makes the whole community better.",
+      "punchline": "Change my mind."
     }
   }
 }

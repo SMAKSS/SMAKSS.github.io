@@ -1,4 +1,5 @@
 import type {
+  ArrowIconPropsType,
   MobileMenuIconPropsType,
   SocialIconPropsType,
   ThemeToggleIconPropsType,
@@ -112,6 +113,32 @@ export const SocialIcon = ({ id }: SocialIconPropsType) => {
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.5"
+      />
+    </svg>
+  );
+};
+
+/**
+ * Renders a consistent directional arrow for navigation and external links.
+ */
+export const ArrowIcon = ({ direction, className = 'size-4' }: ArrowIconPropsType) => {
+  const path =
+    direction === 'up-right'
+      ? 'M7 17 17 7M8 7h9v9'
+      : direction === 'down'
+        ? 'M12 5v14m-6-6 6 6 6-6'
+        : direction === 'left'
+          ? 'M19 12H5m6-6-6 6 6 6'
+          : 'M5 12h14m-6-6 6 6-6 6';
+
+  return (
+    <svg aria-hidden="true" className={className} fill="none" viewBox="0 0 24 24">
+      <path
+        d={path}
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.75"
       />
     </svg>
   );

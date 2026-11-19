@@ -353,6 +353,7 @@ export const AppHeader = ({
 
       {!hidePageNavigation ? (
         <Box
+          inert={!isMobileMenuOpen}
           className={cn(
             'overflow-hidden transition-all duration-300 sm:hidden',
             isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0',
