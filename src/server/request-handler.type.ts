@@ -93,6 +93,10 @@ export type RunServerRequestInputType<ResponseType> = {
    * Optional abort signal forwarded to the upstream fetch.
    */
   signal?: AbortSignal;
+  /**
+   * Maximum wait for the upstream operation, including reading its response.
+   */
+  timeoutMs?: number;
 };
 
 /**

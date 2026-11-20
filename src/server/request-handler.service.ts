@@ -1,5 +1,5 @@
 import { logServerError, summarizePayload } from './logger.service';
-import { DAILY_CACHE_TTL_MS } from './request-handler.constants';
+import { DAILY_CACHE_TTL_MS, DEFAULT_SERVER_REQUEST_TIMEOUT_MS } from './request-handler.constants';
 import type {
   CachedServerResponseType,
   CreateDailyCacheKeyInputType,
@@ -79,7 +79,7 @@ const extractResponseBodyPreview = async ({
 };
 
 /**
- * Executes a server request with in-memory caching and failure fallback.
+ * Executes a server request with in-memory caching, a deadline, and a failure fallback.
  */
 export const runServerRequest = async <ResponseType>({
   cacheKey,
@@ -88,6 +88,7 @@ export const runServerRequest = async <ResponseType>({
   fetcher,
   requestName,
   signal,
+  timeoutMs = DEFAULT_SERVER_REQUEST_TIMEOUT_MS,
 }: RunServerRequestInputType<ResponseType>): Promise<ResponseType> => {
   const now = Date.now();
   const cachedResponse = serverRequestCache.get(cacheKey);
@@ -96,10 +97,26 @@ export const runServerRequest = async <ResponseType>({
     return cachedResponse.value as ResponseType;
   }
 
-  try {
-    const response = await fetcher({ signal });
+  const timeoutController = new AbortController();
+  const requestSignal =
+    signal === undefined
+      ? timeoutController.signal
+      : AbortSignal.any([signal, timeoutController.signal]);
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<never>((_, reject) => {
+    timeoutId = setTimeout(() => {
+      const error = new Error('Upstream request timed out.');
+      error.name = 'TimeoutError';
+      reject(error);
+      timeoutController.abort(error);
+    }, timeoutMs);
+  });
 
-    if (signal?.aborted !== true) {
+  try {
+    requestSignal.throwIfAborted();
+    const response = await Promise.race([fetcher({ signal: requestSignal }), deadline]);
+
+    if (!requestSignal.aborted) {
       serverRequestCache.set(cacheKey, {
         expiresAt: now + cacheTtlMs,
         value: response,
@@ -108,7 +125,10 @@ export const runServerRequest = async <ResponseType>({
 
     return response;
   } catch (error) {
-    const responseBodyPreview = await extractResponseBodyPreview({ error });
+    const responseBodyPreview = await Promise.race([
+      extractResponseBodyPreview({ error }),
+      deadline,
+    ]).catch(() => null);
 
     logServerRequestError({
       cacheKey,
@@ -123,5 +143,7 @@ export const runServerRequest = async <ResponseType>({
       requestName,
     });
     return fallbackValue;
+  } finally {
+    clearTimeout(timeoutId);
   }
 };

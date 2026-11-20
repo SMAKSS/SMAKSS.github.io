@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { createServerResponseError } from './fetch-response.utils';
 import { DAILY_CACHE_TTL_MS } from './request-handler.constants';
 import { createDailyCacheKey, runServerRequest } from './request-handler.service';
+import type { ServerRequestContextType } from './request-handler.type';
 
 describe('request-handler.service', () => {
   it('createDailyCacheKey appends UTC date suffix', () => {
@@ -106,5 +107,62 @@ describe('request-handler.service', () => {
     );
 
     consoleErrorSpy.mockRestore();
+  });
+
+  it('returns a fallback at the deadline, aborts the fetch, and allows a fresh request', async () => {
+    vi.useFakeTimers();
+    const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+
+    try {
+      const options = {
+        cacheKey: 'request-handler-timeout-test',
+        fallbackValue: 'fallback',
+        requestName: 'timeout-test',
+        timeoutMs: 100,
+      };
+      const fetcher = vi.fn<({ signal }: ServerRequestContextType) => Promise<string>>(
+        () => new Promise<string>(() => undefined),
+      );
+      const pending = runServerRequest({ ...options, fetcher });
+
+      await vi.advanceTimersByTimeAsync(100);
+
+      await expect(pending).resolves.toBe('fallback');
+      expect(fetcher.mock.calls[0]?.[0].signal?.aborted).toBe(true);
+      expect(consoleErrorSpy).toHaveBeenCalledWith(
+        expect.stringMatching(/timeout-test failed/),
+        expect.objectContaining({ reason: 'timeout' }),
+      );
+      await expect(
+        runServerRequest({ ...options, fetcher: () => Promise.resolve('fresh response') }),
+      ).resolves.toBe('fresh response');
+    } finally {
+      vi.useRealTimers();
+      consoleErrorSpy.mockRestore();
+    }
+  });
+
+  it('returns the fallback when reading an upstream error body exceeds the deadline', async () => {
+    vi.useFakeTimers();
+    const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+
+    try {
+      const response = new Response(new ReadableStream(), { status: 502 });
+      const pending = runServerRequest({
+        cacheKey: 'request-handler-slow-error-body-test',
+        fallbackValue: 'fallback',
+        fetcher: () =>
+          Promise.reject(createServerResponseError({ message: 'Upstream error', response })),
+        requestName: 'slow-error-body-test',
+        timeoutMs: 100,
+      });
+
+      await vi.advanceTimersByTimeAsync(100);
+
+      await expect(pending).resolves.toBe('fallback');
+    } finally {
+      vi.useRealTimers();
+      consoleErrorSpy.mockRestore();
+    }
   });
 });
