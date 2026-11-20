@@ -1,0 +1,124 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://smakss.com/about#person",
+  "name": "Max Kazemi",
+  "alternateName": "SMAKSS",
+  "jobTitle": "Software Engineer",
+  "url": "https://smakss.com/about",
+  "description": "I’m a software engineer with more than eight years of experience building web products, SaaS and internal tools. I build frontend platforms with React and TypeScript, design reusable component systems and SDKs, and build Node.js APIs and multi-tenant integrations. My work includes partner settings and support portals, merchant tools and Shopify storefront components. I co-founded a Shopify SaaS product, led frontend modernisation and mentored engineers. I contribute to open source through npm packages and technical writing.",
+  "knowsAbout": [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Remix",
+    "Next.js",
+    "Tailwind CSS",
+    "Web Components and Shadow DOM",
+    "Frontend architecture and reusable component systems",
+    "Web accessibility and performance optimisation",
+    "Node.js",
+    "REST and GraphQL API design and integration",
+    "PostgreSQL",
+    "Multi-tenant SaaS",
+    "Shopify app development",
+    "Cloudflare Workers",
+    "SDK design and developer tooling",
+    "Monorepos, GitHub Actions and GitLab CI/CD",
+    "Automated and end-to-end testing",
+    "Storybook, Vitest and Playwright",
+    "Production observability and Datadog",
+    "AI-assisted development and code review",
+    "Technical leadership and mentoring",
+    {
+      "@type": "Thing",
+      "name": "Python",
+      "description": "Working knowledge applied to merchant data migration and backend service development."
+    },
+    {
+      "@type": "Thing",
+      "name": "Go",
+      "description": "Working knowledge from writing Go in a fintech engineering role."
+    },
+    {
+      "@type": "Thing",
+      "name": "Rust",
+      "description": "Working knowledge from writing Rust in a Shopify SaaS engineering role."
+    },
+    {
+      "@type": "Thing",
+      "name": "Docker and Kubernetes",
+      "description": "Working knowledge from managing Docker images and working with automated Kubernetes deployments."
+    },
+    {
+      "@type": "Thing",
+      "name": "MongoDB",
+      "description": "Working knowledge from fintech engineering work."
+    },
+    {
+      "@type": "Thing",
+      "name": "Power BI and Metabase",
+      "description": "Hands-on experience writing reporting queries and integrating these tools into internal and SaaS applications."
+    }
+  ],
+  "subjectOf": [
+    {
+      "@type": "CreativeWork",
+      "name": "Faster fintech partner onboarding",
+      "description": "Built a configurable Node.js and TypeScript orchestration layer that reduced partner onboarding from approximately eight weeks to two weeks."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Partner settings and support portals",
+      "description": "Built and improved React portals covering 35 partner integrations, including permissions and audit workflows. Designed shared components reused across projects and raised settings-portal test coverage from approximately 20% to 80%."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Shopify storefront and merchant tooling",
+      "description": "Co-founded a Shopify SaaS product and built a React and TypeScript widget editor with live previews and undo/redo. Used Web Components and Shadow DOM in storefront tooling to isolate merchant widgets and support theme customisation."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Cross-team frontend architecture and leadership",
+      "description": "Led a 12-person cross-functional team and onboarded and mentored two engineers. Introduced shared component and state patterns adopted by six engineers across two teams, supported by documentation, reviews and migration guidance."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Frontend modernisation and performance",
+      "description": "Led a jQuery-to-React migration into reusable monorepo packages. Combined with new end-to-end test infrastructure, the work reduced manual testing time by around 80%. Improved page-load and interaction latency by around 40%, measured with real-user monitoring and performance traces."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Python merchant migration service",
+      "description": "Built a Python import and export service that lets merchants migrate product bundles from other Shopify apps."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Engineering standards and mentoring",
+      "description": "As interim CTO of a five-person team, set developer onboarding, coding and testing standards, mentored engineers and organised work around their strengths."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "AI-assisted engineering and quality",
+      "description": "Built agents for documentation updates, static checks and end-to-end testing. Established peer review, testing and CI checks for AI-generated code and led an AI engineering workshop for 45 engineers."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Open-source maintenance and community contributions",
+      "description": "Maintains the React Scroll Direction npm package, contributed fixes to Shopify Polaris and the TypeScript website, and published more than 300 answers on Stack Overflow.",
+      "isBasedOn": [
+        "https://www.npmjs.com/package/@smakss/react-scroll-direction",
+        "https://github.com/Shopify/polaris-react-archive/pull/11592",
+        "https://github.com/microsoft/TypeScript-Website/pull/1213",
+        "https://stackoverflow.com/users/11908502/smakss"
+      ]
+    }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/in/smakss/",
+    "https://github.com/smakss",
+    "https://www.npmjs.com/~smakss",
+    "https://hashnode.com/@smakss",
+    "https://stackoverflow.com/users/11908502/smakss"
+  ]
+}

@@ -1,4 +1,5 @@
 import { ToolsPlaygroundPage } from '@features/tools/ToolsPlaygroundPage';
+import { fetchToolsPlaygroundItems } from '@features/tools/tools-playground.server';
 import { createRouteMeta } from '@utils/route-meta.utils';
 import type { LoaderFunctionArgs } from 'react-router';
 
@@ -11,17 +12,14 @@ export const meta = () => {
   return createRouteMeta({ description, title, url });
 };
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const { fetchToolsPlaygroundItems } = await import('@features/tools/tools-playground.server');
-  const items = await fetchToolsPlaygroundItems({ signal: request.signal });
-
+export const loader = ({ request }: LoaderFunctionArgs) => {
   return {
-    items,
+    itemsPromise: fetchToolsPlaygroundItems({ signal: request.signal }),
   };
 };
 
 const ToolsRoute = ({ loaderData }: { loaderData: Awaited<ReturnType<typeof loader>> }) => {
-  return <ToolsPlaygroundPage items={loaderData.items} />;
+  return <ToolsPlaygroundPage itemsPromise={loaderData.itemsPromise} />;
 };
 
 export default ToolsRoute;

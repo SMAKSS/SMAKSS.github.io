@@ -28,6 +28,12 @@ To build and run the site in the local Cloudflare Worker runtime, use `pnpm cf:d
 
 The site supports English and Persian, including right-to-left layout, and light and dark themes. Language and theme preferences are stored as site preferences. Reduced-motion preferences are respected by animated sections.
 
+## Public profile and crawler settings
+
+The [professional profile](public/professional-profile.json) is a standalone JSON-LD resource linked in the document head for tools that follow `describedby` links. It is directly accessible by URL. The [response header](public/_headers) asks search engines to omit the file from their results. Keep the profile limited to information intended for anyone who fetches it.
+
+[robots.txt](public/robots.txt) advertises the [sitemap](public/sitemap.xml) and can hold crawler-specific preferences. Cloudflare can prepend managed rules to the file served on the live domain. Public content stays accessible to clients regardless of voluntary crawler directives. [Cloudflare managed crawler rules](https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt/)
+
 ## Project structure
 
 - `src/routes/` — React Router route modules, metadata, loaders, and route-level assets.

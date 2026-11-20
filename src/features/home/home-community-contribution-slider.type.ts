@@ -11,7 +11,7 @@ export type HomeCommunityContributionSliderPropsType = {
   /**
    * Deferred community contribution feeds resolved on the server.
    */
-  communityContributionFeedsPromise: Promise<CommunityContributionFeedsByIdType>;
+  communityContributionFeeds: CommunityContributionFeedsByIdType;
 };
 
 /**

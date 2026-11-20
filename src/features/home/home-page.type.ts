@@ -7,5 +7,5 @@ export type HomePagePropsType = {
   /**
    * Deferred server-resolved feeds for the community contribution slider.
    */
-  communityContributionFeedsPromise: Promise<CommunityContributionFeedsByIdType>;
+  communityContributionFeeds: CommunityContributionFeedsByIdType;
 };

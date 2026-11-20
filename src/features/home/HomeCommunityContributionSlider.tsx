@@ -22,7 +22,7 @@ import { HOME_COMMUNITY_CONTRIBUTION_ITEMS } from './home-community-contribution
  * Home slider section inspired by product showcase carousels.
  */
 export const HomeCommunityContributionSlider = ({
-  communityContributionFeedsPromise,
+  communityContributionFeeds,
 }: HomeCommunityContributionSliderPropsType) => {
   const { t, currentLanguage } = useAppTranslation();
   const isRtl = currentLanguage === 'fa';
@@ -37,8 +37,6 @@ export const HomeCommunityContributionSlider = ({
   const [activeTrackIndex, setActiveTrackIndex] = useState(
     Math.floor(HOME_COMMUNITY_CONTRIBUTION_ITEMS.length / 2),
   );
-  const activeSlide = HOME_COMMUNITY_CONTRIBUTION_ITEMS[activeTrackIndex];
-
   const moveToPreviousSlide = (): void => {
     if (!hasMultipleSlides) {
       return;
@@ -343,13 +341,11 @@ export const HomeCommunityContributionSlider = ({
                         </ul>
                       }
                     >
-                      <Await resolve={communityContributionFeedsPromise}>
-                        {(feeds) => {
-                          const activeItems =
-                            activeSlide === undefined ? [] : (feeds[activeSlide.id] ?? []);
-
-                          return renderFeedContent({ items: activeItems });
-                        }}
+                      <Await
+                        errorElement={renderFeedContent({ items: [] })}
+                        resolve={communityContributionFeeds[slide.id]}
+                      >
+                        {(items) => renderFeedContent({ items: items ?? [] })}
                       </Await>
                     </Suspense>
                   </Box>

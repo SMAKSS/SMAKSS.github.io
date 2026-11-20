@@ -16,13 +16,13 @@ export const getTodayKey = (): string => {
  * Reads a cached quote value for the current date.
  */
 export const readCachedQuote = ({ dateKey }: ReadCachedQuoteInputType): DailyQuoteType | null => {
-  const storedValue = window.localStorage.getItem(QUOTE_STORAGE_KEY);
-
-  if (storedValue === null) {
-    return null;
-  }
-
   try {
+    const storedValue = window.localStorage.getItem(QUOTE_STORAGE_KEY);
+
+    if (storedValue === null) {
+      return null;
+    }
+
     const parsedValue = JSON.parse(storedValue) as QuoteStoragePayloadType;
 
     if (parsedValue.dateKey !== dateKey) {
@@ -39,5 +39,9 @@ export const readCachedQuote = ({ dateKey }: ReadCachedQuoteInputType): DailyQuo
  * Writes a quote value into local storage for the current date.
  */
 export const writeCachedQuote = ({ dateKey, value }: QuoteStoragePayloadType): void => {
-  window.localStorage.setItem(QUOTE_STORAGE_KEY, JSON.stringify({ dateKey, value }));
+  try {
+    window.localStorage.setItem(QUOTE_STORAGE_KEY, JSON.stringify({ dateKey, value }));
+  } catch {
+    // The quote is still available for the current page when storage is unavailable.
+  }
 };
