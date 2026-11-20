@@ -3,7 +3,7 @@ import aboutRouteStylesheet from '@features/about/about.route.css?url';
 import { createRouteMeta } from '@utils/route-meta.utils';
 
 export const meta = () => {
-  const title = 'Max Kazemi — Software Engineer | Frontend Platforms & Web Infrastructure';
+  const title = 'Max Kazemi — About | Software Engineer Building Web Platforms';
   const description =
     'From backend services to scalable frontend systems — a narrative on platform architecture, product building, and durable engineering foundations.';
   const url = 'https://smakss.com/about';

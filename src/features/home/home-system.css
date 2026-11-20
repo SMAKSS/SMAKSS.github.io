@@ -1,0 +1,489 @@
+.system-figure {
+  --plate-light: color-mix(in srgb, var(--background) 89%, var(--accent));
+  --plate: color-mix(in srgb, var(--background) 76%, var(--accent));
+  --plate-edge: color-mix(in srgb, var(--background) 59%, var(--muted-foreground));
+  --plate-rim: color-mix(in srgb, var(--background) 27%, var(--muted-foreground));
+  --plate-outline: color-mix(in srgb, var(--accent) 56%, var(--background));
+  --plate-ink: var(--accent-strong);
+  position: relative;
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 auto;
+  container-type: inline-size;
+  isolation: isolate;
+}
+.system-drawing {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+.system-layer[data-position='above'] {
+  opacity: 0.16;
+}
+.system-layer[data-position='below'] {
+  opacity: 0.42;
+}
+.system-sync {
+  position: absolute;
+  white-space: nowrap;
+}
+.system-figure[data-focus]:not([data-focus='interface']) .system-sync {
+  opacity: 0.26;
+}
+.system-vertical-wires {
+  stroke: var(--plate-outline);
+  stroke-width: 0.9;
+  stroke-dasharray: 2 4;
+  opacity: 0.48;
+}
+.system-leaders {
+  stroke: var(--muted-foreground);
+  stroke-width: 0.85;
+  opacity: 0.52;
+}
+.system-traces {
+  stroke: var(--plate-ink);
+  stroke-width: 1.1;
+  opacity: 0.34;
+}
+.system-layer[data-position='active'] .system-traces {
+  opacity: 0.76;
+}
+.system-casing-lid {
+  fill: var(--plate-light);
+  stroke: var(--plate-outline);
+  stroke-width: 1.15;
+}
+.system-casing-front,
+.system-drum {
+  fill: var(--device-metal);
+  stroke: var(--plate-outline);
+  stroke-width: 1;
+}
+.system-casing-side {
+  fill: var(--plate-rim);
+  stroke: var(--plate-outline);
+  stroke-width: 1;
+}
+.system-inset,
+.system-recess {
+  fill: color-mix(in srgb, var(--plate-ink) 72%, var(--background));
+  stroke: var(--plate-outline);
+  stroke-width: 0.75;
+}
+.system-engraving,
+.system-band,
+.system-vent,
+.system-feed-icon {
+  stroke: var(--plate-ink);
+  stroke-width: 1.55;
+}
+.system-engraving {
+  opacity: 0.64;
+}
+.system-band {
+  opacity: 0.58;
+  stroke-width: 1.1;
+}
+.system-fascia-mark,
+.system-validation-mark {
+  fill: none;
+  stroke: var(--plate-light);
+  stroke-width: 1.5;
+}
+.system-validation-mark {
+  stroke-width: 2.3;
+}
+.system-count-readout,
+.system-http-readout {
+  fill: var(--plate-light);
+  font:
+    700 12px/1 ui-monospace,
+    monospace;
+}
+.system-count-readout {
+  font-size: 9px;
+}
+.system-work-light,
+.system-pin {
+  fill: var(--plate-light);
+}
+.system-foot {
+  fill: var(--plate-rim);
+  opacity: 0.32;
+}
+.system-index-read,
+.system-read-band {
+  fill: none;
+  stroke: var(--plate-ink);
+  stroke-width: 2;
+  opacity: 0;
+}
+.system-layer[data-position='active'] .system-engraving {
+  opacity: 1;
+}
+.system-feed-tile {
+  fill: var(--plate-edge);
+  stroke: var(--plate-outline);
+  stroke-width: 0.7;
+}
+.system-event-title {
+  fill: var(--plate-ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+.system-rim-light {
+  stroke: var(--accent-strong);
+  stroke-width: 1;
+  opacity: 0;
+}
+.system-layer[data-position='active'] .system-rim-light {
+  opacity: 0.54;
+}
+.system-label {
+  position: absolute;
+  left: 77%;
+  max-width: 24%;
+  width: max-content;
+  transform: translateY(-50%);
+  color: var(--muted-foreground);
+  font-size: clamp(0.71rem, 2.75cqw, 0.875rem);
+  line-height: 1.3;
+  text-align: start;
+}
+.system-label--interface {
+  top: 27.5%;
+}
+.system-label--logic {
+  top: 43.5%;
+}
+.system-label--services {
+  top: 59.5%;
+}
+.system-label--infrastructure {
+  top: 75.5%;
+}
+.system-label[aria-current='step'] {
+  color: var(--foreground);
+  font-weight: 700;
+}
+.system-label[aria-current='step']::before {
+  content: '';
+  position: absolute;
+  left: -0.65em;
+  top: calc(50% - 0.18em);
+  width: 0.36em;
+  height: 0.36em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.system-toolbar-title {
+  font-size: 15px;
+  font-weight: 550;
+  fill: var(--plate-ink);
+}
+.system-operation {
+  position: absolute;
+  inset: auto 0 0;
+  margin: 0;
+  text-align: center;
+  font-size: clamp(0.68rem, 2.55cqw, 0.82rem);
+  color: var(--muted-foreground);
+}
+.system-invitation {
+  top: calc(100% + clamp(0.65rem, 2vw, 1rem));
+  bottom: auto;
+  padding-inline: 0.5em;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+.system-sync {
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  width: max(20.8%, 8em);
+  font-size: clamp(0.54rem, 2.45cqw, 0.83rem);
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--plate-ink);
+  cursor: pointer;
+}
+.system-filter-face {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.34em;
+  width: 100%;
+  height: 1.95em;
+  padding: 0 0.56em;
+  transform: rotate(-13.5deg) skewX(5deg) scaleY(0.94);
+  border: 1px solid var(--plate-outline);
+  border-radius: 0.35em;
+  background: var(--plate-light);
+  font-size: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.system-sync svg {
+  width: 0.95em;
+  height: 0.95em;
+  flex: none;
+}
+.system-sync[aria-disabled='true'] {
+  cursor: default;
+}
+.system-figure .system-sync:focus-visible {
+  outline: none;
+}
+.system-sync:focus-visible .system-filter-face {
+  outline: 2px solid var(--plate-ink);
+  outline-offset: 2px;
+}
+.system-traffic {
+  pointer-events: none;
+  --signal: var(--accent);
+}
+.system-traffic[data-returning='true'] {
+  --signal: var(--accent-strong);
+}
+.system-live-wire,
+.system-packet,
+.system-arrival {
+  opacity: 0;
+  stroke: var(--signal);
+}
+.system-live-wire {
+  stroke-width: 1.7;
+}
+.system-packet {
+  stroke-width: 3.8;
+  stroke-dasharray: 0.12 1.3;
+}
+.system-layer[data-position='active'] [data-route='count'],
+.system-traffic [data-branch='count'] .system-live-wire {
+  stroke-dasharray: 3 3;
+}
+.system-branch-name {
+  fill: var(--plate-ink);
+  stroke: var(--plate-light);
+  stroke-width: 2.8;
+  paint-order: stroke fill;
+  font-size: 13px;
+  font-weight: 600;
+}
+.system-reply {
+  fill: var(--plate-light);
+  stroke: var(--plate-ink);
+  stroke-width: 1.3;
+}
+.system-reply circle {
+  fill: var(--plate-ink);
+}
+.system-reply text {
+  fill: var(--plate-light);
+  stroke: none;
+  font:
+    700 10px ui-monospace,
+    monospace;
+}
+.system-moving-reply {
+  offset-path: var(--trace);
+  offset-anchor: 0px 0px;
+  offset-rotate: 0deg;
+  opacity: 0;
+}
+.system-joined-reply {
+  opacity: 0;
+}
+.system-arrival {
+  stroke-width: 1.5;
+}
+@media (max-width: 767px) {
+  .system-figure {
+    max-width: 27rem;
+  }
+}
+@media (hover: hover) {
+  .system-sync:not([aria-disabled='true']):hover .system-filter-face {
+    background: var(--plate);
+    border-color: var(--plate-ink);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .system-layer,
+  .system-traces,
+  .system-rim-light,
+  .system-sync {
+    transition: opacity 240ms ease;
+  }
+  [data-working] :is(.system-read-band, .system-index-read, .system-work-light) {
+    animation: system-device-read 480ms ease-out var(--work-delay) both;
+  }
+  [data-working] .system-validation-mark {
+    stroke-dasharray: 22;
+    animation: system-check 270ms ease-out var(--work-delay) both;
+  }
+  .system-figure[data-phase='apply'] [data-working] .system-feed-buffer {
+    animation: system-feed-update 320ms ease-out var(--work-delay) backwards;
+  }
+  .system-layer[data-position='active'] [data-working] .system-service-scan {
+    animation: system-scan 380ms ease-in-out var(--work-delay) both;
+  }
+  .system-live-wire {
+    animation: system-wire var(--travel) ease var(--delay) both;
+  }
+  .system-packet {
+    animation: system-packet var(--travel) linear var(--delay) both;
+  }
+  .system-moving-reply {
+    animation: system-reply-travel var(--travel) linear var(--delay) forwards;
+  }
+  .system-figure[data-phase='merge'] .system-moving-reply {
+    --landed-opacity: 1;
+  }
+  .system-dock-items,
+  .system-dock-count {
+    animation: system-dock var(--travel) ease-in var(--delay) forwards;
+  }
+  .system-dock-items {
+    --dock-x: -7px;
+  }
+  .system-dock-count {
+    --dock-x: 7px;
+  }
+  .system-figure[data-phase='merge'] .system-joined-reply {
+    animation: system-join 100ms ease-out var(--join) forwards;
+  }
+  .system-figure[data-phase='respond'] .system-joined-reply {
+    animation: system-release var(--release) step-end forwards;
+  }
+  .system-arrival {
+    animation: system-arrival 280ms ease-out calc(var(--delay) + var(--travel) - 95ms) both;
+  }
+  .system-figure[data-phase='success'] .system-feed-content {
+    animation: system-feed-update 360ms ease-out both;
+  }
+}
+@keyframes system-wire {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  18%,
+  82% {
+    opacity: 0.69;
+  }
+}
+@keyframes system-packet {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 0.15;
+  }
+  5%,
+  96% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -1;
+  }
+}
+@keyframes system-arrival {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  30%,
+  62% {
+    opacity: 0.95;
+  }
+}
+@keyframes system-feed-update {
+  from {
+    opacity: 0.45;
+    translate: 0 3px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes system-device-read {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  25%,
+  65% {
+    opacity: 1;
+    stroke: var(--plate-ink);
+    stroke-width: 1.6;
+  }
+}
+@keyframes system-check {
+  from {
+    stroke-dashoffset: 22;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.system-service-scan {
+  stroke: var(--plate-ink);
+  stroke-width: 2;
+  opacity: 0;
+}
+@keyframes system-scan {
+  0% {
+    opacity: 0;
+    translate: 0 -5px;
+  }
+  25%,
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 5px;
+  }
+}
+
+@keyframes system-reply-travel {
+  from {
+    opacity: 1;
+    offset-distance: 100%;
+  }
+  99% {
+    opacity: 1;
+  }
+  to {
+    opacity: var(--landed-opacity, 0);
+    offset-distance: 0%;
+  }
+}
+@keyframes system-dock {
+  60% {
+    translate: 0 0;
+  }
+  to {
+    translate: var(--dock-x) 0;
+  }
+}
+@keyframes system-join {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes system-release {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

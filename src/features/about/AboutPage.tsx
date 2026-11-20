@@ -1,9 +1,11 @@
 import { Box } from '@components/Box';
+import { ArrowIcon } from '@components/Icon';
 import { Text } from '@components/Text';
 import { useAppTranslation } from '@i18n/use-app-translation.hook';
 import type { ReactNode } from 'react';
 import type { AboutContentType, RenderParagraphContentInputType } from './about-content.type';
 import {
+  ABOUT_SECTIONS,
   CONTACT_EMAIL,
   EMAIL_CAPTURE_PATTERN,
   EMAIL_LINK_TOKEN,
@@ -90,9 +92,8 @@ export const AboutPage = () => {
   const contentPayload = t('aboutContent', { returnObjects: true }) as AboutContentType | string;
   const content: AboutContentType =
     typeof contentPayload === 'string'
-      ? { closing: '', headline: '', intro: [], name: '', sections: [] }
+      ? { headline: '', intro: [], name: '', sections: [] }
       : {
-          closing: contentPayload.closing,
           headline: contentPayload.headline,
           intro: Array.isArray(contentPayload.intro) ? contentPayload.intro : [],
           name: contentPayload.name,
@@ -107,6 +108,23 @@ export const AboutPage = () => {
       <Text as="p" className="mt-4 md:text-lg" tone="muted">
         {content.headline}
       </Text>
+
+      <nav className="about-contents" aria-label={t('about.contents')}>
+        <details>
+          <summary className="about-contents-label">
+            {t('about.contents')} <ArrowIcon direction="down" className="about-contents-arrow" />
+          </summary>
+          <ol>
+            {content.sections.map((section, index) => (
+              <li key={section.title}>
+                <a href={`#${ABOUT_SECTIONS[index]?.id ?? `section-${String(index + 1)}`}`}>
+                  {section.title}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </details>
+      </nav>
 
       <Box className="mt-10 space-y-5 text-lg leading-relaxed text-(--foreground)/95">
         {content.intro.map((paragraph) => {
@@ -123,9 +141,17 @@ export const AboutPage = () => {
       </Box>
 
       <Box className="mt-14 space-y-14">
-        {content.sections.map((section) => {
+        {content.sections.map((section, index) => {
+          const sectionConfig = ABOUT_SECTIONS[index];
+          const meme =
+            sectionConfig !== undefined && 'meme' in sectionConfig ? sectionConfig.meme : null;
+
           return (
-            <Box as="section" key={section.title}>
+            <Box
+              as="section"
+              id={sectionConfig?.id ?? `section-${String(index + 1)}`}
+              key={section.title}
+            >
               <Text as="h2" className="text-3xl tracking-tight" weight="medium">
                 {section.title}
               </Text>
@@ -147,17 +173,59 @@ export const AboutPage = () => {
                   );
                 })}
               </Box>
+              {meme !== null ? (
+                <figure className={`about-meme about-meme--${meme.key}`}>
+                  {meme.key === 'production' ? (
+                    <figcaption className="about-meme-caption">
+                      <Text as="p" className="about-meme-setup">
+                        {t(`aboutMeme.${meme.key}.setup`)}
+                      </Text>
+                      <Text as="p" className="about-meme-punchline">
+                        {t(`aboutMeme.${meme.key}.punchline`)}
+                      </Text>
+                    </figcaption>
+                  ) : null}
+                  <a
+                    aria-label={`${t('aboutMeme.source')}: ${t(`aboutMeme.${meme.key}.alt`)}`}
+                    className="about-meme-link"
+                    href={meme.source}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      alt={t(`aboutMeme.${meme.key}.alt`)}
+                      className={`about-meme-art about-meme-art--${meme.key}`}
+                      loading="lazy"
+                      src={meme.image}
+                    />
+                    <span className="about-meme-source" aria-hidden="true">
+                      {t('aboutMeme.source')}
+                      <ArrowIcon direction="up-right" className="about-meme-source-icon" />
+                    </span>
+                  </a>
+                  {meme.key === 'complexity' ? (
+                    <figcaption className="about-meme-button-labels">
+                      <span>{t('aboutMeme.complexity.platform')}</span>
+                      <span>{t('aboutMeme.complexity.simple')}</span>
+                    </figcaption>
+                  ) : meme.key !== 'production' ? (
+                    <figcaption className="about-meme-caption">
+                      <Text as="p" className="about-meme-setup">
+                        {t(`aboutMeme.${meme.key}.setup`)}
+                      </Text>
+                      {meme.key !== 'community' ? (
+                        <Text as="p" className="about-meme-punchline">
+                          {t(`aboutMeme.${meme.key}.punchline`)}
+                        </Text>
+                      ) : null}
+                    </figcaption>
+                  ) : null}
+                </figure>
+              ) : null}
             </Box>
           );
         })}
       </Box>
-
-      <Text
-        as="p"
-        className="mt-16 border-t border-(--card-border) pt-10 text-2xl leading-relaxed tracking-tight"
-      >
-        {content.closing}
-      </Text>
     </Box>
   );
 };

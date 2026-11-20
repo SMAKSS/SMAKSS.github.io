@@ -31,6 +31,10 @@ export type SelectPropsType = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'chi
    */
   options: SelectOptionType[];
   /**
+   * Visual treatment for standard fields or compact controls such as a language picker.
+   */
+  variant?: 'default' | 'compact';
+  /**
    * Optional classes applied to the outer wrapper.
    */
   wrapperClassName?: string;

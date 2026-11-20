@@ -49,6 +49,14 @@ export type RouteMetaEntryType =
        * Meta content value.
        */
       content: string;
+    }
+  | {
+      /**
+       * Canonical document URL.
+       */
+      tagName: 'link';
+      rel: 'canonical';
+      href: string;
     };
 
 /**

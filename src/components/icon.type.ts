@@ -4,12 +4,7 @@ import type { ThemeModeType } from '@theme/theme.type';
  * Supported social icon identifiers used across header and profile surfaces.
  */
 export type SocialIconIdType =
-  | 'email'
-  | 'github'
-  | 'hackernoon'
-  | 'linkedin'
-  | 'npm'
-  | 'stackoverflow';
+  'email' | 'github' | 'hackernoon' | 'linkedin' | 'npm' | 'stackoverflow';
 
 /**
  * Props used by the theme toggle icon renderer.
@@ -39,4 +34,12 @@ export type SocialIconPropsType = {
    * Stable identifier that selects the matching SVG glyph.
    */
   id: SocialIconIdType;
+};
+
+/**
+ * Direction and optional styling for a shared navigation arrow.
+ */
+export type ArrowIconPropsType = {
+  direction: 'left' | 'right' | 'up-right' | 'down';
+  className?: string;
 };

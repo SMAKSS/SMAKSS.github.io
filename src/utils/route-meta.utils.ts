@@ -17,7 +17,7 @@ export const createRouteMeta = ({
   return [
     { title },
     { name: 'description', content: description },
-    { name: 'canonical', content: url },
+    { tagName: 'link', rel: 'canonical', href: url },
     { property: 'og:type', content: type },
     { property: 'og:site_name', content: DEFAULT_SITE_NAME },
     { property: 'og:title', content: title },

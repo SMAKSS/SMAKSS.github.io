@@ -1,87 +1,80 @@
 import { ROUTE_PATHS } from '@app/router/router.constants';
 import { Box } from '@components/Box';
+import { ArrowIcon } from '@components/Icon';
 import { Text } from '@components/Text';
 import { useAppTranslation } from '@i18n/use-app-translation.hook';
 import { Link } from 'react-router';
 import { HomeCommunityContributionSlider } from './HomeCommunityContributionSlider';
+import { HomeSystemsIllustration } from './HomeSystemsIllustration';
 import type { HomePagePropsType } from './home-page.type';
-import { useDailyQuote } from './use-daily-quote.hook';
 
 /**
- * Renders the landing page hero and daily quote module.
+ * Renders the landing page hero and discovery links.
  */
-export const HomePage = ({
-  communityContributionFeedsPromise,
-  initialQuote,
-}: HomePagePropsType) => {
+export const HomePage = ({ communityContributionFeedsPromise }: HomePagePropsType) => {
   const { t } = useAppTranslation();
-  const quote = useDailyQuote({ initialValue: initialQuote });
-  const quoteValue = quote.value;
-  const hasQuoteDetails = !quote.isLoading && !quote.hasError && quoteValue !== null;
-
-  let quoteContent = t('quote.unavailable');
-
-  if (quote.isLoading) {
-    quoteContent = t('quote.loading');
-  } else if (hasQuoteDetails) {
-    quoteContent = `“${quoteValue.content}”`;
-  }
 
   return (
-    <Box as="main" className="mx-auto flex w-full max-w-6xl flex-col gap-14 px-6 pt-8 md:px-10">
-      <Box as="section" className="grid gap-10 md:grid-cols-[1.25fr_0.95fr] md:items-end">
-        <Box>
-          <Text
-            as="h1"
-            className="max-w-5xl text-5xl leading-[1.06] tracking-tight md:text-7xl"
-            tone="muted"
-            weight="medium"
-          >
-            {t('hero.intro')}{' '}
-            <Text as="span" className="text-(--foreground)" weight="medium">
-              {t('hero.name')}
-            </Text>
+    <Box as="main" className="home-page mx-auto w-full max-w-6xl px-6 md:px-10">
+      <Box as="section" className="home-intro" aria-labelledby="home-heading">
+        <Box className="home-intro-main">
+          <Text as="h1" id="home-heading" className="home-headline">
+            {t('aboutContent.name')}
           </Text>
-          <Text
-            as="p"
-            className="mt-8 max-w-3xl text-xl leading-relaxed md:text-3xl"
-            tone="muted"
-            weight="semibold"
-          >
+          <Text as="p" className="home-role">
             {t('hero.subtitle')}
           </Text>
-          <Box className="mt-8">
-            <Link
-              className="rounded-full border border-(--card-border) px-6 py-3 text-sm font-medium transition hover:border-(--accent) hover:text-(--accent)"
-              to={ROUTE_PATHS.ABOUT}
-            >
-              {t('hero.secondaryCta')}
-            </Link>
-          </Box>
-        </Box>
-
-        <Box
-          as="aside"
-          aria-label={t('quote.eyebrow')}
-          className="relative border-s-2 border-(--card-border) ps-6"
-        >
-          <Text as="p" className="uppercase tracking-[0.16em] text-(--accent)" size="xs">
-            {t('quote.eyebrow')}
+          <Text as="p" className="home-statement">
+            {t('hero.statement')}
           </Text>
-          <Text as="p" className="mt-3 leading-relaxed md:text-sm" size="xs">
-            {quoteContent}
+          <Text as="p" className="home-intro-description">
+            {t('hero.description')}
           </Text>
-          {hasQuoteDetails ? (
-            <Text as="p" className="mt-3" size="xs" tone="muted">
-              — {quoteValue.author} · {t('quote.sourceApi')}
-            </Text>
-          ) : null}
+          <Link className="home-primary-link" to={ROUTE_PATHS.ABOUT}>
+            {t('hero.secondaryCta')}
+          </Link>
         </Box>
+        <HomeSystemsIllustration />
       </Box>
 
       <HomeCommunityContributionSlider
         communityContributionFeedsPromise={communityContributionFeedsPromise}
       />
+
+      <Box as="section" className="home-explore" aria-labelledby="home-explore-title">
+        <Box className="home-explore-intro">
+          <Text as="h2" id="home-explore-title" className="home-section-title">
+            {t('hero.exploreTitle')}
+          </Text>
+          <Text as="p" className="home-explore-summary">
+            {t('hero.exploreDescription')}
+          </Text>
+        </Box>
+        <Box className="home-explore-links">
+          <Link className="home-explore-link" to={ROUTE_PATHS.TOOLS}>
+            <Box>
+              <Text as="span" className="home-explore-name">
+                {t('nav.tools')}
+              </Text>
+              <Text as="span" className="home-explore-description">
+                {t('hero.routeSelector.toolsDescription')}
+              </Text>
+            </Box>
+            <ArrowIcon direction="right" />
+          </Link>
+          <Link className="home-explore-link" to={ROUTE_PATHS.PLAYGROUND}>
+            <Box>
+              <Text as="span" className="home-explore-name">
+                {t('nav.playground')}
+              </Text>
+              <Text as="span" className="home-explore-description">
+                {t('hero.routeSelector.playgroundDescription')}
+              </Text>
+            </Box>
+            <ArrowIcon direction="right" />
+          </Link>
+        </Box>
+      </Box>
     </Box>
   );
 };

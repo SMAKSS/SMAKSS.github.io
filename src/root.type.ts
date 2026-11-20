@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import type { DailyQuoteType } from './features/home/quote.type';
 import type { ThemeModeType } from './theme/theme.type';
 import type { LanguageCodeType } from './types/language.type';
 
@@ -157,6 +158,7 @@ export type RootRoutePropsType = {
    */
   loaderData: {
     documentTheme?: ThemeModeType | null;
+    initialQuote: DailyQuoteType | null;
     preferences: PreferencesType;
   };
 };

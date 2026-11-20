@@ -1,5 +1,6 @@
 import { Box } from '@components/Box';
 import { Button } from '@components/Button';
+import { ArrowIcon } from '@components/Icon';
 import { Picture } from '@components/Picture';
 import { Text } from '@components/Text';
 import { useAppTranslation } from '@i18n/use-app-translation.hook';
@@ -246,16 +247,17 @@ export const HomeCommunityContributionSlider = ({
   };
 
   return (
-    <Box as="section" className="pt-8">
-      <Box className="mb-3">
-        <Text as="h2" className="text-2xl tracking-tight md:text-3xl" weight="medium">
-          {t('hero.slider.title')}
-        </Text>
+    <Box as="section" className="home-contributions">
+      <Box className="home-contributions-heading">
+        <Box>
+          <Text as="h2" className="home-section-title" weight="medium">
+            {t('hero.slider.title')}
+          </Text>
+          <Text as="p" className="home-contributions-description" tone="muted">
+            {t('hero.slider.description')}
+          </Text>
+        </Box>
       </Box>
-
-      <Text as="p" className="max-w-4xl leading-relaxed md:text-base" size="sm" tone="muted">
-        {t('hero.slider.description')}
-      </Text>
 
       <Box
         className={`home-slider-stage mt-6 ${isDragging ? 'is-dragging' : ''}`}
@@ -357,8 +359,7 @@ export const HomeCommunityContributionSlider = ({
           })}
         </Box>
       </Box>
-
-      <Box className="mt-4 flex items-center justify-center gap-2">
+      <Box className="home-slider-controls">
         <Button
           aria-label={t('hero.slider.previous')}
           className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-(--card-border) bg-(--background)/55 text-sm transition hover:border-(--accent) hover:text-(--accent)"
@@ -367,7 +368,7 @@ export const HomeCommunityContributionSlider = ({
           size="none"
           variant="unstyled"
         >
-          {isRtl ? '→' : '←'}
+          <ArrowIcon direction={isRtl ? 'right' : 'left'} />
         </Button>
         <Button
           aria-label={t('hero.slider.next')}
@@ -377,7 +378,7 @@ export const HomeCommunityContributionSlider = ({
           size="none"
           variant="unstyled"
         >
-          {isRtl ? '←' : '→'}
+          <ArrowIcon direction={isRtl ? 'left' : 'right'} />
         </Button>
       </Box>
     </Box>
