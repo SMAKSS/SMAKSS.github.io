@@ -2,14 +2,13 @@ import { resolveRequestLanguage } from '@/root.utils';
 import { HomePage } from '@features/home/HomePage';
 import { fetchCommunityContributionFeeds } from '@features/home/home-community-contribution.server';
 import homeRouteStylesheet from '@features/home/home.route.css?url';
-import { fetchDailyQuote } from '@features/home/quote.server';
 import { createRouteMeta } from '@utils/route-meta.utils';
 import type { LoaderFunctionArgs } from 'react-router';
 
 export const meta = () => {
-  const title = 'SMAKSS — Software Engineer | Frontend Platforms & Web Infrastructure';
+  const title = 'Max Kazemi — Software Engineer Building Web Platforms';
   const description =
-    'Software engineer specialising in frontend platforms, web infrastructure, and durable system design. Founder, open-source contributor, and technical writer.';
+    'Software engineer building web platforms, from frontend foundations to reliable infrastructure. Founder, open-source contributor, and technical writer.';
   const url = 'https://smakss.com/';
 
   return createRouteMeta({ description, title, url });
@@ -22,17 +21,12 @@ export const links = () => {
   return [{ href: homeRouteStylesheet, rel: 'stylesheet' }];
 };
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = ({ request }: LoaderFunctionArgs) => {
   const language = resolveRequestLanguage({ request });
   const communityContributionFeedsPromise = fetchCommunityContributionFeeds({
     signal: request.signal,
   });
-  const dailyQuote = await fetchDailyQuote({ signal: request.signal }).catch(() => {
-    return null;
-  });
-
   return {
-    dailyQuote,
     communityContributionFeedsPromise,
     language,
   };
@@ -40,10 +34,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 const HomeRoute = ({ loaderData }: { loaderData: Awaited<ReturnType<typeof loader>> }) => {
   return (
-    <HomePage
-      communityContributionFeedsPromise={loaderData.communityContributionFeedsPromise}
-      initialQuote={loaderData.dailyQuote}
-    />
+    <HomePage communityContributionFeedsPromise={loaderData.communityContributionFeedsPromise} />
   );
 };
 

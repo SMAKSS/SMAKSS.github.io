@@ -7,27 +7,12 @@ import { Link } from 'react-router';
 import { HomeCommunityContributionSlider } from './HomeCommunityContributionSlider';
 import { HomeSystemsIllustration } from './HomeSystemsIllustration';
 import type { HomePagePropsType } from './home-page.type';
-import { useDailyQuote } from './use-daily-quote.hook';
 
 /**
- * Renders the landing page hero and daily quote module.
+ * Renders the landing page hero and discovery links.
  */
-export const HomePage = ({
-  communityContributionFeedsPromise,
-  initialQuote,
-}: HomePagePropsType) => {
+export const HomePage = ({ communityContributionFeedsPromise }: HomePagePropsType) => {
   const { t } = useAppTranslation();
-  const quote = useDailyQuote({ initialValue: initialQuote });
-  const quoteValue = quote.value;
-  const hasQuoteDetails = !quote.isLoading && !quote.hasError && quoteValue !== null;
-
-  let quoteContent = t('quote.unavailable');
-
-  if (quote.isLoading) {
-    quoteContent = t('quote.loading');
-  } else if (hasQuoteDetails) {
-    quoteContent = `“${quoteValue.content}”`;
-  }
 
   return (
     <Box as="main" className="home-page mx-auto w-full max-w-6xl px-6 md:px-10">
@@ -75,7 +60,7 @@ export const HomePage = ({
                 {t('hero.routeSelector.toolsDescription')}
               </Text>
             </Box>
-            <ArrowIcon direction="up-right" />
+            <ArrowIcon direction="right" />
           </Link>
           <Link className="home-explore-link" to={ROUTE_PATHS.PLAYGROUND}>
             <Box>
@@ -86,24 +71,8 @@ export const HomePage = ({
                 {t('hero.routeSelector.playgroundDescription')}
               </Text>
             </Box>
-            <ArrowIcon direction="up-right" />
+            <ArrowIcon direction="right" />
           </Link>
-        </Box>
-      </Box>
-
-      <Box as="aside" aria-label={t('quote.eyebrow')} className="home-signal">
-        <Text as="p" className="home-signal-label">
-          {t('quote.eyebrow')}
-        </Text>
-        <Box>
-          <Text as="p" className="home-signal-quote">
-            {quoteContent}
-          </Text>
-          {hasQuoteDetails ? (
-            <Text as="p" className="home-signal-author">
-              — {quoteValue.author} · {t('quote.sourceApi')}
-            </Text>
-          ) : null}
         </Box>
       </Box>
     </Box>

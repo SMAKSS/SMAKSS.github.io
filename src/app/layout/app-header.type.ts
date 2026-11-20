@@ -3,16 +3,6 @@ import type { SocialIconIdType } from '@components/icon.type';
 import type { ThemeModeType } from '@theme/theme.type';
 
 /**
- * Input payload for language updates in the header controls.
- */
-export type ChangeLanguageInputType = {
-  /**
-   * Next selected language code.
-   */
-  language: LanguageCodeType;
-};
-
-/**
  * Server-provided user preference snapshot used during initial render.
  */
 export type InitialPreferencesType = {
@@ -41,7 +31,7 @@ export type AppHeaderPropsType = {
 };
 
 /**
- * Descriptor for one social destination rendered in the header controls.
+ * Descriptor for one social destination rendered in the site footer.
  */
 export type SocialLinkType = {
   /**

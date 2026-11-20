@@ -17,10 +17,6 @@ export type AboutNarrativeSectionType = {
  */
 export type AboutContentType = {
   /**
-   * Closing paragraph at the end of the article.
-   */
-  closing: string;
-  /**
    * Hero headline below the name.
    */
   headline: string;

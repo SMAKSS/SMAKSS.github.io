@@ -92,9 +92,8 @@ export const AboutPage = () => {
   const contentPayload = t('aboutContent', { returnObjects: true }) as AboutContentType | string;
   const content: AboutContentType =
     typeof contentPayload === 'string'
-      ? { closing: '', headline: '', intro: [], name: '', sections: [] }
+      ? { headline: '', intro: [], name: '', sections: [] }
       : {
-          closing: contentPayload.closing,
           headline: contentPayload.headline,
           intro: Array.isArray(contentPayload.intro) ? contentPayload.intro : [],
           name: contentPayload.name,
@@ -227,13 +226,6 @@ export const AboutPage = () => {
           );
         })}
       </Box>
-
-      <Text
-        as="p"
-        className="mt-16 border-t border-(--card-border) pt-10 text-2xl leading-relaxed tracking-tight"
-      >
-        {content.closing}
-      </Text>
     </Box>
   );
 };

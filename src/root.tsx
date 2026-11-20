@@ -5,6 +5,7 @@ import { AppLayout } from '@app/layout/AppLayout';
 import { GtmNoScript, GtmScript } from '@components/Gtm';
 import { DEFAULT_LANGUAGE, LANGUAGE_STORAGE_KEY } from '@constants/language.constants';
 import { ErrorState } from '@features/errors/ErrorState';
+import { fetchDailyQuote } from '@features/home/quote.server';
 import { i18n } from '@i18n/index';
 import { useAppTranslation } from '@i18n/use-app-translation.hook';
 import { THEME_STORAGE_KEY } from '@theme/theme.constants';
@@ -71,10 +72,12 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { documentTheme, preferences } = resolveRequestPreferences({ request });
 
   await i18n.changeLanguage(preferences.language);
+  const initialQuote = await fetchDailyQuote({ signal: request.signal }).catch(() => null);
 
   return {
     preferences: preferences satisfies PreferencesType,
     documentTheme,
+    initialQuote,
   };
 };
 
@@ -190,7 +193,9 @@ export const Layout = ({ children }: RootLayoutPropsType) => {
 };
 
 const Root = ({ loaderData }: RootRoutePropsType) => {
-  return <AppLayout initialPreferences={loaderData.preferences} />;
+  return (
+    <AppLayout initialPreferences={loaderData.preferences} initialQuote={loaderData.initialQuote} />
+  );
 };
 
 /**
