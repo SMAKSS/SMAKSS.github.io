@@ -17,15 +17,11 @@ export type PlaygroundPageShellItemType = {
 /**
  * Props accepted by the shared playground shell component.
  */
-export type PlaygroundPageShellPropsType<ItemType extends PlaygroundPageShellItemType> = {
+export type PlaygroundPanelsPropsType<ItemType extends PlaygroundPageShellItemType> = {
   /**
    * Optional fallback rendered when no items are available.
    */
   emptyState?: ReactNode;
-  /**
-   * Introductory copy rendered above the tabs, split on blank lines.
-   */
-  intro: string;
   /**
    * Playground items available for selection.
    */
@@ -42,6 +38,27 @@ export type PlaygroundPageShellPropsType<ItemType extends PlaygroundPageShellIte
    * Stable section id used for anchoring and ARIA wiring.
    */
   sectionId: string;
+};
+
+/**
+ * Props for the shared playground shell and its optional deferred content.
+ */
+export type PlaygroundPageShellPropsType<ItemType extends PlaygroundPageShellItemType> = Omit<
+  PlaygroundPanelsPropsType<ItemType>,
+  'items'
+> & {
+  /**
+   * Introductory copy rendered above the tabs, split on blank lines.
+   */
+  intro: string;
+  /**
+   * Immediate or deferred playground items.
+   */
+  items: ItemType[] | Promise<ItemType[]>;
+  /**
+   * Status shown while deferred items load.
+   */
+  loadingState?: ReactNode;
 };
 
 /**

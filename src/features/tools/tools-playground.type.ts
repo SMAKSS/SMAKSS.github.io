@@ -41,9 +41,9 @@ export type ToolPlaygroundItemType = {
  */
 export type ToolsPlaygroundPagePropsType = {
   /**
-   * Tool entries resolved by the server route loader.
+   * Deferred tool entries from the server route loader.
    */
-  items: ToolPlaygroundItemType[];
+  itemsPromise: Promise<ToolPlaygroundItemType[]>;
 };
 
 /**

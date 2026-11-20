@@ -8,14 +8,20 @@ import { useMemo } from 'react';
 /**
  * Renders the tools playground with per-package metadata and optional sandbox previews.
  */
-export const ToolsPlaygroundPage = ({ items }: ToolsPlaygroundPagePropsType) => {
+export const ToolsPlaygroundPage = ({ itemsPromise }: ToolsPlaygroundPagePropsType) => {
   const { t, currentLocale } = useAppTranslation();
   const dateFormatter = useMemo(() => {
     return new Intl.DateTimeFormat(currentLocale, {
       dateStyle: 'medium',
     });
   }, [currentLocale]);
-  const tabItems = items.map((item) => ({ ...item, id: item.npmUrl, label: item.name }));
+  const tabItems = useMemo(
+    () =>
+      itemsPromise.then((items) =>
+        items.map((item) => ({ ...item, id: item.npmUrl, label: item.name })),
+      ),
+    [itemsPromise],
+  );
 
   return (
     <PlaygroundPageShell
@@ -26,6 +32,11 @@ export const ToolsPlaygroundPage = ({ items }: ToolsPlaygroundPagePropsType) => 
       }
       intro={t('playground.intro')}
       items={tabItems}
+      loadingState={
+        <Text as="p" className="text-sm text-(--muted-foreground)" role="status">
+          {t('playground.loading')}
+        </Text>
+      }
       renderPanel={(item) => {
         return (
           <>
