@@ -23,19 +23,17 @@ export const links = () => {
 
 export const loader = ({ request }: LoaderFunctionArgs) => {
   const language = resolveRequestLanguage({ request });
-  const communityContributionFeedsPromise = fetchCommunityContributionFeeds({
+  const communityContributionFeeds = fetchCommunityContributionFeeds({
     signal: request.signal,
   });
   return {
-    communityContributionFeedsPromise,
+    communityContributionFeeds,
     language,
   };
 };
 
 const HomeRoute = ({ loaderData }: { loaderData: Awaited<ReturnType<typeof loader>> }) => {
-  return (
-    <HomePage communityContributionFeedsPromise={loaderData.communityContributionFeedsPromise} />
-  );
+  return <HomePage communityContributionFeeds={loaderData.communityContributionFeeds} />;
 };
 
 export default HomeRoute;

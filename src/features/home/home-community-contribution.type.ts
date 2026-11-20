@@ -2,11 +2,7 @@
  * Feed provider type used by a community contribution slide.
  */
 export type CommunityContributionFeedProviderType =
-  | 'github'
-  | 'hashnode'
-  | 'none'
-  | 'npm'
-  | 'stackoverflow';
+  'github' | 'hashnode' | 'none' | 'npm' | 'stackoverflow';
 
 /**
  * Dynamic feed item rendered within a community contribution slide.
@@ -89,10 +85,10 @@ export type FetchCommunityContributionFeedInputType = {
 };
 
 /**
- * Feed map keyed by contribution id.
+ * Independently deferred feeds keyed by contribution id.
  */
 export type CommunityContributionFeedsByIdType = Partial<
-  Record<HomeCommunityContributionItemType['id'], CommunityContributionFeedItemType[]>
+  Record<HomeCommunityContributionItemType['id'], Promise<CommunityContributionFeedItemType[]>>
 >;
 
 /**

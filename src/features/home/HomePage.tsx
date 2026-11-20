@@ -11,7 +11,7 @@ import type { HomePagePropsType } from './home-page.type';
 /**
  * Renders the landing page hero and discovery links.
  */
-export const HomePage = ({ communityContributionFeedsPromise }: HomePagePropsType) => {
+export const HomePage = ({ communityContributionFeeds }: HomePagePropsType) => {
   const { t } = useAppTranslation();
 
   return (
@@ -37,9 +37,7 @@ export const HomePage = ({ communityContributionFeedsPromise }: HomePagePropsTyp
         <HomeSystemsIllustration />
       </Box>
 
-      <HomeCommunityContributionSlider
-        communityContributionFeedsPromise={communityContributionFeedsPromise}
-      />
+      <HomeCommunityContributionSlider communityContributionFeeds={communityContributionFeeds} />
 
       <Box as="section" className="home-explore" aria-labelledby="home-explore-title">
         <Box className="home-explore-intro">

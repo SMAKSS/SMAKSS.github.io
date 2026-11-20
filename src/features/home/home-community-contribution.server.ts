@@ -194,31 +194,17 @@ export const fetchCommunityContributionFeed = async ({
 };
 
 /**
- * Fetches all configured community contribution feeds for the home slider.
+ * Starts each community feed independently so its slide can render as soon as it resolves.
  */
-export const fetchCommunityContributionFeeds = async ({
+export const fetchCommunityContributionFeeds = ({
   signal,
-}: FetchCommunityContributionFeedsInputType): Promise<CommunityContributionFeedsByIdType> => {
-  const slidesWithFeed = HOME_COMMUNITY_CONTRIBUTION_ITEMS.filter(
-    (slide) => slide.feedProvider !== 'none',
-  );
-
-  const settledEntries = await Promise.all(
-    slidesWithFeed.map(async (slide) => {
-      const items = await fetchCommunityContributionFeed({
-        provider: slide.feedProvider,
-        signal,
-      });
-
-      return [slide.id, items] as const;
-    }),
-  );
-
-  return settledEntries.reduce<CommunityContributionFeedsByIdType>(
-    (accumulator, [communityContributionId, items]) => {
-      accumulator[communityContributionId] = items;
-      return accumulator;
-    },
-    {},
+}: FetchCommunityContributionFeedsInputType): CommunityContributionFeedsByIdType => {
+  return Object.fromEntries(
+    HOME_COMMUNITY_CONTRIBUTION_ITEMS.filter((slide) => slide.feedProvider !== 'none').map(
+      ({ feedProvider, id }) => [
+        id,
+        fetchCommunityContributionFeed({ provider: feedProvider, signal }),
+      ],
+    ),
   );
 };
