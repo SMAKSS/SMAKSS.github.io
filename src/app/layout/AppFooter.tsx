@@ -1,6 +1,6 @@
 import { ROUTE_PATHS } from '@app/router/router.constants';
 import { Box } from '@components/Box';
-import { ArrowIcon } from '@components/Icon';
+import { Select } from '@components/Select';
 import { Text } from '@components/Text';
 import type { DailyQuoteType } from '@features/home/quote.type';
 import { useDailyQuote } from '@features/home/use-daily-quote.hook';
@@ -58,25 +58,21 @@ export const AppFooter = ({ initialQuote }: { initialQuote: DailyQuoteType | nul
         </Box>
 
         <Box className="site-footer-tools">
-          <Box className="site-language-picker-wrap">
-            <label className="sr-only" htmlFor="site-language-picker">
-              {t('language.label')}
-            </label>
-            <select
-              className="site-language-picker"
-              id="site-language-picker"
-              onChange={(event) => {
-                handleLanguageChange(event.currentTarget.value as 'en' | 'fa');
-              }}
-              value={currentLanguage}
-            >
-              <option value="en">English</option>
-              <option className="font-fa" value="fa">
-                فارسی
-              </option>
-            </select>
-            <ArrowIcon className="site-language-picker-arrow" direction="down" />
-          </Box>
+          <Select
+            id="site-language-picker"
+            label={t('language.label')}
+            labelClassName="sr-only"
+            onChange={(event) => {
+              handleLanguageChange(event.currentTarget.value as 'en' | 'fa');
+            }}
+            options={[
+              { label: 'English', value: 'en' },
+              { label: <span className="font-fa">فارسی</span>, value: 'fa' },
+            ]}
+            selectClassName="site-language-picker"
+            value={currentLanguage}
+            variant="compact"
+          />
         </Box>
       </Box>
     </Box>
