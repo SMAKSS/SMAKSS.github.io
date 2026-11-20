@@ -1,7 +1,6 @@
 import { Box } from '@components/Box';
-import type { DailyQuoteType } from '@features/home/quote.type';
 import { Outlet } from 'react-router';
-import type { InitialPreferencesType } from './app-header.type';
+import type { AppLayoutPropsType } from './app-layout.type';
 import { AppFooter } from './AppFooter';
 import { AppHeader } from './AppHeader';
 import { ConsoleWelcome } from './ConsoleWelcome';
@@ -10,13 +9,7 @@ import { CookieBanner } from './CookieBanner';
 /**
  * Root app shell that renders persistent layout chrome and routed content.
  */
-export const AppLayout = ({
-  initialPreferences,
-  initialQuote,
-}: {
-  initialPreferences: InitialPreferencesType;
-  initialQuote: DailyQuoteType | null;
-}) => {
+export const AppLayout = ({ initialPreferences, quotePromise }: AppLayoutPropsType) => {
   return (
     <Box as="div" className="theme-shell relative flex min-h-screen flex-col text-(--foreground)">
       <Box aria-hidden className="shape-layer shape-layer-fixed">
@@ -31,7 +24,7 @@ export const AppLayout = ({
         <AppHeader initialPreferences={initialPreferences} />
         <Outlet />
       </Box>
-      <AppFooter initialQuote={initialQuote} />
+      <AppFooter quotePromise={quotePromise} />
       <CookieBanner />
     </Box>
   );

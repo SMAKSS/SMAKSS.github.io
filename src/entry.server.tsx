@@ -1,5 +1,7 @@
-import { isbot } from 'isbot';
+import { resolveRequestLanguage } from '@/root.utils';
+import { i18n } from '@i18n/index';
 import { renderToReadableStream } from 'react-dom/server';
+import { I18nextProvider } from 'react-i18next';
 import type { EntryContext } from 'react-router';
 import { ServerRouter } from 'react-router';
 
@@ -7,6 +9,15 @@ import { ServerRouter } from 'react-router';
  * Timeout threshold (in milliseconds) before aborting SSR stream rendering.
  */
 export const streamTimeout = 5_000;
+
+/**
+ * Keeps intermediary compression from buffering streamed navigation data.
+ */
+export const handleDataRequest = (response: Response): Response => {
+  const streamedResponse = new Response(response.body, response);
+  streamedResponse.headers.append('Cache-Control', 'no-transform');
+  return streamedResponse;
+};
 
 /**
  * Handles document requests in Workers runtime using Web Streams SSR.
@@ -17,6 +28,8 @@ const handleRequest = async (
   responseHeaders: Headers,
   routerContext: EntryContext,
 ): Promise<Response> => {
+  responseHeaders.append('Cache-Control', 'no-transform');
+
   if (request.method.toUpperCase() === 'HEAD') {
     return new Response(null, {
       headers: responseHeaders,
@@ -24,8 +37,7 @@ const handleRequest = async (
     });
   }
 
-  const userAgent = request.headers.get('user-agent');
-  const shouldWaitForAllContent = Boolean(userAgent && isbot(userAgent)) || routerContext.isSpaMode;
+  const requestI18n = i18n.cloneInstance({ lng: resolveRequestLanguage({ request }) });
   let shellRendered = false;
   const abortController = new AbortController();
   const timeoutId = setTimeout(() => {
@@ -34,7 +46,9 @@ const handleRequest = async (
 
   try {
     const stream = await renderToReadableStream(
-      <ServerRouter context={routerContext} url={request.url} />,
+      <I18nextProvider i18n={requestI18n}>
+        <ServerRouter context={routerContext} url={request.url} />
+      </I18nextProvider>,
       {
         signal: abortController.signal,
         onError(error: unknown): void {
@@ -48,8 +62,10 @@ const handleRequest = async (
     );
 
     shellRendered = true;
+    const clearRenderTimeout = () => clearTimeout(timeoutId);
+    void stream.allReady.then(clearRenderTimeout, clearRenderTimeout);
 
-    if (shouldWaitForAllContent) {
+    if (routerContext.isSpaMode) {
       await stream.allReady;
     }
 
@@ -60,10 +76,8 @@ const handleRequest = async (
       status: responseStatusCode,
     });
   } catch (error) {
-    responseStatusCode = 500;
-    throw error;
-  } finally {
     clearTimeout(timeoutId);
+    throw error;
   }
 };
 

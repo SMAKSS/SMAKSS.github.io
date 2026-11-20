@@ -1,6 +1,6 @@
 import { createServerResponseError, ensureOkResponse } from '@server/fetch-response.utils';
 import { createDailyCacheKey, runServerRequest } from '@server/request-handler.service';
-import { QUOTE_API_URL } from './quote.constants';
+import { QUOTE_API_URL, QUOTE_REQUEST_TIMEOUT_MS } from './quote.constants';
 import type { DailyQuoteType, FetchQuoteInputType, QuoteApiPayloadType } from './quote.type';
 
 /**
@@ -40,5 +40,6 @@ export const fetchDailyQuote = async ({
     },
     requestName: 'fetchDailyQuote',
     signal,
+    timeoutMs: QUOTE_REQUEST_TIMEOUT_MS,
   });
 };

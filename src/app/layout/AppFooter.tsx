@@ -2,25 +2,42 @@ import { ROUTE_PATHS } from '@app/router/router.constants';
 import { Box } from '@components/Box';
 import { Select } from '@components/Select';
 import { Text } from '@components/Text';
-import type { DailyQuoteType } from '@features/home/quote.type';
+import type { UseDailyQuoteInputType } from '@features/home/quote.type';
 import { useDailyQuote } from '@features/home/use-daily-quote.hook';
 import { useAppTranslation } from '@i18n/use-app-translation.hook';
-import { Link, useFetcher } from 'react-router';
+import { Suspense } from 'react';
+import { Await, Link, useFetcher } from 'react-router';
+import type { AppFooterPropsType } from './app-layout.type';
 
 const applyDocumentLanguage = ({ language }: { language: 'en' | 'fa' }): void => {
   document.documentElement.setAttribute('lang', language);
   document.documentElement.setAttribute('dir', language === 'fa' ? 'rtl' : 'ltr');
 };
 
+const FooterQuote = ({ initialValue }: UseDailyQuoteInputType) => {
+  const { t } = useAppTranslation();
+  const { value } = useDailyQuote({ initialValue });
+
+  return (
+    <>
+      <Text as="p" className="site-footer-quote">
+        {value === null ? t('quote.unavailable') : `“${value.content}”`}
+      </Text>
+      {value === null ? null : (
+        <Text as="p" className="site-footer-author">
+          — {value.author}
+        </Text>
+      )}
+    </>
+  );
+};
+
 /**
  * Persistent site footer with the daily signal and global identity controls.
  */
-export const AppFooter = ({ initialQuote }: { initialQuote: DailyQuoteType | null }) => {
+export const AppFooter = ({ quotePromise }: AppFooterPropsType) => {
   const { t, i18n, currentLanguage } = useAppTranslation();
   const preferencesFetcher = useFetcher();
-  const quote = useDailyQuote({ initialValue: initialQuote });
-  const quoteValue = quote.value;
-  const hasQuoteDetails = !quote.isLoading && !quote.hasError && quoteValue !== null;
 
   const handleLanguageChange = (language: 'en' | 'fa'): void => {
     applyDocumentLanguage({ language });
@@ -31,14 +48,6 @@ export const AppFooter = ({ initialQuote }: { initialQuote: DailyQuoteType | nul
     void i18n.changeLanguage(language);
   };
 
-  let quoteContent = t('quote.unavailable');
-
-  if (quote.isLoading) {
-    quoteContent = t('quote.loading');
-  } else if (hasQuoteDetails) {
-    quoteContent = `“${quoteValue.content}”`;
-  }
-
   return (
     <Box as="footer" aria-label={t('footer.label')} className="site-footer">
       <Box className="site-footer-inner mx-auto w-full max-w-6xl px-6 md:px-10">
@@ -46,15 +55,18 @@ export const AppFooter = ({ initialQuote }: { initialQuote: DailyQuoteType | nul
           {t('brand')}
         </Link>
 
-        <Box className="site-footer-signal">
-          <Text as="p" className="site-footer-quote">
-            {quoteContent}
-          </Text>
-          {hasQuoteDetails ? (
-            <Text as="p" className="site-footer-author">
-              — {quoteValue.author}
-            </Text>
-          ) : null}
+        <Box aria-live="polite" className="site-footer-signal">
+          <Suspense
+            fallback={
+              <Text as="p" className="site-footer-quote">
+                {t('quote.loading')}
+              </Text>
+            }
+          >
+            <Await errorElement={<FooterQuote initialValue={null} />} resolve={quotePromise}>
+              {(quote) => <FooterQuote initialValue={quote} />}
+            </Await>
+          </Suspense>
         </Box>
 
         <Box className="site-footer-tools">

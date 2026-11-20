@@ -158,7 +158,7 @@ export type RootRoutePropsType = {
    */
   loaderData: {
     documentTheme?: ThemeModeType | null;
-    initialQuote: DailyQuoteType | null;
     preferences: PreferencesType;
+    quotePromise: Promise<DailyQuoteType | null>;
   };
 };
