@@ -123,6 +123,7 @@ export const headers = () => {
 export const links = () => {
   return [
     { href: stylesheet, rel: 'stylesheet' },
+    { href: '/professional-profile.json', rel: 'describedby', type: 'application/ld+json' },
     { href: '/site.webmanifest', rel: 'manifest' },
     { href: '/favicon.ico', rel: 'icon' },
     { href: '/favicon-32x32.png', rel: 'icon', sizes: '32x32', type: 'image/png' },
