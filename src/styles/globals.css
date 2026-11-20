@@ -125,11 +125,6 @@ button {
   margin-top: 0.6rem;
 }
 
-.site-language-picker-wrap {
-  display: inline-flex;
-  position: relative;
-}
-
 .site-language-picker {
   appearance: none;
   background-color: var(--picker-bg);
@@ -140,19 +135,7 @@ button {
   font: inherit;
   font-size: 0.8rem;
   min-height: 2.25rem;
-  padding-block: 0.4rem;
-  padding-inline: 0.8rem 2.1rem;
-}
-
-.site-language-picker-arrow {
-  color: var(--muted-foreground);
-  height: 0.8rem;
-  inset-inline-end: 0.75rem;
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0.8rem;
+  padding: 0.4rem 0.8rem;
 }
 
 .site-footer-brand:hover {
@@ -246,38 +229,6 @@ button {
   width: 18rem;
 }
 
-.shape-5 {
-  animation: morph 30s ease-in-out infinite;
-  animation-delay: 5s;
-  background: color-mix(in srgb, var(--shape-1) 82%, transparent);
-  bottom: 10%;
-  filter: blur(8px);
-  height: 12rem;
-  left: 12%;
-  width: 12rem;
-}
-
-.shape-6 {
-  animation: orbit-morph 22s linear infinite;
-  background: color-mix(in srgb, var(--shape-3) 90%, transparent);
-  filter: blur(5px);
-  height: 10rem;
-  right: 26%;
-  top: -2rem;
-  width: 10rem;
-}
-
-.shape-7 {
-  animation: morph-drift 20s ease-in-out infinite;
-  animation-delay: 2s;
-  background: color-mix(in srgb, var(--shape-2) 74%, transparent);
-  bottom: 24%;
-  filter: blur(6px);
-  height: 9rem;
-  left: 36%;
-  width: 9rem;
-}
-
 @keyframes morph {
   0% {
     transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
@@ -311,28 +262,5 @@ button {
   100% {
     border-radius: 42% 58% 63% 37% / 41% 39% 61% 59%;
     transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
-  }
-}
-
-@keyframes orbit-morph {
-  0% {
-    border-radius: 55% 45% 47% 53% / 38% 56% 44% 62%;
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
-  }
-  25% {
-    border-radius: 39% 61% 57% 43% / 52% 36% 64% 48%;
-    transform: translate3d(0.8rem, 0.6rem, 0) rotate(90deg) scale(1.07);
-  }
-  50% {
-    border-radius: 63% 37% 33% 67% / 45% 63% 37% 55%;
-    transform: translate3d(0, 1.1rem, 0) rotate(180deg) scale(0.94);
-  }
-  75% {
-    border-radius: 47% 53% 59% 41% / 62% 43% 57% 38%;
-    transform: translate3d(-0.9rem, 0.5rem, 0) rotate(270deg) scale(1.03);
-  }
-  100% {
-    border-radius: 55% 45% 47% 53% / 38% 56% 44% 62%;
-    transform: translate3d(0, 0, 0) rotate(360deg) scale(1);
   }
 }

@@ -36,10 +36,6 @@
   width: max-content;
 }
 
-.home-slider-track.no-transition {
-  transition: none;
-}
-
 .home-slider-stage.is-dragging .home-slider-track {
   transition: none;
 }
